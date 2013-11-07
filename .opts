@@ -1,0 +1,26 @@
+# CD into Sites directories from anywhere else
+CDPATH=:~/Sites
+
+# Unhide ~/Library
+chflags nohidden ~/Library
+
+# Turn off annoying auto-correction
+unsetopt correct_all
+
+# Don't beep on errors
+setopt no_beep
+
+# Case-insensitive globbing (used in pathname expansion)
+setopt nocaseglob
+
+# Append to the Bash history file, rather than overwriting it
+setopt histappend
+setopt nomatch
+
+
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+  setopt "$option" 2> /dev/null
+done

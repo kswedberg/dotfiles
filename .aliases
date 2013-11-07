@@ -1,0 +1,123 @@
+# DEFAULT EDITOR
+alias e="subl"
+alias e.="subl ."
+
+# TextMate
+alias m="mate"
+alias m.="mate ."
+
+# Sublime Text 2
+alias sb="subl"
+alias sb.="subl ."
+
+# ZSH
+alias zshconfig="e ~/.zshrc"
+alias ohmyzsh="e ~/.oh-my-zsh"
+
+# OPEN THIS FILE
+alias aliases="e ~/dotfiles/.aliases"
+
+# SourceTree
+alias st="stree"
+
+# Todo.txt
+# alias t="$TODO"
+
+# PostGreSQL
+alias startpg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+# couchapp
+
+# Dir navigation
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ll="ls -lashG"
+alias lash="ls -lashG"
+alias sites='cd ~/Sites'
+alias sties='cd ~/Sites'
+alias tmbundles='cd ~/Library/Application\ Support/TextMate/Bundles/'
+
+# capistrano and rails
+alias bers='bundle exec rails server'
+alias capd='cap deploy'
+alias capdev='cap deploy'
+alias caplive='STAGE=live cap deploy'
+alias cdp="cap deploy:pending"
+alias dbm='rake db:migrate'
+alias ss='./script/server'
+alias sc='./script/console'
+
+# compass
+alias     cc="compass compile"
+alias     cw="compass watch"
+alias     cwh="compass watch httpdocs/compass"
+
+# sass
+alias     sassw="sass --watch --style expanded"
+alias     sassu="sass --update --style expanded"
+
+# git
+alias stash="git stash"
+alias stashp="git stash pop"
+alias stashl="git stash list"
+alias stasha="git stash apply"
+alias stashc="git stash clear"
+
+alias gitst='git status -sb'
+alias gitlog='git log --pretty=oneline'
+# alias gitlog='git log --oneline --decorate'
+alias gitpull='git pull --rebase'
+alias gitpush='git push'
+alias gitdiff='git diff | e'
+alias gitbr='git branch'
+alias pullall="git submodule foreach git pull origin master"
+# alias push?="git cherry -v origin"
+# alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+alias changelog='git log `git log -1 --format=%H -- changelog*`; cat changelog*'
+
+
+############### Miscellaneous ###############
+
+
+# Quick way to rebuild the Launch Services database and get rid
+# of duplicates in the Open With submenu.
+alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
+
+alias gr='grunt'
+# alias lg='legit'
+alias tailphp='tail -f /Applications/MAMP/logs/php_error.log'
+alias profile='e ~/.profile'
+alias src='source ~/.zshrc'
+
+alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
+alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
+
+# Open Google Chrome with benchmarking enabled
+alias chromebench='open -a "Google Chrome" --args --enable-benchmarking'
+
+# alias c9="~/bin/cloud9.sh"
+
+# MAC Address shortcuts for re-upping those "30 minutes free Wifi" in airports
+# Change to a random mac address
+alias random_mac='sudo ifconfig en0 ether `openssl rand -hex 6 | sed "s/\(..\)/\1:/g; s/.$//"`'
+#Restore to original mac address
+# Should it be 10:9a:dd:58:fd:fc ?
+alias restore_mac='sudo ifconfig en0 ether 10:9a:dd:ad:82:5e'
+
+# Utilities
+alias a="ack -ia"
+alias d="du -h -d=1"
+alias df="df -h"
+# alias g="git"
+alias grep='GREP_COLOR="1;37;41" LANG=C grep --color=auto'
+alias h="history"
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+alias flushdns="dscacheutil -flushcache"
+alias fluship="sudo ipfw flush"
+alias flush="dscacheutil -flushcache && sudo ipfw flush"
+alias remoteip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
+alias localip="ipconfig getifaddr en0"
+alias ip="echo external: && remoteip && echo local: && localip"
+
+

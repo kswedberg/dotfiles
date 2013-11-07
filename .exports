@@ -1,0 +1,20 @@
+# Highlight section titles in manual pages
+export LESS_TERMCAP_md="$ORANGE"
+
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -X"
+
+# Always enable colored `grep` output
+export GREP_OPTIONS="--color=auto"
+
+# Link Homebrew casks in `/Applications` rather than `~/Applications`
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# The place for hosting Git repos. I use this for private repos.
+export GIT_HOSTING='git@github.com'
+
+# Set my editor and git editor
+export EDITOR="/usr/local/bin/subl -w"
+
+# export GIT_EDITOR="/usr/local/bin/subl -w"
+export JEKYLL_EDITOR="subl"
