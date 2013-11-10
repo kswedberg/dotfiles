@@ -14,7 +14,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export GIT_HOSTING='git@github.com'
 
 # Set my editor and git editor
-export EDITOR="/usr/local/bin/subl -w"
+export EDITOR="subl"
 
 # export GIT_EDITOR="/usr/local/bin/subl -w"
 export JEKYLL_EDITOR="subl"

@@ -1,4 +1,3 @@
-# CDPATH=:$HOME/Sites
 
 #Load a bunch o scripts
 source $HOME/dotfiles/.path
@@ -11,18 +10,16 @@ source $HOME/dotfiles/.extra
 source $HOME/dotfiles/.functions
 
 fpath=(
-  $DOT_FILES/fn
+  $HOME/dotfiles/fn
   "${fpath[@]}"
 )
 
 autoload -Uz e
 autoload -Uz keygen
 
-
 #RBENV
 eval "$(rbenv init -)"
 
 # This loads NVM
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh
-
 

@@ -1,6 +1,9 @@
 # DEFAULT EDITOR
-alias e="subl"
-alias e.="subl ."
+# NO LONGER USING...
+# SET EDITOR="..." IN .exports AND
+# DEFINE e() FUNCTION IN .aliases
+# alias e="subl"
+# alias e.="subl ."
 
 # TextMate
 alias m="mate"
@@ -13,6 +16,9 @@ alias sb.="subl ."
 # ZSH
 alias zshconfig="e ~/.zshrc"
 alias ohmyzsh="e ~/.oh-my-zsh"
+
+# OPEN dotfiles directory
+alias dotfiles="e ~/dotfiles/"
 
 # OPEN THIS FILE
 alias aliases="e ~/dotfiles/.aliases"
@@ -28,10 +34,11 @@ alias startpg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/serv
 # couchapp
 
 # Dir navigation
+# # These are handled by ohmyzsh
+# alias ..='cd ..'
+# alias ...='cd ../..'
+# alias ....='cd ../../..'
 
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
 alias ll="ls -lashG"
 alias lash="ls -lashG"
 alias sites='cd ~/Sites'

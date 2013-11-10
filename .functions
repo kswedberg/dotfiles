@@ -1,5 +1,15 @@
 #!/bin/bash
-### Modified from https://github.com/mathiasbynens/dotfiles
+
+mkcd () {
+  # about 'make a directory and cd into it'
+  # param 'path to create'
+  # example '$ mkcd foo'
+  # example '$ mkcd /tmp/img/photos/large'
+  mkdir -p "$*"
+  cd "$*"
+}
+
+### Following functions modified from https://github.com/mathiasbynens/dotfiles
 
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function targz() {
@@ -69,15 +79,6 @@ function gi() {
 #   fi
 # }
 
-# `s` with no arguments opens the current directory in Sublime Text, otherwise
-# opens the given location
-function s() {
-  if [ $# -eq 0 ]; then
-    subl .
-  else
-    subl "$@"
-  fi
-}
 
 # `o` with no arguments opens current directory, otherwise opens the given
 # location
@@ -97,54 +98,50 @@ function tre() {
   tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
 }
 
-mkcd () {
-  # about 'make a directory and cd into it'
-  # param 'path to create'
-  # example '$ mkcd foo'
-  # example '$ mkcd /tmp/img/photos/large'
-  mkdir -p "$*"
-  cd "$*"
+
+### Following functions from divya (https://github.com/nimbupani/dotfiles)
+
+# Header logging
+e_header() {
+    echo -e "\n$(tput setaf 7)$@$(tput sgr0)";
 }
 
-function keygen() {
-  KEY="$HOME/.ssh/id_dsa.pub"
-  # make sure we have a public key (check id_dsa.pub, then id_rsa.pub)
-  if [ ! -f ${KEY} ]; then
-    KEY="$HOME/.ssh/id_rsa.pub"
-    if [ ! -f ${KEY} ]; then
-      echo "private key not found at ${KEY}"
-      echo "* please create it with "ssh-keygen -t rsa" *"
-      echo "* to login to the remote host without a password, don't give the key you create with ssh-keygen a password! *"
-      exit
-    fi
-  fi
-
-
-  # need at least a user specified
-  if [ -z $1 ]; then
-      echo "\nSSH Key Generator"
-      echo "Example usage:"
-      echo "\t~./path/keygen.sh username servername\n"
-      echo "Default server name is stewie.fusionary.com."
-      echo "Servers 'stewie' and 'quinn' resolve to 'stewie.fusionary.com' and 'quinn.fusionary.com'"
-      exit
-  fi
-
-  USR="$1"
-
-  # server will be stewie.fusionary.com, unless otherwise specified.
-  SERVER="$2"
-  SERVER=${SERVER:=stewie.fusionary.com}
-
-  # if user chooses "stewie" or "quinn," then ".fusionary.com" is appended
-  if [ ${SERVER} = "stewie" ] || [ ${SERVER} = "quinn" ]; then
-    SERVER="${SERVER}.fusionary.com"
-  fi
-
-  echo "Putting your key on ${SERVER}... "
-
-  # put the key on the server
-  cat ${KEY} | ssh -l ${USR} ${SERVER} 'cat >> .ssh/authorized_keys'
-  echo "generated key for ${USR} on ${SERVER}"
+# Success logging
+e_success() {
+    echo -e "$(tput setaf 64)✓ $@$(tput sgr0)";
 }
 
+# Error logging
+e_error() {
+    echo -e "$(tput setaf 1)x $@$(tput sgr0)";
+}
+
+# Warning logging
+e_warning() {
+    echo -e "$(tput setaf 136)! $@$(tput sgr0)";
+}
+# Test whether a command exists
+# $1 - cmd to test
+type_exists() {
+
+  exists=`type -a $1`
+  echo $exists
+  # return $exists
+  # if [ `type -w $1` ]; then
+  #   return 0
+  # fi
+  # return 1
+}
+
+
+# Test whether a Homebrew formula is already installed
+# $1 - formula name (may include options)
+formula_exists() {
+  if ! `brew list $1 >/dev/null`; then
+    e_warning "Missing formula: $1"
+    return 1
+  fi
+
+  echo $1 "already installed."
+  return 0
+}

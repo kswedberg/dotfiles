@@ -1,9 +1,15 @@
 
 ######## PATHS: EARLIER in path takes precedence ######
+
+# Taken from oh-my-zsh
+PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+
 # MAMP
 PATH="/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.3.14/lib/php:/Applications/MAMP/bin/php/php5.3.14/bin:$PATH"
+
 # DRUPAL
 # PATH="$PATH:$HOME/Sites/drush"
+
 # FONT CONVERTER STUFF
 # PATH="$PATH:$HOME/bin/ttf2eot:$HOME/bin/font-converter"
 
@@ -11,10 +17,11 @@ PATH="/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.3.14/lib/ph
 PATH="$HOME/.rbenv/bin:$PATH"
 
 # MY PATHS
-PATH="$PATH:$HOME/.scripts:$HOME/bin:$HOME/bin/tfs:$HOME/dotfiles"
+PATH="$PATH:$HOME/bin:$HOME/bin/tfs:$HOME/dotfiles"
 
 # COREUTILS added via homebrew...
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 export PATH
+
