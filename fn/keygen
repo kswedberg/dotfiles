@@ -1,0 +1,39 @@
+KEY="$HOME/.ssh/id_dsa.pub"
+# make sure we have a public key (check id_dsa.pub, then id_rsa.pub)
+if [ ! -f ${KEY} ]; then
+  KEY="$HOME/.ssh/id_rsa.pub"
+  if [ ! -f ${KEY} ]; then
+    echo "private key not found at ${KEY}"
+    echo "* please create it with "ssh-keygen -t rsa" *"
+    echo "* to login to the remote host without a password, don't give the key you create with ssh-keygen a password! *"
+    exit
+  fi
+fi
+
+
+# need at least a user specified
+if [ -z $1 ]; then
+    echo "\nSSH Key Generator"
+    echo "Example usage:"
+    echo "\t~./path/keygen.sh username servername\n"
+    echo "Default server name is stewie.fusionary.com."
+    echo "Servers 'stewie' and 'quinn' resolve to 'stewie.fusionary.com' and 'quinn.fusionary.com'"
+    exit
+fi
+
+USR="$1"
+
+# server will be stewie.fusionary.com, unless otherwise specified.
+SERVER="$2"
+SERVER=${SERVER:=stewie.fusionary.com}
+
+# if user chooses "stewie" or "quinn," then ".fusionary.com" is appended
+if [ ${SERVER} = "stewie" ] || [ ${SERVER} = "quinn" ]; then
+  SERVER="${SERVER}.fusionary.com"
+fi
+
+echo "Putting your key on ${SERVER}... "
+
+# put the key on the server
+cat ${KEY} | ssh -l ${USR} ${SERVER} 'cat >> .ssh/authorized_keys'
+echo "generated key for ${USR} on ${SERVER}"
