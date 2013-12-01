@@ -5,7 +5,13 @@ taken from the illustrious Mathias Bynens (https://github.com/mathiasbynens/dotf
 
 This repository does not include the `.oh-my-zsh` directory.
 
-The `.profile` and `.zshrc` files are symlinked to my home directory.
+## Symlinked files
+The  files are symlinked to my home directory:
+
+* `.profile`
+* `.zshrc`
+
+## Init files
 
 Files in the `init` folder should probably run only once, typically on a fresh
 install.
@@ -14,40 +20,33 @@ You probably won't want to run the `init/osx.sh` wholesale. Instead, go in
 there and either comment out all the lines you don't want to run
 first, or grab the settings line by line and paste them in the terminal.
 
+## Git files
+
+If you want to use `.gitignore_global` as your global `.gitignore` file, run this in the terminal:
+
+```bash
+git config --global core.excludesfile  ~/dotfiles/.gitignore_global
+```
+
+To have the post-checkout git hook loaded whenever you init or clone a new repo, run this line in the terminal:
+
+```bash
+git config --global init.templatedir ~/dotfiles/.git_template
+```
+
 ## Syntax Highlighting for SublimeText
 
-Thanks, [Addy Osmani](https://github.com/addyosmani/dotfiles), for this tip.
+To get the files in this repo to appear in SublimeText as shell scripts, install the ApplySyntax package and add this to the "syntaxes" array in its Settings - User file:
 
-Put this in the fileTypes array in `~/Library/Application Support/Sublime Text 2/Packages/ShellScript/Shell-Unix-Generic.tmLanguage`:
-
-```xml
-<string>sh</string>
-<string>bash</string>
-<string>zsh</string>
-<string>zsh-theme</string>
-<string>.ackrc</string>
-<string>.aliases</string>
-<string>.bash_login</string>
-<string>.bash_logout</string>
-<string>.bash_profile</string>
-<string>.bashrc</string>
-<string>.exports</string>
-<string>.extra</string>
-<string>.functions</string>
-<string>.gemrc</string>
-<string>.gitattributes</string>
-<string>.gitconfig</string>
-<string>.gitignore</string>
-<string>.gitignore_global</string>
-<string>.inputrc</string>
-<string>.jekyll</string>
-<string>.jekyllconfig</string>
-<string>.opts</string>
-<string>.path</string>
-<string>.pearrc</string>
-<string>.profile</string>
-<string>.textmate_init</string>
-<string>.tm_properties</string>
-<string>.wgetrc</string>
-<string>.zshrc</string>
+```json
+{
+    "name": "ShellScript/Shell-Unix-Generic",
+    "rules": [
+        {"file_name": ".*\\/(dotfiles)\\/(?!\\.git).*(?<!\\.(md|txt))$"}
+    ]
+}
 ```
+
+That applies the ShellScript syntax to all files within the `/dotfiles/` directory, except for those that start with `.git` or end with `.md` or `.txt`.
+
+Alternatively, you can directly modify the fileTypes array in `~/Library/Application Support/Sublime Text 2/Packages/ShellScript/Shell-Unix-Generic.tmLanguage`. See [Addy Osmani's dotfiles repo](https://github.com/addyosmani/dotfiles) for more info about this approach.

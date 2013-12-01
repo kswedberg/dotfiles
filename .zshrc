@@ -1,43 +1,31 @@
-# Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="karl"
-
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# LOAD ALL MY STUFF
+# LOAD STUFF BEFORE oh-my-zsh
 source $HOME/.profile
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(bower brew bundler composer cap colorize extract gem git git-remote-branch gnu-utils grunt npm nvm osx pip rake rbenv ruby ssh-agent z)
+# oh my zsh
+COMPLETION_WAITING_DOTS="true"
+# DISABLE_UPDATE_PROMPT=true
+# not in tim's: brew composer gnu-utils npm bower
+# plugins=(bower capistrano jira rbenv bundler extract gem git git-remote-branch grunt nvm osx ssh-agent z)
 
-# Load oh-my-zsh
+zstyle ':completion:*' use-cache yes
+
+plugins=(bundler bower npm nvm jira rsync rbenv capistrano extract gem git ssh-agent git-remote-branch gnu-utils grunt web-search z)
+
+# Load oh my zsh
 source $ZSH/oh-my-zsh.sh
 
-# This needs to be done AFTER loading oh-my-zsh
-setopt autocd
-cdpath=(
-  $HOME
-  $HOME/Sites
-  "${fpath[@]}"
-)
+# if [[ -f config/deploy.rb || -f Capfile ]]; then
+#   if [[ ! -f .cap_tasks~ || config/deploy.rb -nt .cap_tasks~ ]]; then
+#     echo "\nGenerating .cap_tasks~..." > /dev/stderr
+#     cap -v --tasks | grep '#' | cut -d " " -f 2 > .cap_tasks~
+#   fi
+#   compadd `cat .cap_tasks~`
+# fi
 
+
+# LOAD STUFF ***AFTER*** oh-my-zsh
+source $HOME/dotfiles/.source_after
+
+unsetopt correct_all

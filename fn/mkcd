@@ -1,0 +1,10 @@
+mkcd () {
+  if [ -z $1 ]; then
+    about "Make a directory and cd into it"
+    example "mkcd foo"
+    example "mkcd /tmp/img/photos/large"
+    return 0
+  fi
+  mkdir -p "$*"
+  cd "$*"
+}

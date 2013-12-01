@@ -1,12 +1,12 @@
 #!/bin/bash
 
-mkcd () {
-  # about 'make a directory and cd into it'
-  # param 'path to create'
-  # example '$ mkcd foo'
-  # example '$ mkcd /tmp/img/photos/large'
-  mkdir -p "$*"
-  cd "$*"
+# For use in other functions/scripts
+function about {
+  echo "$1"
+}
+function example {
+  echo "\nExample usage:"
+  echo "\t$1"
 }
 
 ### Following functions modified from https://github.com/mathiasbynens/dotfiles

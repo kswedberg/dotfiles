@@ -3,33 +3,34 @@ KEY="$HOME/.ssh/id_dsa.pub"
 if [ ! -f ${KEY} ]; then
   KEY="$HOME/.ssh/id_rsa.pub"
   if [ ! -f ${KEY} ]; then
-    echo "private key not found at ${KEY}"
-    echo "* please create it with "ssh-keygen -t rsa" *"
-    echo "* to login to the remote host without a password, don't give the key you create with ssh-keygen a password! *"
-    exit
+    echo "Private key not found at ${KEY}"
+    echo "* Please create it with "ssh-keygen -t rsa" *"
+    echo "* To login to the remote host without a password, don't give the key you create with ssh-keygen a password! *"
+    return
   fi
 fi
 
 
 # need at least a user specified
 if [ -z $1 ]; then
-    echo "\nSSH Key Generator"
-    echo "Example usage:"
-    echo "\t~./path/keygen.sh username servername\n"
-    echo "Default server name is stewie.fusionary.com."
-    echo "Servers 'stewie' and 'quinn' resolve to 'stewie.fusionary.com' and 'quinn.fusionary.com'"
-    exit
+  about "SSH Key Generator"
+  example "keygen username servername"
+  return
 fi
 
 USR="$1"
 
-# server will be stewie.fusionary.com, unless otherwise specified.
+# server
 SERVER="$2"
-SERVER=${SERVER:=stewie.fusionary.com}
 
-# if user chooses "stewie" or "quinn," then ".fusionary.com" is appended
-if [ ${SERVER} = "stewie" ] || [ ${SERVER} = "quinn" ]; then
-  SERVER="${SERVER}.fusionary.com"
+if [ -z $2 ]; then
+  echo "Please provide a server name:"
+  read SERVER
+fi
+
+if [ -z $SERVER ]; then
+  echo "Aborting key generation. No server name."
+  return
 fi
 
 echo "Putting your key on ${SERVER}... "

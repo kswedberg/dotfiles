@@ -1,0 +1,11 @@
+if [ -z "$1" ]; then
+  about 'remove a directory, then make one its place and cd into it'
+  example 'rmkcd foo'
+  example 'rmkcd /tmp/img/photos/large'
+
+  return 1
+fi
+
+rm -rf "$*"
+mkdir -p "$*"
+cd "$*"

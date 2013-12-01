@@ -1,0 +1,28 @@
+#!/bin/sh
+if [ $1 = 0000000000000000000000000000000000000000 ]; then
+  old=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+else
+  old=$1
+fi
+if [ -f Gemfile ] && command -v bundle >/dev/null &&
+  git diff --name-only $old $2 | egrep -q '^Gemfile|\.gemspec$'
+then
+  (unset GIT_DIR; exec bundle check || exec bundle install)
+  true
+fi
+
+# do the same for npm
+if [ -f package.json ] && command -v npm >/dev/null &&
+  git diff --name-only $old $2 | egrep -q '^package\.json$'
+then
+  (exec npm install)
+  true
+fi
+
+# do the same for composer
+if [ -f composer.lock ] && command -V composer >/dev/null &&
+  git diff --name-only $old $2 | egrep -q '^composer\.lock$'
+then
+  (exec composer install)
+  true
+fi

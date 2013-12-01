@@ -1,0 +1,40 @@
+
+
+# Create proper commit message for pull requests on jQuery repos
+if [ -z "$1" ]
+then
+  echo `git log -1 --no-merges --pretty=format:'git commit -a --author="'"%an <%aE>"'" --message="'"%s %b"'"'`
+  return 1
+fi
+
+AUTHOR=""
+MSG=""
+while getopts "a:m:h" Option; do
+  case $Option in
+    a )
+      AUTHOR="--author=${OPTARG}"
+      ;;
+    m )
+      MSG="--grep=${OPTARG}"
+      ;;
+    h )
+      echo "cipr\n"
+      echo "Create proper commit message for pull requests on jQuery repos"
+      echo "Option: -m"
+      echo "\tA piece of the commit message used by the pull request author"
+      echo "Option: -a"
+      echo "\tA part of the author's name"
+      echo "\nExample:"
+      echo "\t# Get the last commit"
+      echo "\tcipr"
+      echo "\nExample:"
+      echo "\t# Get the last commit made by someone named scott"
+      echo "\tcipr -a scott"
+      echo "\nExample:"
+      echo "\t# Get the last commit scott made with the word 'wow' in the msg"
+      echo "\tcipr -a scott -m wow"
+      ;;
+  esac
+done
+
+echo `git log -1 $MSG $AUTHOR --no-merges --pretty=format:'git commit -a --author="'"%an <%aE>"'" --message="'"%s %b"'"'`

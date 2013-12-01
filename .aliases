@@ -1,9 +1,13 @@
 # DEFAULT EDITOR
-# NO LONGER USING...
-# SET EDITOR="..." IN .exports AND
-# DEFINE e() FUNCTION IN .aliases
 # alias e="subl"
 # alias e.="subl ."
+
+# No longer using ↑ here
+# INSTEAD...
+#
+# SET EDITOR="..." IN .exports AND
+# DEFINE e() FUNCTION IN dotfiles/fn/e
+
 
 # TextMate
 alias m="mate"
@@ -13,21 +17,14 @@ alias m.="mate ."
 alias sb="subl"
 alias sb.="subl ."
 
-# ZSH
-alias zshconfig="e ~/.zshrc"
-alias ohmyzsh="e ~/.oh-my-zsh"
-
-# OPEN dotfiles directory
-alias dotfiles="e ~/dotfiles/"
-
-# OPEN THIS FILE
-alias aliases="e ~/dotfiles/.aliases"
+# OPEN files/projects in default editor
+alias dotfiles="$EDITOR -n $DOTFILES $ZSH"
+alias zshconfig="$EDITOR -n ~/.zshrc"
+alias ohmyzsh="$EDITOR -n ~/.oh-my-zsh"
+alias aliases="$EDITOR -n ~/dotfiles/.aliases"
 
 # SourceTree
 alias st="stree"
-
-# Todo.txt
-# alias t="$TODO"
 
 # PostGreSQL
 alias startpg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
@@ -40,17 +37,16 @@ alias startpg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/serv
 # alias ....='cd ../../..'
 
 alias ll="ls -lashG"
+alias lo="ls -alG | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
+# alias lo="stat -c '%A %a %h %U %G %s %y %n' *| sed 's/\.[[:digit:]]\+[ ]\+-[[:digit:]]\+/ /'"
 alias lash="ls -lashG"
 alias sites='cd ~/Sites'
 alias sties='cd ~/Sites'
 alias tmbundles='cd ~/Library/Application\ Support/TextMate/Bundles/'
 
-# capistrano and rails
-alias bers='bundle exec rails server'
+# capistrano / rails
 alias capd='cap deploy'
-alias capdev='cap deploy'
-alias caplive='STAGE=live cap deploy'
-alias cdp="cap deploy:pending"
+alias bers='bundle exec rails server'
 alias dbm='rake db:migrate'
 alias ss='./script/server'
 alias sc='./script/console'
@@ -79,7 +75,7 @@ alias gitpush='git push'
 alias gitdiff='git diff | e'
 alias gitbr='git branch'
 alias pullall="git submodule foreach git pull origin master"
-# alias push?="git cherry -v origin"
+alias push\?="git cherry -v origin"
 # alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias changelog='git log `git log -1 --format=%H -- changelog*`; cat changelog*'
 

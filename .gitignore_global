@@ -1,0 +1,47 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+# *.jar
+*.rar
+*.tar
+*.zip
+*.bz2
+*~
+
+# Node Modules #
+######################
+node_modules
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# SASS / SCSS #
+######################
+.sass-cache/*
+
+# OS generated files #
+######################
+.DS_Store
+ehthumbs.db
+Thumbs.db
+
+# Miscellaneous #
+######################
+gitignore

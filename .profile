@@ -1,25 +1,27 @@
 
-#Load a bunch o scripts
-source $HOME/dotfiles/.path
-source $HOME/dotfiles/.exports
-source $HOME/dotfiles/.opts
-source $HOME/dotfiles/.aliases
-source $HOME/dotfiles/.jekyll
-source $HOME/dotfiles/.inputrc
-source $HOME/dotfiles/.extra
-source $HOME/dotfiles/.functions
+function source_files {
+  for file in "${@}"; do
+    src_file=$HOME/dotfiles/${file}
+    if [[ -f $src_file ]]; then
+      source $src_file
+    else
+      echo "$src_file does not exist"
+    fi
+  done
+}
 
-fpath=(
-  $HOME/dotfiles/fn
-  "${fpath[@]}"
+# These files get sourced BEFORE $ZSH/oh-my-zsh.sh
+
+src_files=(
+  .path
+  .exports
 )
 
-autoload -Uz e
-autoload -Uz keygen
+source_files ${src_files}
 
-#RBENV
+# Load RBENV
 eval "$(rbenv init -)"
 
-# This loads NVM
-[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh
+# Load NVM (no need. done in nvm bundle)
+# [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh
 

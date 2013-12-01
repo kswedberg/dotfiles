@@ -1,0 +1,56 @@
+# rsync -av source/ target
+
+if [ ! $2 ]; then
+
+  about "Perform an rsync operation from source to target"
+  about "* Automatically adds a trailing '/' to 'source' "
+  example "cps source target"
+  example "source/path username@example.com:/full/server/path"
+
+else
+
+  dirname=$1
+
+  trailingslash=`expr $dirname : '\(.*\)/$'`
+  if [[ ${trailingslash} == '' ]]; then
+    dirname="${dirname}/"
+  fi
+
+  OPTIONS="All New Update Bail"
+
+  select OPTION in $OPTIONS; do
+    if [[ $OPTION = "All" ]]
+    then
+      COPYTYPE="-avz"
+      break
+    fi
+
+    if [[ $OPTION = "New" ]]
+    then
+      COPYTYPE="-avz --ignore-existing"
+      break
+    fi
+
+    if [[ $OPTION = "Update" ]]
+    then
+      COPYTYPE="-auvz"
+      break
+    fi
+
+    if [[ $OPTION = "Bail" ]]
+    then
+      COPYTYPE="bail"
+      break
+    fi
+  done
+
+  if [[ ${COPYTYPE} = "bail" ]]
+  then
+    echo "You chose to bail out of this one. "
+    echo "Try again later."
+  else
+    echo "copying ${dirname} to ${2} with ${COPYTYPE}..."
+    rsync ${COPYTYPE} ${dirname} ${2}
+    echo "done!"
+  fi
+fi

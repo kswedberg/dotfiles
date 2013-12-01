@@ -1,9 +1,4 @@
-# CD into Sites directories from anywhere else
 # setopt autocd
-# cdpath=($HOME/Sites)
-
-# Turn off annoying auto-correction
-setopt no_correct_all
 
 # Don't beep on errors
 setopt no_beep
