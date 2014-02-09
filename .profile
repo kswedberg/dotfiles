@@ -22,6 +22,10 @@ source_files ${src_files}
 # Load RBENV
 eval "$(rbenv init -)"
 
-# Load NVM (no need. done in nvm bundle)
-# [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh
+# Load NVM
+# do it here instead of nvm bundle because of some SublimeLinter issue
+[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh
 
+# Defeat node errors for max open files
+# http://ghickman.co.uk/2012/02/25/extending-os-x-lions-maxfiles-limit-for-neo4j.html
+launchctl limit maxfiles 16384 32768
