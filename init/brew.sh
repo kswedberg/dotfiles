@@ -13,6 +13,7 @@ brew install coreutils
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
+
 # Install Bash 4
 brew install bash
 
@@ -29,6 +30,10 @@ brew install homebrew/dupes/grep
 
 
 # Install other useful binaries
+
+## Installs html5 tidy. Eventually, won't need the --HEAD part
+brew install --HEAD tidy
+
 brew install ack
 #brew install exiv2
 # brew install git
