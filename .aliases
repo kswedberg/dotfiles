@@ -34,7 +34,7 @@ alias startpg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/serv
 # # These are handled by ohmyzsh
 # alias ..='cd ..'
 # alias ...='cd ../..'
-# alias ....='cd ../../..'
+alias ....='cd ../../..'
 
 alias ll="ls -lashG"
 alias lo="ls -alG | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
@@ -68,7 +68,7 @@ alias stasha="git stash apply"
 alias stashc="git stash clear"
 
 alias gitst='git status -sb'
-alias gitlog='git log --pretty=oneline'
+alias gitlog="git log --pretty='format:%C(cyan)%h%Cgreen %ad %C(yellow)%an %Creset%s'"
 # alias gitlog='git log --oneline --decorate'
 alias gitpull='git pull --rebase'
 alias gitpush='git push'
