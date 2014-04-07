@@ -1,11 +1,13 @@
 
 ######## PATHS: EARLIER in path takes precedence ######
 
-# Homebrew libraries
-PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # MAMP (if running rails app that requires mysql2 lib, put this before Homebrew libraries path)
 PATH="/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.3.14/lib/php:/Applications/MAMP/bin/php/php5.3.14/bin:$PATH"
+
+PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+# Homebrew libraries
+PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # DRUPAL
 # PATH="$PATH:$HOME/Sites/drush"

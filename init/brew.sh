@@ -28,24 +28,27 @@ brew install wget --enable-iri
 brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
-
-# Install other useful binaries
-
-## Installs html5 tidy. Eventually, won't need the --HEAD part
+# Install html5 tidy. Eventually, won't need the --HEAD part
 brew install --HEAD tidy
 
+### Install other useful binaries
+
 brew install ack
-#brew install exiv2
-# brew install git
 brew install hub
-#brew install imagemagick
-# brew install node
-# brew install pigz
 brew install rename
 brew install tree
-# brew install webkit2png
+# brew install fuse4x (install os-x binary instead)
+brew install sshfs
 brew install zopfli
 brew install couchdb
+
+## Optional things to possibly install
+# brew install exiv2
+# brew install git ##
+# brew install imagemagick
+# brew install node ## use nvm instead
+# brew install pigz
+# brew install webkit2png
 
 # Remove outdated versions from the cellar
 brew cleanup

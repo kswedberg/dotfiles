@@ -32,6 +32,11 @@ node_modules
 *.sql
 *.sqlite
 
+# SublimeText #
+######################
+*.sublime-workspace
+*.sublime-project
+
 # SASS / SCSS #
 ######################
 .sass-cache/*
