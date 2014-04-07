@@ -1,0 +1,40 @@
+# from http://brettterpstra.com/2013/02/10/the-joy-of-sshfs/
+
+# Requires Fuse for OS X (http://osxfuse.github.io/)
+# Requires sshfs (brew install sshfs)
+
+# Remote Umount: unmounts and deletes local folder (experimental, watch your step)
+
+# if nothing specified, ask what to do and bail
+if [[ -z $1 ]]; then
+  if [[ -n $(ls $RMOUNT_DIR) ]]; then
+    echo "Which volume do you want to unmount? "
+    echo " * -a (for all)"
+    ls -1 $RMOUNT_DIR|while read dir
+    do
+      echo " * $dir"
+    done
+  else
+    echo "No volumes to unmount"
+  fi
+
+# use the -a flag for all volumes
+elif [[ $1 == "-a" ]]; then
+  ls -1 $RMOUNT_DIR|while read dir
+  do
+    [[ -n $(mount | grep "$RMOUNT_DIR/$dir") ]] && umount $RMOUNT_DIR/$dir
+    [[ -n $(ls ~/volumes/$dir) ]] || rm -rf $RMOUNT_DIR/$dir
+  done
+else
+  # If the volume exists, unmount it
+  if [[ -n $(mount | grep "volumes/$1") ]]; then
+    umount $RMOUNT_DIR/$1
+  fi
+
+  # If nothing inside the folder now, delete the folder
+  if [[ -z $(ls $RMOUNT_DIR/$1) ]]; then
+    rm -rf $RMOUNT_DIR/$1
+  fi
+  # [[ -n $(mount | grep "volumes/$1") ]] && umount $RMOUNT_DIR/$1
+  # [[ -n $(ls $RMOUNT_DIR/$1) ]] || rm -rf $RMOUNT_DIR/$1
+fi
