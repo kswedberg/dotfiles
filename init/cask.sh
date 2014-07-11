@@ -1,7 +1,7 @@
 ### Modified from https://github.com/mathiasbynens/dotfiles
 
 # After first time, comment next 2 lines
-brew tap phinze/homebrew-cask
+brew tap caskroom/homebrew-cask
 brew install brew-cask
 
 # Install native apps
@@ -19,9 +19,9 @@ installcask gitx-l
 # installcask google-chrome
 installcask google-chrome-canary
 installcask handbrake
-installcask hip-chat
-# installcask imagealpha
-# installcask imageoptim
+# installcask hip-chat
+installcask imagealpha
+installcask imageoptim
 installcask integrity
 # installcask iterm2
 # installcask livereload
