@@ -1,0 +1,5 @@
+# from http://brettterpstra.com/2014/05/10/bash-and-dash/
+# Open argument in Dash
+function dash() {
+  open "dash://$(urlenc $@)"
+}

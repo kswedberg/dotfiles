@@ -1,0 +1,4 @@
+# from http://brettterpstra.com/2014/05/10/bash-and-dash/
+function dman() {
+  open "dash://man:$(urlenc $@)"
+}
