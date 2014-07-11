@@ -21,19 +21,19 @@ else
   select OPTION in $OPTIONS; do
     if [[ $OPTION = "All" ]]
     then
-      COPYTYPE="-avz"
+      COPYTYPE="-avzP"
       break
     fi
 
     if [[ $OPTION = "New" ]]
     then
-      COPYTYPE="-avz --ignore-existing"
+      COPYTYPE="-avzP --ignore-existing"
       break
     fi
 
     if [[ $OPTION = "Update" ]]
     then
-      COPYTYPE="-auvz"
+      COPYTYPE="-auvzP"
       break
     fi
 
