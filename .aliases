@@ -30,11 +30,15 @@ alias st="stree"
 alias startpg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 # couchapp
 
+# File Manipulation (rename multiple files mmv stands for multiple move)
+alias mmv='noglob zmv -W'
+
 # Dir navigation
-# # These are handled by ohmyzsh
+alias ....='cd ../../..'
+
+## These are handled by ohmyzsh
 # alias ..='cd ..'
 # alias ...='cd ../..'
-alias ....='cd ../../..'
 
 alias ll="ls -lashG"
 alias lo="ls -alG | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
@@ -91,7 +95,9 @@ alias gr='grunt'
 # alias lg='legit'
 alias tailphp='tail -f /Applications/MAMP/logs/php_error.log'
 alias profile='e ~/.profile'
-alias src='source ~/.zshrc'
+
+# use `src` function from zsh_reload plugin instead.
+# alias src='source ~/.zshrc'
 
 alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
 alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
