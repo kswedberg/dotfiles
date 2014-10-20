@@ -6,10 +6,11 @@ taken from the illustrious Mathias Bynens (https://github.com/mathiasbynens/dotf
 This repository does not include the `.oh-my-zsh` directory.
 
 ## Symlinked files
-The  files are symlinked to my home directory:
+The following files are symlinked to my home directory:
 
 * `.profile`
 * `.zshrc`
+* `.zprofile`
 
 ## Init files
 
