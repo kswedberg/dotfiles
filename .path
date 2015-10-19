@@ -1,13 +1,15 @@
 
 ######## PATHS: EARLIER in path takes precedence ######
 
+PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+
+# Homebrew libraries
+PATH=/usr/local/sbin:$PATH
 
 # MAMP (if running rails app that requires mysql2 lib, put this before Homebrew libraries path)
-PATH="/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php5.3.14/lib/php:/Applications/MAMP/bin/php/php5.3.14/bin:$PATH"
+PATH=/Applications/MAMP/Library/bin:$PATH
 
-PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
-# Homebrew libraries
-PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
 
 # DRUPAL
 # PATH="$PATH:$HOME/Sites/drush"
@@ -16,7 +18,7 @@ PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # PATH="$PATH:$HOME/bin/ttf2eot:$HOME/bin/font-converter"
 
 #RBENV
-PATH="$HOME/.rbenv/bin:$PATH"
+PATH=$HOME/.rbenv/bin:$PATH
 
 # MY PATHS
 PATH="$PATH:$HOME/bin:$HOME/bin/tfs:$HOME/dotfiles"
