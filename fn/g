@@ -1,0 +1,7 @@
+function g() {
+  local cmd=gulp
+  if [[ -e Gruntfile.js ]]; then
+    cmd=grunt
+  fi
+  ${cmd} $@
+}
