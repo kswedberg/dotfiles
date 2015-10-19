@@ -23,6 +23,8 @@ sudo pmset -a standbydelay 86400
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
+# Re-enable it:
+sudo nvram -d SystemAudioVolume
 
 # Menu bar: disable transparency
 # defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
