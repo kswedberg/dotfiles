@@ -1,1 +1,0 @@
-{"context-menu":{"atom-text-editor":[{"label":"Toggle blame","command":"blame:toggle"}]},"menu":[{"label":"Packages","submenu":[{"label":"Blame","submenu":[{"label":"Toggle","command":"blame:toggle"}]}]}]}

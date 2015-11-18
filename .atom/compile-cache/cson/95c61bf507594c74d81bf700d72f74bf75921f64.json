@@ -1,1 +1,0 @@
-{".source.js":{"Object.assign":{"prefix":"assign","body":"Object.assign(${1:dest}, ${2:source})"},"Object.create":{"prefix":"create","body":"Object.create(${1:object})"},"Object.keys":{"prefix":"keys","body":"Object.keys(${1:object})"},"Object method":{"prefix":"kf","body":"${1:methodName}: function ${1:methodName}(${2}) { $0 })${3:,}"}}}

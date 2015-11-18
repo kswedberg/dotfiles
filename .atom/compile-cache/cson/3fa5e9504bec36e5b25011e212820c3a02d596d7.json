@@ -1,1 +1,0 @@
-{".source.js":{"Express middleware":{"prefix":"xm","body":"function (req, res${1:, next}) {\n\t${0}\n}"},"Express error handler":{"prefix":"xerr","body":"function (err, req, res, next) {\n\t${0}\n}"}}}

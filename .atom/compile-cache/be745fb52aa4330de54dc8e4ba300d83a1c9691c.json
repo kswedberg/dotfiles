@@ -1,1 +1,0 @@
-{"context-menu":{".tree-view":[{"label":"Diff selected files","command":"diff:selected"}]},"menu":[{"label":"Packages","submenu":[{"label":"Diff","submenu":[{"label":"Diff selected files","command":"diff:selected"},{"label":"Diff active editor file with clipboard","command":"diff:clipboard"}]}]}]}

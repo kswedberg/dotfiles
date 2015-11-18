@@ -1,1 +1,0 @@
-{".source.js":{"module export":{"prefix":"exp","body":"export ${1:member};"},"module default export":{"prefix":"expd","body":"export default ${1:member};"},"import module":{"prefix":"imp","body":"import ${1:*} from '${2:module}';"},"import module as":{"prefix":"impas","body":"import ${1:*} as ${2:name} from '${3:module}';"}}}
