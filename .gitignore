@@ -1,2 +1,3 @@
-.atom/compile-cache
+.atom/compile-cache/
+.atom/storage/
 .extra
