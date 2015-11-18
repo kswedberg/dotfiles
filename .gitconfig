@@ -1,0 +1,101 @@
+### THIS IS A STARTER TEMPLATE. YOU'LL NEED TO CHANGE THE VALUES BELOW IN ALL CAPS TO REAL VALUES
+### exludesfile and templatedir are referenced to the ~/dotfiles/ directory
+[core]
+  # autocrlf = input
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  eol = lf
+	excludesfile = ~/dotfiles/.gitignore_global
+  pager = less
+  editor = subl -n -w
+
+[user]
+  name = FIRSTNAME LASTNAME
+  email = USER@EXAMPLE.com
+[github]
+  user = USER
+  token = TOKEN
+[gist-diff]
+  token = TOKEN
+[init]
+  templatedir = ~/dotfiles/.git_template
+
+[push]
+	default = current
+
+[alias]
+  a = add --all
+  all = add --all
+  br = branch
+  ci = commit
+  co = checkout
+  df = diff
+  dt = difftool --no-prompt
+  fetchp = fetch --prune
+  g = grep -I
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  logl = log --oneline --decorate
+  me = log --author 'kswedberg' --since '2 weeks ago' --pretty='format:%C(cyan)%h%Cgreen %ad %C(yellow)%an %Creset%s'
+  pp = !"echo 'Pull'; git pull --rebase; echo 'Push'; git push"
+  pusht = !"git push; git push --tags"
+  ms = merge --squash
+  msn = merge --squash --no-commit
+  rv = review
+  st = status
+  su = submodule update --init
+
+  ## The following aliases require git-extras (http://github.com/visionmedia/git-extras)
+  delete = delete-branch
+  del = delete-branch
+
+  ## The following aliases require legit:
+  # pb = publish-branch
+  # rb = rbranch
+  # rc = rank-contributors
+  # sm = show-merges
+  # switch = !legit switch \"$@\"
+  # branches = !legit branches
+  # sprout = !legit sprout \"$@\"
+  # unpublish = !legit unpublish \"$@\"
+  # harvest = !legit harvest \"$@\"
+  # sync = !legit sync \"$@\"
+  # publish = !legit publish \"$@\"
+  # graft = !legit graft \"$@\"
+
+[color]
+  ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[instaweb]
+  #httpd = apache2 -f
+[apply]
+  # whitespace = nowarn
+# [merge]
+#   tool = extMerge
+# [mergetool "extMerge"]
+#   cmd = extMerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+#   trustExitCode = false
+[merge]
+  tool = sourcetree
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.1/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[branch]
+	autosetuprebase = always
+[pull]
+	rebase = true
