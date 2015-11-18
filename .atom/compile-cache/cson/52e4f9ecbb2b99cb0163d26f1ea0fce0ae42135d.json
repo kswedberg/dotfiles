@@ -1,0 +1,1 @@
+{".source.js":{"for loop":{"prefix":"for","body":"for (let ${1:i} = 0, ${2:len} = ${3:iterable}.length; ${1:i} < ${2:len}; ${1:i}++) {\n\t${0}\n}"},"for in loop":{"prefix":"forin","body":"for (let ${1:key} in ${2:source}) {\n\tif (${2:source}.hasOwnProperty(${1:key})) {\n\t\t${0}\n\t}\n}"},"for of loop":{"prefix":"forof","body":"for (let ${1:key} of ${2:source}) {\n\t${0}\n}"}}}

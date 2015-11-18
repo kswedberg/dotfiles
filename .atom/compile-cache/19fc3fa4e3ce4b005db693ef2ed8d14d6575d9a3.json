@@ -1,0 +1,1 @@
+{".source.js":{"for":{"prefix":"for","body":"for (let ${2:i} = 0; ${2:i} < ${1:array}.length; ${2:i}++) {\n\t${0:// body...}\n}"},"for in":{"prefix":"forin","body":"for (let ${1:prop} in ${2:obj}) {\n\t\t${0:// body...}\n\t}\n}"},"for of":{"prefix":"forof","body":"for (let ${1:prop} of ${2:obj}) {\n\t\t${0:// body...}\n\t}\n}"}}}

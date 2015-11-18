@@ -1,0 +1,78 @@
+(function() {
+  var RangeFinder, reverse, run, shuffle, sort, sortInsensitive, unique;
+
+  RangeFinder = require('./range-finder');
+
+  module.exports = {
+    activate: function() {
+      return atom.commands.add('atom-text-editor', {
+        'lines:sort': function() {
+          return run(sort);
+        },
+        'lines:case-insensitive-sort': function() {
+          return run(sortInsensitive);
+        },
+        'lines:reverse': function() {
+          return run(reverse);
+        },
+        'lines:unique': function() {
+          return run(unique);
+        },
+        'lines:shuffle': function() {
+          return run(shuffle);
+        }
+      });
+    }
+  };
+
+  run = function(cmd) {
+    var editor, ranges;
+    editor = atom.workspace.getActiveTextEditor();
+    ranges = RangeFinder.rangesFor(editor);
+    return ranges.forEach(function(range) {
+      var lines;
+      lines = editor.getTextInBufferRange(range).split("\n");
+      lines = cmd(lines);
+      return editor.setTextInBufferRange(range, lines.join("\n"));
+    });
+  };
+
+  sort = function(lines) {
+    return lines.sort();
+  };
+
+  sortInsensitive = function(lines) {
+    return lines.sort(function(a, b) {
+      var r;
+      r = a.toLowerCase().localeCompare(b.toLowerCase());
+      if (r === 0) {
+        r = a.localeCompare(b);
+      }
+      return r;
+    });
+  };
+
+  reverse = function(lines) {
+    return lines.reverse();
+  };
+
+  unique = function(lines) {
+    return lines.filter(function(value, index, self) {
+      return self.indexOf(value) === index;
+    });
+  };
+
+  shuffle = function(lines) {
+    var i, j, _i, _ref, _ref1;
+    for (i = _i = _ref = lines.length - 1; _ref <= 1 ? _i <= 1 : _i >= 1; i = _ref <= 1 ? ++_i : --_i) {
+      j = Math.floor(Math.random() * (i + 1));
+      _ref1 = [lines[j], lines[i]], lines[i] = _ref1[0], lines[j] = _ref1[1];
+    }
+    return lines;
+  };
+
+}).call(this);
+
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAiZmlsZSI6ICIiLAogICJzb3VyY2VSb290IjogIiIsCiAgInNvdXJjZXMiOiBbCiAgICAiL1VzZXJzL2tzd2VkYmVyZy8uYXRvbS9wYWNrYWdlcy9saW5lcy9saWIvbGluZXMuY29mZmVlIgogIF0sCiAgIm5hbWVzIjogW10sCiAgIm1hcHBpbmdzIjogIkFBQUE7QUFBQSxNQUFBLGlFQUFBOztBQUFBLEVBQUEsV0FBQSxHQUFjLE9BQUEsQ0FBUSxnQkFBUixDQUFkLENBQUE7O0FBQUEsRUFFQSxNQUFNLENBQUMsT0FBUCxHQUNFO0FBQUEsSUFBQSxRQUFBLEVBQVUsU0FBQSxHQUFBO2FBQ1IsSUFBSSxDQUFDLFFBQVEsQ0FBQyxHQUFkLENBQWtCLGtCQUFsQixFQUNFO0FBQUEsUUFBQSxZQUFBLEVBQWMsU0FBQSxHQUFBO2lCQUNaLEdBQUEsQ0FBSSxJQUFKLEVBRFk7UUFBQSxDQUFkO0FBQUEsUUFFQSw2QkFBQSxFQUErQixTQUFBLEdBQUE7aUJBQzdCLEdBQUEsQ0FBSSxlQUFKLEVBRDZCO1FBQUEsQ0FGL0I7QUFBQSxRQUlBLGVBQUEsRUFBaUIsU0FBQSxHQUFBO2lCQUNmLEdBQUEsQ0FBSSxPQUFKLEVBRGU7UUFBQSxDQUpqQjtBQUFBLFFBTUEsY0FBQSxFQUFnQixTQUFBLEdBQUE7aUJBQ2QsR0FBQSxDQUFJLE1BQUosRUFEYztRQUFBLENBTmhCO0FBQUEsUUFRQSxlQUFBLEVBQWlCLFNBQUEsR0FBQTtpQkFDZixHQUFBLENBQUksT0FBSixFQURlO1FBQUEsQ0FSakI7T0FERixFQURRO0lBQUEsQ0FBVjtHQUhGLENBQUE7O0FBQUEsRUFnQkEsR0FBQSxHQUFNLFNBQUMsR0FBRCxHQUFBO0FBQ0osUUFBQSxjQUFBO0FBQUEsSUFBQSxNQUFBLEdBQVMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxtQkFBZixDQUFBLENBQVQsQ0FBQTtBQUFBLElBQ0EsTUFBQSxHQUFTLFdBQVcsQ0FBQyxTQUFaLENBQXNCLE1BQXRCLENBRFQsQ0FBQTtXQUVBLE1BQU0sQ0FBQyxPQUFQLENBQWUsU0FBQyxLQUFELEdBQUE7QUFDYixVQUFBLEtBQUE7QUFBQSxNQUFBLEtBQUEsR0FBUSxNQUFNLENBQUMsb0JBQVAsQ0FBNEIsS0FBNUIsQ0FBa0MsQ0FBQyxLQUFuQyxDQUF5QyxJQUF6QyxDQUFSLENBQUE7QUFBQSxNQUNBLEtBQUEsR0FBUSxHQUFBLENBQUksS0FBSixDQURSLENBQUE7YUFFQSxNQUFNLENBQUMsb0JBQVAsQ0FBNEIsS0FBNUIsRUFBbUMsS0FBSyxDQUFDLElBQU4sQ0FBVyxJQUFYLENBQW5DLEVBSGE7SUFBQSxDQUFmLEVBSEk7RUFBQSxDQWhCTixDQUFBOztBQUFBLEVBd0JBLElBQUEsR0FBTyxTQUFDLEtBQUQsR0FBQTtXQUNMLEtBQUssQ0FBQyxJQUFOLENBQUEsRUFESztFQUFBLENBeEJQLENBQUE7O0FBQUEsRUEyQkEsZUFBQSxHQUFrQixTQUFDLEtBQUQsR0FBQTtXQUNoQixLQUFLLENBQUMsSUFBTixDQUFXLFNBQUMsQ0FBRCxFQUFJLENBQUosR0FBQTtBQUNULFVBQUEsQ0FBQTtBQUFBLE1BQUEsQ0FBQSxHQUFJLENBQUMsQ0FBQyxXQUFGLENBQUEsQ0FBZSxDQUFDLGFBQWhCLENBQThCLENBQUMsQ0FBQyxXQUFGLENBQUEsQ0FBOUIsQ0FBSixDQUFBO0FBQ0EsTUFBQSxJQUFHLENBQUEsS0FBSyxDQUFSO0FBQ0UsUUFBQSxDQUFBLEdBQUksQ0FBQyxDQUFDLGFBQUYsQ0FBZ0IsQ0FBaEIsQ0FBSixDQURGO09BREE7YUFHQSxFQUpTO0lBQUEsQ0FBWCxFQURnQjtFQUFBLENBM0JsQixDQUFBOztBQUFBLEVBa0NBLE9BQUEsR0FBVSxTQUFDLEtBQUQsR0FBQTtXQUNSLEtBQUssQ0FBQyxPQUFOLENBQUEsRUFEUTtFQUFBLENBbENWLENBQUE7O0FBQUEsRUFxQ0EsTUFBQSxHQUFTLFNBQUMsS0FBRCxHQUFBO1dBQ1AsS0FBSyxDQUFDLE1BQU4sQ0FBYSxTQUFDLEtBQUQsRUFBUSxLQUFSLEVBQWUsSUFBZixHQUFBO2FBQXdCLElBQUksQ0FBQyxPQUFMLENBQWEsS0FBYixDQUFBLEtBQXVCLE1BQS9DO0lBQUEsQ0FBYixFQURPO0VBQUEsQ0FyQ1QsQ0FBQTs7QUFBQSxFQXdDQSxPQUFBLEdBQVUsU0FBQyxLQUFELEdBQUE7QUFDUixRQUFBLHFCQUFBO0FBQUEsU0FBUyw0RkFBVCxHQUFBO0FBQ0UsTUFBQSxDQUFBLEdBQUksSUFBSSxDQUFDLEtBQUwsQ0FBVyxJQUFJLENBQUMsTUFBTCxDQUFBLENBQUEsR0FBZ0IsQ0FBQyxDQUFBLEdBQUUsQ0FBSCxDQUEzQixDQUFKLENBQUE7QUFBQSxNQUNBLFFBQXVCLENBQUMsS0FBTSxDQUFBLENBQUEsQ0FBUCxFQUFXLEtBQU0sQ0FBQSxDQUFBLENBQWpCLENBQXZCLEVBQUMsS0FBTSxDQUFBLENBQUEsWUFBUCxFQUFXLEtBQU0sQ0FBQSxDQUFBLFlBRGpCLENBREY7QUFBQSxLQUFBO1dBR0EsTUFKUTtFQUFBLENBeENWLENBQUE7QUFBQSIKfQ==
+
+//# sourceURL=/Users/kswedberg/.atom/packages/lines/lib/lines.coffee

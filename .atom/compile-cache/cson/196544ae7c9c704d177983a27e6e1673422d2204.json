@@ -1,0 +1,1 @@
+{"context-menu":{".overlayer":{"Enable javascript-snippets":"javascript-snippets:toggle"}},"menu":[{"label":"Packages","submenu":[{"label":"javascript-snippets","submenu":[{"label":"Toggle","command":"javascript-snippets:toggle"}]}]}]}

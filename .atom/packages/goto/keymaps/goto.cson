@@ -1,0 +1,22 @@
+
+# The atom-workspace selector was added to increase specificity so it would override
+# symbols-view
+
+'.platform-darwin atom-workspace atom-text-editor':
+  'cmd-r': 'goto:file-symbol'
+  'cmd-alt-down': 'goto:declaration'
+
+'.platform-win32 atom-workspace atom-text-editor':
+  'ctrl-r': 'goto:file-symbol'
+  'ctrl-alt-down': 'goto:declaration'
+
+'.platform-darwin atom-workspace':
+  'cmd-R': 'goto:project-symbol'
+
+'.platform-win32 atom-workspace':
+  'ctrl-R': 'goto:project-symbol'
+
+'.platform-linux atom-workspace atom-text-editor':
+  'ctrl-r': 'goto:file-symbol'
+  'ctrl-shift-r': 'goto:project-symbol'
+  'ctrl-alt-down': 'goto:declaration'

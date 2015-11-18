@@ -1,0 +1,27 @@
+(function() {
+  var findRepo, fs, path;
+
+  path = require('path');
+
+  fs = require('fs');
+
+  findRepo = function(cpath) {
+    var lastPath, rpath;
+    while (cpath && lastPath !== cpath) {
+      lastPath = cpath;
+      cpath = path.dirname(cpath);
+      rpath = path.join(cpath, '.git');
+      if (fs.existsSync(rpath)) {
+        return rpath;
+      }
+    }
+    return null;
+  };
+
+  module.exports = findRepo;
+
+}).call(this);
+
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAiZmlsZSI6ICIiLAogICJzb3VyY2VSb290IjogIiIsCiAgInNvdXJjZXMiOiBbCiAgICAiL1VzZXJzL2tzd2VkYmVyZy9kb3RmaWxlcy8uYXRvbS9wYWNrYWdlcy9ibGFtZS9saWIvdXRpbHMvZmluZC1yZXBvLmNvZmZlZSIKICBdLAogICJuYW1lcyI6IFtdLAogICJtYXBwaW5ncyI6ICJBQUFBO0FBQUEsTUFBQSxrQkFBQTs7QUFBQSxFQUFBLElBQUEsR0FBTyxPQUFBLENBQVEsTUFBUixDQUFQLENBQUE7O0FBQUEsRUFDQSxFQUFBLEdBQUssT0FBQSxDQUFRLElBQVIsQ0FETCxDQUFBOztBQUFBLEVBR0EsUUFBQSxHQUFXLFNBQUMsS0FBRCxHQUFBO0FBQ1QsUUFBQSxlQUFBO0FBQUEsV0FBTSxLQUFBLElBQVUsUUFBQSxLQUFjLEtBQTlCLEdBQUE7QUFDRSxNQUFBLFFBQUEsR0FBVyxLQUFYLENBQUE7QUFBQSxNQUNBLEtBQUEsR0FBUSxJQUFJLENBQUMsT0FBTCxDQUFhLEtBQWIsQ0FEUixDQUFBO0FBQUEsTUFHQSxLQUFBLEdBQVEsSUFBSSxDQUFDLElBQUwsQ0FBVSxLQUFWLEVBQWlCLE1BQWpCLENBSFIsQ0FBQTtBQUlBLE1BQUEsSUFBZ0IsRUFBRSxDQUFDLFVBQUgsQ0FBYyxLQUFkLENBQWhCO0FBQUEsZUFBTyxLQUFQLENBQUE7T0FMRjtJQUFBLENBQUE7QUFPQSxXQUFPLElBQVAsQ0FSUztFQUFBLENBSFgsQ0FBQTs7QUFBQSxFQWFBLE1BQU0sQ0FBQyxPQUFQLEdBQWlCLFFBYmpCLENBQUE7QUFBQSIKfQ==
+
+//# sourceURL=/Users/kswedberg/dotfiles/.atom/packages/blame/lib/utils/find-repo.coffee

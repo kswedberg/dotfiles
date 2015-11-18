@@ -1,0 +1,1 @@
+{".source.js":{"$.parseJSON()":{"prefix":"parse","body":"$.parseJSON('${1:json}');$0"}}}

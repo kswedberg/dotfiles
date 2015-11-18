@@ -1,0 +1,1 @@
+{".source.js":{".removeAttr()":{"prefix":"removeAttr","body":"removeAttr('${1:attribute name}')$0"}}}

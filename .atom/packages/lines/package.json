@@ -1,0 +1,55 @@
+{
+  "name": "lines",
+  "description": "Add extra operations to lines: Sort, Reverse, Unique and Shuffle",
+  "keywords": [
+    "lines",
+    "sort",
+    "reverse",
+    "unique",
+    "shuffle"
+  ],
+  "main": "./lib/lines",
+  "version": "0.13.1",
+  "activationCommands": {
+    "atom-text-editor": [
+      "lines:sort",
+      "lines:case-insensitive-sort",
+      "lines:reverse",
+      "lines:unique",
+      "lines:shuffle"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xpol/atom-lines.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.39.0"
+  },
+  "dependencies": {},
+  "readme": "# Lines Package [![Build Status](https://travis-ci.org/xpol/atom-lines.svg?branch=master)](https://travis-ci.org/xpol/atom-lines)\n\nAn Atom package add extra operations to lines:\n\n* Sort (case sensitive or not)\n* Reverse\n* Unique\n* Shuffle\n\nThis package was forked and modified from [sort-lines](https://atom.io/packages/sort-lines).\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/xpol/atom-lines/issues"
+  },
+  "homepage": "https://github.com/xpol/atom-lines#readme",
+  "_id": "lines@0.13.1",
+  "_shasum": "f49e45abef1d3c0e91d95ef4954a4e5e995c42e6",
+  "_resolved": "file:../d-1151015-34392-k4uws6/package.tgz",
+  "_from": "../d-1151015-34392-k4uws6/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".coffee": [
+        "lib/lines.coffee",
+        "lib/range-finder.coffee"
+      ],
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

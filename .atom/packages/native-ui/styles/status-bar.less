@@ -1,0 +1,108 @@
+@import "syntax-variables";
+
+@status-bar-spacing: 20px;
+
+status-bar {
+  box-shadow: 0 -1px @tab-bar-border-color;
+  background: @status-bar-background-color;
+  height: @tab-height;
+  line-height: @tab-height; // optical correct to center vertically
+}
+
+status-bar .status-bar-right a.inline-block {
+  line-height: @tab-height;
+  margin-left: 0;
+  padding: 0 @status-bar-spacing;
+  height: @tab-height + 1;
+  border-left: 1px solid @tab-bar-border-color;
+
+  &:hover {
+    background-color: @tab-background-color;
+    text-decoration: none;
+  }
+
+  &:active,
+  &:focus {
+    background-color: @tab-bar-background-color;
+    text-decoration: none;
+  }
+}// status-bar .status-bar-right a.inline-block
+
+status-bar .status-bar-right .inline-block {
+  margin-left: 0;
+
+  > div { // for fields that don't contain a link
+    border-left: 1px solid @tab-bar-border-color;
+    color: @text-color-subtle; // this is not a link, so make it more subtle
+    line-height: @tab-height;
+    height: @tab-height + 1;
+    padding: 0 @status-bar-spacing;
+  }
+}
+
+status-bar .flexbox-repaint-hack {
+  padding-right: 0;
+}
+
+// START ----------------------------------------
+// Git Bar
+status-bar .git-branch,
+status-bar .git-commits,
+status-bar .git-status {
+  background-color: hsl(@ui-hue, 10%, 30%);
+  padding: 0 @status-bar-spacing;
+  margin-top: -1px;
+  color: @text-color-selected;
+  height: @tab-height + 1; // +1 because of border
+}
+
+status-bar .git-branch.inline-block {
+  margin-left: 0;
+}
+
+status-bar .git-status.inline-block {
+  margin-left: 0;
+  padding-left: 0;
+  padding-right: @status-bar-spacing;
+}
+
+status-bar .git-commits.inline-block {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.git-view {
+  margin-right: -1px;
+}
+// Git Bar
+// END ----------------------------------------
+
+
+
+status-bar .text-warning {
+  color: @text-color;
+
+  &:hover {
+    text-decoration: underline;
+    color: inherit;
+    cursor: pointer;
+  }
+}
+
+.package-updates-status-view.inline-block.text {
+  margin-right: @status-bar-spacing;
+  margin-left: @status-bar-spacing;
+  color: @text-color;
+
+  .icon-package {
+    color: @text-color-info;
+  }
+}
+
+status-bar .status-bar-right .release-notes-status {
+  padding: 0 @status-bar-spacing;
+}
+
+a.line-ending-tile.inline-block:empty {
+  display: none;
+}

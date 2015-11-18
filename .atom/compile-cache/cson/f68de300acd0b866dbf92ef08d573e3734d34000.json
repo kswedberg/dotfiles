@@ -1,0 +1,1 @@
+{".source.js":{"forEach loop":{"prefix":"fore","body":"${1:iterable.}forEach((${2:item}) => {\n  $3\n});"}}}

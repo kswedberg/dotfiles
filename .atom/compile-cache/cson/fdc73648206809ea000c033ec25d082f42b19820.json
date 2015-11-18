@@ -1,0 +1,1 @@
+{".source.js":{"$.ajax":{"prefix":"ajax","body":"ajax(${1:url}${2:, options})${3:;}"}}}

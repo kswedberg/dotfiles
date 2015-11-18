@@ -1,0 +1,20 @@
+'context-menu':
+  'atom-text-editor': [
+    { label: 'Goto Declaration', command: 'goto:declaration' }
+  ]
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Goto'
+      'submenu': [
+        { label: 'Goto File Symbol', command: 'goto:file-symbol' },
+        { label: 'Goto Project Symbol', command: 'goto:project-symbol' },
+        { label: 'Goto Declaration', command: 'goto:declaration' },
+        { label: 'Invalidate Index', command: 'goto:invalidate-index' },
+        { label: 'Rebuild Index', command: 'goto:rebuild-index' }
+      ]
+    ]
+  }
+]

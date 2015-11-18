@@ -1,0 +1,36 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+@images: "atom://diff/assets/images";
+
+atom-text-editor::shadow {
+  .source.diff {
+    span.meta.diff.header.from-file {
+      color: @text-color-success;
+    }
+
+    span.meta.diff.header.to-file {
+      color: @text-color-success;
+    }
+
+    span.meta.diff.range.unified,
+    span.meta.diff.toc-list.line-number {
+      color: @text-color-warning;
+    }
+
+    span.markup.deleted.diff {
+      &, span.punctuation.definition.diff {
+        color: @syntax-color-removed;
+      }
+    }
+
+    span.markup.inserted.diff {
+      &, span.punctuation.definition.diff {
+        color: @syntax-color-added;
+      }
+    }
+  }
+}

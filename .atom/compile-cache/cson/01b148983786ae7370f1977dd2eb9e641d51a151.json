@@ -1,0 +1,1 @@
+{"atom-text-editor:not([mini]":{"ctrl-;":"js-extras:end-line","ctrl-,":"js-extras:end-line-comma","ctrl-enter":"js-extras:end-new-line","ctrl-b":"js-extras:wrap-block"}}

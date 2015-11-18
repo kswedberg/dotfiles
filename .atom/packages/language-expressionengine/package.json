@@ -1,0 +1,35 @@
+{
+  "name": "language-expressionengine",
+  "version": "0.2.3",
+  "private": true,
+  "description": "Syntax Highlighting for ExpressionEngine templates",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/objectivehtml/language-expressionengine.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "readme": "# ExpressionEngine for Atom\n\nAdds syntax highlighting to ExpressionEngine templates in Atom.\n\n![screenshot](http://i58.tinypic.com/4ugk5f.jpg)\n\nFeedback, tests, and contributions are welcome. Make a pull request to\ncontribute.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/objectivehtml/language-expressionengine/issues"
+  },
+  "homepage": "https://github.com/objectivehtml/language-expressionengine#readme",
+  "_id": "language-expressionengine@0.2.3",
+  "_shasum": "4e9b48cb11425d5afd8dc35113a66ceb215f620f",
+  "_resolved": "file:../d-115104-20379-xh0ih9/package.tgz",
+  "_from": "../d-115104-20379-xh0ih9/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

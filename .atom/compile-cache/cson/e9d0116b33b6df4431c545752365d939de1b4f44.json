@@ -1,0 +1,1 @@
+{".source.js":{"console.log":{"prefix":"cl","body":"console.log($1);"},"function expression":{"prefix":"fe","body":"var ${1:functionName} = function ${1:functionName}($2) {$3}"}}}

@@ -1,0 +1,64 @@
+{
+  "name": "html-entities",
+  "version": "0.4.0",
+  "main": "./lib/html-entities",
+  "description": "Encode and decode HTML entities",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbeEstrada/atom-html-entities.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0 <2.0.0"
+  },
+  "dependencies": {
+    "html-entities": "^1.1.2"
+  },
+  "readme": "# HTML Entities [![Build Status](https://travis-ci.org/AbeEstrada/atom-html-entities.svg?branch=master)](https://travis-ci.org/AbeEstrada/atom-html-entities)\n\nEncode and decode HTML entities from selected text or the current document.\n\n![Screenshot](https://f.cloud.github.com/assets/7937/2394928/0d5a0b98-a9c0-11e3-9126-b6ce7c76cef0.gif)\n\nIf you want you can add this code to you `keymap.cson` to add a shortcut.\n\n    '.editor':\n      'f5': 'html-entities:encode'\n      'f6': 'html-entities:decode'\n\n`F5` and `F6` are optional.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/AbeEstrada/atom-html-entities/issues"
+  },
+  "homepage": "https://github.com/AbeEstrada/atom-html-entities#readme",
+  "_id": "html-entities@0.4.0",
+  "_shasum": "d375fcd54f5bd873cf51d2e08aaada57efa7d73b",
+  "_resolved": "file:../d-115101-60632-bpop11/package.tgz",
+  "_from": "../d-115101-60632-bpop11/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "html-entities",
+        "version": "1.2.0",
+        "path": "node_modules/html-entities/index.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/html-entities.coffee"
+      ],
+      ".js": [
+        "node_modules/html-entities/index.js",
+        "node_modules/html-entities/lib/html4-entities.js",
+        "node_modules/html-entities/lib/html5-entities.js",
+        "node_modules/html-entities/lib/xml-entities.js"
+      ],
+      ".json": [
+        "node_modules/html-entities/package.json",
+        "package.json"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          "",
+          "spec"
+        ],
+        "dependencies": {
+          "html-entities": "^1.1.2"
+        }
+      }
+    ]
+  }
+}

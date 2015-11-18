@@ -1,0 +1,1 @@
+{".source.js":{".filter function":{"prefix":"filter","body":"filter(function(index) {\n\t${1:return ${2:something};}\n});$0"}}}

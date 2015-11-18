@@ -1,0 +1,1 @@
+{".source.js":{"describe":{"prefix":"desc","body":"describe('${1:description}', function () {\n\t${0}\n});"},"it asynchronous":{"prefix":"ita","body":"it('${1:description}', function (done) {\n\t${0}\n});"},"it synchronous":{"prefix":"its","body":"it('${1:description}', function () {\n\t${0}\n});"}}}

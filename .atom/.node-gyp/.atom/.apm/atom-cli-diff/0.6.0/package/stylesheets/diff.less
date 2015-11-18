@@ -1,0 +1,40 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+@images: "atom://diff/assets/images";
+
+.diff-view {
+  padding: 5px;
+  overflow-y: scroll;
+  min-height: 100px;
+
+  div.diff-header {
+    height: 20px;
+  }
+
+  div.close-diff-view {
+    width: 16px;
+    height: 16px;
+    background: url("@{images}/close.png") no-repeat 0px 0px
+  }
+
+  div.close-diff-view:hover {
+    background-position: 0px -26px
+  }
+
+  div.line {
+    color: #fff;
+    letter-spacing: 0.2em;
+  }
+
+  div.red {
+    background-color: red;
+  }
+
+  div.green {
+    background-color: green;
+  }
+}

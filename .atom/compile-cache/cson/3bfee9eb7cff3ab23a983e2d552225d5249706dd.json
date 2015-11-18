@@ -1,0 +1,1 @@
+{".text.css":{"mediaquery":{"prefix":"media","body":"media (${rule}) {\n  $0\n}"}}}

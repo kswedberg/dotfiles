@@ -1,0 +1,1 @@
+{".source.js":{"module.exports":{"prefix":"moduleExports","body":"module.exports = ${1:name};"},"require module":{"prefix":"req","body":"var ${1:module} = require('${2:${1:module}}');$0"}}}

@@ -1,0 +1,15 @@
+{
+  "name": "atom-cli-diff",
+  "main": "./lib/diff",
+  "version": "0.6.0",
+  "description": "Diff package based in TextMate's diff bundle",
+  "repository": "https://github.com/mafiuss/atom-cli-diff",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "shell-escape": "0.1.0",
+    "temporary": "0.0.8"
+  }
+}

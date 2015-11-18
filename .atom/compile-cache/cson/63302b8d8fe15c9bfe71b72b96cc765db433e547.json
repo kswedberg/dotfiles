@@ -1,0 +1,1 @@
+{".source.js":{"process.nextTick":{"prefix":"nt","body":"process.nextTick(function () {\n\t${0}\n});"},"process.exit":{"prefix":"pe","body":"process.exit(${1:code});"}}}

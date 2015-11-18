@@ -1,0 +1,35 @@
+{
+  "name": "language-nunjucks",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Syntax highlighting for nunjucks templates.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alohaas/language-nunjucks.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "readme": "# Atom Nunjucks package\n\nSyntax highlighting for nunjucks templates in atom.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/alohaas/language-nunjucks/issues"
+  },
+  "homepage": "https://github.com/alohaas/language-nunjucks#readme",
+  "_id": "language-nunjucks@2.0.0",
+  "_shasum": "0094d32a6359f4a7b0457119a39bd7cfbebd1df6",
+  "_resolved": "file:../d-115101-63296-25di5i/package.tgz",
+  "_from": "../d-115101-63296-25di5i/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

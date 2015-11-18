@@ -1,0 +1,43 @@
+{
+  "name": "language-ini",
+  "version": "1.14.0",
+  "description": "Syntax support for ini files.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobbednarz/atom-language-ini.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/jacobbednarz/atom-language-ini/issues"
+  },
+  "homepage": "https://github.com/jacobbednarz/atom-language-ini",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Jacob Bednarz",
+    "email": "jacob.bednarz@gmail.com",
+    "url": "https://jacobbednarz.github.io"
+  },
+  "readme": "# Syntax support for INI files in Atom\n\nContributions are welcome and bonus are awarded for pull requests. Please fork and send a pull requests for updates to grammars, snippets or documentation.\n",
+  "readmeFilename": "README.md",
+  "_id": "language-ini@1.14.0",
+  "_shasum": "67c507b958dcd671e6ba9522442173126055a8bb",
+  "_resolved": "file:../d-115102-97523-ttncw0/package.tgz",
+  "_from": "../d-115102-97523-ttncw0/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

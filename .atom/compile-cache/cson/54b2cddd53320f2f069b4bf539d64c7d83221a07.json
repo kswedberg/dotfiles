@@ -1,0 +1,1 @@
+{".source.js":{"Promise":{"prefix":"promise","body":"new Promise((resolve, reject) => {\n\t${0}\n});"},"Promise.then":{"prefix":"then","body":"then(${2:value} => {\n\t${0}\n});"},"Promise.catch":{"prefix":"catch","body":"catch(${2:err} => {\n\t${0}\n});"}}}

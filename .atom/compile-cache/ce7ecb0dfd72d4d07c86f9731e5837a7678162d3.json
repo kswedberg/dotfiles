@@ -1,0 +1,1 @@
+{"context-menu":{"atom-text-editor":[{"label":"Fix this file using jscs","command":"jscs-fixer:fix"}]},"menu":[{"label":"Packages","submenu":[{"label":"jscs Fixer","submenu":[{"label":"Fix current file","command":"jscs-fixer:fix"}]}]}]}

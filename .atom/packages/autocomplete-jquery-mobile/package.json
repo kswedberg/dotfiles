@@ -1,0 +1,52 @@
+{
+  "name": "autocomplete-jquery-mobile",
+  "version": "0.2.2",
+  "description": "jQuery Mobile Framework element and attribute autocompletions",
+  "main": "./lib/main",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisgriffith/autocomplete-jqm.git"
+  },
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "providedServices": {
+    "autocomplete.provider": {
+      "versions": {
+        "2.0.0": "getProvider"
+      }
+    }
+  },
+  "devDependencies": {
+    "coffeelint": "^1.9.7",
+    "request": "^2.53.0"
+  },
+  "readme": "# jQuery Mobile Autocomplete Package\n\n[jQuery Mobile](http://jquerymobile.com/) tag and attribute autocompletions in Atom. Install\n[autocomplete-plus](https://github.com/atom-community/autocomplete-plus) before\ninstalling this package.\n\nThis is powered by the list of HTML tags [here](https://raw.githubusercontent.com/chrisgriffith/jQuery-Mobile-Brackets-Extension/master/HtmlTags.json)\nand HTML attributes [here](https://raw.githubusercontent.com/chrisgriffith/jQuery-Mobile-Brackets-Extension/master/HtmlAttributes.json)\n\nYou can update the prebuilt list of tags and attributes names and values by\nrunning the `update.coffee` file at the root of the repository and then checking\nin the changed `completions.json` file.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/chrisgriffith/autocomplete-jqm/issues"
+  },
+  "homepage": "https://github.com/chrisgriffith/autocomplete-jqm#readme",
+  "_id": "autocomplete-jquery-mobile@0.2.2",
+  "_shasum": "77d0375e6bd4672bbf17805437b70961d4b14e04",
+  "_resolved": "file:../d-115107-8376-1u58721/package.tgz",
+  "_from": "../d-115107-8376-1u58721/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "coffeelint.json",
+        "completions.json",
+        "package.json"
+      ],
+      ".coffee": [
+        "lib/main.coffee",
+        "lib/provider.coffee",
+        "update.coffee"
+      ]
+    },
+    "folders": []
+  }
+}

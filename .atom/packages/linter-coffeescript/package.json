@@ -1,0 +1,86 @@
+{
+  "name": "linter-coffeescript",
+  "main": "./lib/init",
+  "version": "1.0.0",
+  "description": "Lint CoffeeScript on the fly, using coffee",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hokaccha/linter-coffeescript.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "coffee-script": "^1.9.1"
+  },
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "1.0.0": "provideLinter"
+      }
+    }
+  },
+  "readme": "# linter-coffeescript\n\nThis linter plugin for [Linter](https://github.com/AtomLinter/Linter) provides an interface to [CoffeeScript](http://coffeescript.org/). This plugin provides only syntax checking.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/hokaccha/linter-coffeescript/issues"
+  },
+  "homepage": "https://github.com/hokaccha/linter-coffeescript#readme",
+  "_id": "linter-coffeescript@1.0.0",
+  "_shasum": "e2463fd4097ccf34983d24ff6980f958c195f8b9",
+  "_resolved": "file:../d-1151015-35924-1wst77k/package.tgz",
+  "_from": "../d-1151015-35924-1wst77k/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "coffee-script",
+        "version": "1.10.0",
+        "path": "node_modules/coffee-script/lib/coffee-script/coffee-script.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/init.coffee",
+        "lib/linter-coffeescript.coffee"
+      ],
+      ".json": [
+        "node_modules/coffee-script/bower.json",
+        "node_modules/coffee-script/package.json",
+        "package.json"
+      ],
+      ".js": [
+        "node_modules/coffee-script/lib/coffee-script/browser.js",
+        "node_modules/coffee-script/lib/coffee-script/cake.js",
+        "node_modules/coffee-script/lib/coffee-script/coffee-script.js",
+        "node_modules/coffee-script/lib/coffee-script/command.js",
+        "node_modules/coffee-script/lib/coffee-script/grammar.js",
+        "node_modules/coffee-script/lib/coffee-script/helpers.js",
+        "node_modules/coffee-script/lib/coffee-script/index.js",
+        "node_modules/coffee-script/lib/coffee-script/lexer.js",
+        "node_modules/coffee-script/lib/coffee-script/nodes.js",
+        "node_modules/coffee-script/lib/coffee-script/optparse.js",
+        "node_modules/coffee-script/lib/coffee-script/parser.js",
+        "node_modules/coffee-script/lib/coffee-script/register.js",
+        "node_modules/coffee-script/lib/coffee-script/repl.js",
+        "node_modules/coffee-script/lib/coffee-script/rewriter.js",
+        "node_modules/coffee-script/lib/coffee-script/scope.js",
+        "node_modules/coffee-script/lib/coffee-script/sourcemap.js",
+        "node_modules/coffee-script/register.js",
+        "node_modules/coffee-script/repl.js"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          ""
+        ],
+        "dependencies": {
+          "coffee-script": "^1.9.1"
+        }
+      }
+    ]
+  }
+}
