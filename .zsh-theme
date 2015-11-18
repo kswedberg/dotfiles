@@ -4,7 +4,6 @@ KARL_CURRENT_TIME_="%{$fg[white]%}%{$fg[yellow]%}%W %t%{$fg[white]%}%{$reset_col
 KARL_OPEN_ANGLE="%{$fg[white]%}‹%{$fg[red]%}"
 KARL_CLOSE_ANGLE="%{$fg[white]%}›%{$reset_color%}"
 
-
 function karl_precmd {
   KARL_PRE_STATUS=""
   KARL_POST_STATUS=""
@@ -56,17 +55,15 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="] %{$reset_color%}"
 
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}✗%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=" %{$fg[green]%}✔%{$reset_color%}"
-# ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[yellow]%}✚"
-# ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%}⚑"
-# ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%}✖"
-# ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[blue]%}▴"
-# ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[red]%}§"
+
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%}✚"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}⇡"
 ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[cyan]%}⇣"
+ZSH_THEME_GIT_PROMPT_DIVERGED="%{$fg[yellow]%}⚑"
 
 PROMPT='
 ${KARL_CURRENT_TIME_} ${KARL_OPEN_ANGLE}rb '"${rvm_ruby}"'${KARL_CLOSE_ANGLE} [%{$fg[cyan]%}node `node -v`%{$reset_color%}]${PATHCOLOR} ${current_dir}
-$(git_prompt_info)${KARL_PRE_STATUS}$(git_prompt_status)${KARL_POST_STATUS}${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
-
+$(git_super_status)${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
+# $(git_prompt_info)${KARL_PRE_STATUS}$(git_prompt_status)${KARL_POST_STATUS}${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
 # RPROMPT='[`node -v`]'
+RPROMPT=''
