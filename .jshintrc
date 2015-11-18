@@ -1,0 +1,25 @@
+{
+    "bitwise": true,
+    "browser": true,
+    "curly": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "esnext": true,
+    "immed": true,
+    "jquery": true,
+    "latedef": true,
+    "newcap": false,
+    "noarg": true,
+    "node": true,
+    "quotmark": "single",
+    "smarttabs": true,
+    "trailing": true,
+    "undef": true,
+    "globals": {
+        "define": false,
+        "require": false,
+        "FM": true,
+        "_gaq": true,
+        "ga": true
+    }
+}
