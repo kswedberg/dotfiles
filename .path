@@ -1,7 +1,7 @@
 
 ######## PATHS: EARLIER in path takes precedence ######
 
-PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+# PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
 # Homebrew libraries
 PATH=/usr/local/sbin:$PATH
