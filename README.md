@@ -8,9 +8,15 @@ This repository does not include the `.oh-my-zsh` directory.
 ## Symlinked files
 The following files are symlinked to my home directory:
 
+* `.atom`
+* `.jscsrc`
+* `.jshintrc`
 * `.profile`
+* `.slate`
 * `.zshrc`
 * `.zprofile`
+
+To symlink them all at once, execute the `init/sym.sh` file.
 
 ## Init files
 
