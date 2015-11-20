@@ -48,8 +48,7 @@
   "requireSpaceBeforeBinaryOperators": true,
   "requireSpaceAfterBinaryOperators": true,
   "disallowKeywords": [
-    "with",
-    "continue"
+    "with"
   ],
   "disallowMixedSpacesAndTabs": true,
   "disallowTrailingWhitespace": true,

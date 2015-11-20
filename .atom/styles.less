@@ -80,6 +80,15 @@ atom-text-editor {
   font-weight: bold;
   background-image: linear-gradient(to bottom, #fff, #ccc);
 }
+.pane.active .tab.active:before {
+  box-shadow: inset 3px 3px 0 rgba(0, 0, 250, 0.4), -4px 0px 4px rgba(0, 0, 0, 0.3)
+}
+.pane.active .tab.active:after {
+  box-shadow: inset -3px 3px 0 rgba(0, 0, 250, 0.4), 4px 0px 4px rgba(0, 0, 0, 0.3)
+}
+.pane.active .tab.active {
+  box-shadow: inset 0 3px 0 rgba(0, 0, 250, 0.4);
+}
 /*
  * Make sure "Use Shadow DOM" is checked in general settings
  */

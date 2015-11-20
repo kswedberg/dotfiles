@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.8.1
+* Fix resizing
+
+## 0.8.0
+* Convert to js
+* Fix tooltip
+
+## 0.7.1
+* Fix tooltip
+
 ## 0.7.0
 * Add option to open link to custom repository browser (pabra)
 * fix typo in context menu (pabra)
