@@ -27,15 +27,11 @@
       ".git"
       ".svn"
       ".DS_Store"
+      ".sass-cache"
     ]
     audioBeep: false
     disabledPackages: [
       "markdown-preview"
-      "js-autoimport"
-      "jquery-snippets"
-      "jquery-snippets"
-      "jquery-snippets"
-      "jquery-snippets"
       "autocomplete-emojis"
     ]
     packagesWithKeymapsDisabled: [
@@ -60,7 +56,6 @@
     preset: "grunt"
     displayAs: "jscs Warning"
     onlyConfig: true
-    esprima: "esprima-fb"
   "find-and-replace":
     openProjectFindResultsInRightPane: true
     focusEditorAfterSearch: true
@@ -115,6 +110,8 @@
   "one-dark-ui": {}
   "linter-jsxhint":
     harmony: true
+  "markdown-preview-plus":
+    useGitHubStyle: true
 ".js.regexp.replacement.source":
   editor:
     preferredLineLength: 100
