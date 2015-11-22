@@ -94,7 +94,8 @@
   "git-plus": {}
   tag: {}
   "coffee-compile": {}
-  "atom-alignment": {}
+  "atom-alignment":
+    addSpacePostfix: true
   "markdown-writer":
     fileExtension: ".md"
   "language-babel": {}
@@ -116,51 +117,7 @@
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".html.smarty.text":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".css.less.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".basic.html.text":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".html.nunjucks.text":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".apache-config.mod_perl.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".html.text.twig":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".jquery.js.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".html.mustache.text":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".mustache.source.sql":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".css.scss.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".js.regexp.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".coffee.jsx.source":
+".babel.regexp.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
@@ -168,43 +125,55 @@
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".babel.regexp.source":
+".coffee.jsx.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".ini.source":
+".js.regexp.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".nunjucks.source":
+".css.scss.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".git-rebase.text":
+".mustache.source.sql":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".git-config.source":
+".html.mustache.text":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".git-commit.text":
+".jquery.js.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".apache-config.source":
+".html.text.twig":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".postcss.source":
+".apache-config.mod_perl.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".sass.source":
+".html.nunjucks.text":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".css.source":
+".basic.html.text":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".css.less.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".html.smarty.text":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".diff.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
@@ -212,7 +181,39 @@
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".diff.source":
+".css.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".sass.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".postcss.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".apache-config.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".git-commit.text":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".git-config.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".git-rebase.text":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".nunjucks.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".ini.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
