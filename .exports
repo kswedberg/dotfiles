@@ -20,9 +20,8 @@ export GIT_HOSTING='git@github.com'
 # Set my editor and git editor
 # export EDITOR="subl"
 export EDITOR="atom"
-
-# export GIT_EDITOR="/usr/local/bin/subl -w"
-export JEKYLL_EDITOR="subl"
+export GIT_EDITOR="vim"
+export JEKYLL_EDITOR="atom"
 
 export JIRA_URL="http://fusionary.jira.com"
 
