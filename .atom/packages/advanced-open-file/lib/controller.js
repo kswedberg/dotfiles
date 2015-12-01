@@ -29,6 +29,7 @@ export class AdvancedOpenFileController {
         atom.commands.add('.advanced-open-file', {
             'core:confirm': ::this.confirm,
             'core:cancel': ::this.detach,
+            'application:add-project-folder': ::this.addSelectedProjectFolder,
             'advanced-open-file:autocomplete': ::this.autocomplete,
             'advanced-open-file:undo': ::this.undo,
             'advanced-open-file:move-cursor-down': ::this.moveCursorDown,
@@ -53,16 +54,17 @@ export class AdvancedOpenFileController {
         // Since the user typed this, apply fast-dir-switch
         // shortcuts.
         if (atom.config.get('advanced-open-file.helmDirSwitch')) {
-            if (newPath.directory.endsWith(newPath.sep + newPath.sep)) {
+            let sep = newPath.sep;
+            if (newPath.directory.endsWith(sep + sep)) {
                 newPath = newPath.root();
                 saveHistory = true;
-            } else if (newPath.directory.endsWith('~' + newPath.sep)) {
+            } else if (newPath.directory.endsWith(sep + '~' + sep)) {
                 newPath = new Path(osenv.home() + stdPath.sep);
                 saveHistory = true;
-            } else if (newPath.directory.endsWith(':' + newPath.sep)) {
+            } else if (newPath.directory.endsWith(sep + ':' + sep)) {
                 let projectPath = getProjectPath();
                 if (projectPath) {
-                    newPath = new Path(projectPath + newPath.sep);
+                    newPath = new Path(projectPath + sep);
                     saveHistory = true;
                 }
             }
@@ -95,8 +97,8 @@ export class AdvancedOpenFileController {
     openPath(path) {
         if (path.exists()) {
             if (path.isFile()) {
-                atom.workspace.open(path.full);
-                emitter.emit('did-open-path', path.full);
+                atom.workspace.open(path.absolute);
+                emitter.emit('did-open-path', path.absolute);
                 this.detach();
             } else {
                 atom.beep();
@@ -105,10 +107,18 @@ export class AdvancedOpenFileController {
             path.createDirectories();
             if (atom.config.get('advanced-open-file.createFileInstantly')) {
                 path.createFile();
-                emitter.emit('did-create-path', path.full);
+                emitter.emit('did-create-path', path.absolute);
             }
-            atom.workspace.open(path.full);
-            emitter.emit('did-open-path', path.full);
+            atom.workspace.open(path.absolute);
+            emitter.emit('did-open-path', path.absolute);
+            this.detach();
+        } else if (atom.config.get('advanced-open-file.createDirectories')) {
+            path.createDirectories();
+            atom.notifications.addSuccess('Directory created', {
+                detail: `Created directory "${path.full}".`,
+                icon: 'file-directory',
+            });
+            emitter.emit('did-create-path', path.absolute);
             this.detach();
         } else {
             atom.beep();
@@ -125,9 +135,22 @@ export class AdvancedOpenFileController {
 
     addProjectFolder(fileName) {
         let folderPath = new Path(fileName);
-        if (folderPath.isDirectory()) {
-            atom.project.addPath(folderPath.full);
+        if (folderPath.isDirectory() && !folderPath.isProjectDirectory()) {
+            atom.project.addPath(folderPath.absolute);
             this.detach();
+        } else {
+            atom.beep();
+        }
+    }
+
+    addSelectedProjectFolder(event) {
+        event.stopPropagation();
+
+        let selectedPath = this.view.selectedPath();
+        if (selectedPath !== null && !selectedPath.equals(this.currentPath.parent())) {
+            this.addProjectFolder(selectedPath.full);
+        } else {
+            atom.beep();
         }
     }
 

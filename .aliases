@@ -23,6 +23,8 @@ alias zshconfig="$EDITOR -n ~/.zshrc"
 alias ohmyzsh="$EDITOR -n ~/.oh-my-zsh"
 alias aliases="$EDITOR -n ~/dotfiles/.aliases"
 
+# Chrome
+alias chromed="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security"
 # SourceTree
 alias st="stree"
 
@@ -138,5 +140,3 @@ alias flush="dscacheutil -flushcache && sudo ipfw flush"
 alias remoteip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
 alias localip="ipconfig getifaddr en0"
 alias ip="echo external: && remoteip && echo local: && localip"
-
-

@@ -1,6 +1,15 @@
+### 2.5.3
+  - Added PID info when task goes missing for no recorded reason!
+
+### 2.5.2
+  - Transpiler task goes missing so recover it. Issue #110 Maybe related to https://github.com/atom/atom/issues/9663
+
+### 2.5.1
+  - Check that Babel returns a valid line/column for an error.
+
 ### 2.5.0
   - Trap transpiler task stack traces.
-  
+
 ### 2.4.1
   - Remove console.log!
 

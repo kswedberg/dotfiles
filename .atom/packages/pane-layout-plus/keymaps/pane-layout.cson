@@ -1,0 +1,28 @@
+# Keybindings require three things to be fully defined: A selector that is
+# matched against the focused element, the keystroke and the command to
+# execute.
+#
+# Below is a basic keybinding which registers on all platforms by applying to
+# the root workspace element.
+
+# For more detailed documentation see
+# https://atom.io/docs/latest/advanced/keymaps
+'atom-workspace':
+  'ctrl-1': 'pane-layout-focus:column-1'
+  'ctrl-2': 'pane-layout-focus:column-2'
+  'ctrl-3': 'pane-layout-focus:column-3'
+  'ctrl-4': 'pane-layout-focus:column-4'
+
+'.platform-darwin':
+  'cmd-alt-1': 'pane-layout:column-1'
+  'cmd-alt-2': 'pane-layout:column-2'
+  'cmd-alt-3': 'pane-layout:column-3'
+  'cmd-alt-4': 'pane-layout:column-4'
+  'cmd-alt-5': 'pane-layout:square'
+
+'.platform-win32, .platform-linux':
+  'alt-shift-1': 'pane-layout:column-1'
+  'alt-shift-2': 'pane-layout:column-2'
+  'alt-shift-3': 'pane-layout:column-3'
+  'alt-shift-4': 'pane-layout:column-4'
+  'alt-shift-5': 'pane-layout:square'

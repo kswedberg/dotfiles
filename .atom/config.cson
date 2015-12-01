@@ -113,47 +113,15 @@
     harmony: true
   "markdown-preview-plus":
     useGitHubStyle: true
+  "linter-phpcs":
+    codeStandardOrConfigFile: "/Users/kswedberg/phpcs-rules.xml"
+  "php-cs-fixer":
+    executeOnSave: true
+    executablePath: "/usr/local/bin/php-cs-fixer"
+    fixers: "align_double_arrow,concat_with_spaces,elseif,function_call_space,indentation"
+  "linter-php":
+    executablePath: "/usr/local/bin/php"
 ".js.regexp.replacement.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".babel.regexp.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".js.jsx.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".coffee.jsx.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".js.regexp.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".css.scss.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".mustache.source.sql":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".html.mustache.text":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".jquery.js.source":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".html.text.twig":
-  editor:
-    preferredLineLength: 100
-    softWrapHangingIndent: 2
-".apache-config.mod_perl.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
@@ -161,7 +129,7 @@
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".basic.html.text":
+".html.smarty.text":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
@@ -169,39 +137,60 @@
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".html.smarty.text":
+".basic.html.text":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".diff.source":
+".apache-config.mod_perl.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".js.source":
+".html.text.twig":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".css.source":
+".jquery.js.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".sass.source":
+".html.mustache.text":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".postcss.source":
+".mustache.source.sql":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".apache-config.source":
+".css.scss.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".git-commit.text":
+".js.regexp.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".git-config.source":
+".coffee.jsx.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".js.jsx.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".babel.regexp.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".html.php.text":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+    tabLength: 4
+".nunjucks.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".ini.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
@@ -209,11 +198,35 @@
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".nunjucks.source":
+".git-config.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2
-".ini.source":
+".git-commit.text":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".apache-config.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".postcss.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".sass.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".css.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".js.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+".diff.source":
   editor:
     preferredLineLength: 100
     softWrapHangingIndent: 2

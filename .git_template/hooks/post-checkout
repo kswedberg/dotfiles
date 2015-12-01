@@ -12,12 +12,12 @@ then
 fi
 
 # do the same for npm
-if [ -f package.json ] && command -v npm >/dev/null &&
-  git diff --name-only $old $2 | egrep -q '^package\.json$'
-then
-  (exec npm install)
-  true
-fi
+# if [ -f package.json ] && command -v npm >/dev/null &&
+#   git diff --name-only $old $2 | egrep -q '^package\.json$'
+# then
+#   (exec npm install)
+#   true
+# fi
 
 # do the same for composer
 if [ -f composer.lock ] && command -V composer >/dev/null &&

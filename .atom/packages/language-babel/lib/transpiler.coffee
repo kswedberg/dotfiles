@@ -65,21 +65,27 @@ class Transpiler
     @cleanNotifications(pathTo)
 
     # create babel transformer tasks - one per project as needed
-    @babelTranspilerTasks[pathTo.projectPath] ?=
-      Task.once @babelTransformerPath, pathTo.projectPath, =>
-        # task ended
-        delete @babelTranspilerTasks[pathTo.projectPath]
+    @createTask pathTo.projectPath
 
     # ok now transpile in the task and wait on the result
-    if @babelTranspilerTasks[pathTo.projectPath]?
+    if @babelTranspilerTasks[pathTo.projectPath]
       reqId = @reqId++
       msgObject =
         reqId: reqId
         command: 'transpile'
         pathTo: pathTo
         babelOptions: babelOptions
+
       # transpile in task
-      @babelTranspilerTasks[pathTo.projectPath].send(msgObject)
+      try
+       @babelTranspilerTasks[pathTo.projectPath].send(msgObject)
+      catch err
+        console.log "Error #{err} sending to transpile task with PID #{@babelTranspilerTasks[pathTo.projectPath].childProcess.pid}"
+        delete @babelTranspilerTasks[pathTo.projectPath]
+        @createTask pathTo.projectPath
+        console.log "Restarted transpile task with PID #{@babelTranspilerTasks[pathTo.projectPath].childProcess.pid}"
+        @babelTranspilerTasks[pathTo.projectPath].send(msgObject)
+
       # get result from task for this reqId
       @babelTranspilerTasks[pathTo.projectPath].once "transpile:#{reqId}", (msgRet) =>
         # .ignored is returned when .babelrc ignore/only flags are used
@@ -96,7 +102,7 @@ class Transpiler
                 dismissable: true
                 detail: "#{msgRet.err.message}\n \n#{msgRet.babelCoreUsed}\n \n#{msgRet.err.codeFrame}"
             # if we have a line/col syntax error jump to the position
-            if msgRet.err.loc? and textEditor?
+            if msgRet.err.loc?.line? and textEditor?
               textEditor.setCursorBufferPosition [msgRet.err.loc.line-1, msgRet.err.loc.column-1]
         else
           if not config.suppressTranspileOnSaveMessages
@@ -158,6 +164,13 @@ class Transpiler
       atom.notifications.notifications[i].message.substring(0,3) is "LB:"
         atom.notifications.notifications.splice i, 1
       i--
+
+  # create babel transformer tasks - one per project as needed
+  createTask: (projectPath) ->
+    @babelTranspilerTasks[projectPath] ?=
+      Task.once @babelTransformerPath, projectPath, =>
+        # task ended
+        delete @babelTranspilerTasks[projectPath]
 
   # modifies config options for changed or deprecated configs
   deprecateConfig: ->

@@ -1,7 +1,7 @@
 {
   "name": "language-babel",
   "main": "./lib/main",
-  "version": "2.5.0",
+  "version": "2.5.3",
   "description": "Babel JavaScript ES201x, React JSX & Flow Grammar & Transpiler",
   "keywords": [
     "babel",
@@ -26,22 +26,22 @@
     "jjv": "^1.0.2",
     "path-is-inside": "^1.0.1"
   },
-  "readme": "# language-babel\n\n[![Build Status](https://travis-ci.org/gandm/language-babel.svg?branch=master)](https://travis-ci.org/gandm/language-babel)\n[![Build Dependencies](https://david-dm.org/gandm/language-babel.svg)](https://david-dm.org/gandm/language-babel)\n\nLanguage grammar for ES201x JavaScript, [Facebook React JSX](http://facebook.github.io/react/index.html) syntax and [Facebook flow](http://flowtype.org/). The colour of syntax is determined by the theme in use.\n\nBy default the language-babel package will detect file types `.js`,`.babel`,`.jsx` and `es6`. Use the standard ATOM interface to enable it for other file types. This provides a grammar that scopes the file in order to colour the text in a meaningful way. If other JavaScript grammars are enabled these may take precedence over language-babel. Look at the bottom right status bar indicator to determine the language grammar of a file being edited. language-babel will be shown as `Babel ES6 JavaScript`\n\nlanguage-babel provides [Babel](http://babeljs.io/) V6 & V5 transpiler support. If you only require grammar/syntax highlighting ensure that the package settings `Transpile On Save` and `Allow Local Override` are both off.\n\n## Installation\n\nInstall via ATOM or by using `apm install language-babel`. If you only need to use the provided grammar read no further!\n\n## Interface to Babel V6 & V5\n\nOptions in the language-babel package settings and/or in `.languagebabel` project based JSON files allow for Babel validations to be carried out on a file saves using `.babelrc` options. Even if using a workflow such as gulp, webpack, etc, this can be very useful. Additional options allow the output from Babel (transpiled code and maps ) to be output to other directories.\n\nThis package works by using the concept of a project folder which we assume contains a project or even nested projects any of which may contain a Babel project.  In a Babel project we expect to see one or more `.babelrc` files, a `node_modules` folder at the root of the project containing an optional `babel-core` and other babel plugins/presets as determined by the project's `package.json` file. In addition we may expect to see one or more `.languagebabel` files in the project. Projects are either implicit (an Atom project folder) or explicit (denoted by a `.languagebabel` property of `\"projectRoot\": true`). If no `babel-core` is found in the project then a version will be provided by the package but this will be a Babel Version 6 instance. Plugins and presets will not be provided by the package.\n\nA trivial example project that shows examples of using `.languagebabel` and `.babelrc` files may be found [here](https://github.com/gandm/example-language-babel).\n\nMultiple projects may be open at any time inside Atom and `language-babel` must allow the use of differing `babel-core` versions and associated plugins when transpiling. It does this by using background tasks - one per Babel project. When a `language-babel` grammar enabled file is saved the package settings and optionally any `.languagebabel` configuration files are read to determine if the file should be transpiled and what to do with the output. These settings and `.languagebabel` options are described below.\n\nIt is very easy to ensure that language-babel does not transpile files that are not needed. Just turn off the global package setting `Transpile On Save` and turn on `Allow Local Override`. Apart form grammar highlighting only projects having a `.languagebabel` in the file path will then be affected by this package. Further granularity is easy too.\n\n## Package Settings\n\nFor most projects it is better to configure `language-babel` via project based `.languagebabel` file properties which will override the package settings below. See *\".langeuagebabel Configuration\"* for more information on this behaviour.\n\n* #### Allow Local Override\n  If set this allows `.languagebabel` file properties to be override the global package settings.\n\n* #### Transpile On Save\n  On any file save of a `language-babel` grammar enabled file the Babel transpiler is called. No actual transpiled file is saved but any Babel errors and/or successful indicators are notified by an ATOM pop-up. Not all files are candidates for transpilation as other settings can affect this. For example see `Disable When No Babelrc File In Path` and `Babel Source Path` below.\n\n  ```json\n  {\"transpileOnSav\": true} or\n  {\"transpileOnSav\": false}\n  ```\n\n* #### Create Transpiled Code\n  If enabled together with `Transpile On Save` this will output JavaScript code to a `.js` file with the same prefix as the original. By using the  `Babel Transpile Path` options it is possible to transpile to a different target directory. Not all files are candidates for transpilation as other settings can affect this.\n\n  ```json\n  {\"createTranspiledCode\": true} or\n  {\"createTranspiledCode\": false}\n  ```\n\n* #### Disable When No Babelrc File In Path\n  Disables transpiler if no `.babelrc` files are found in the source file path.\n\n  ```json\n  {\"disableWhenNoBabelrcFileInPath\": true} or\n  {\"disableWhenNoBabelrcFileInPath\": false}\n  ```\n\n* #### Suppress Transpile On Save Messages\n  Suppress all successful save messages. Errors are still notified.\n\n true|false}`\n  ```json\n  {\"suppressTranspileOnSaveMessages\": true} or\n  {\"suppressTranspileOnSaveMessages\": false}\n  ```\n\n* #### Suppress Source Path Messages\n  This is set by default so that when a file is saved that is outside the `Babel Source Path` directory no message is generated. This is particularly useful when you have mixed ES2015 and ES3-5 environment. ES2015 files can be placed inside a `Babel Source Path` where they will be transpiled and other files will not pop up annoying messages when being saved.\n\n  ```json\n  {\"suppressSourcePathMessages\": true} or\n  {\"suppressSourcePathMessages\": false}\n  ```\n\n* #### Create Map\n  If transpiled output is being saved a separate source map can be also be saved. The source file name will be used with a new suffix of `.js.map` and sent to a directory specified in `Babel Maps Path`. To avoid any possible XSSI issues the map file is prefixed with `)]}`\n\n  If `.babelrc` files use `sourceMaps: inline` or `sourceMaps both` options then turn this option off as the map data is stored as part of the source file.\n\n  ```json\n  {\"createMap\": true} or\n  {\"createMap\": false}\n  ```\n\n* #### Babel Maps Add Url\n  If a source map is created using the `Create Map` option this allows a Url reference `//# sourceURL=originalBabelSourcefile` to be appended to the generated transpiled JavaScript file.  \n\n  ```json\n  {\"babelMapsAddUrl\": true} or\n  {\"babelMapsAddUrl\": false}\n  ```\n\n* #### Project Root ( only present in `.languagebabel` files)\n\n  A `.languagebabel` property that defines this directory is a project root. A project root would contain a `node_modules` folder with an optional `babel-core` as well as any plugins required.\n\n  ```json\n  {\"projectRoot\": true} or\n  {\"projectRoot\": false}\n  ```\n\n* #### Babel Source Path, Babel Transpile Path and Babel Maps Path\n  These a directories based on the project root. A project root is either implicit ( baed on an Atom folders root directory) or explicit ( based upon the root defined in the nearest `.languagebabel` file with a property `\"projectRoot\": true` )\n\n  Only files found under the `project/babelsourcepath` will be candidates for transpilation. If multiple project root folders exist then `babelsourcepath` may exist in any or all folders.\n\n  The Transpile and Maps paths allow different target directories to be specified. If multiple project root folders exist then they may exist in any or all folders.\n\n  e.g. Two project root folders exist `/proj1` and `/proj2`. If Source Path is set to `babelSource`the Transpile Path is set to `babelTranspile` and the Maps Path is set to `babelMaps` then:-\n\n  `/proj1/babelSource/foo.es6` ->`/proj1/babelTranspile/foo.js`,`/proj1/babelMaps/foo.js.map`\n\n  ```json\n  {\n    \"projectRoot\":  true,    \n    \"babelSourcePath\": \"babelSource\",\n    \"babelTranspilePath\": \"babelTranspile\",\n    \"babelMapsPath\": \"babelMaps\"\n  }\n  ```\n\n  `/proj2/babelSource/dirBar/foo.es6` -> `/proj2/lib/foo.js`,`/proj2/lib/foo.js.map`\n\n  ```json\n  {\n    \"projectRoot\":  true,\n    \"babelSourcePath\": \"babelSource/dirBar\",\n    \"babelTranspilePath\": \"lib\",\n    \"babelMapsPath\": \"lib\"\n  }\n  ```\n\n* #### Create Target Directories\n  When enabled any target directories that do not exist will be created prior to a transpilation.\n  ```json\n  {\"createTargetDirectories\": true} or\n  {\"createTargetDirectories\": false}\n  ```\n\n## .languagebabel Configuration\n\n`.languagebabel` JSON configuration files can exist in any directory of the path that contains a source file to be compiled. `.languagebabel` file properties override the global package settings above. `.languagebabel` files if present are read and merged starting in the source files directory up to the project root directory. `.languagebabel` properties defined closest the source file take precedence.\n\nTo use this option please enable the `Allow Local Override` package setting.\n\nA `.languagebabel` file may contain one or more of the following properties.\n```\n{\n  \"babelMapsPath\":                    \"relPath\",\n  \"babelMapsAddUrl\":                  true|false,\n  \"babelSourcePath\":                  \"relPath\",\n  \"babelTranspilePath\":               \"relPath\",\n  \"createMap\":                        true|false,\n  \"createTargetDirectories\":          true|false,\n  \"createTranspiledCode\":             true|false,\n  \"disableWhenNoBabelrcFileInPath\":   true|false,\n  \"projectRoot\":                      true|false,  \n  \"suppressSourcePathMessages\":       true|false,\n  \"suppressTranspileOnSaveMessages\":  true|false,\n  \"transpileOnSave\":                  true|false\n}\n```\n",
+  "readme": "# language-babel\n\n[![Build Status](https://travis-ci.org/gandm/language-babel.svg?branch=master)](https://travis-ci.org/gandm/language-babel)\n[![Build Dependencies](https://david-dm.org/gandm/language-babel.svg)](https://david-dm.org/gandm/language-babel)\n\nLanguage grammar for ES201x JavaScript, [Facebook React JSX](http://facebook.github.io/react/index.html) syntax and [Facebook flow](http://flowtype.org/). The colour of syntax is determined by the theme in use.\n\nBy default the language-babel package will detect file types `.js`,`.babel`,`.jsx` and `es6`. Use the standard ATOM interface to enable it for other file types. This provides a grammar that scopes the file in order to colour the text in a meaningful way. If other JavaScript grammars are enabled these may take precedence over language-babel. Look at the bottom right status bar indicator to determine the language grammar of a file being edited. language-babel will be shown as `Babel ES6 JavaScript`\n\nlanguage-babel provides [Babel](http://babeljs.io/) V6 & V5 transpiler support. If you only require grammar/syntax highlighting ensure that the package settings `Transpile On Save` and `Allow Local Override` are both off.\n\n## Installation\n\nInstall via ATOM or by using `apm install language-babel`. If you only need to use the provided grammar read no further!\n\n## Interface to Babel V6 & V5\n\nOptions in the language-babel package settings and/or in `.languagebabel` project based JSON files allow for Babel validations to be carried out on a file saves using `.babelrc` options. Even if using a workflow such as gulp, webpack, etc, this can be very useful. Additional options allow the output from Babel (transpiled code and maps ) to be output to other directories.\n\nThis package works by using the concept of a project folder which we assume contains a project or even nested projects any of which may contain a Babel project.  In a Babel project we expect to see one or more `.babelrc` files, a `node_modules` folder at the root of the project containing an optional `babel-core` and other babel plugins/presets as determined by the project's `package.json` file. In addition we may expect to see one or more `.languagebabel` files in the project. Projects are either implicit (an Atom project folder) or explicit (denoted by a `.languagebabel` property of `\"projectRoot\": true`). If no `babel-core` is found in the project then a version will be provided by the package but this will be a Babel Version 6 instance. Plugins and presets will not be provided by the package.\n\nA trivial example project that shows examples of using `.languagebabel` and `.babelrc` files may be found [here](https://github.com/gandm/example-language-babel).\n\nMultiple projects may be open at any time inside Atom and `language-babel` must allow the use of differing `babel-core` versions and associated plugins when transpiling. It does this by using background tasks - one per Babel project. When a `language-babel` grammar enabled file is saved the package settings and optionally any `.languagebabel` configuration files are read to determine if the file should be transpiled and what to do with the output. These settings and `.languagebabel` options are described below.\n\nIt is very easy to ensure that language-babel does not transpile files that are not needed. Just turn off the global package setting `Transpile On Save` and turn on `Allow Local Override`. Apart form grammar highlighting only projects having a `.languagebabel` in the file path will then be affected by this package. Further granularity is easy too.\n\n## Package Settings\n\nFor most projects it is better to configure `language-babel` via project based `.languagebabel` file properties which will override the package settings below. See *\".langeuagebabel Configuration\"* for more information on this behaviour.\n\n* #### Allow Local Override\n  If set this allows `.languagebabel` file properties to be override the global package settings.\n\n* #### Transpile On Save\n  On any file save of a `language-babel` grammar enabled file the Babel transpiler is called. No actual transpiled file is saved but any Babel errors and/or successful indicators are notified by an ATOM pop-up. Not all files are candidates for transpilation as other settings can affect this. For example see `Disable When No Babelrc File In Path` and `Babel Source Path` below.\n\n  ```json\n  {\"transpileOnSave\": true} or\n  {\"transpileOnSave\": false}\n  ```\n\n* #### Create Transpiled Code\n  If enabled together with `Transpile On Save` this will output JavaScript code to a `.js` file with the same prefix as the original. By using the  `Babel Transpile Path` options it is possible to transpile to a different target directory. Not all files are candidates for transpilation as other settings can affect this.\n\n  ```json\n  {\"createTranspiledCode\": true} or\n  {\"createTranspiledCode\": false}\n  ```\n\n* #### Disable When No Babelrc File In Path\n  Disables transpiler if no `.babelrc` files are found in the source file path.\n\n  ```json\n  {\"disableWhenNoBabelrcFileInPath\": true} or\n  {\"disableWhenNoBabelrcFileInPath\": false}\n  ```\n\n* #### Suppress Transpile On Save Messages\n  Suppress all successful save messages. Errors are still notified.\n\n  ```json\n  {\"suppressTranspileOnSaveMessages\": true} or\n  {\"suppressTranspileOnSaveMessages\": false}\n  ```\n\n* #### Suppress Source Path Messages\n  This is set by default so that when a file is saved that is outside the `Babel Source Path` directory no message is generated. This is particularly useful when you have mixed ES2015 and ES3-5 environment. ES2015 files can be placed inside a `Babel Source Path` where they will be transpiled and other files will not pop up annoying messages when being saved.\n\n  ```json\n  {\"suppressSourcePathMessages\": true} or\n  {\"suppressSourcePathMessages\": false}\n  ```\n\n* #### Create Map\n  If transpiled output is being saved a separate source map can be also be saved. The source file name will be used with a new suffix of `.js.map` and sent to a directory specified in `Babel Maps Path`. To avoid any possible XSSI issues the map file is prefixed with `)]}`\n\n  If `.babelrc` files use `sourceMaps: inline` or `sourceMaps both` options then turn this option off as the map data is stored as part of the source file.\n\n  ```json\n  {\"createMap\": true} or\n  {\"createMap\": false}\n  ```\n\n* #### Babel Maps Add Url\n  If a source map is created using the `Create Map` option this allows a Url reference `//# sourceURL=originalBabelSourcefile` to be appended to the generated transpiled JavaScript file.  \n\n  ```json\n  {\"babelMapsAddUrl\": true} or\n  {\"babelMapsAddUrl\": false}\n  ```\n\n* #### Project Root ( only present in `.languagebabel` files)\n\n  A `.languagebabel` property that defines this directory is a project root. A project root would contain a `node_modules` folder with an optional `babel-core` as well as any plugins required.\n\n  ```json\n  {\"projectRoot\": true} or\n  {\"projectRoot\": false}\n  ```\n\n* #### Babel Source Path, Babel Transpile Path and Babel Maps Path\n  These a directories based on the project root. A project root is either implicit ( baed on an Atom folders root directory) or explicit ( based upon the root defined in the nearest `.languagebabel` file with a property `\"projectRoot\": true` )\n\n  Only files found under the `project/babelsourcepath` will be candidates for transpilation. If multiple project root folders exist then `babelsourcepath` may exist in any or all folders.\n\n  The Transpile and Maps paths allow different target directories to be specified. If multiple project root folders exist then they may exist in any or all folders.\n\n  e.g. Two project root folders exist `/proj1` and `/proj2`. If Source Path is set to `babelSource`the Transpile Path is set to `babelTranspile` and the Maps Path is set to `babelMaps` then:-\n\n  `/proj1/babelSource/foo.es6` ->`/proj1/babelTranspile/foo.js`,`/proj1/babelMaps/foo.js.map`\n\n  ```json\n  {\n    \"projectRoot\":  true,    \n    \"babelSourcePath\": \"babelSource\",\n    \"babelTranspilePath\": \"babelTranspile\",\n    \"babelMapsPath\": \"babelMaps\"\n  }\n  ```\n\n  `/proj2/babelSource/dirBar/foo.es6` -> `/proj2/lib/foo.js`,`/proj2/lib/foo.js.map`\n\n  ```json\n  {\n    \"projectRoot\":  true,\n    \"babelSourcePath\": \"babelSource/dirBar\",\n    \"babelTranspilePath\": \"lib\",\n    \"babelMapsPath\": \"lib\"\n  }\n  ```\n\n* #### Create Target Directories\n  When enabled any target directories that do not exist will be created prior to a transpilation.\n  ```json\n  {\"createTargetDirectories\": true} or\n  {\"createTargetDirectories\": false}\n  ```\n\n## .languagebabel Configuration\n\n`.languagebabel` JSON configuration files can exist in any directory of the path that contains a source file to be compiled. `.languagebabel` file properties override the global package settings above. `.languagebabel` files if present are read and merged starting in the source files directory up to the project root directory. `.languagebabel` properties defined closest the source file take precedence.\n\nTo use this option please enable the `Allow Local Override` package setting.\n\nA `.languagebabel` file may contain one or more of the following properties.\n```\n{\n  \"babelMapsPath\":                    \"relPath\",\n  \"babelMapsAddUrl\":                  true|false,\n  \"babelSourcePath\":                  \"relPath\",\n  \"babelTranspilePath\":               \"relPath\",\n  \"createMap\":                        true|false,\n  \"createTargetDirectories\":          true|false,\n  \"createTranspiledCode\":             true|false,\n  \"disableWhenNoBabelrcFileInPath\":   true|false,\n  \"projectRoot\":                      true|false,  \n  \"suppressSourcePathMessages\":       true|false,\n  \"suppressTranspileOnSaveMessages\":  true|false,\n  \"transpileOnSave\":                  true|false\n}\n```\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/gandm/language-babel/issues"
   },
   "homepage": "https://github.com/gandm/language-babel#readme",
-  "_id": "language-babel@2.5.0",
-  "_shasum": "7a66bdb2052dee33fcd26987e4e9b903772af593",
-  "_resolved": "file:../d-1151016-43523-khjpnq/package.tgz",
-  "_from": "../d-1151016-43523-khjpnq/package.tgz",
+  "_id": "language-babel@2.5.3",
+  "_shasum": "c6d0421de3cfa0857d5545042a3e8650d6f84d8b",
+  "_resolved": "file:../d-1151027-87317-qrvq4l/package.tgz",
+  "_from": "../d-1151027-87317-qrvq4l/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "babel-core",
-        "version": "6.1.21",
+        "version": "6.2.1",
         "path": "node_modules/babel-core/index.js"
       },
       {
@@ -90,6 +90,11 @@
         "path": "node_modules/babel-core/node_modules/babel-code-frame/node_modules/chalk/node_modules/supports-color/index.js"
       },
       {
+        "name": "esutils",
+        "version": "2.0.2",
+        "path": "node_modules/babel-core/node_modules/babel-code-frame/node_modules/esutils/lib/utils.js"
+      },
+      {
         "name": "js-tokens",
         "version": "1.0.2",
         "path": "node_modules/babel-core/node_modules/babel-code-frame/node_modules/js-tokens/index.js"
@@ -121,7 +126,7 @@
       },
       {
         "name": "babel-generator",
-        "version": "6.1.20",
+        "version": "6.2.0",
         "path": "node_modules/babel-core/node_modules/babel-generator/lib/index.js"
       },
       {
@@ -181,12 +186,12 @@
       },
       {
         "name": "babel-messages",
-        "version": "6.1.18",
+        "version": "6.2.1",
         "path": "node_modules/babel-core/node_modules/babel-messages/lib/index.js"
       },
       {
         "name": "babel-register",
-        "version": "6.1.18",
+        "version": "6.2.0",
         "path": "node_modules/babel-core/node_modules/babel-register/lib/node.js"
       },
       {
@@ -195,28 +200,58 @@
         "path": "node_modules/babel-core/node_modules/babel-register/node_modules/core-js/index.js"
       },
       {
+        "name": "home-or-tmp",
+        "version": "1.0.0",
+        "path": "node_modules/babel-core/node_modules/babel-register/node_modules/home-or-tmp/index.js"
+      },
+      {
+        "name": "os-tmpdir",
+        "version": "1.0.1",
+        "path": "node_modules/babel-core/node_modules/babel-register/node_modules/home-or-tmp/node_modules/os-tmpdir/index.js"
+      },
+      {
+        "name": "user-home",
+        "version": "1.1.1",
+        "path": "node_modules/babel-core/node_modules/babel-register/node_modules/home-or-tmp/node_modules/user-home/index.js"
+      },
+      {
+        "name": "source-map-support",
+        "version": "0.2.10",
+        "path": "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/source-map-support.js"
+      },
+      {
+        "name": "source-map",
+        "version": "0.1.32",
+        "path": "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib/source-map.js"
+      },
+      {
+        "name": "amdefine",
+        "version": "1.0.0",
+        "path": "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/node_modules/amdefine/amdefine.js"
+      },
+      {
         "name": "core-js",
         "version": "1.2.6",
         "path": "node_modules/babel-core/node_modules/babel-runtime/node_modules/core-js/index.js"
       },
       {
         "name": "babel-template",
-        "version": "6.1.18",
+        "version": "6.2.0",
         "path": "node_modules/babel-core/node_modules/babel-template/lib/index.js"
       },
       {
         "name": "babel-traverse",
-        "version": "6.1.20",
+        "version": "6.2.0",
         "path": "node_modules/babel-core/node_modules/babel-traverse/lib/index.js"
       },
       {
         "name": "globals",
-        "version": "8.12.0",
+        "version": "8.12.1",
         "path": "node_modules/babel-core/node_modules/babel-traverse/node_modules/globals/index.js"
       },
       {
         "name": "invariant",
-        "version": "2.1.2",
+        "version": "2.2.0",
         "path": "node_modules/babel-core/node_modules/babel-traverse/node_modules/invariant/invariant.js"
       },
       {
@@ -246,8 +281,13 @@
       },
       {
         "name": "babel-types",
-        "version": "6.1.18",
+        "version": "6.2.0",
         "path": "node_modules/babel-core/node_modules/babel-types/lib/index.js"
+      },
+      {
+        "name": "esutils",
+        "version": "2.0.2",
+        "path": "node_modules/babel-core/node_modules/babel-types/node_modules/esutils/lib/utils.js"
       },
       {
         "name": "to-fast-properties",
@@ -256,7 +296,7 @@
       },
       {
         "name": "babylon",
-        "version": "6.1.21",
+        "version": "6.2.0",
         "path": "node_modules/babel-core/node_modules/babylon/lib/index.js"
       },
       {
@@ -273,26 +313,6 @@
         "name": "ms",
         "version": "0.7.1",
         "path": "node_modules/babel-core/node_modules/debug/node_modules/ms/index.js"
-      },
-      {
-        "name": "esutils",
-        "version": "2.0.2",
-        "path": "node_modules/babel-core/node_modules/esutils/lib/utils.js"
-      },
-      {
-        "name": "home-or-tmp",
-        "version": "1.0.0",
-        "path": "node_modules/babel-core/node_modules/home-or-tmp/index.js"
-      },
-      {
-        "name": "os-tmpdir",
-        "version": "1.0.1",
-        "path": "node_modules/babel-core/node_modules/home-or-tmp/node_modules/os-tmpdir/index.js"
-      },
-      {
-        "name": "user-home",
-        "version": "1.1.1",
-        "path": "node_modules/babel-core/node_modules/home-or-tmp/node_modules/user-home/index.js"
       },
       {
         "name": "json5",
@@ -340,296 +360,6 @@
         "path": "node_modules/babel-core/node_modules/private/private.js"
       },
       {
-        "name": "regenerator",
-        "version": "0.8.35",
-        "path": "node_modules/babel-core/node_modules/regenerator/main.js"
-      },
-      {
-        "name": "commoner",
-        "version": "0.10.4",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/main.js"
-      },
-      {
-        "name": "commander",
-        "version": "2.9.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/commander/index.js"
-      },
-      {
-        "name": "graceful-readlink",
-        "version": "1.0.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/commander/node_modules/graceful-readlink/index.js"
-      },
-      {
-        "name": "detective",
-        "version": "4.3.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/index.js"
-      },
-      {
-        "name": "acorn",
-        "version": "1.2.2",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/dist/acorn.js"
-      },
-      {
-        "name": "defined",
-        "version": "1.0.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/defined/index.js"
-      },
-      {
-        "name": "glob",
-        "version": "5.0.15",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/glob.js"
-      },
-      {
-        "name": "inflight",
-        "version": "1.0.4",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inflight/inflight.js"
-      },
-      {
-        "name": "wrappy",
-        "version": "1.0.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inflight/node_modules/wrappy/wrappy.js"
-      },
-      {
-        "name": "inherits",
-        "version": "2.0.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inherits/inherits.js"
-      },
-      {
-        "name": "once",
-        "version": "1.3.2",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/once/once.js"
-      },
-      {
-        "name": "wrappy",
-        "version": "1.0.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/once/node_modules/wrappy/wrappy.js"
-      },
-      {
-        "name": "graceful-fs",
-        "version": "4.1.2",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/graceful-fs/graceful-fs.js"
-      },
-      {
-        "name": "iconv-lite",
-        "version": "0.4.13",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/lib/index.js"
-      },
-      {
-        "name": "mkdirp",
-        "version": "0.5.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/index.js"
-      },
-      {
-        "name": "minimist",
-        "version": "0.0.8",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/node_modules/minimist/index.js"
-      },
-      {
-        "name": "q",
-        "version": "1.4.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/q/q.js"
-      },
-      {
-        "name": "defs",
-        "version": "1.1.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/es5/defs-main.js"
-      },
-      {
-        "name": "alter",
-        "version": "0.2.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/alter/alter.js"
-      },
-      {
-        "name": "stable",
-        "version": "0.1.5",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/alter/node_modules/stable/stable.js"
-      },
-      {
-        "name": "ast-traverse",
-        "version": "0.1.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/ast-traverse/ast-traverse.js"
-      },
-      {
-        "name": "breakable",
-        "version": "1.0.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/breakable/breakable.js"
-      },
-      {
-        "name": "esprima-fb",
-        "version": "15001.1001.0-dev-harmony-fb",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/esprima-fb/esprima.js"
-      },
-      {
-        "name": "simple-fmt",
-        "version": "0.1.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/simple-fmt/simple-fmt.js"
-      },
-      {
-        "name": "simple-is",
-        "version": "0.2.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/simple-is/simple-is.js"
-      },
-      {
-        "name": "stringmap",
-        "version": "0.2.2",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/stringmap/stringmap.js"
-      },
-      {
-        "name": "stringset",
-        "version": "0.2.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/stringset/stringset.js"
-      },
-      {
-        "name": "tryor",
-        "version": "0.1.2",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/tryor/tryor.js"
-      },
-      {
-        "name": "yargs",
-        "version": "3.27.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/index.js"
-      },
-      {
-        "name": "camelcase",
-        "version": "1.2.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/camelcase/index.js"
-      },
-      {
-        "name": "cliui",
-        "version": "2.1.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/index.js"
-      },
-      {
-        "name": "center-align",
-        "version": "0.1.2",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/index.js"
-      },
-      {
-        "name": "align-text",
-        "version": "0.1.3",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/index.js"
-      },
-      {
-        "name": "kind-of",
-        "version": "2.0.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/kind-of/index.js"
-      },
-      {
-        "name": "is-buffer",
-        "version": "1.1.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/kind-of/node_modules/is-buffer/index.js"
-      },
-      {
-        "name": "longest",
-        "version": "1.0.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/longest/index.js"
-      },
-      {
-        "name": "repeat-string",
-        "version": "1.5.2",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/repeat-string/index.js"
-      },
-      {
-        "name": "lazy-cache",
-        "version": "0.2.4",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/lazy-cache/index.js"
-      },
-      {
-        "name": "right-align",
-        "version": "0.1.3",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/index.js"
-      },
-      {
-        "name": "align-text",
-        "version": "0.1.3",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/index.js"
-      },
-      {
-        "name": "kind-of",
-        "version": "2.0.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/kind-of/index.js"
-      },
-      {
-        "name": "is-buffer",
-        "version": "1.1.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/kind-of/node_modules/is-buffer/index.js"
-      },
-      {
-        "name": "longest",
-        "version": "1.0.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/longest/index.js"
-      },
-      {
-        "name": "repeat-string",
-        "version": "1.5.2",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/repeat-string/index.js"
-      },
-      {
-        "name": "wordwrap",
-        "version": "0.0.2",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/wordwrap/index.js"
-      },
-      {
-        "name": "decamelize",
-        "version": "1.1.1",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/decamelize/index.js"
-      },
-      {
-        "name": "os-locale",
-        "version": "1.4.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale/index.js"
-      },
-      {
-        "name": "lcid",
-        "version": "1.0.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale/node_modules/lcid/index.js"
-      },
-      {
-        "name": "invert-kv",
-        "version": "1.0.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale/node_modules/lcid/node_modules/invert-kv/index.js"
-      },
-      {
-        "name": "window-size",
-        "version": "0.1.4",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/window-size/index.js"
-      },
-      {
-        "name": "y18n",
-        "version": "3.2.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/y18n/index.js"
-      },
-      {
-        "name": "esprima-fb",
-        "version": "15001.1.0-dev-harmony-fb",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/esprima-fb/esprima.js"
-      },
-      {
-        "name": "recast",
-        "version": "0.10.24",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/recast/main.js"
-      },
-      {
-        "name": "ast-types",
-        "version": "0.8.5",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/main.js"
-      },
-      {
-        "name": "source-map",
-        "version": "0.4.4",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map.js"
-      },
-      {
-        "name": "amdefine",
-        "version": "1.0.0",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/node_modules/amdefine/amdefine.js"
-      },
-      {
-        "name": "through",
-        "version": "2.3.8",
-        "path": "node_modules/babel-core/node_modules/regenerator/node_modules/through/index.js"
-      },
-      {
         "name": "shebang-regex",
         "version": "1.0.0",
         "path": "node_modules/babel-core/node_modules/shebang-regex/index.js"
@@ -643,21 +373,6 @@
         "name": "source-map",
         "version": "0.5.3",
         "path": "node_modules/babel-core/node_modules/source-map/source-map.js"
-      },
-      {
-        "name": "source-map-support",
-        "version": "0.2.10",
-        "path": "node_modules/babel-core/node_modules/source-map-support/source-map-support.js"
-      },
-      {
-        "name": "source-map",
-        "version": "0.1.32",
-        "path": "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib/source-map.js"
-      },
-      {
-        "name": "amdefine",
-        "version": "1.0.0",
-        "path": "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/node_modules/amdefine/amdefine.js"
       },
       {
         "name": "chai",
@@ -731,9 +446,9 @@
         "lib/main.coffee",
         "lib/transpiler-task.coffee",
         "lib/transpiler.coffee",
-        "node_modules/babel-core/node_modules/source-map-support/amd-test/script.coffee",
-        "node_modules/babel-core/node_modules/source-map-support/browser-test/script.coffee",
-        "node_modules/babel-core/node_modules/source-map-support/header-test/script.coffee"
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/amd-test/script.coffee",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/browser-test/script.coffee",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/header-test/script.coffee"
       ],
       ".js": [
         "node_modules/babel-core/index.js",
@@ -766,6 +481,10 @@
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/chalk/node_modules/strip-ansi/index.js",
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/index.js",
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/chalk/node_modules/supports-color/index.js",
+        "node_modules/babel-core/node_modules/babel-code-frame/node_modules/esutils/lib/ast.js",
+        "node_modules/babel-core/node_modules/babel-code-frame/node_modules/esutils/lib/code.js",
+        "node_modules/babel-core/node_modules/babel-code-frame/node_modules/esutils/lib/keyword.js",
+        "node_modules/babel-core/node_modules/babel-code-frame/node_modules/esutils/lib/utils.js",
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/js-tokens/index.js",
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/line-numbers/index.js",
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/line-numbers/node_modules/left-pad/index.js",
@@ -1665,6 +1384,37 @@
         "node_modules/babel-core/node_modules/babel-register/node_modules/core-js/web/immediate.js",
         "node_modules/babel-core/node_modules/babel-register/node_modules/core-js/web/index.js",
         "node_modules/babel-core/node_modules/babel-register/node_modules/core-js/web/timers.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/home-or-tmp/index.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/home-or-tmp/node_modules/os-tmpdir/index.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/home-or-tmp/node_modules/user-home/cli.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/home-or-tmp/node_modules/user-home/index.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/amd-test/browser-source-map-support.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/amd-test/require.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/amd-test/script.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/browser-source-map-support.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/browser-test/script.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/build.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/header-test/script.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/header-test/server.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/Makefile.dryice.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/build/assert-shim.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/build/mini-require.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/build/suffix-browser.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/build/test-prefix.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/build/test-suffix.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib/source-map/array-set.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib/source-map/base64-vlq.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib/source-map/base64.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib/source-map/binary-search.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib/source-map/source-map-consumer.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib/source-map/source-map-generator.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib/source-map/source-node.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib/source-map/util.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib/source-map.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/node_modules/amdefine/amdefine.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/node_modules/amdefine/intercept.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/source-map-support.js",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/test.js",
         "node_modules/babel-core/node_modules/babel-register/src/browser.js",
         "node_modules/babel-core/node_modules/babel-register/src/cache.js",
         "node_modules/babel-core/node_modules/babel-register/src/node.js",
@@ -2779,6 +2529,10 @@
         "node_modules/babel-core/node_modules/babel-types/lib/react.js",
         "node_modules/babel-core/node_modules/babel-types/lib/retrievers.js",
         "node_modules/babel-core/node_modules/babel-types/lib/validators.js",
+        "node_modules/babel-core/node_modules/babel-types/node_modules/esutils/lib/ast.js",
+        "node_modules/babel-core/node_modules/babel-types/node_modules/esutils/lib/code.js",
+        "node_modules/babel-core/node_modules/babel-types/node_modules/esutils/lib/keyword.js",
+        "node_modules/babel-core/node_modules/babel-types/node_modules/esutils/lib/utils.js",
         "node_modules/babel-core/node_modules/babel-types/node_modules/to-fast-properties/index.js",
         "node_modules/babel-core/node_modules/babylon/bin/babylon.js",
         "node_modules/babel-core/node_modules/babylon/lib/index.js",
@@ -2807,14 +2561,6 @@
         "node_modules/babel-core/node_modules/debug/debug.js",
         "node_modules/babel-core/node_modules/debug/node.js",
         "node_modules/babel-core/node_modules/debug/node_modules/ms/index.js",
-        "node_modules/babel-core/node_modules/esutils/lib/ast.js",
-        "node_modules/babel-core/node_modules/esutils/lib/code.js",
-        "node_modules/babel-core/node_modules/esutils/lib/keyword.js",
-        "node_modules/babel-core/node_modules/esutils/lib/utils.js",
-        "node_modules/babel-core/node_modules/home-or-tmp/index.js",
-        "node_modules/babel-core/node_modules/home-or-tmp/node_modules/os-tmpdir/index.js",
-        "node_modules/babel-core/node_modules/home-or-tmp/node_modules/user-home/cli.js",
-        "node_modules/babel-core/node_modules/home-or-tmp/node_modules/user-home/index.js",
         "node_modules/babel-core/node_modules/json5/lib/cli.js",
         "node_modules/babel-core/node_modules/json5/lib/json5.js",
         "node_modules/babel-core/node_modules/json5/lib/require.js",
@@ -3247,215 +2993,6 @@
         "node_modules/babel-core/node_modules/path-exists/index.js",
         "node_modules/babel-core/node_modules/path-is-absolute/index.js",
         "node_modules/babel-core/node_modules/private/private.js",
-        "node_modules/babel-core/node_modules/regenerator/lib/emit.js",
-        "node_modules/babel-core/node_modules/regenerator/lib/hoist.js",
-        "node_modules/babel-core/node_modules/regenerator/lib/leap.js",
-        "node_modules/babel-core/node_modules/regenerator/lib/meta.js",
-        "node_modules/babel-core/node_modules/regenerator/lib/util.js",
-        "node_modules/babel-core/node_modules/regenerator/lib/visit.js",
-        "node_modules/babel-core/node_modules/regenerator/main.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/lib/cache.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/lib/commoner.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/lib/context.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/lib/grep.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/lib/output.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/lib/reader.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/lib/relative.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/lib/util.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/lib/watcher.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/main.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/commander/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/commander/node_modules/graceful-readlink/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/bench/detect.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/example/strings.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/example/strings_src.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/bin/build-acorn.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/bin/generate-identifier-regex.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/dist/acorn.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/dist/acorn_csp.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/dist/acorn_loose.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/dist/walk.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/expression.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/identifier.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/location.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/loose/acorn_loose.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/loose/expression.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/loose/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/loose/parseutil.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/loose/state.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/loose/statement.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/loose/tokenize.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/lval.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/node.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/options.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/parseutil.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/state.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/statement.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/tokencontext.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/tokenize.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/tokentype.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/util.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/walk/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/src/whitespace.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/defined/example/defined.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/defined/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/common.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/glob.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inflight/inflight.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inflight/node_modules/wrappy/wrappy.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inflight/test.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inherits/inherits.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inherits/inherits_browser.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inherits/test.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/once/node_modules/wrappy/wrappy.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/once/once.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/sync.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/graceful-fs/fs.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/graceful-fs/graceful-fs.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/graceful-fs/legacy-streams.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/graceful-fs/polyfills.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/dbcs-codec.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/dbcs-data.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/internal.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/sbcs-codec.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/sbcs-data-generated.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/sbcs-data.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/utf16.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/utf7.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/lib/bom-handling.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/lib/extend-node.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/lib/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/lib/streams.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/bin/cmd.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/examples/pow.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/node_modules/minimist/example/parse.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/node_modules/minimist/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/q/q.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/q/queue.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/es5/defs-cmd.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/es5/defs-main.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/es5/error.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/es5/jshint_globals/vars.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/es5/options.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/es5/run-tests.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/es5/scope.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/es5/stats.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/inline-version.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/defs-cmd.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/defs-main.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/error.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/jshint_globals/vars.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/alter/alter.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/alter/node_modules/stable/stable.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/alter/node_modules/stable/test.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/ast-traverse/ast-traverse.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/ast-traverse/tst/tst.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/breakable/breakable.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/breakable/examples/example-explicit.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/breakable/examples/example.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/esprima-fb/bin/esparse.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/esprima-fb/bin/esvalidate.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/esprima-fb/esprima.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/simple-fmt/simple-fmt.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/simple-is/simple-is.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/stringmap/examples.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/stringmap/stringmap.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/stringset/examples.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/stringset/stringset.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/tryor/tryor.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/lib/completion.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/lib/parser.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/lib/usage.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/lib/validation.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/camelcase/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/kind-of/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/kind-of/node_modules/is-buffer/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/longest/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/repeat-string/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/lazy-cache/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/utils.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/kind-of/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/kind-of/node_modules/is-buffer/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/longest/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/repeat-string/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/wordwrap/example/center.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/wordwrap/example/meat.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/wordwrap/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/decamelize/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale/node_modules/lcid/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale/node_modules/lcid/node_modules/invert-kv/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/window-size/cli.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/window-size/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/y18n/index.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/options.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/other/v8-bug.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/other/v8-for-in-scope-2.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/other/v8-for-in-scope.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/run-tests.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/scope.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/stats.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/esprima-fb/bin/esparse.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/esprima-fb/bin/esvalidate.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/esprima-fb/esprima.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/lib/comments.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/lib/fast-path.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/lib/lines.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/lib/mapping.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/lib/options.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/lib/parser.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/lib/patcher.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/lib/printer.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/lib/types.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/lib/util.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/main.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/def/babel.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/def/core.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/def/e4x.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/def/es6.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/def/es7.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/def/esprima.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/def/fb-harmony.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/def/mozilla.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/lib/equiv.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/lib/node-path.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/lib/path-visitor.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/lib/path.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/lib/scope.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/lib/shared.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/lib/types.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/main.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/build/assert-shim.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/build/mini-require.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/build/suffix-browser.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/build/test-prefix.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/build/test-suffix.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map/array-set.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map/base64-vlq.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map/base64.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map/binary-search.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map/mapping-list.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map/quick-sort.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map/source-map-consumer.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map/source-map-generator.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map/source-node.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map/util.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/node_modules/amdefine/amdefine.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/node_modules/amdefine/intercept.js",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/through/index.js",
-        "node_modules/babel-core/node_modules/regenerator/runtime-module.js",
-        "node_modules/babel-core/node_modules/regenerator/runtime.js",
         "node_modules/babel-core/node_modules/shebang-regex/index.js",
         "node_modules/babel-core/node_modules/slash/index.js",
         "node_modules/babel-core/node_modules/source-map/dist/source-map.debug.js",
@@ -3472,33 +3009,6 @@
         "node_modules/babel-core/node_modules/source-map/lib/source-node.js",
         "node_modules/babel-core/node_modules/source-map/lib/util.js",
         "node_modules/babel-core/node_modules/source-map/source-map.js",
-        "node_modules/babel-core/node_modules/source-map-support/amd-test/browser-source-map-support.js",
-        "node_modules/babel-core/node_modules/source-map-support/amd-test/require.js",
-        "node_modules/babel-core/node_modules/source-map-support/amd-test/script.js",
-        "node_modules/babel-core/node_modules/source-map-support/browser-source-map-support.js",
-        "node_modules/babel-core/node_modules/source-map-support/browser-test/script.js",
-        "node_modules/babel-core/node_modules/source-map-support/build.js",
-        "node_modules/babel-core/node_modules/source-map-support/header-test/script.js",
-        "node_modules/babel-core/node_modules/source-map-support/header-test/server.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/Makefile.dryice.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/build/assert-shim.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/build/mini-require.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/build/suffix-browser.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/build/test-prefix.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/build/test-suffix.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib/source-map/array-set.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib/source-map/base64-vlq.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib/source-map/base64.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib/source-map/binary-search.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib/source-map/source-map-consumer.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib/source-map/source-map-generator.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib/source-map/source-node.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib/source-map/util.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib/source-map.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/node_modules/amdefine/amdefine.js",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/node_modules/amdefine/intercept.js",
-        "node_modules/babel-core/node_modules/source-map-support/source-map-support.js",
-        "node_modules/babel-core/node_modules/source-map-support/test.js",
         "node_modules/babel-core/register.js",
         "node_modules/chai/chai.js",
         "node_modules/chai/index.js",
@@ -3563,6 +3073,7 @@
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/chalk/node_modules/strip-ansi/package.json",
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/chalk/node_modules/supports-color/package.json",
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/chalk/package.json",
+        "node_modules/babel-core/node_modules/babel-code-frame/node_modules/esutils/package.json",
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/js-tokens/package.json",
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/line-numbers/node_modules/left-pad/package.json",
         "node_modules/babel-core/node_modules/babel-code-frame/node_modules/line-numbers/package.json",
@@ -3585,6 +3096,12 @@
         "node_modules/babel-core/node_modules/babel-messages/package.json",
         "node_modules/babel-core/node_modules/babel-register/node_modules/core-js/bower.json",
         "node_modules/babel-core/node_modules/babel-register/node_modules/core-js/package.json",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/home-or-tmp/node_modules/os-tmpdir/package.json",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/home-or-tmp/node_modules/user-home/package.json",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/home-or-tmp/package.json",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/node_modules/amdefine/package.json",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/package.json",
+        "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/package.json",
         "node_modules/babel-core/node_modules/babel-register/package.json",
         "node_modules/babel-core/node_modules/babel-runtime/node_modules/core-js/bower.json",
         "node_modules/babel-core/node_modules/babel-runtime/node_modules/core-js/package.json",
@@ -3599,6 +3116,7 @@
         "node_modules/babel-core/node_modules/babel-traverse/node_modules/repeating/node_modules/is-finite/package.json",
         "node_modules/babel-core/node_modules/babel-traverse/node_modules/repeating/package.json",
         "node_modules/babel-core/node_modules/babel-traverse/package.json",
+        "node_modules/babel-core/node_modules/babel-types/node_modules/esutils/package.json",
         "node_modules/babel-core/node_modules/babel-types/node_modules/to-fast-properties/package.json",
         "node_modules/babel-core/node_modules/babel-types/package.json",
         "node_modules/babel-core/node_modules/babylon/package.json",
@@ -3607,10 +3125,6 @@
         "node_modules/babel-core/node_modules/debug/component.json",
         "node_modules/babel-core/node_modules/debug/node_modules/ms/package.json",
         "node_modules/babel-core/node_modules/debug/package.json",
-        "node_modules/babel-core/node_modules/esutils/package.json",
-        "node_modules/babel-core/node_modules/home-or-tmp/node_modules/os-tmpdir/package.json",
-        "node_modules/babel-core/node_modules/home-or-tmp/node_modules/user-home/package.json",
-        "node_modules/babel-core/node_modules/home-or-tmp/package.json",
         "node_modules/babel-core/node_modules/json5/package.json",
         "node_modules/babel-core/node_modules/lodash/package.json",
         "node_modules/babel-core/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/package.json",
@@ -3620,90 +3134,9 @@
         "node_modules/babel-core/node_modules/path-exists/package.json",
         "node_modules/babel-core/node_modules/path-is-absolute/package.json",
         "node_modules/babel-core/node_modules/private/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/commander/node_modules/graceful-readlink/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/commander/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/acorn/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/node_modules/defined/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inflight/node_modules/wrappy/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inflight/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inherits/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/once/node_modules/wrappy/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/once/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/graceful-fs/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/tables/big5-added.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/tables/cp936.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/tables/cp949.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/tables/cp950.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/tables/eucjp.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/tables/gbk-added.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/encodings/tables/shiftjis.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/iconv-lite/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/node_modules/minimist/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/q/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/defs-config.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/alter/node_modules/stable/bower.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/alter/node_modules/stable/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/alter/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/ast-traverse/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/ast-traverse/tst/tst-ast.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/breakable/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/esprima-fb/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/simple-fmt/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/simple-is/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/stringmap/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/stringset/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/tryor/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/locales/de.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/locales/en.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/locales/es.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/locales/fr.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/locales/ja.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/locales/pirate.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/locales/pt.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/locales/zh.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/camelcase/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/kind-of/node_modules/is-buffer/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/kind-of/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/longest/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/repeat-string/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/lazy-cache/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/kind-of/node_modules/is-buffer/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/kind-of/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/longest/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/repeat-string/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/wordwrap/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/decamelize/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale/node_modules/lcid/lcid.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale/node_modules/lcid/node_modules/invert-kv/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale/node_modules/lcid/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/window-size/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/y18n/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/defs/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/esprima-fb/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/ast-types/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/node_modules/amdefine/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/recast/package.json",
-        "node_modules/babel-core/node_modules/regenerator/node_modules/through/package.json",
-        "node_modules/babel-core/node_modules/regenerator/package.json",
         "node_modules/babel-core/node_modules/shebang-regex/package.json",
         "node_modules/babel-core/node_modules/slash/package.json",
         "node_modules/babel-core/node_modules/source-map/package.json",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/node_modules/amdefine/package.json",
-        "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/package.json",
-        "node_modules/babel-core/node_modules/source-map-support/package.json",
         "node_modules/babel-core/package.json",
         "node_modules/chai/bower.json",
         "node_modules/chai/node_modules/assertion-error/package.json",
@@ -3758,30 +3191,26 @@
         ],
         "dependencies": {
           "babel-code-frame": "^6.1.18",
-          "babel-generator": "^6.1.20",
+          "babel-generator": "^6.2.0",
           "babel-helpers": "^6.1.20",
-          "babel-messages": "^6.1.18",
-          "babel-template": "^6.1.18",
+          "babel-messages": "^6.2.1",
+          "babel-template": "^6.2.0",
           "babel-runtime": "^5.0.0",
-          "babel-register": "^6.1.18",
-          "babel-traverse": "^6.1.20",
-          "babel-types": "^6.1.18",
-          "babylon": "^6.1.21",
+          "babel-register": "^6.2.0",
+          "babel-traverse": "^6.2.0",
+          "babel-types": "^6.2.0",
+          "babylon": "^6.2.0",
           "convert-source-map": "^1.1.0",
           "debug": "^2.1.1",
-          "esutils": "^2.0.0",
-          "home-or-tmp": "^1.0.0",
           "json5": "^0.4.0",
           "lodash": "^3.10.0",
           "minimatch": "^2.0.3",
           "path-exists": "^1.0.0",
           "path-is-absolute": "^1.0.0",
           "private": "^0.1.6",
-          "regenerator": "0.8.35",
           "shebang-regex": "^1.0.0",
           "slash": "^1.0.0",
-          "source-map": "^0.5.0",
-          "source-map-support": "^0.2.10"
+          "source-map": "^0.5.0"
         }
       },
       {
@@ -3860,9 +3289,9 @@
           "node_modules/babel-core/node_modules/babel-generator"
         ],
         "dependencies": {
-          "babel-messages": "^6.1.18",
+          "babel-messages": "^6.2.0",
           "babel-runtime": "^5.0.0",
-          "babel-types": "^6.1.18",
+          "babel-types": "^6.2.0",
           "detect-indent": "^3.0.1",
           "is-integer": "^1.0.4",
           "lodash": "^3.10.1",
@@ -3944,8 +3373,41 @@
           "path-exists": "^1.0.0",
           "lodash": "^3.10.0",
           "source-map-support": "^0.2.10",
-          "babel-core": "^6.1.18",
+          "babel-core": "^6.2.0",
           "babel-runtime": "^5.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/babel-core/node_modules/babel-register/node_modules/home-or-tmp"
+        ],
+        "dependencies": {
+          "os-tmpdir": "^1.0.1",
+          "user-home": "^1.1.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/amd-test",
+          "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support",
+          "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/browser-test",
+          "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/header-test"
+        ],
+        "dependencies": {
+          "source-map": "0.1.32"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map",
+          "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/build",
+          "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib/source-map",
+          "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/lib",
+          "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/test",
+          "node_modules/babel-core/node_modules/babel-register/node_modules/source-map-support/node_modules/source-map/test/source-map"
+        ],
+        "dependencies": {
+          "amdefine": ">=0.0.4"
         }
       },
       {
@@ -3976,9 +3438,9 @@
           "node_modules/babel-core/node_modules/babel-template"
         ],
         "dependencies": {
-          "babylon": "^6.1.18",
-          "babel-traverse": "^6.1.18",
-          "babel-types": "^6.1.18",
+          "babylon": "^6.2.0",
+          "babel-traverse": "^6.2.0",
+          "babel-types": "^6.2.0",
           "babel-runtime": "^5.0.0",
           "lodash": "^3.10.1"
         }
@@ -3996,13 +3458,13 @@
         ],
         "dependencies": {
           "babel-code-frame": "^6.1.18",
-          "babel-messages": "^6.1.18",
+          "babel-messages": "^6.2.0",
           "babel-runtime": "^5.0.0",
-          "babel-types": "^6.1.18",
-          "babylon": "^6.1.20",
+          "babel-types": "^6.2.0",
+          "babylon": "^6.2.0",
           "debug": "^2.2.0",
           "globals": "^8.3.0",
-          "invariant": "^2.1.0",
+          "invariant": "^2.2.0",
           "lodash": "^3.10.1",
           "repeating": "^1.1.3"
         }
@@ -4047,7 +3509,7 @@
         ],
         "dependencies": {
           "babel-runtime": "^5.0.0",
-          "babel-traverse": "^6.1.18",
+          "babel-traverse": "^6.2.0",
           "esutils": "^2.0.2",
           "lodash": "^3.10.1",
           "to-fast-properties": "^1.0.1"
@@ -4078,15 +3540,6 @@
       },
       {
         "paths": [
-          "node_modules/babel-core/node_modules/home-or-tmp"
-        ],
-        "dependencies": {
-          "os-tmpdir": "^1.0.1",
-          "user-home": "^1.1.1"
-        }
-      },
-      {
-        "paths": [
           "node_modules/babel-core/node_modules/minimatch"
         ],
         "dependencies": {
@@ -4100,273 +3553,6 @@
         "dependencies": {
           "balanced-match": "^0.2.0",
           "concat-map": "0.0.1"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/lib",
-          "node_modules/babel-core/node_modules/regenerator"
-        ],
-        "dependencies": {
-          "commoner": "~0.10.0",
-          "defs": "~1.1.0",
-          "esprima-fb": "~15001.1.0-dev-harmony-fb",
-          "private": "~0.1.5",
-          "recast": "0.10.24",
-          "through": "~2.3.6"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/lib",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner"
-        ],
-        "dependencies": {
-          "commander": "^2.5.0",
-          "detective": "^4.3.1",
-          "glob": "^5.0.15",
-          "graceful-fs": "^4.1.2",
-          "iconv-lite": "^0.4.5",
-          "mkdirp": "^0.5.0",
-          "private": "^0.1.6",
-          "q": "^1.1.2",
-          "recast": "^0.10.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/commander"
-        ],
-        "dependencies": {
-          "graceful-readlink": ">= 1.0.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/bench",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/example",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/test",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/detective/test/files"
-        ],
-        "dependencies": {
-          "acorn": "^1.0.3",
-          "defined": "^1.0.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob"
-        ],
-        "dependencies": {
-          "inflight": "^1.0.4",
-          "inherits": "2",
-          "minimatch": "2 || 3",
-          "once": "^1.3.0",
-          "path-is-absolute": "^1.0.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/inflight"
-        ],
-        "dependencies": {
-          "once": "^1.3.0",
-          "wrappy": "1"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/once",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/glob/node_modules/once/test"
-        ],
-        "dependencies": {
-          "wrappy": "1"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/bin",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/examples",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/commoner/node_modules/mkdirp/test"
-        ],
-        "dependencies": {
-          "minimist": "0.0.8"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/es5",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build/es5/jshint_globals",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/build",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/jshint_globals",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/other",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/tests"
-        ],
-        "dependencies": {
-          "alter": "~0.2.0",
-          "ast-traverse": "~0.1.1",
-          "breakable": "~1.0.0",
-          "esprima-fb": "~15001.1001.0-dev-harmony-fb",
-          "simple-fmt": "~0.1.0",
-          "simple-is": "~0.2.0",
-          "stringmap": "~0.2.2",
-          "stringset": "~0.2.1",
-          "tryor": "~0.1.2",
-          "yargs": "~3.27.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/alter",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/alter/test"
-        ],
-        "dependencies": {
-          "stable": "~0.1.3"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/lib",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/locales"
-        ],
-        "dependencies": {
-          "camelcase": "^1.2.1",
-          "cliui": "^2.1.0",
-          "decamelize": "^1.0.0",
-          "os-locale": "^1.4.0",
-          "window-size": "^0.1.2",
-          "y18n": "^3.2.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/test"
-        ],
-        "dependencies": {
-          "center-align": "^0.1.1",
-          "right-align": "^0.1.1",
-          "wordwrap": "0.0.2"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align"
-        ],
-        "dependencies": {
-          "align-text": "^0.1.0",
-          "lazy-cache": "^0.2.4"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text"
-        ],
-        "dependencies": {
-          "kind-of": "^2.0.0",
-          "longest": "^1.0.1",
-          "repeat-string": "^1.5.2"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/center-align/node_modules/align-text/node_modules/kind-of"
-        ],
-        "dependencies": {
-          "is-buffer": "^1.0.2"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align"
-        ],
-        "dependencies": {
-          "align-text": "^0.1.1"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text"
-        ],
-        "dependencies": {
-          "kind-of": "^2.0.0",
-          "longest": "^1.0.1",
-          "repeat-string": "^1.5.2"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/cliui/node_modules/right-align/node_modules/align-text/node_modules/kind-of"
-        ],
-        "dependencies": {
-          "is-buffer": "^1.0.2"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale"
-        ],
-        "dependencies": {
-          "lcid": "^1.0.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/defs/node_modules/yargs/node_modules/os-locale/node_modules/lcid"
-        ],
-        "dependencies": {
-          "invert-kv": "^1.0.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/recast/lib",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/recast"
-        ],
-        "dependencies": {
-          "esprima-fb": "~15001.1.0-dev-harmony-fb",
-          "source-map": "~0.4.1",
-          "private": "~0.1.5",
-          "ast-types": "0.8.5"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/build",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib/source-map",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map/lib",
-          "node_modules/babel-core/node_modules/regenerator/node_modules/recast/node_modules/source-map"
-        ],
-        "dependencies": {
-          "amdefine": ">=0.0.4"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/source-map-support/amd-test",
-          "node_modules/babel-core/node_modules/source-map-support",
-          "node_modules/babel-core/node_modules/source-map-support/browser-test",
-          "node_modules/babel-core/node_modules/source-map-support/header-test"
-        ],
-        "dependencies": {
-          "source-map": "0.1.32"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map",
-          "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/build",
-          "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib/source-map",
-          "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/lib",
-          "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/test",
-          "node_modules/babel-core/node_modules/source-map-support/node_modules/source-map/test/source-map"
-        ],
-        "dependencies": {
-          "amdefine": ">=0.0.4"
         }
       },
       {

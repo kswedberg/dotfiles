@@ -1,0 +1,16 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Pane Layout'
+      'submenu': [
+        {'label': 'Column 1', 'command': 'pane-layout:column-1'}
+        {'label': 'Column 2', 'command': 'pane-layout:column-2'}
+        {'label': 'Column 3', 'command': 'pane-layout:column-3'}
+        {'label': 'Column 4', 'command': 'pane-layout:column-4'}
+        {'label': 'Square',   'command': 'pane-layout:square'}
+      ]
+    ]
+  }
+]

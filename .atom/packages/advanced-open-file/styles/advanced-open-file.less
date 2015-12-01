@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    z-index: 100;
 
     .hidden {
         display: none;
@@ -55,6 +56,10 @@
 
         &:hover {
             background: @background-color-highlight;
+        }
+
+        &.iffy {
+            color: @text-color-subtle;
         }
     }
 }

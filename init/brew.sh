@@ -20,9 +20,12 @@ brew install findutils
 # Bash 4
 brew install bash
 
-# Composer (PHP package manager)
-brew tap josegonzalez/homebrew-php
-brew install josegonzalez/php/composer
+# PHP
+brew tap homebrew/homebrew-php
+
+brew install composer
+brew install php-code-sniffer
+brew install php-cs-fixer
 
 # wget with IRI support
 brew install wget --enable-iri

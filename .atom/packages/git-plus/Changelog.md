@@ -1,5 +1,10 @@
 ## Changelog
 
+### 5.6.6
+- Fix #322 (@mightydok)
+- Make all notifications dismissable (@jamen)
+- Fix height for long log outputs (@sxasraf)
+
 ### 5.6.5
 - Trigger checkout from clicking on branch name in status bar on atom-workspace
 - Update splitPaneDirection config to be an enum

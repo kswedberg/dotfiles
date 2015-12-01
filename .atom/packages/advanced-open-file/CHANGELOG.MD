@@ -1,3 +1,19 @@
+0.13.0 (November 29, 2015)
+==========================
+
+* Ignore all errors when running stat on files and treat them as if they don't
+  exist. Previously only ENOENT errors were ignored.
+* Fix bug in path shortcuts where they were being applied even if a path
+  separator wasn't before the shortcut itself.
+* #63: Implement event handler API as a versioned service for other packages.
+* #60: Treat "~/" at the start of a path as the user's home directory if fast
+  directory switching is turned off.
+* #70: Add setting for enabling directory creation from the open dialog.
+* #61: Add keyboard shortcut for adding project directories.
+* #72: Determine modal max height programmatically for themes that place modals
+  at odd positions.
+
+
 0.12.3 (November 14, 2015)
 ==========================
 

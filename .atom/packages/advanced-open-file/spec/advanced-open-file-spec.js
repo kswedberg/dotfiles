@@ -6,7 +6,7 @@ import temp from 'temp'; temp.track();
 import $ from 'jquery';
 import osenv from 'osenv';
 
-import {onDidCreatePath, onDidOpenPath} from '../lib/advanced-open-file';
+import {provideEventService} from '../lib/advanced-open-file';
 import {
     DEFAULT_ACTIVE_FILE_DIR,
     DEFAULT_EMPTY,
@@ -92,6 +92,14 @@ describe('Functional tests', () => {
         }
 
         return true;
+    }
+
+    function isDirectory(path) {
+        try {
+            return fs.statSync(path).isDirectory();
+        } catch (err) {}
+
+        return false;
     }
 
     function clickFile(filename) {
@@ -217,6 +225,13 @@ describe('Functional tests', () => {
             let addProjectFolderButton = exampleListItem.find('.add-project-folder');
             expect(addProjectFolderButton.length).toEqual(0);
         });
+
+        it('expands tildes at the start to the user\'s home directory', () => {
+            spyOn(osenv, 'home').andReturn(fixturePath());
+            setPath(stdPath.join('~', 'examples', 'subdir') + stdPath.sep);
+
+            expect(currentPathList()).toEqual(['..', 'subsample.js']);
+        });
     });
 
     describe('Path input', () => {
@@ -317,7 +332,7 @@ describe('Functional tests', () => {
 
         it('can switch to the user\'s home directory using a shortcut', () => {
             atom.config.set('advanced-open-file.helmDirSwitch', true);
-            setPath(fixturePath('subdir') + '~' + stdPath.sep);
+            setPath(fixturePath('subdir') + stdPath.sep + '~' + stdPath.sep);
             expect(currentPath()).toEqual(osenv.home() + stdPath.sep);
         });
 
@@ -333,7 +348,7 @@ describe('Functional tests', () => {
         it('can switch to the project root directory using a shortcut', () => {
             atom.config.set('advanced-open-file.helmDirSwitch', true);
             atom.project.setPaths([fixturePath('examples')]);
-            setPath(fixturePath('subdir') + ':' + stdPath.sep);
+            setPath(fixturePath('subdir') + stdPath.sep + ':' + stdPath.sep);
             expect(currentPath()).toEqual(fixturePath('examples') + stdPath.sep);
         });
     });
@@ -444,6 +459,18 @@ describe('Functional tests', () => {
             expect(atom.beep).toHaveBeenCalled();
         });
 
+        it(`creates the directory when opening a path ending a separator if
+            configured`, () => {
+            let tempDir = fs.realpathSync(temp.mkdirSync());
+            let path = stdPath.join(tempDir, 'newdir') + stdPath.sep;
+            atom.config.set('advanced-open-file.createDirectories', true);
+            setPath(path);
+            expect(isDirectory(path)).toEqual(false);
+
+            dispatch('core:confirm');
+            expect(isDirectory(path)).toEqual(true);
+        });
+
         it('opens a new file without saving it if opening a non-existant path', () => {
             let path = fixturePath('does.not.exist');
             setPath(path);
@@ -502,6 +529,19 @@ describe('Functional tests', () => {
             runs(() => {
                 expect(currentEditorPaths()).toEqual([absolutePath]);
                 expect(fileExists(absolutePath)).toEqual(true);
+            });
+        });
+
+        it('can open files from tilde-prefixed paths', () => {
+            spyOn(osenv, 'home').andReturn(fixturePath());
+            setPath(stdPath.join('~', 'examples', 'subdir', 'subsample.js'));
+
+            dispatch('core:confirm');
+            waitsForOpenPaths(1);
+            runs(() => {
+                expect(currentEditorPaths()).toEqual([
+                    fixturePath('examples', 'subdir', 'subsample.js')
+                ]);
             });
         });
     });
@@ -570,6 +610,51 @@ describe('Functional tests', () => {
             expect(currentPath()).toEqual(fixturePath() + path.sep)
         });
 
+        it('can add folders as project directories using a keyboard command', () => {
+            atom.project.setPaths([]);
+            setPath(fixturePath() + path.sep);
+            moveDown(2); // examples folder
+            dispatch('application:add-project-folder');
+            expect(atom.project.getPaths()).toEqual([fixturePath('examples')]);
+        });
+
+        it('beeps when trying to add the parent folder as a project directory', () => {
+            spyOn(atom, 'beep');
+            atom.project.setPaths([]);
+
+            setPath(fixturePath() + path.sep);
+            moveDown(1); // Parent folder
+            dispatch('application:add-project-folder');
+
+            expect(atom.beep).toHaveBeenCalled();
+            expect(atom.project.getPaths()).toEqual([]);
+        });
+
+        it('beeps when trying to add a file as a project directory', () => {
+            spyOn(atom, 'beep');
+            atom.project.setPaths([]);
+
+            setPath(fixturePath() + path.sep);
+            moveDown(3); // prefix_match.js
+            dispatch('application:add-project-folder');
+
+            expect(atom.beep).toHaveBeenCalled();
+            expect(atom.project.getPaths()).toEqual([]);
+        });
+
+        it(`beeps when trying to add a folder as a project directory that is
+                already one`, () => {
+            spyOn(atom, 'beep');
+            atom.project.setPaths([fixturePath('examples')]);
+
+            setPath(fixturePath() + path.sep);
+            moveDown(2); // examples folder
+            dispatch('application:add-project-folder');
+
+            expect(atom.beep).toHaveBeenCalled();
+            expect(atom.project.getPaths()).toEqual([fixturePath('examples')]);
+        });
+
         it(`can select the first item in the list if none are selected using
             special command`, () => {
             setPath(fixturePath('prefix'));
@@ -615,7 +700,7 @@ describe('Functional tests', () => {
 
         it('allows subscription to events when paths are opened', () => {
             let handler = jasmine.createSpy('handler');
-            let sub = onDidOpenPath(handler);
+            let sub = provideEventService().onDidOpenPath(handler);
             let path = fixturePath('sample.js');
 
             setPath(path);
@@ -629,12 +714,44 @@ describe('Functional tests', () => {
             let tempDir = fs.realpathSync(temp.mkdirSync());
             let path = stdPath.join(tempDir, 'newfile.js');
             let handler = jasmine.createSpy('handler');
-            let sub = onDidCreatePath(handler);
+            let sub = provideEventService().onDidCreatePath(handler);
 
             setPath(path);
             dispatch('core:confirm');
             expect(handler).toHaveBeenCalledWith(path);
             sub.dispose();
+        });
+
+        it('emits the create event when creating a directory', () => {
+            atom.config.set('advanced-open-file.createDirectories', true);
+            let tempDir = fs.realpathSync(temp.mkdirSync());
+            let path = stdPath.join(tempDir, 'newdir') + stdPath.sep;
+            let handler = jasmine.createSpy('handler');
+            let sub = provideEventService().onDidCreatePath(handler);
+
+            setPath(path);
+            dispatch('core:confirm');
+            expect(handler).toHaveBeenCalledWith(new Path(path).absolute);
+            sub.dispose();
+        });
+    });
+
+    // Only run Windows-specific tests when enabled.
+    let windowsDescribe = process.env.AOF_WINDOWS_TESTS ? describe : xdescribe;
+    windowsDescribe('Windows-specific tests', () => {
+        // Just as a note, we're assuming C:\ exists and is the root
+        // system drive. It is on AppVeyor, and that's good enough.
+
+        it('can read the root directory without failing', () => {
+            // This potentially fails because we stat in-use files like
+            // pagefile.sys.
+            expect(() => {setPath('C:\\')}).not.toThrow();
+        });
+
+        it('does not replace drive letters with the project root', () => {
+            atom.project.setPaths([fixturePath()]);
+            setPath('C:/');
+            expect(currentPath()).toEqual('C:/');
         });
     });
 });
