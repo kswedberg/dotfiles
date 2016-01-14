@@ -23,8 +23,6 @@ alias zshconfig="$EDITOR -n ~/.zshrc"
 alias ohmyzsh="$EDITOR -n ~/.oh-my-zsh"
 alias aliases="$EDITOR -n ~/dotfiles/.aliases"
 
-# Chrome
-alias chromed="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security"
 # SourceTree
 alias st="stree"
 
@@ -51,9 +49,16 @@ alias sites='cd ~/Sites'
 alias sties='cd ~/Sites'
 alias tmbundles='cd ~/Library/Application\ Support/TextMate/Bundles/'
 
+# gulp shipit
+alias gsdeploy="gulp shipit -r deploy"
+alias gsdb="gulp shipit -r db:pull"
+alias gsass="gulp shipit -r assets:pull"
+alias gsapp="gulp shipit -r app:pull"
+
 # capistrano / rails
 alias capd='cap deploy'
 alias bers='bundle exec rails server'
+alias beu='bundle exec unicorn -E local -c config/unicorn.rb'
 alias dbm='rake db:migrate'
 alias ss='./script/server'
 alias sc='./script/console'
@@ -113,6 +118,9 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 # Open Google Chrome with benchmarking enabled
 alias chromebench='open -a "Google Chrome" --args --enable-benchmarking'
 
+# Open Google Chrome, disabling web security
+alias chromed="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security"
+
 # Empty the Trash on all mounted volumes and the main HDD
 # Also, clear Apple’s System Logs to improve shell startup speed
  alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
@@ -135,8 +143,7 @@ alias h="history"
 alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 alias flushdns="dscacheutil -flushcache"
-alias fluship="sudo ipfw flush"
-alias flush="dscacheutil -flushcache && sudo ipfw flush"
+alias flush="dscacheutil -flushcache"
 alias remoteip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
 alias localip="ipconfig getifaddr en0"
 alias ip="echo external: && remoteip && echo local: && localip"
