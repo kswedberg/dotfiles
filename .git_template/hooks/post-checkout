@@ -1,4 +1,6 @@
 #!/bin/sh
+
+# Update bundle if remotely updated
 if [ $1 = 0000000000000000000000000000000000000000 ]; then
   old=4b825dc642cb6eb9a060e54bf8d69288fbee4904
 else
@@ -11,18 +13,25 @@ then
   true
 fi
 
-# do the same for npm
-# if [ -f package.json ] && command -v npm >/dev/null &&
-#   git diff --name-only $old $2 | egrep -q '^package\.json$'
-# then
-#   (exec npm install)
-#   true
-# fi
-
 # do the same for composer
 if [ -f composer.lock ] && command -V composer >/dev/null &&
   git diff --name-only $old $2 | egrep -q '^composer\.lock$'
 then
   (exec composer install)
+  true
+fi
+
+# warn if package.json has been updated remotely
+
+red=`tput setaf 1`
+yellow=`tput setaf 3`
+reset=`tput sgr0`
+div='\n******************\n'
+msg='YOUR NODE MODULES COULD BE OUT OF DATE. RUN "npm install".'
+
+if [ -f package.json ] && command -v npm >/dev/null &&
+  git diff --name-only $old $2 | egrep -q '^package\.json$'
+then
+  (echo ${yellow}${div}${red}${msg}${yellow}${div}${reset})
   true
 fi
