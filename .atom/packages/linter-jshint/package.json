@@ -1,7 +1,7 @@
 {
   "name": "linter-jshint",
   "main": "./lib/main",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Linter plugin for JavaScript, using jshint",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "atom-linter": "^3.2.0",
+    "atom-linter": "^4.2.0",
     "jshint": "^2.8",
     "jshint-json": "^1.0.0"
   },
@@ -26,13 +26,28 @@
     "url": "https://github.com/AtomLinter/linter-jshint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-jshint#readme",
-  "_id": "linter-jshint@1.2.1",
-  "_shasum": "074fc2ed2e275c25bc99cd8dc07c42012419dece",
-  "_resolved": "file:../d-115101-61965-dsky2u/package.tgz",
-  "_from": "../d-115101-61965-dsky2u/package.tgz",
+  "_id": "linter-jshint@1.2.2",
+  "_shasum": "977e3a7921dae7a5aa787f1075222f482f60e900",
+  "_resolved": "file:../d-11604-18018-9d2tid/package.tgz",
+  "_from": "../d-11604-18018-9d2tid/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
+      {
+        "name": "atom-linter",
+        "version": "4.3.0",
+        "path": "node_modules/atom-linter/lib/helpers.js"
+      },
+      {
+        "name": "consistent-path",
+        "version": "1.0.1",
+        "path": "node_modules/atom-linter/node_modules/consistent-path/lib/index.js"
+      },
+      {
+        "name": "shell-path",
+        "version": "1.0.4",
+        "path": "node_modules/atom-linter/node_modules/consistent-path/node_modules/shell-path/index.js"
+      },
       {
         "name": "tmp",
         "version": "0.0.28",
@@ -45,7 +60,7 @@
       },
       {
         "name": "xregexp",
-        "version": "2.0.0",
+        "version": "3.0.0",
         "path": "node_modules/atom-linter/node_modules/xregexp/xregexp-all.js"
       },
       {
@@ -75,7 +90,7 @@
       },
       {
         "name": "lru-cache",
-        "version": "2.7.0",
+        "version": "2.7.3",
         "path": "node_modules/jshint/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js"
       },
       {
@@ -145,7 +160,7 @@
       },
       {
         "name": "core-util-is",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "path": "node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/node_modules/core-util-is/lib/util.js"
       },
       {
@@ -175,12 +190,12 @@
       },
       {
         "name": "brace-expansion",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "path": "node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/index.js"
       },
       {
         "name": "balanced-match",
-        "version": "0.2.1",
+        "version": "0.3.0",
         "path": "node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js"
       },
       {
@@ -207,6 +222,8 @@
     "extensions": {
       ".json": [
         "coffeelint.json",
+        "node_modules/atom-linter/node_modules/consistent-path/node_modules/shell-path/package.json",
+        "node_modules/atom-linter/node_modules/consistent-path/package.json",
         "node_modules/atom-linter/node_modules/tmp/node_modules/os-tmpdir/package.json",
         "node_modules/atom-linter/node_modules/tmp/package.json",
         "node_modules/atom-linter/node_modules/xregexp/package.json",
@@ -258,10 +275,13 @@
       ],
       ".coffee": [
         "lib/main.coffee",
-        "node_modules/atom-linter/lib/helpers.coffee",
         "node_modules/jshint/node_modules/cli/examples/static.coffee"
       ],
       ".js": [
+        "node_modules/atom-linter/lib/helpers.js",
+        "node_modules/atom-linter/node_modules/consistent-path/lib/index.js",
+        "node_modules/atom-linter/node_modules/consistent-path/node_modules/shell-path/index.js",
+        "node_modules/atom-linter/node_modules/consistent-path/src/index.js",
         "node_modules/atom-linter/node_modules/tmp/Gruntfile.js",
         "node_modules/atom-linter/node_modules/tmp/lib/tmp.js",
         "node_modules/atom-linter/node_modules/tmp/node_modules/os-tmpdir/index.js",
@@ -335,7 +355,7 @@
         "node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_transform.js",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_writable.js",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/node_modules/core-util-is/lib/util.js",
-        "node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/node_modules/core-util-is/util.js",
+        "node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/node_modules/core-util-is/test.js",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/node_modules/inherits/inherits.js",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/node_modules/inherits/inherits_browser.js",
         "node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/node_modules/inherits/test.js",
@@ -810,7 +830,7 @@
           "lib"
         ],
         "dependencies": {
-          "atom-linter": "^3.2.0",
+          "atom-linter": "^4.2.0",
           "jshint": "^2.8",
           "jshint-json": "^1.0.0"
         }
@@ -818,12 +838,21 @@
       {
         "paths": [
           "node_modules/atom-linter/lib",
-          "node_modules/atom-linter",
-          "node_modules/atom-linter/spec/fixtures",
-          "node_modules/atom-linter/spec"
+          "node_modules/atom-linter"
         ],
         "dependencies": {
-          "xregexp": "^2.0.0"
+          "xregexp": "^3.0.0",
+          "consistent-path": "^1.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/atom-linter/node_modules/consistent-path/lib",
+          "node_modules/atom-linter/node_modules/consistent-path",
+          "node_modules/atom-linter/node_modules/consistent-path/src"
+        ],
+        "dependencies": {
+          "shell-path": "^1.0.4"
         }
       },
       {
@@ -972,7 +1001,7 @@
           "node_modules/jshint/node_modules/minimatch/node_modules/brace-expansion"
         ],
         "dependencies": {
-          "balanced-match": "^0.2.0",
+          "balanced-match": "^0.3.0",
           "concat-map": "0.0.1"
         }
       }

@@ -3,10 +3,11 @@
 import fs from 'fs';
 import stdPath from 'path';
 
+import fuzzaldrin from 'fuzzaldrin-plus';
 import mkdirp from 'mkdirp';
 import touch from 'touch';
 
-import {DEFAULT_ACTIVE_FILE_DIR, DEFAULT_PROJECT_ROOT} from './config';
+import * as config from './config';
 import {
     absolutify,
     cachedProperty,
@@ -133,16 +134,35 @@ export class Path {
         }
 
         if (this.fragment) {
-            if (caseSensitive === null) {
-                caseSensitive = this.hasCaseSensitiveFragment();
-            }
+            if (config.get('fuzzyMatch')) {
+                filenames = fuzzaldrin.filter(filenames, this.fragment);
+            } else {
+                if (caseSensitive === null) {
+                    caseSensitive = this.hasCaseSensitiveFragment();
+                }
 
-            filenames = filenames.filter(
-                (fn) => matchFragment(this.fragment, fn, caseSensitive)
-            );
+                filenames = filenames.filter(
+                    (fn) => matchFragment(this.fragment, fn, caseSensitive)
+                );
+            }
         }
 
         return filenames.map((fn) => new Path(this.directory + fn));
+    }
+
+    /**
+     * Check if the last path fragment in this path is equal to the given
+     * shortcut string, and the path ends in a separator.
+     *
+     * For example, ':/' and '/foo/bar/:/' have the ':' shortcut, but
+     * '/foo/bar:/' and '/blah/:' do not.
+     */
+    hasShortcut(shortcut) {
+        shortcut = shortcut + this.sep;
+        return !this.fragment && (
+            this.directory.endsWith(this.sep + shortcut)
+            || this.directory === shortcut
+        )
     }
 
     equals(otherPath) {
@@ -153,19 +173,18 @@ export class Path {
      * Return the path to show initially in the path input.
      */
     static initial() {
-        switch (atom.config.get('advanced-open-file.defaultInputValue')) {
-            case DEFAULT_ACTIVE_FILE_DIR:
+        switch (config.get('defaultInputValue')) {
+            case config.DEFAULT_ACTIVE_FILE_DIR:
                 let editor = atom.workspace.getActiveTextEditor();
                 if (editor && editor.getPath()) {
                     return new Path(stdPath.dirname(editor.getPath()) + stdPath.sep);
                 }
-                break;
-            case DEFAULT_PROJECT_ROOT:
+                // No break so that we fall back to project root.
+            case config.DEFAULT_PROJECT_ROOT:
                 let projectPath = getProjectPath();
                 if (projectPath) {
                     return new Path(projectPath + stdPath.sep);
                 }
-                break;
         }
 
         return new Path('');

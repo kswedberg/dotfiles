@@ -1,4 +1,7 @@
 DiffHelper = require '../lib/helpers/diff-helper'
+CSON = require 'season'
+path = require 'path'
+chaiExpect = require('chai').expect
 
 describe "Diff Helper", ->
   diffHelper = null
@@ -42,3 +45,25 @@ describe "Diff Helper", ->
       expect(readData).toBe(data)
 
       fs.unlinkSync(filepath)
+
+  describe "Helper using dif_main from diff-match-patch", ->
+
+    fixtures = CSON.readFileSync path.join(__dirname, '/data/fixtures.cson')
+    it 'returns an array of diffs, the diff_main API', ->
+      result = diffHelper.diffMain fixtures.text1, fixtures.text2
+      expect(result).toBeDefined
+      chaiExpect(result).to.be.an 'array'
+
+    it 'works on line mode returning a line diff', ->
+      result = diffHelper.diffLineMode fixtures.text5, fixtures.text6
+      expect(result).toBeDefined
+      chaiExpect(result).to.be.an 'array'
+
+    it 'builds a pretty HTML string', ->
+      console.log 'error',fixtures.text5 unless fixtures.text5
+      console.log 'error',fixtures.text6 unless fixtures.text6
+
+      result = diffHelper.diffPrettyHTML diffHelper.diffMain fixtures.text5, fixtures.text6
+      expect(result).toBeDefined
+      console.log result
+      chaiExpect(result).to.be.a 'string'

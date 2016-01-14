@@ -10,7 +10,8 @@ Sometimes, when you paste text, the `Auto Indent On Paste` mecanism can bother y
 
 * * *
 
-## Keymaps
+## Keybindings
 
-**On Mac OS X:** `cmd-shift-v`
-**On Windows & Linux:** `ctrl-shift-v`
+With the success of Atom, it's really difficult to choose keybindings that will not enter in conflict whit anyone else's packages, so I have removed the default keystrokes and let the keymap empty to let you set your own keybindings.
+
+See [keymaps/indent-toggle-on-paste.cson](https://github.com/leny/atom-indent-toggle-on-paste/blob/master/keymaps/indent-toggle-on-paste.cson) for suggestions.

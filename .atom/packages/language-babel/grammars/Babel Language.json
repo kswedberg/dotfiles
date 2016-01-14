@@ -8,7 +8,8 @@
     "js",
     "es6",
     "babel",
-    "jsx"
+    "jsx",
+    "flow"
   ],
   "patterns": [
     { "include": "#core" }
@@ -55,7 +56,8 @@
         { "include": "#comments" },
         { "include": "#brackets" },
         { "include": "#literal-operators" },
-        { "include": "#literal-variable" }
+        { "include": "#literal-variable" },
+        { "include": "#literal-comma" }
       ]
     },
     "ignore-long-lines": {
@@ -490,15 +492,25 @@
     },
     "literal-punctuation": {
       "patterns": [
+        { "include": "#literal-semi-colon"} ,
+        { "include": "#literal-comma" }
+      ]
+    },
+    "literal-semi-colon": {
+      "patterns": [
         {
           "name": "punctuation.terminator.statement.js",
           "match": "\\s*\\;"
-        },
+        }
+      ]
+    },
+    "literal-comma": {
+      "patterns": [
         {
           "name": "meta.delimiter.comma.js",
           "match": "\\s*,"
         }
-      ]
+    ]
     },
     "literal-keyword-storage": {
       "patterns": [
@@ -1365,10 +1377,7 @@
         {
           "comment": "e.g. dollar vars",
           "name": "variable.other.dollar.js",
-          "match": "\\s*(\\$)[$\\w]+",
-          "captures": {
-            "0": { "name": "punctuation.dollar.js" }
-          }
+          "match": "\\s*\\$[$\\w]*"
         },
         {
           "comment": "e.g. Class.property",
@@ -1465,16 +1474,16 @@
           "comment": "Tags that end > are trapped in #jsx-tag-termination",
           "name": "meta.tag.jsx",
           "begin": "\\s*(<)([$_\\p{L}](?:[$.\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}-](?<!\\.\\.))*+)(?=[ />\\t\\n])(?<!\\.)",
-          "end": "\\s*(</)(\\2)(>)|(/>)",
+          "end": "\\s*(?<=</)(\\2)(>)|(/>)|((?<=</)[\\S ]*?)>",
           "beginCaptures": {
             "1": { "name": "punctuation.definition.tag.jsx" },
             "2": { "name": "entity.name.tag.open.jsx" }
           },
           "endCaptures": {
-            "1": { "name": "punctuation.definition.tag.jsx" },
-            "2": { "name": "entity.name.tag.close.jsx" },
+            "1": { "name": "entity.name.tag.close.jsx" },
+            "2": { "name": "punctuation.definition.tag.jsx" },
             "3": { "name": "punctuation.definition.tag.jsx" },
-            "4": { "name": "punctuation.definition.tag.jsx" }
+            "4": { "name": "invalid.illegal.termination.jsx"}
           },
           "patterns": [
             { "include": "#jsx-tag-termination" },
@@ -1488,10 +1497,15 @@
         {
           "comment": "this matches the end > of an opening tag when in the form <tag> </tag>",
           "comment": "uses non consuming search for </ in </tag>",
-          "begin": ">",
-          "end": "(?=</)",
+          "begin": "(>)",
+          "end": "(</)",
           "beginCaptures": {
-            "0": { "name": "punctuation.definition.tag.jsx" }
+            "0": { "name": "punctuation.definition.tag.jsx" },
+            "1": { "name": "JSXStartTagEnd" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.tag.jsx" },
+            "1": { "name": "JSXEndTagStart" }
           },
           "patterns": [
             { "include": "#jsx-evaluated-code" },
@@ -1689,7 +1703,9 @@
             "2": { "name": "variable.other.property.js" }
           }
         },
-        { "match": "\\s*," },
+        {
+          "include": "#literal-comma"
+        },
         { "include": "#flowtype-vars-and-props" }
       ]
     },
@@ -1713,8 +1729,7 @@
           ]
         },
         {
-          "comment": "commas",
-          "match": "\\s*,"
+          "include": "#literal-comma"
         },
         {
           "comment": "An Iterator prefix?",
@@ -1773,16 +1788,17 @@
             "comment": "primitive flowtypes",
             "match": "\\s*\\b((?>any|boolean|mixed|number|string|void))\\b",
             "captures": {
-              "1": { "name": "support.type.builtin.primitve.flowtype" }
+              "1": { "name": "support.type.builtin.primitive.flowtype" }
             }
           },
           {
             "comment": "Built-in Class Types",
-            "match": "\\s*\\b((?>Boolean|Function|Number|Object|Promise|String))\\b",
+            "match": "\\s*\\b((?>ArrayBuffer|ArrayBufferView|Boolean|Date|DataView|Error|EvalError|Float32Array|Float64Array|Function|Int8Array|Int16Array|Int32Array|JSON|Math|Number|Object|RangeError|ReferenceError|RegExp|String|Symbol|TypeError|Uint8Array|Uint16Array|Uint32Array|Uint8ClampedArray))\\b",
             "captures": {
               "1": { "name": "support.type.builtin.class.flowtype" }
             }
           },
+          { "include": "#flowtype-polymorphs" },
           {
             "comment": "custom Class Types e.g. Abc avoid Abc(",
             "match": "\\s*([$_[\\p{Lu}\\p{Lt}\\p{Lm}\\p{Lo}]][$.\\p{L}\\p{Mn}\\p{Mc}\\p{Nd}\\p{Nl}\\p{Pc}]*+)(?!\\s*\\()",
@@ -1814,7 +1830,6 @@
           },
           { "include": "#literal-string" },
           { "include": "#literal-number" },
-          { "include": "#flowtype-polymorphs" },
           { "include": "#flowtype-bracketed-parameters" },
           { "include": "#flowtype-parse-objects" },
           { "include": "#flowtype-parse-operators" },
@@ -1845,10 +1860,10 @@
       "patterns": [
         {
           "comment": "Built-in Class Types with elements of type <T>",
-          "begin": "\\s*\\b((?>Array|Class))\\s*(<)",
+          "begin": "\\s*\\b((?>Array|Class|Map|Promise|Set|WeakMap|WeakSet))\\s*(<)",
           "end": "\\s*(>)",
           "beginCaptures": {
-            "1": { "name": "support.type.builtin.flowtype" },
+            "1": { "name": "support.type.builtin.class.flowtype" },
             "2": { "name": "punctuation.flowtype" }
           },
           "endCaptures"     : {

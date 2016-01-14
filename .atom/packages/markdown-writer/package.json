@@ -1,7 +1,7 @@
 {
   "name": "markdown-writer",
   "main": "./lib/markdown-writer",
-  "version": "2.0.1",
+  "version": "2.2.0",
   "description": "Make Atom a better Markdown editor and an easier static blogging tool.",
   "keywords": [
     "Markdown",
@@ -78,13 +78,13 @@
     "season": "^5.1.0",
     "wcwidth": "^1.0.0"
   },
-  "readme": "# Markdown-Writer for Atom\n\n[![Build Status](https://travis-ci.org/zhuochun/md-writer.svg)](https://travis-ci.org/zhuochun/md-writer)\n\nAdds tons of features to make [Atom](https://atom.io/) a even better Markdown editor!\n\nWorks great with static blogging as well. Try it with [Jekyll](http://jekyllrb.com/), [Octopress](http://octopress.org/), [Hexo](http://hexo.io/) and any of your favorite static blog engines.\n\n![Insert Image](http://i.imgur.com/s9ekMns.gif)\n\nMore GIFs Here: [Create New Post](http://i.imgur.com/BwntxhB.gif), [Insert Reference Link](http://i.imgur.com/L67TqyF.gif), [Remove Reference Link](http://i.imgur.com/TglzeJV.gif).\n\n## Notice\n\n> From version `1.5.0`, all default key maps that come with package are removed.\n>\n> You can execute command `Markdown Writer: Create Default keymaps` to append the original list of keymaps to your keymap config file, then modify them based on your needs. Refer to [wiki][31ebd53f].\n\n  [31ebd53f]: https://github.com/zhuochun/md-writer/wiki/Settings-for-Keymaps \"Settings for Keymaps\"\n\n## Features\n\n### Blogging\n\n- **Create new post** with front matters ([setup required][ca8870d7]).\n- **Create new draft** with front matters ([setup required][ca8870d7]).\n- **Publish draft** moves a draft to post's directory with front matters (`date`, `published`) updated.\n- **Manage tags and categories in front matters** ([setup required][9be76601]).\n- **Site specific settings** ([view setup][1561ed4c]).\n\n  [ca8870d7]: https://github.com/zhuochun/md-writer/wiki/Quick-Start \"Markdown-Writer Setup Guide\"\n  [9be76601]: https://github.com/zhuochun/md-writer/wiki/Settings-for-Front-Matters \"Setup Tags/Categories/Posts\"\n  [1561ed4c]: https://github.com/zhuochun/md-writer/wiki/Settings#project-specific-settings \"Project Specific Settings\"\n\n### General\n\n- **Continue lists** when you press `enter`.\n- **Insert link** (`shift-cmd-k`) and **automatically link to the text next time**.\n  - Insert inline link.\n  - Insert reference link with title. _Use `-` in title field to create an empty title reference link._\n  - Remove link (and its reference) after URL is deleted.\n  - Search published posts by title in your blog.\n- **Insert image** (`shift-cmd-i`), auto-detect image height/width, and optionally copy images to your site's images directory.\n- **Insert table** (`markdown-writer:insert-table`), and a shortcut to **jump to next table cell** (`cmd-j cmd-t`).\n- **Format table** (`markdown-writer:format-table`) with table alignments.\n- **Toggle headings**: `ctrl-alt-[1-5]` to switch among `H1` to `H5`.\n- **Toggle text styles** ([view customization][7ddaeaf4]):\n  - `code` (`cmd-'`)\n  - **bold** (`cmd-b`)\n  - _italic_ (`cmd-i`)\n  - ~~strike through~~ (`cmd-h`)\n  - `'''code block'''` (`shift-cmd-\"`)\n  - `<kbd>key</kbd>` (`cmd + k`)\n  - `- unordered list` (`shift-cmd-U`)\n  - `0. ordered list` (`shift-cmd-O`)\n  - `> blockquote` (`shift-cmd->`)\n  - `- [ ] task list` (`markdown-writer:toggle-task`)\n- **Jumping commands**:\n  - Jump to previous heading (`cmd-j cmd-p`)\n  - Jump to next heading (`cmd-j cmd-n`)\n  - Jump to next table cell (`cmd-j cmd-t`)\n  - Jump to reference marker/definition (`cmd-j cmd-d`)\n- **Markdown cheat sheet** (`markdown-writer:open-cheat-sheet`).\n- **Correct order list numbers** (`markdown-writer:correct-order-list-numbers`).\n\nYou can find and trigger all features in:\n\n- Open Command Palette (`shift-cmd-P`), enter `Markdown Writer`\n- Or, go to menubar `Packages -> Markdown Writer`.\n\n## Installation\n\n- In Atom, go to Settings (`cmd-,`) -> Install -> Search `Markdown Writer`.\n- Or, run `apm install markdown-writer`.\n\n## Setup\n\nGo to Settings (`cmd-,`) -> Packages -> `Markdown-Writer` -> Settings.\n\n> If you do not see any settings (due to a [Atom's bug][3ecd2daa]), please activate Markdown-Writer using command (e.g. `Open Cheat Sheet`). Close and reopen the Settings page.\n\nTo **manage tags/categories in front matter**, please [follow this setup][35eb9cc2].\n\nTo **manage all configurations (e.g. project specific settings, change italic text styles)**, refer to [this wiki document][7ddaeaf4].\n\n  [3ecd2daa]: https://github.com/atom/settings-view/issues/356 \"Viewing a package's settings should activate it\"\n  [35eb9cc2]: https://github.com/zhuochun/md-writer/wiki/Settings-for-Front-Matters \"Settings for Front Matters\"\n  [7ddaeaf4]: https://github.com/zhuochun/md-writer/wiki/Settings \"Settings\"\n\n## Project\n\n- View [CHANGELOG][e45121fa] :notebook_with_decorative_cover:\n- Bugs, suggestions & feature requests, [open an issue][e6ad7ed1] :octocat:\n- Contribute to project, [view guide][ed53c4bd] :sparkles:\n- License in [MIT][6a9a3773] :unlock:\n- Shipped by [Zhuochun][41ae693b] :sunny: and [contributors][f303810e] :clap:\n\n  [e45121fa]: https://github.com/zhuochun/md-writer/blob/master/CHANGELOG.md\n  [e6ad7ed1]: https://github.com/zhuochun/md-writer/issues\n  [6a9a3773]: https://github.com/zhuochun/md-writer/blob/master/LICENSE.md\n  [41ae693b]: https://github.com/zhuochun\n  [ed53c4bd]: https://github.com/zhuochun/md-writer/wiki/Contribute\n  [f303810e]: https://github.com/zhuochun/md-writer/graphs/contributors\n",
+  "readme": "# Markdown-Writer for Atom\n\n[![Build Status](https://travis-ci.org/zhuochun/md-writer.svg)](https://travis-ci.org/zhuochun/md-writer)\n\nAdds tons of features to make [Atom](https://atom.io/) an even better Markdown editor!\n\nWorks great with static blogging as well. Try it with [Jekyll](http://jekyllrb.com/), [Octopress](http://octopress.org/), [Hexo](http://hexo.io/) and any of your favorite static blog engines.\n\n![Insert Image](http://i.imgur.com/s9ekMns.gif)\n\nMore GIFs Here: [Create New Post](http://i.imgur.com/BwntxhB.gif), [Insert Reference Link](http://i.imgur.com/L67TqyF.gif), [Remove Reference Link](http://i.imgur.com/TglzeJV.gif).\n\n## Notice\n\n> From version `1.5.0`, default keymaps that come with this package are removed (except `enter`/`tab`).\n>\n> You can execute command `Markdown Writer: Create Default keymaps` to append the original list of keymaps to your keymap config file, then modify them based on your needs. Refer to [wiki][31ebd53f].\n\n  [31ebd53f]: https://github.com/zhuochun/md-writer/wiki/Settings-for-Keymaps \"Settings for Keymaps\"\n\n## Features\n\n### Blogging\n\n- **Create new post** with front matters ([setup required][ca8870d7]).\n- **Create new draft** with front matters ([setup required][ca8870d7]).\n- **Publish draft** moves a draft to post's directory with front matters (`date`, `published`) updated.\n- **Manage tags and categories** in front matters ([setup required][9be76601]).\n- **Site specific settings** ([view setup][1561ed4c]).\n\n  [ca8870d7]: https://github.com/zhuochun/md-writer/wiki/Quick-Start \"Markdown-Writer Setup Guide\"\n  [9be76601]: https://github.com/zhuochun/md-writer/wiki/Settings-for-Front-Matters \"Setup Tags/Categories/Posts\"\n  [1561ed4c]: https://github.com/zhuochun/md-writer/wiki/Settings#project-specific-settings \"Project Specific Settings\"\n\n### General\n\n- **Continue lists** when you press `enter`.\n- **Insert link** (`shift-cmd-k`) and **automatically link to the text next time**.\n  - Insert inline link.\n  - Insert reference link with title. _Use `-` in title field to create an empty title reference link._\n  - Remove link (and its reference) after URL is deleted.\n  - Search published posts by title in your blog.\n- **Insert image** (`shift-cmd-i`), auto-detect image height/width, and optionally copy images to your site's images directory.\n- **Insert table** (`markdown-writer:insert-table`), and a shortcut to **jump to next table cell** (`cmd-j cmd-t`).\n- **Format table** (`markdown-writer:format-table`) with table alignments.\n- **Toggle headings**: `ctrl-alt-[1-5]` to switch among `H1` to `H5`.\n- **Toggle text styles** ([customization supported][7ddaeaf4]):\n  - `code` (`cmd-'`)\n  - **bold** (`cmd-b`)\n  - _italic_ (`cmd-i`)\n  - ~~strike through~~ (`cmd-h`)\n  - `'''code block'''` (`shift-cmd-\"`)\n  - `<kbd>key</kbd>` (`cmd + k`)\n  - `- unordered list` (`shift-cmd-U`)\n  - `0. ordered list` (`shift-cmd-O`)\n  - `> blockquote` (`shift-cmd->`)\n  - `- [ ] task list` (`markdown-writer:toggle-task`)\n- **Jumping commands**:\n  - Jump to previous heading (`cmd-j cmd-p`)\n  - Jump to next heading (`cmd-j cmd-n`)\n  - Jump to next table cell (`cmd-j cmd-t`)\n  - Jump to reference marker/definition (`cmd-j cmd-d`)\n- **Markdown cheat sheet** (`markdown-writer:open-cheat-sheet`).\n- **Correct order list numbers** (`markdown-writer:correct-order-list-numbers`).\n\nYou can find and trigger all features in:\n\n- Open Command Palette (`shift-cmd-P`), enter `Markdown Writer`\n- Or, go to menubar `Packages -> Markdown Writer`.\n\n## Installation\n\n- In Atom, go to Settings (`cmd-,`) -> Install -> Search `Markdown Writer`.\n- Or, run `apm install markdown-writer`.\n\n> If you saw errors after this plugin updated, please try restart Atom to allow it reloads the updated code.\n\n## Setup\n\nGo to Settings (`cmd-,`) -> Packages -> `Markdown-Writer` -> Settings.\n\n> If you do not see any settings (due to a [Atom's bug][3ecd2daa]), please activate Markdown-Writer using command (e.g. `Open Cheat Sheet`). Close and reopen the Settings page.\n\nTo **manage tags/categories in front matter**, please [follow this setup][35eb9cc2].\n\nTo **manage all configurations (e.g. project specific settings, change italic text styles)**, refer to [this wiki document][7ddaeaf4].\n\n  [3ecd2daa]: https://github.com/atom/settings-view/issues/356 \"Viewing a package's settings should activate it\"\n  [35eb9cc2]: https://github.com/zhuochun/md-writer/wiki/Settings-for-Front-Matters \"Settings for Front Matters\"\n  [7ddaeaf4]: https://github.com/zhuochun/md-writer/wiki/Settings \"Settings\"\n\n## Project\n\n- View [CHANGELOG][e45121fa] :notebook_with_decorative_cover:\n- Bugs, suggestions & feature requests, [open an issue][e6ad7ed1] :octocat:\n- Contribute to project, [view guide][ed53c4bd] :sparkles:\n- License in [MIT][6a9a3773] :unlock:\n- Shipped by [Zhuochun][41ae693b] :sunny: and [contributors][f303810e] :clap:\n\n  [e45121fa]: https://github.com/zhuochun/md-writer/blob/master/CHANGELOG.md\n  [e6ad7ed1]: https://github.com/zhuochun/md-writer/issues\n  [6a9a3773]: https://github.com/zhuochun/md-writer/blob/master/LICENSE.md\n  [41ae693b]: https://github.com/zhuochun\n  [ed53c4bd]: https://github.com/zhuochun/md-writer/wiki/Contribute\n  [f303810e]: https://github.com/zhuochun/md-writer/graphs/contributors\n",
   "readmeFilename": "README.md",
   "homepage": "https://github.com/zhuochun/md-writer#readme",
-  "_id": "markdown-writer@2.0.1",
-  "_shasum": "b8ee0ba9f5f370837161ade824c3b869e7515f47",
-  "_resolved": "file:../d-115101-63087-4nkgdf/package.tgz",
-  "_from": "../d-115101-63087-4nkgdf/package.tgz",
+  "_id": "markdown-writer@2.2.0",
+  "_shasum": "af8fb44b8cdf75b55d839992f416319b510f7fee",
+  "_resolved": "file:../d-116011-50775-nj1e1i/package.tgz",
+  "_from": "../d-116011-50775-nj1e1i/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -125,7 +125,7 @@
       },
       {
         "name": "es5-ext",
-        "version": "0.10.8",
+        "version": "0.10.11",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/index.js"
       },
       {
@@ -135,7 +135,7 @@
       },
       {
         "name": "es6-symbol",
-        "version": "3.0.1",
+        "version": "3.0.2",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/node_modules/es6-symbol/index.js"
       },
       {
@@ -160,7 +160,7 @@
       },
       {
         "name": "jquery",
-        "version": "2.1.4",
+        "version": "2.2.0",
         "path": "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/dist/jquery.js"
       },
       {
@@ -210,7 +210,7 @@
       },
       {
         "name": "js-yaml",
-        "version": "3.4.3",
+        "version": "3.5.2",
         "path": "node_modules/js-yaml/index.js"
       },
       {
@@ -230,7 +230,7 @@
       },
       {
         "name": "esprima",
-        "version": "2.7.0",
+        "version": "2.7.1",
         "path": "node_modules/js-yaml/node_modules/esprima/esprima.js"
       },
       {
@@ -335,6 +335,7 @@
         "lib/helpers/front-matter.coffee",
         "lib/helpers/insert-link-helper.coffee",
         "lib/helpers/line-meta.coffee",
+        "lib/helpers/template-helper.coffee",
         "lib/markdown-writer.coffee",
         "lib/utils.coffee",
         "lib/views/insert-image-view.coffee",
@@ -642,6 +643,8 @@
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/copy.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/count.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/create.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/ensure-natural-number-value.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/ensure-natural-number.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/eq.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/every.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/filter.js",
@@ -657,6 +660,7 @@
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/is-copy-deep.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/is-copy.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/is-empty.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/is-number-value.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/is-object.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/is-plain-object.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/grim/node_modules/emissary/node_modules/es6-weak-map/node_modules/es5-ext/object/is.js",
@@ -793,6 +797,7 @@
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/ajax/parseJSON.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/ajax/parseXML.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/ajax/script.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/ajax/var/location.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/ajax/var/nonce.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/ajax/var/rquery.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/ajax/xhr.js",
@@ -808,42 +813,59 @@
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/core/init.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/core/parseHTML.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/core/ready.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/core/support.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/core/var/rsingleTag.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/core.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/addGetHookIf.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/adjustCSS.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/curCSS.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/defaultDisplay.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/hiddenVisibleSelectors.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/showHide.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/support.js",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/swap.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/var/cssExpand.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/var/getStyles.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/var/isHidden.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/var/rmargin.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/var/rnumnonpx.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css/var/swap.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/css.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/data/Data.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/data/accepts.js",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/data/var/data_priv.js",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/data/var/data_user.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/data/support.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/data/var/acceptData.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/data/var/dataPriv.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/data/var/dataUser.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/data.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/deferred.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/deprecated.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/dimensions.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/effects/Tween.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/effects/animatedSelector.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/effects/support.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/effects.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/event/ajax.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/event/alias.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/event/focusin.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/event/support.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/event/trigger.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/event.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/exports/amd.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/exports/global.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/intro.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/jquery.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/_evalUrl.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/buildFragment.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/createSafeFragment.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/getAll.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/setGlobalEval.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/support.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/var/nodeNames.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/var/rcheckableType.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/var/rleadingWhitespace.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/var/rscriptType.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/var/rtagName.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation/wrapMap.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/manipulation.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/offset.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/outro.js",
@@ -853,21 +875,25 @@
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/selector-sizzle.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/selector.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/serialize.js",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/sizzle/dist/sizzle.js",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/sizzle/dist/sizzle.min.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/support.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/traversing/findFilter.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/traversing/var/dir.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/traversing/var/rneedsContext.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/traversing/var/siblings.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/traversing.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/arr.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/class2type.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/concat.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/deletedIds.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/document.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/documentElement.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/hasOwn.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/indexOf.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/pnum.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/push.js",
+        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/rcssNum.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/rnotwhite.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/slice.js",
-        "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/strundefined.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/support.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/var/toString.js",
         "node_modules/atom-space-pen-views/node_modules/space-pen/node_modules/jquery/src/wrap.js",
@@ -1668,7 +1694,7 @@
         ],
         "dependencies": {
           "es6-iterator": "2",
-          "es6-symbol": "3"
+          "es6-symbol": "~3.0.2"
         }
       },
       {
@@ -1691,7 +1717,7 @@
         ],
         "dependencies": {
           "d": "~0.1.1",
-          "es5-ext": "~0.10.8"
+          "es5-ext": "~0.10.10"
         }
       },
       {

@@ -25,3 +25,11 @@
       $0
     }
     '''
+'.source.js':
+  'Anonymous Function':
+    prefix: 'f'
+    body: '''
+    function() {
+      $0
+    }
+    '''

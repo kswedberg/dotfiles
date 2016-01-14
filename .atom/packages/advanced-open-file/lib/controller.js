@@ -5,9 +5,10 @@ import stdPath from 'path';
 import {Emitter} from 'event-kit';
 import osenv from 'osenv';
 
-import AdvancedOpenFileView from './view';
+import * as config from './config';
 import {Path} from './models';
 import {getProjectPath} from './utils';
+import AdvancedOpenFileView from './view';
 
 
 // Emitter for outside packages to subscribe to. Subscription functions
@@ -36,6 +37,11 @@ export class AdvancedOpenFileController {
             'advanced-open-file:move-cursor-up': ::this.moveCursorUp,
             'advanced-open-file:confirm-selected-or-first': ::this.confirmSelectedOrFirst,
             'advanced-open-file:delete-path-component': ::this.deletePathComponent,
+
+            'pane:split-left': this.splitConfirm((pane) => pane.splitLeft()),
+            'pane:split-right': this.splitConfirm((pane) => pane.splitRight()),
+            'pane:split-up': this.splitConfirm((pane) => pane.splitUp()),
+            'pane:split-down': this.splitConfirm((pane) => pane.splitDown()),
         });
 
         this.view.onDidClickFile(::this.clickFile);
@@ -49,33 +55,45 @@ export class AdvancedOpenFileController {
     }
 
     pathChange(newPath)  {
-        let saveHistory = false;
+        this.currentPath = newPath;
+
+        let replace = false;
 
         // Since the user typed this, apply fast-dir-switch
         // shortcuts.
-        if (atom.config.get('advanced-open-file.helmDirSwitch')) {
-            let sep = newPath.sep;
-            if (newPath.directory.endsWith(sep + sep)) {
+        if (config.get('helmDirSwitch')) {
+            if (newPath.hasShortcut('')) {  // Empty shortcut == '//'
                 newPath = newPath.root();
-                saveHistory = true;
-            } else if (newPath.directory.endsWith(sep + '~' + sep)) {
+                replace = true;
+            } else if (newPath.hasShortcut('~')) {
                 newPath = new Path(osenv.home() + stdPath.sep);
-                saveHistory = true;
-            } else if (newPath.directory.endsWith(sep + ':' + sep)) {
+                replace = true;
+            } else if (newPath.hasShortcut(':')) {
                 let projectPath = getProjectPath();
                 if (projectPath) {
-                    newPath = new Path(projectPath + sep);
-                    saveHistory = true;
+                    newPath = new Path(projectPath + newPath.sep);
+                    replace = true;
                 }
             }
         }
 
-        this.updatePath(newPath, {saveHistory: saveHistory});
+        // If we're replacing the path, save it in the history and set the path.
+        // If we aren't, the user is just typing and we don't need the history
+        // and want to avoid setting the path which resets the cursor.
+        if (replace) {
+            this.updatePath(newPath);
+        }
     }
 
-    selectPath(newPath) {
+    selectPath(newPath, split=false) {
         if (newPath.isDirectory()) {
-            this.updatePath(newPath.asDirectory());
+            if (split !== false) {
+                atom.beep();
+            } else {
+                this.updatePath(newPath.asDirectory());
+            }
+        } else if (split !== false) {
+            this.splitOpenPath(newPath, split);
         } else {
             this.openPath(newPath);
         }
@@ -88,10 +106,11 @@ export class AdvancedOpenFileController {
 
         this.currentPath = newPath;
         this.view.setPath(newPath);
+    }
 
-        // Hide parent if fragment isn't empty.
-        let hideParent = newPath.fragment !== '';
-        this.view.setPathList(newPath.matchingPaths(), hideParent);
+    splitOpenPath(path, split) {
+        split(atom.workspace.getActivePane());
+        this.openPath(path);
     }
 
     openPath(path) {
@@ -105,14 +124,14 @@ export class AdvancedOpenFileController {
             }
         } else if (path.fragment) {
             path.createDirectories();
-            if (atom.config.get('advanced-open-file.createFileInstantly')) {
+            if (config.get('createFileInstantly')) {
                 path.createFile();
                 emitter.emit('did-create-path', path.absolute);
             }
             atom.workspace.open(path.absolute);
             emitter.emit('did-open-path', path.absolute);
             this.detach();
-        } else if (atom.config.get('advanced-open-file.createDirectories')) {
+        } else if (config.get('createDirectories')) {
             path.createDirectories();
             atom.notifications.addSuccess('Directory created', {
                 detail: `Created directory "${path.full}".`,
@@ -163,7 +182,7 @@ export class AdvancedOpenFileController {
         let matchingPaths = this.currentPath.matchingPaths();
         if (matchingPaths.length === 0) {
             atom.beep();
-        } else if (matchingPaths.length === 1) {
+        } else if (matchingPaths.length === 1 || config.get('fuzzyMatch')) {
             let newPath = matchingPaths[0];
             if (newPath.isDirectory()) {
                 this.updatePath(newPath.asDirectory());
@@ -188,12 +207,16 @@ export class AdvancedOpenFileController {
         }
     }
 
-    confirm() {
+    splitConfirm(split) {
+        return this.confirm.bind(this, undefined, split);
+    }
+
+    confirm(event, split=false) {
         let selectedPath = this.view.selectedPath();
         if (selectedPath !== null) {
-            this.selectPath(selectedPath);
+            this.selectPath(selectedPath, split);
         } else {
-            this.selectPath(this.currentPath);
+            this.selectPath(this.currentPath, split);
         }
     }
 
@@ -261,7 +284,9 @@ export class AdvancedOpenFileController {
             return;
         }
 
+        let initialPath = Path.initial();
         this.pathHistory = [];
+        this.currentPath = initialPath;
         this.updatePath(Path.initial(), {saveHistory: false});
         this.panel = this.view.createModalPanel();
     }

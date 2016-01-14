@@ -1,3 +1,32 @@
+### 2.7.3
+  - Fix Scope on $ variables - PR #121
+
+### 2.7.2
+  - Fix 2.7.1 grammar!
+
+### 2.7.1
+  - Add scope to commas - Fixes 119
+  - Minor changes to JSX Autocomplete
+
+### 2.7.0
+  - Added auto completion of React JSX start/end tags + HTML tag names & attributes
+
+### 2.6.3
+  - Added more flow builtin types.
+  - Fixes #118. Typo in scopename.
+
+### 2.6.2
+  - Fixes 2.6.1 precedence!
+
+### 2.6.1
+  - Fix issues when same file is displayed (split) into two or more panes.
+
+### 2.6.0
+  - Add `.flow` as a supported file type. See http://flowtype.org/blog/2015/12/01/Version-0.19.0.html#declaration-files
+
+### 2.5.4
+  - Fix babel error column position row indexed from 1 but column indexed from 0
+
 ### 2.5.3
   - Added PID info when task goes missing for no recorded reason!
 

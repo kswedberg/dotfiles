@@ -94,8 +94,13 @@ module.exports = PhpCsFixer =
     console.debug('php-cs-fixer Arguments', args)
 
     stdout = (output) ->
-      if (!/^Fixed/.test(output)) and PhpCsFixer.showInfoNotifications
-        atom.notifications.addInfo(output)
+      if PhpCsFixer.showInfoNotifications
+        if (/^Fixed/.test(output))
+          atom.notifications.addSuccess('Your code looks perfect... nothing to fix!')
+        else if (/^\s*\d*[)]/.test(output))
+          atom.notifications.addSuccess(output)
+        else
+          atom.notifications.addInfo(output)
       console.log(output)
 
     stderr = (output) ->

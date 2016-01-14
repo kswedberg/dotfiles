@@ -25,6 +25,9 @@ describe('Functional tests', () => {
         workspaceElement = atom.views.getView(atom.workspace);
         jasmine.attachToDOM(workspaceElement);
 
+        // Clear out any leftover panes.
+        atom.workspace.getPanes().forEach((pane) => pane.destroy());
+
         activationPromise = atom.packages.activatePackage('advanced-open-file');
     });
 
@@ -104,6 +107,12 @@ describe('Functional tests', () => {
 
     function clickFile(filename) {
         ui.find(`.list-item[data-file-name$='${filename}']`).click();
+    }
+
+    function assertAutocompletesTo(inputPath, autocompletedPath) {
+        setPath(inputPath);
+        dispatch('advanced-open-file:autocomplete');
+        expect(currentPath()).toEqual(autocompletedPath);
     }
 
     describe('Modal dialog', () => {
@@ -238,12 +247,6 @@ describe('Functional tests', () => {
         beforeEach(resetConfig);
         beforeEach(openModal);
 
-        function assertAutocompletesTo(inputPath, autocompletedPath) {
-            setPath(inputPath);
-            dispatch('advanced-open-file:autocomplete');
-            expect(currentPath()).toEqual(autocompletedPath);
-        }
-
         it('can autocomplete the current input', () => {
             assertAutocompletesTo(
                 fixturePath('prefix_ma'),
@@ -334,6 +337,10 @@ describe('Functional tests', () => {
             atom.config.set('advanced-open-file.helmDirSwitch', true);
             setPath(fixturePath('subdir') + stdPath.sep + '~' + stdPath.sep);
             expect(currentPath()).toEqual(osenv.home() + stdPath.sep);
+
+            // Also test when the rest of the path is empty.
+            setPath('~' + stdPath.sep);
+            expect(currentPath()).toEqual(osenv.home() + stdPath.sep);
         });
 
         it('can switch to the filesystem root using a shortcut', () => {
@@ -343,6 +350,10 @@ describe('Functional tests', () => {
             atom.config.set('advanced-open-file.helmDirSwitch', true);
             setPath(fixturePath('subdir') + stdPath.sep + stdPath.sep);
             expect(currentPath()).toEqual(fsRoot);
+
+            // Also test when the rest of the path is empty.
+            setPath(stdPath.sep + stdPath.sep);
+            expect(currentPath()).toEqual(fsRoot);
         });
 
         it('can switch to the project root directory using a shortcut', () => {
@@ -350,6 +361,24 @@ describe('Functional tests', () => {
             atom.project.setPaths([fixturePath('examples')]);
             setPath(fixturePath('subdir') + stdPath.sep + ':' + stdPath.sep);
             expect(currentPath()).toEqual(fixturePath('examples') + stdPath.sep);
+
+            // Also test when the rest of the path is empty.
+            setPath(':' + stdPath.sep);
+            expect(currentPath()).toEqual(fixturePath('examples') + stdPath.sep);
+        });
+
+        it('does not reset the cursor position while typing', () => {
+            setPath(fixturePath('subdir'));
+
+            // Set cursor to be between the d and i in subdir.
+            let end = pathEditor.getCursorBufferPosition();
+            pathEditor.setCursorBufferPosition([end.row, end.column - 2])
+
+            // Insert a new letter and check that the cursor is after it but
+            // not at the end of the editor completely.
+            pathEditor.insertText('a');
+            let newEnd = pathEditor.getCursorBufferPosition();
+            expect(newEnd.column).toEqual(end.column - 1);
         });
     });
 
@@ -542,6 +571,23 @@ describe('Functional tests', () => {
                 expect(currentEditorPaths()).toEqual([
                     fixturePath('examples', 'subdir', 'subsample.js')
                 ]);
+            });
+        });
+
+        it('can open files in new split panes', () => {
+            atom.workspace.open(fixturePath('sample.js'));
+            expect(atom.workspace.getPanes().length).toEqual(1);
+
+            setPath(fixturePath('prefix_match.js'));
+            dispatch('pane:split-left');
+
+            waitsForOpenPaths(2);
+            runs(() => {
+                expect(new Set(currentEditorPaths())).toEqual(new Set([
+                    fixturePath('sample.js'),
+                    fixturePath('prefix_match.js'),
+                ]));
+                expect(atom.workspace.getPanes().length).toEqual(2);
             });
         });
     });
@@ -752,6 +798,51 @@ describe('Functional tests', () => {
             atom.project.setPaths([fixturePath()]);
             setPath('C:/');
             expect(currentPath()).toEqual('C:/');
+        });
+    });
+
+    describe('Fuzzy filename matching', () => {
+        beforeEach(resetConfig);
+        beforeEach(() => {
+            atom.config.set('advanced-open-file.fuzzyMatch', true);
+        });
+        beforeEach(openModal);
+
+        it('lists files and folders as normal when no fragment is being matched', () => {
+            setPath(fixturePath() + stdPath.sep);
+
+            expect(currentPathList()).toEqual([
+                '..',
+                'examples',
+                'prefix_match.js',
+                'prefix_other_match.js',
+                'sample.js'
+            ]);
+        });
+
+        it('uses a fuzzy algorithm for matching files instead of prefix matching', () => {
+            setPath(fixturePath('ix'));
+
+            expect(currentPathList()).toEqual([
+                'prefix_match.js',
+                'prefix_other_match.js',
+            ]);
+        });
+
+        it('sorts matches by weight instead of by name', () => {
+            setPath(fixturePath('examples', 'fuzzyWeight', 'heavy_'));
+
+            expect(currentPathList()).toEqual([
+                'more_heavy_heavy.js',
+                'less_heavy.js',
+            ]);
+        });
+
+        it('chooses the first match for autocomplete when nothing is highlighted', () => {
+            assertAutocompletesTo(
+                fixturePath('ix'),
+                fixturePath('prefix_match.js')
+            );
         });
     });
 });

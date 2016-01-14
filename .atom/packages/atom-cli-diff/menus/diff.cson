@@ -2,6 +2,9 @@
   '.tree-view': [
     'label': 'Diff selected files'
     'command': 'diff:selected'
+  ,
+    'label': 'Diff selected files in word mode'
+    'command': 'diff:selectedWordMode'
   ]
 
 'menu': [
@@ -10,6 +13,7 @@
     'label': 'Diff'
     'submenu': [
       { 'label': 'Diff selected files', 'command': 'diff:selected' }
+      { 'label': 'Diff selected files in word mode', 'command': 'diff:selectedWordMode' }
       { 'label': 'Diff active editor file with clipboard', 'command': 'diff:clipboard' }
     ]
   ]

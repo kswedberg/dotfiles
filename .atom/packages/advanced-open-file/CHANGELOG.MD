@@ -1,3 +1,23 @@
+0.14.1 (December 29, 2015)
+==========================
+
+* Fix issue where opening a path immediately after autocompleting it opened the
+  pre-autocomplete path instead of the full path.
+
+
+0.14.0 (December 26, 2015)
+==========================
+
+* #82: Add shortcuts for opening files in new split panes.
+* #57: Add setting for fuzzy filename matching.
+* #84: Cursor no longer resets to the end of the path when typing in the middle
+  of the path.
+* #81: Fix project root shortcut when path input is otherwise empty.
+* #80: Fall back to project root as initial path when the active editor doesn't
+  have a path, such as the settings pane.
+* #79: Fix gap below cursor in the textbox and cut-off shadows on the sides.
+
+
 0.13.0 (November 29, 2015)
 ==========================
 

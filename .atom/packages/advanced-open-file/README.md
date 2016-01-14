@@ -40,6 +40,9 @@ directory as a project directory using `Shift-Cmd-O`/`Ctrl-Alt-O`.
 `Cmd-Z`/`Ctrl-Z` will undo changes made to the current path, such as
 autocompletion or directory shortcuts.
 
+You can use the keybindings for splitting panes (`Cmd-k <Arrow Key>` by default)
+to open the selected path in a new split pane in the desired direction.
+
 ## Keybindings
 
 Available commands for binding:
@@ -62,6 +65,15 @@ Available commands for binding:
 
   <dt><code>core:cancel</code></dt>
   <dd>Close the Advanced Open File dialog.</dd>
+
+  <dt>
+    <code>pane:split-left</code>, <code>pane:split-right</code>,
+    <code>pane:split-up</code>, and <code>pane:split-down</code>
+  </dt>
+  <dd>
+    Open the selected path (or current path in input) in a new pane split from
+    the current pane.
+  </dd>
 
   <dt><code>application:add-project-folder</code></dt>
   <dd>
@@ -130,6 +142,15 @@ following to your keymap to map `Ctrl-x Ctrl-f` to toggle the dialog and
     Determines what the default value in the path input is when the dialog is
     opened. Possible choices are nothing, the current project's root directory,
     or the directory of the currently-active file.
+  </dd>
+
+  <dt>Use fuzzy matching for matching filenames</dt>
+  <dd>
+    Changes the method for matching filenames while typing to use a fuzzy match
+    algorithm instead of a prefix match one. When enabled, matches are sorted by
+    their match weight instead of by name and type, and autocomplete
+    automatically chooses the closest result instead of the common prefix among
+    matching filenames.
   </dd>
 
   <dt>Shortcuts for fast directory switching</dt>

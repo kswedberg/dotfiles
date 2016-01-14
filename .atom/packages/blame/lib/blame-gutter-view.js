@@ -2,6 +2,7 @@
 
 import gravatar from 'gravatar'
 import open from 'open'
+import moment from 'moment';
 import { CompositeDisposable } from 'atom'
 import blame from './utils/blame'
 import getCommit from './utils/get-commit'
@@ -47,7 +48,6 @@ class BlameGutterView {
 
       if (this.disposables) { this.disposables.dispose() }
       this.disposables = null
-
       this.removeAllMarkers()
     }
   }
@@ -57,26 +57,31 @@ class BlameGutterView {
     blame(this.editor.getPath(), (result) => {
       this.removeAllMarkers()
 
-      blameLines = []
-      lastHash = null
-
-      commitCount = 0
-      commitColor = null
+      var blameLines = []
+      var lastHash = null
+      var commitCount = 0
+      var commitColor = null
 
       if (!result) { return }
 
       Object.keys(result).forEach(key => {
         const line = result[key];
 
-        idx = Number(key) - 1
-        hash = line.rev.replace(/\s.*/, '')
+        var lineStr;
+        var idx = Number(key) - 1
+        var hash = line.rev.replace(/\s.*/, '')
 
         if (lastHash !== hash) {
 
-          dateStr = this.formateDate(line.date)
+          var dateFormat = atom.config.get('blame.dateFormat');
+          var dateStr = moment(line.date, 'YYYY-MM-DD HH:mm:ss')
+            .format(dateFormat);
 
           if (this.isCommited(hash)) {
-            lineStr = `${hash} ${dateStr} ${line.author}`
+            lineStr = atom.config.get('blame.gutterFormat')
+              .replace('{hash}', hash)
+              .replace('{date}', dateStr)
+              .replace('{author}', line.author);
           } else {
             lineStr = `${line.author}`
           }

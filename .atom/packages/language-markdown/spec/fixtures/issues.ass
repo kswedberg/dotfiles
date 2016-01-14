@@ -1,0 +1,110 @@
+@40
+"At the base is the old friend, Wordpress [update: this is old news, it's running [Statamic](http://www.statamic.com) now. But this still should be interesting]." {
+  text.md {
+    "At the base is the old friend, Wordpress [update: this is old news, it's running "
+    "[Statamic](http://www.statamic.com)" {
+      link.markup.md {
+        text.link.string.md {
+          "[": punctuation.md
+          "Statamic"
+          "]": punctuation.md
+        }
+        "(": punctuation.md
+        destination.link.md {
+          "http://www.statamic.com": uri.underline.link.md
+        }
+        ")": punctuation.md
+      }
+    }
+    " now. But this still should be interesting]."
+  }
+}
+
+# https://github.com/atom/language-gfm/issues/117
+# NOTE expected outcome: only emphasize first letters of words
+@gfm/117a
+"*f*oo *b*ar baz" {
+  text.md {
+    emphasis.italic.markup.md {
+      "*": punctuation.md
+      "f"
+      "*": punctuation.md
+    }
+    "oo "
+    emphasis.italic.markup.md {
+      "*": punctuation.md
+      "b"
+      "*": punctuation.md
+    }
+    "ar baz"
+  }
+}
+
+@gfm/117b
+"**f**oo **b**ar baz" {
+  text.md {
+    strong.emphasis.bold.markup.md {
+      "**": punctuation.md
+      "f"
+      "**": punctuation.md
+    }
+    "oo "
+    strong.emphasis.bold.markup.md {
+      "**": punctuation.md
+      "b"
+      "**": punctuation.md
+    }
+    "ar baz"
+  }
+}
+
+# https://github.com/burodepeper/language-markdown/issues/17
+@17a
+"A line with *italics* and **bold** fails." {
+  text.md {
+    "A line with "
+    emphasis.italic.markup.md {
+      "*": punctuation.md
+      "italics"
+      "*": punctuation.md
+    }
+    " and "
+    strong.emphasis.bold.markup.md {
+      "**": punctuation.md
+      "bold"
+      "**": punctuation.md
+    }
+    " fails."
+  }
+}
+
+@17b
+"Even _mixing_ the **type** of *markers* is __not enough__." {
+  text.md {
+    "Even "
+    emphasis.italic.markup.md {
+      "_": punctuation.md
+      "mixing"
+      "_": punctuation.md
+    }
+    " the "
+    strong.emphasis.bold.markup.md {
+      "**": punctuation.md
+      "type"
+      "**": punctuation.md
+    }
+    " of "
+    emphasis.italic.markup.md {
+      "*": punctuation.md
+      "markers"
+      "*": punctuation.md
+    }
+    " is "
+    strong.emphasis.bold.markup.md {
+      "__": punctuation.md
+      "not enough"
+      "__": punctuation.md
+    }
+    "."
+  }
+}
