@@ -5,11 +5,10 @@
 
 # Homebrew libraries
 PATH=/usr/local/sbin:$PATH
+PATH=/usr/local/bin:$PATH
 
-# MAMP (if running rails app that requires mysql2 lib, put this before Homebrew libraries path)
+# MAMP (if running rails app that requires mysql2 lib, put this before Homebrew libraries paths)
 PATH=/Applications/MAMP/Library/bin:$PATH
-
-
 
 # DRUPAL
 # PATH="$PATH:$HOME/Sites/drush"
