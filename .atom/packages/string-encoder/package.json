@@ -1,0 +1,79 @@
+{
+  "name": "string-encoder",
+  "main": "./lib/string-encoder",
+  "version": "0.1.0",
+  "description": "Converts string from one encoding to another.",
+  "keywords": [
+    "base64",
+    "md5",
+    "sha256",
+    "sha512",
+    "encode",
+    "decode",
+    "uri",
+    "entities"
+  ],
+  "activationCommands": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisyip/atom-string-encoder.git"
+  },
+  "author": {
+    "name": "Chris Yip",
+    "email": "chris@yesui.co",
+    "url": "https://github.com/chrisyip"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "html-entities": "^1.2.0"
+  },
+  "readme": "# Atom String Encoder\n\nConverts string from one encoding to another.\n\n![String Encoder](http://f.cl.ly/items/3p3m2g0e2e3e0u1O0a0s/string-encoder.gif)\n\n# Supported Encoding\n\n* Base64 (with decoder)\n* HTML Entities (with decoder)\n* MD5\n* SHA256 / 512\n* URI component (with decoder)\n\n# Commands\n\n* `string-encoder:base64-decode`\n* `string-encoder:base64-encode`\n* `string-encoder:html-entities-decode`\n* `string-encoder:html-entities-encode`\n* `string-encoder:md5-encode`\n* `string-encoder:sha256-encode`\n* `string-encoder:sha512-encode`\n* `string-encoder:uri-decode`\n* `string-encoder:uri-encode`\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/chrisyip/atom-string-encoder/issues"
+  },
+  "homepage": "https://github.com/chrisyip/atom-string-encoder#readme",
+  "_id": "string-encoder@0.1.0",
+  "_shasum": "b499b9dc675b3a01f6a055ee298e5fab57d6e9c3",
+  "_resolved": "file:../d-116015-82425-vr0axx/package.tgz",
+  "_from": "../d-116015-82425-vr0axx/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "html-entities",
+        "version": "1.2.0",
+        "path": "node_modules/html-entities/index.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/string-encoder.coffee"
+      ],
+      ".js": [
+        "node_modules/html-entities/index.js",
+        "node_modules/html-entities/lib/html4-entities.js",
+        "node_modules/html-entities/lib/html5-entities.js",
+        "node_modules/html-entities/lib/xml-entities.js"
+      ],
+      ".json": [
+        "node_modules/html-entities/package.json",
+        "package.json"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          ""
+        ],
+        "dependencies": {
+          "html-entities": "^1.2.0"
+        }
+      }
+    ]
+  }
+}

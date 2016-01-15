@@ -1,0 +1,45 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    label: 'String Encoder'
+    submenu: [
+      {
+        label: 'MD5'
+        command: 'string-encoder:md5'
+      }
+
+      {
+        label: 'SHA256'
+        command: 'string-encoder:sha256'
+      }
+
+      {
+        label: 'SHA512'
+        command: 'string-encoder:sha512'
+      }
+    ]
+  ]
+menu: [
+  {
+    label: 'Packages'
+    submenu: [
+      label: 'String Encoder'
+      submenu: [
+        {
+          label: 'MD5'
+          command: 'string-encoder:md5'
+        }
+
+        {
+          label: 'SHA256'
+          command: 'string-encoder:sha256'
+        }
+
+        {
+          label: 'SHA512'
+          command: 'string-encoder:sha512'
+        }
+      ]
+    ]
+  }
+]
