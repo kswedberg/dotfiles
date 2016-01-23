@@ -6,32 +6,37 @@ else
   old=$1
 fi
 
-# Update bundle if remotely updated
-if [ -f Gemfile ] && command -v bundle >/dev/null &&
-  git diff --name-only $old $2 | egrep -q '^Gemfile|\.gemspec$'
-then
-  (unset GIT_DIR; exec bundle check || exec bundle install)
-  true
-fi
-
-# Do the same for composer
-if [ -f composer.lock ] && command -V composer >/dev/null &&
-  git diff --name-only $old $2 | egrep -q '^composer\.lock$'
-then
-  (exec composer install)
-  true
-fi
-
-# Warn if package.json updated remotely (because auto-running npm install was a little annoying)
 red=`tput setaf 1`
 yellow=`tput setaf 3`
 reset=`tput sgr0`
-div='\n******************\n'
-msg='YOUR NODE MODULES COULD BE OUT OF DATE. RUN "npm install".'
+div="\n${yellow}******************${reset}\n"
 
+
+# Warn if Gemfile updated remotely
+if [ -f Gemfile ] && command -v bundle >/dev/null &&
+  git diff --name-only $old $2 | egrep -q '^Gemfile|\.gemspec$'
+then
+  msg="${red}YOUR RUBY BUNDLES COULD BE OUT OF DATE. RUN \"bundle install\".${reset}"
+  (echo ${div}${msg}${div})
+  # (unset GIT_DIR; exec bundle check || exec bundle install)
+  true
+fi
+
+# Do the same for composer.lock
+if [ -f composer.lock ] && command -V composer >/dev/null &&
+  git diff --name-only $old $2 | egrep -q '^composer\.lock$'
+then
+  msg="${red}YOUR COMPOSER PACKAGES COULD BE OUT OF DATE. RUN \"composer install\".${reset}"
+  (echo ${div}${msg}${div})
+  # (exec composer install)
+  true
+fi
+
+# And same for package.json
 if [ -f package.json ] && command -v npm >/dev/null &&
   git diff --name-only $old $2 | egrep -q '^package\.json$'
 then
-  (echo ${yellow}${div}${red}${msg}${yellow}${div}${reset})
+  msg="${red}YOUR NODE MODULES COULD BE OUT OF DATE. RUN \"npm install\".${reset}"
+  (echo ${div}${msg}${div})
   true
 fi
