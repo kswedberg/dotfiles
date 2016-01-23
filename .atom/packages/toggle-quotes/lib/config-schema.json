@@ -1,6 +1,0 @@
-{
-  "quoteCharacters": {
-    "type": "string",
-    "default": "\"'"
-  }
-}
