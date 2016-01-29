@@ -55,6 +55,11 @@ alias gsdb="gulp shipit -r db:pull"
 alias gsass="gulp shipit -r assets:pull"
 alias gsapp="gulp shipit -r app:pull"
 
+# docker
+alias dcb="docker-compose build"
+alias dcu="docker-compose up"
+alias dcr="docker-compose run"
+
 # capistrano / rails
 alias capd='cap deploy'
 alias bers='bundle exec rails server'
@@ -64,13 +69,13 @@ alias ss='./script/server'
 alias sc='./script/console'
 
 # compass
-alias     cc="compass compile"
-alias     cw="compass watch"
-alias     cwh="compass watch httpdocs/compass"
+alias cc="compass compile"
+alias cw="compass watch"
+alias cwh="compass watch httpdocs/compass"
 
 # sass
-alias     sassw="sass --watch --style expanded"
-alias     sassu="sass --update --style expanded"
+alias sassw="sass --watch --style expanded"
+alias sassu="sass --update --style expanded"
 
 # git
 alias stash="git stash"
@@ -103,7 +108,7 @@ alias gr='grunt'
 alias gp='gulp'
 # alias lg='legit'
 alias tailphp='tail -f /Applications/MAMP/logs/php_error.log'
-alias profile='e ~/.profile'
+alias profile='e ~/.zprofile'
 
 # use `src` function from zsh_reload plugin instead.
 # alias src='source ~/.zshrc'
