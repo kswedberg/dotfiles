@@ -6,6 +6,8 @@ ZSH=$HOME/.oh-my-zsh
 COMPLETION_WAITING_DOTS="true"
 # DISABLE_UPDATE_PROMPT=true
 
+autoload -U zmv
+
 zstyle ':completion:*' use-cache yes
 
 # Don't use the bundler plugin.
@@ -23,6 +25,3 @@ source $HOME/dotfiles/.source_after
 # ZSH_THEME="pure"
 
 unsetopt correct_all
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
