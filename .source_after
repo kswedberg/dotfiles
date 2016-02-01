@@ -8,8 +8,14 @@ src_files=(
   .zsh-theme
 )
 
-# source_files function is in .profile
-source_files $src_files
+# source_files function is in .zprofile
+if ! $(type source_files) > /dev/null; then
+  echo "Cannot find the source_files function. Will not load ${src_files}"
+else
+  source_files $src_files
+fi
+
+
 unset src_files
 
 # cdpath all lowercase, so set as array:
@@ -28,5 +34,3 @@ autoload -Uz ${fpath[1]}/*(:t)
 
 # Not needed with oh-my-zsh
 # source $HOME/dotfiles/.inputrc
-
-

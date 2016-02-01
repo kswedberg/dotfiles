@@ -51,12 +51,6 @@ brew install tree
 brew install zopfli
 brew install couchdb
 
-# Docker
-brew install docker
-brew install boot2docker
-boot2docker init
-echo "Don't forget to run boot2docker up"
-
 # network grep
 brew install ngrep
 
