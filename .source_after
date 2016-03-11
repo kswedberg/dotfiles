@@ -8,12 +8,25 @@ src_files=(
   .zsh-theme
 )
 
+function source_files {
+  for file in "${@}"; do
+    src_file=$HOME/dotfiles/${file}
+    if [[ -f $src_file ]]; then
+      source $src_file
+    else
+      echo "$src_file does not exist"
+    fi
+  done
+}
+
+source_files $src_files
+
 # source_files function is in .zprofile
-if ! $(type source_files) > /dev/null; then
-  echo "Cannot find the source_files function. Will not load ${src_files}"
-else
-  source_files $src_files
-fi
+# if ! $(type source_files) > /dev/null; then
+#   echo "Cannot find the source_files function. Will not load ${src_files}"
+# else
+#   source_files $src_files
+# fi
 
 
 unset src_files
