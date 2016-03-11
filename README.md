@@ -3,28 +3,27 @@
 These are the dot files for my MacBook Pro. A lot of the stuff in here was
 taken from the illustrious Mathias Bynens (https://github.com/mathiasbynens/dotfiles).
 
-This repository does not include the `.oh-my-zsh` directory.
 
-## Symlinked files
-The following files are symlinked to my home directory:
+## Initial Setup
 
-* `.atom`
-* `.jscsrc`
-* `.jshintrc`
-* `.profile`
-* `.slate`
-* `.zshrc`
-* `.zprofile`
+To get things rolling on a new machine, **you can run `./setup.sh` from this project's main directory**. Doing should make the following happen:
 
-To symlink them all at once, execute the `init/sym.sh` file.
+* Install Homebrew, `oh my zsh`, `nvm`, and `rbenv` if they aren't already installed.
+* Add the *unsourced* `.extra ` file into this directory, if it doesn't already exist.
+* Sym-link the following files to the home directory (if real files by these names exist already, they'll be renamed to, for example, `.gitconfig-pre-dotfiles`. If symlinks exist, they'll be left alone.):
+    * `.gitconfig` : **You'll need to change the user name and email in this file**
+    * `.jscsrc`
+    * `.jshintrc`
+    * `.profile`
+    * `.slate`
+    * `.zshrc`
+    * `.zprofile`
 
 ## Init files
 
-Files in the `init` folder should probably run only once, typically on a fresh
-install.
+Files in the `init` folder install various applications (`brew.sh`, `cash.sh`) and modules (`gem.sh` for Ruby, `npm.sh` for Node.js). **Look through these files and comment out unwanted apps/modules before calling them**.
 
-You probably won't want to run the `init/osx.sh` wholesale. Instead, go in
-there and either comment out all the lines you don't want to run
+Whatever you do, **DON'T run `init/osx.sh` wholesale**. You probably don't want to run most of the commands. Either comment out all the lines you don't want to run
 first, or grab the settings line by line and paste them in the terminal.
 
 ## Git files
@@ -39,6 +38,13 @@ To have the post-checkout git hook loaded whenever you init or clone a new repo,
 
 ```bash
 git config --global init.templatedir ~/dotfiles/.git_template
+```
+
+To change the git user name and email:
+
+```bash
+git config --global user.name "John Doe"
+git config --global user.email "john@example.com"
 ```
 
 ## Syntax Highlighting for SublimeText
