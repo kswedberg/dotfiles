@@ -1,0 +1,40 @@
+KEY="$HOME/.ssh/id_dsa.pub"
+# make sure we have a public key (check id_dsa.pub, then id_rsa.pub)
+if [ ! -f ${KEY} ]; then
+  KEY="$HOME/.ssh/id_rsa.pub"
+  if [ ! -f ${KEY} ]; then
+    echo "Private key not found at ${KEY}"
+    echo "* Please create it with "ssh-keygen -t rsa" *"
+    echo "* To login to the remote host without a password, don't give the key you create with ssh-keygen a password! *"
+    return
+  fi
+fi
+
+
+# need at least a user specified
+if [ -z $1 ]; then
+  about "SSH Key Copier"
+  example "keycopy username servername"
+  return
+fi
+
+USR="$1"
+
+# server
+SERVER="$2"
+
+if [ -z $2 ]; then
+  echo "Please provide a server name:"
+  read SERVER
+fi
+
+if [ -z $SERVER ]; then
+  echo "Aborting key copy. No server name."
+  return
+fi
+
+echo "Putting your key on ${SERVER}... "
+
+# put the key on the server
+cat ${KEY} | ssh -l ${USR} ${SERVER} 'cat >> .ssh/authorized_keys'
+echo "copied key for ${USR} to ${SERVER}"
