@@ -19,6 +19,9 @@ PATH=/Applications/MAMP/Library/bin:$PATH
 # FONT CONVERTER STUFF
 # PATH="$PATH:$HOME/bin/ttf2eot:$HOME/bin/font-converter"
 
+# Project-specific NODE modules
+PATH="./node_modules/.bin:$PATH"
+
 #RBENV
 PATH=$HOME/.rbenv/bin:$PATH
 
