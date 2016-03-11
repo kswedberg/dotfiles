@@ -12,12 +12,14 @@
 # TextMate
 alias m="mate"
 alias m.="mate ."
+alias tmbundles='cd ~/Library/Application\ Support/TextMate/Bundles/'
 
 # Sublime Text 2
 alias sb="subl"
 alias sb.="subl ."
 
 # OPEN files/projects in default editor
+# Also, see ./fn/e file
 alias dotfiles="$EDITOR -n $DOTFILES $ZSH"
 alias zshconfig="$EDITOR -n ~/.zshrc"
 alias ohmyzsh="$EDITOR -n ~/.oh-my-zsh"
@@ -28,7 +30,6 @@ alias st="stree"
 
 # PostGreSQL
 alias startpg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
-# couchapp
 
 # File Manipulation (rename multiple files mmv stands for multiple move)
 alias mmv='noglob zmv -W'
@@ -47,7 +48,6 @@ alias lo="ls -alG | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2
 alias lash="ls -lashG"
 alias sites='cd ~/Sites'
 alias sties='cd ~/Sites'
-alias tmbundles='cd ~/Library/Application\ Support/TextMate/Bundles/'
 
 # gulp shipit
 alias gsdeploy="gulp shipit -r deploy"
@@ -55,14 +55,32 @@ alias gsdb="gulp shipit -r db:pull"
 alias gsass="gulp shipit -r assets:pull"
 alias gsapp="gulp shipit -r app:pull"
 
-# docker
+# DOCKER
+# (PROJECT-SPECIFIC DOCKER aliases are in .extra)
 alias dmstart="docker-machine start default"
-alias dmeval="eval $(docker-machine env default)"
 alias dmstop="docker-machine stop default"
+# Get ip address of docker machine
+alias dmip="docker-machine ip default"
 
+# Build a docker image based on a Dockerfile in current dir
+# And do it after every `git pull` because gems might change
 alias dcb="docker-compose build"
+
+# start the built image
 alias dcu="docker-compose up"
+
+# stop the built image
+alias dcd="docker-compose down"
+
+# run a one-off command in the container
 alias dcr="docker-compose run"
+
+# "transient run" removes the container after it finishes.
+alias dctr="docker-compose run --rm"
+
+# NPM
+alias nid="npm install -D"
+alias nis="npm install -S"
 
 # capistrano / rails
 alias capd='cap deploy'
@@ -144,8 +162,9 @@ alias random_mac='sudo ifconfig en0 ether `openssl rand -hex 6 | sed "s/\(..\)/\
 alias restore_mac='sudo ifconfig en0 ether 10:9a:dd:ad:82:5e'
 
 # Utilities
-alias d="du -h -d=1"
+alias d="du -h -d 1"
 alias df="df -h"
+alias weather='curl http://wttr.in/'
 # alias g="git"
 alias grep='GREP_COLOR="1;37;41" LANG=C grep --color=auto'
 alias h="history"
