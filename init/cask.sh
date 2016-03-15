@@ -9,15 +9,15 @@ function installcask() {
   brew cask install "${@}" 2> /dev/null
 }
 
-installcask cheat-sheet
-installcask clip-menu
+installcask cheatsheet
+installcask clipmenu
 # installcask controlplane
 # installcask dropbox
 # installcask firefox
 installcask flip4mac
-installcask gitx-l
-# installcask google-chrome
-installcask google-chrome-canary
+installcask laullon-gitx
+installcask google-chrome
+# installcask google-chrome-canary
 installcask handbrake
 # installcask hip-chat
 installcask imagealpha
@@ -27,19 +27,19 @@ installcask integrity
 # installcask livereload
 # installcask macvim
 installcask miro-video-converter
-installcask name-changer
+installcask namechanger
 # installcask nv-alt
-# installcask one-password
-installcask p4merge
+# installcask 1password
+# installcask p4merge
 # installcask plex-media-server
 installcask sequel-pro
-# installcask skitch
+installcask skitch
 installcask skype
 installcask slate
 installcask slowy
 # installcask sitesucker
 installcask sonos
-installcask sparrow
+# installcask sparrow
 # installcask spotify
 # installcask sublime-text
 # installcask sublime-text-3
@@ -50,4 +50,4 @@ installcask transmit
 installcask the-unarchiver
 # installcask virtualbox
 installcask vlc
-installcask vmware-fusion
+# installcask vmware-fusion
