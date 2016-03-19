@@ -8,6 +8,7 @@ config focusCheckWidthMax 3000
 
 # Abstract positions
 alias full          move screenOriginX;screenOriginY                  screenSizeX;screenSizeY
+alias rightgutter   move screenOriginX;screenOriginY                  screenSizeX-125;screenSizeY
 alias lefthalf      move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY
 alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY
 alias upperright    move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY/2
@@ -33,6 +34,7 @@ bind pad/:cmd throw next
 
 bind up:cmd;alt;ctrl    ${full}
 bind down:cmd;alt;ctrl  ${centermost}
-bind right:cmd;alt;ctrl ${righthalf}
+; bind right:cmd;alt;ctrl ${righthalf}
 bind 9:cmd;alt;ctrl     ${upperright}
-bind left:cmd;alt;ctrl  ${lefthalf}
+bind 1:cmd;alt;ctrl     ${rightgutter}
+; bind left:cmd;alt;ctrl  ${lefthalf}
