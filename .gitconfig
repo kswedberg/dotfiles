@@ -9,13 +9,11 @@
   editor = subl -n -w
 
 [user]
-  name = FIRSTNAME LASTNAME
-  email = USER@EXAMPLE.com
+  # name = FIRSTNAME LASTNAME
+  # email = USER@EXAMPLE.com
 [github]
-  user = USER
-  token = TOKEN
-[gist-diff]
-  token = TOKEN
+  # user = USER
+  # token = TOKEN
 [init]
   templatedir = ~/dotfiles/.git_template
 

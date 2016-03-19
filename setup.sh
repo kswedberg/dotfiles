@@ -1,6 +1,8 @@
 #!/bin/sh
 
 DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+red=`tput setaf 1`
+reset=`tput sgr0`
 
 # Install Homebrew if not already there
 if [[ ! -f /usr/local/bin/brew ]]; then
@@ -33,7 +35,7 @@ fi
 
 # Sym link files
 symlink_files=(
-  .gitconfig
+  # .gitconfig
   .jscsrc
   .jshintrc
   .profile
@@ -61,3 +63,9 @@ function symlink {
 }
 
 symlink $symlink_files
+
+echo "***Please copy:***"
+echo  "\t${DOTFILES}/.config-example"
+echo "to: "
+echo "\t${DOTFILES}/.config"
+echo "\n${red}You MUST change the values in .config or git will be mean to you.${reset}"

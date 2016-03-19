@@ -12,6 +12,7 @@ function source_files {
 
 # These files get sourced BEFORE $ZSH/oh-my-zsh.sh
 src_files=(
+  .config
   .path
   .exports
 )
