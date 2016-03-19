@@ -23,7 +23,7 @@ installcask handbrake
 installcask imagealpha
 installcask imageoptim
 installcask integrity
-# installcask iterm2
+installcask iterm2
 # installcask livereload
 # installcask macvim
 installcask miro-video-converter
@@ -48,6 +48,6 @@ installcask super-duper
 # installcask total-finder
 installcask transmit
 installcask the-unarchiver
-# installcask virtualbox
+installcask virtualbox
 installcask vlc
 # installcask vmware-fusion

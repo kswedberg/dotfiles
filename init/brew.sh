@@ -35,7 +35,7 @@ brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
 # Install html5 tidy. Eventually, won't need the --HEAD part
-brew install --HEAD tidy
+brew install tidy
 
 ## Binaries needed for `rmount` function
 brew install sshfs
