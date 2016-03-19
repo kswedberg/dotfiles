@@ -41,11 +41,11 @@ local user_host='%{$terminfo[bold]$fg[green]%}%n@%m%{$reset_color%}'
 current_dir='%~'
 
 local rvm_ruby=''
-if which rvm-prompt &> /dev/null; then
-  rvm_ruby='%{$fg[red]%}$(rvm-prompt i v g)%{$reset_color%}'
+if which rbenv &> /dev/null; then
+ rvm_ruby="\${\$(rbenv version | sed -e 's/ (set.*$//' -e 's/^ruby-//')}"
 else
-  if which rbenv &> /dev/null; then
-   rvm_ruby="\${\$(rbenv version | sed -e 's/ (set.*$//' -e 's/^ruby-//')}"
+  if which rvm-prompt &> /dev/null; then
+    rvm_ruby='%{$fg[red]%}$(rvm-prompt i v g)%{$reset_color%}'
   fi
 fi
 
@@ -60,9 +60,9 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%}✚"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}⇡"
 ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[cyan]%}⇣"
 ZSH_THEME_GIT_PROMPT_DIVERGED="%{$fg[yellow]%}⚑"
-
+NODE_ICON=$'\U2B22'
 PROMPT='
-${KARL_CURRENT_TIME_} ${KARL_OPEN_ANGLE}rb '"${rvm_ruby}"'${KARL_CLOSE_ANGLE} [%{$fg[cyan]%}node `node -v`%{$reset_color%}]${PATHCOLOR} ${current_dir}
+${KARL_CURRENT_TIME_} ${KARL_OPEN_ANGLE}rb '"${rvm_ruby}"'${KARL_CLOSE_ANGLE} [%{$fg[green]%}$NODE_ICON `node -v`%{$reset_color%}]${PATHCOLOR} ${current_dir}
 $(git_super_status)${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
 # $(git_prompt_info)${KARL_PRE_STATUS}$(git_prompt_status)${KARL_POST_STATUS}${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
 # RPROMPT='[`node -v`]'

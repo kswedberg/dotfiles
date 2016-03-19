@@ -14,14 +14,22 @@ zstyle ':completion:*' use-cache yes
 # Can't use nvm plugin if using jshint in sublime text
 # For SublimeLinter: Load nvm and rbenv in .zprofile (and symlink to ~/.zprofile)
 
+# Custom theme copied into .oh-my-zsh/custom/themes
+# https://github.com/bhilburn/powerlevel9k
+# source .powerline-theme
+
 # zsh-syntax-highlighting must come last in plugins list
-plugins=(bower brew brew-cask capistrano docker emoji emoji-clock extract gem git-extras git-prompt git-remote-branch gnu-utils grunt jira nmap npm osx rbenv rsync ssh-agent web-search z zsh_reload zsh-syntax-highlighting)
+plugins=(bower brew brew-cask capistrano docker docker-compose emoji emoji-clock extract gem git-extras git-prompt git-remote-branch gnu-utils grunt jira nmap npm osx rbenv rsync ssh-agent web-search z zsh_reload zsh-syntax-highlighting)
 
 # Load oh my zsh
 source $ZSH/oh-my-zsh.sh
 
 # LOAD STUFF ***AFTER*** oh-my-zsh
-source $HOME/dotfiles/.source_after
-# ZSH_THEME="pure"
+
+# $DOTFILES is set it .exports)
+source $DOTFILES/.source_after
+
+# Personal theme needs to be set aftrer oh-my-zsh to take advantage of it
+source .zsh-theme
 
 unsetopt correct_all

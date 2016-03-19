@@ -5,7 +5,6 @@ src_files=(
   .functions
   .jekyll
   .extra
-  .zsh-theme
 )
 
 function source_files {
