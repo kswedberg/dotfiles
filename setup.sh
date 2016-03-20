@@ -64,8 +64,19 @@ function symlink {
 
 symlink $symlink_files
 
-echo "***Please copy:***"
-echo  "\t${DOTFILES}/.config-example"
-echo "to: "
-echo "\t${DOTFILES}/.config"
-echo "\n${red}You MUST change the values in .config or git will be mean to you.${reset}"
+COPYCONFIG="n"
+
+if [[ ! -f ${DOTFILES}/.config ]]; then
+  echo "***Please copy:***"
+  echo  "\t${DOTFILES}/.config-example"
+  echo "to: "
+  echo "\t${DOTFILES}/.config"
+  echo "\n${red}You MUST change the values in .config or git will be mean to you.${reset}"
+
+  echo "Want me to copy the file now? [Y/n]"
+  read COPYCONFIG
+fi
+
+if [[ ${COPYCONFIG} != "n" ]]; then
+  cp ${DOTFILES}/.config-example ${DOTFILES}/.config
+fi
