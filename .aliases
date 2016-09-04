@@ -81,6 +81,8 @@ alias dctr="docker-compose run --rm"
 # NPM
 alias nid="npm install -D"
 alias nis="npm install -S"
+alias npmls="npm ls --depth=0"
+alias npmlsg="npm ls -g --depth=0"
 
 # capistrano / rails
 alias capd='cap deploy'
@@ -146,7 +148,7 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 alias chromebench='open -a "Google Chrome" --args --enable-benchmarking'
 
 # Open Google Chrome, disabling web security
-alias chromed="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security"
+alias chromed="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security --allow-running-insecure-content --user-data-dir"
 
 # Empty the Trash on all mounted volumes and the main HDD
 # Also, clear Apple’s System Logs to improve shell startup speed

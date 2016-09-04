@@ -60,9 +60,12 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%}✚"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}⇡"
 ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[cyan]%}⇣"
 ZSH_THEME_GIT_PROMPT_DIVERGED="%{$fg[yellow]%}⚑"
+
 NODE_ICON=$'\U2B22'
+RUBY_ICON=$'\U2B18'
+
 PROMPT='
-${KARL_CURRENT_TIME_} ${KARL_OPEN_ANGLE}rb '"${rvm_ruby}"'${KARL_CLOSE_ANGLE} [%{$fg[green]%}$NODE_ICON `node -v`%{$reset_color%}]${PATHCOLOR} ${current_dir}
+${KARL_CURRENT_TIME_} ${KARL_OPEN_ANGLE}${RUBY_ICON} '"${rvm_ruby}"'${KARL_CLOSE_ANGLE} [%{$fg[green]%}${NODE_ICON} `node -v`%{$reset_color%}]${PATHCOLOR} ${current_dir}
 $(git_super_status)${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
 # $(git_prompt_info)${KARL_PRE_STATUS}$(git_prompt_status)${KARL_POST_STATUS}${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
 # RPROMPT='[`node -v`]'

@@ -19,7 +19,7 @@ zstyle ':completion:*' use-cache yes
 # source .powerline-theme
 
 # zsh-syntax-highlighting must come last in plugins list
-plugins=(bower brew brew-cask capistrano docker docker-compose emoji emoji-clock extract gem git-extras git-prompt git-remote-branch gnu-utils grunt jira nmap npm osx rbenv rsync ssh-agent web-search z zsh_reload zsh-syntax-highlighting)
+plugins=(bower brew brew-cask capistrano composer docker docker-compose emoji emoji-clock extract gem git-extras git-prompt git-remote-branch gnu-utils grunt jira nmap npm osx rbenv rsync ssh-agent web-search z zsh_reload zsh-syntax-highlighting)
 
 # Load oh my zsh
 source $ZSH/oh-my-zsh.sh
