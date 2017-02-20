@@ -6,7 +6,7 @@ taken from the illustrious Mathias Bynens (https://github.com/mathiasbynens/dotf
 
 ## Initial Setup
 
-To get things rolling on a new machine, **you can run `./setup.sh` from this project's main directory**. Doing should make the following happen:
+To get things rolling on a new machine, **you can run `./setup.sh` from this project's main directory**. Doing so should make the following happen:
 
 * Install Homebrew, `oh my zsh`, `nvm`, and `rbenv` if they aren't already installed.
 * Add the *unsourced* `.extra ` file into this directory, if it doesn't already exist.
@@ -21,7 +21,7 @@ To get things rolling on a new machine, **you can run `./setup.sh` from this pro
 
 ## Init files
 
-Files in the `init` folder install various applications (`brew.sh`, `cash.sh`) and modules (`gem.sh` for Ruby, `npm.sh` for Node.js). **Look through these files and comment out unwanted apps/modules before calling them**.
+Files in the `init` folder install various applications (`brew.sh`, `cask.sh`) and modules (`gem.sh` for Ruby, `npm.sh` for Node.js). **Look through these files and comment out unwanted apps/modules before calling them**.
 
 Whatever you do, **DON'T run `init/osx.sh` wholesale**. You probably don't want to run most of the commands. Either comment out all the lines you don't want to run
 first, or grab the settings line by line and paste them in the terminal.

@@ -23,11 +23,11 @@ elif [[ $1 == "-a" ]]; then
   ls -1 $RMOUNT_DIR|while read dir
   do
     [[ -n $(mount | grep "$RMOUNT_DIR/$dir") ]] && umount $RMOUNT_DIR/$dir
-    [[ -n $(ls ~/volumes/$dir) ]] || rm -rf $RMOUNT_DIR/$dir
+    [[ -n $(ls $RMOUNT_DIR/$dir) ]] || rm -rf $RMOUNT_DIR/$dir
   done
 else
   # If the volume exists, unmount it
-  if [[ -n $(mount | grep "volumes/$1") ]]; then
+  if [[ -n $(mount | grep "$RMOUNT_DIRNAME/$1") ]]; then
     umount $RMOUNT_DIR/$1
   fi
 
