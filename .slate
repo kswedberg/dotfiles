@@ -11,13 +11,16 @@ alias full          move screenOriginX;screenOriginY                  screenSize
 alias rightgutter   move screenOriginX;screenOriginY                  screenSizeX-125;screenSizeY
 alias lefthalf      move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY
 alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY
+alias upperleft     move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY/2
 alias upperright    move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY/2
+alias lowerright    move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2   screenSizeX/2;screenSizeY/2
+alias lowerleft     move screenOriginX;screenOriginY+screenSizeY/2   screenSizeX/2;screenSizeY/2
 alias rightmost     move screenOriginX+screenSizeX*0.4;screenOriginY  screenSizeX*0.6;screenSizeY
 alias rightless     move screenOriginX+screenSizeX*0.6;screenOriginY  screenSizeX*0.4;screenSizeY
 alias leftmost      move screenOriginX;screenOriginY                  screenSizeX*0.6;screenSizeY
 alias leftless      move screenOriginX;screenOriginY                  screenSizeX*0.4;screenSizeY
 alias centermost    move screenOriginX+screenSizeX*0.125;screenOriginY screenSizeX*0.75;screenSizeY
-
+alias centersome    move screenOriginX+screenSizeX*0.2;screenOriginY+screenSizeY*0.2 screenSizeX*0.6;screenSizeY*0.6
 # Basic location Bindings
 bind pad0:cmd ${full}
 bind pad1:cmd ${leftless}
@@ -33,8 +36,16 @@ bind padClear:cmd throw prev
 bind pad/:cmd throw next
 
 bind up:cmd;alt;ctrl    ${full}
-bind down:cmd;alt;ctrl  ${centermost}
-; bind right:cmd;alt;ctrl ${righthalf}
-bind 9:cmd;alt;ctrl     ${upperright}
-bind 1:cmd;alt;ctrl     ${rightgutter}
+
+bind 0:cmd;alt;ctrl       ${full}
+bind 1:cmd;alt;ctrl       ${rightgutter}
+bind 2:cmd;alt;ctrl       ${lowerleft}
+bind 3:cmd;alt;ctrl       ${lowerright}
+bind 4:cmd;alt;ctrl       ${lefthalf}
+bind 5:cmd;alt;ctrl       ${centersome}
+bind 6:cmd;alt;ctrl       ${righthalf}
+bind 7:cmd;alt;ctrl       ${upperleft}
+bind 8:cmd;alt;ctrl       ${centermost}
+bind 9:cmd;alt;ctrl       ${upperright}
 ; bind left:cmd;alt;ctrl  ${lefthalf}
+; bind right:cmd;alt;ctrl ${righthalf}
