@@ -4,6 +4,7 @@ src_files=(
   .aliases
   .functions
   .jekyll
+  .completion
   .extra
 )
 
