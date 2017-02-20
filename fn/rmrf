@@ -1,0 +1,24 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+  about 'remove a directory…if you confirm'
+  example 'rmrf foo'
+  example 'rmrf /tmp/img/photos/large'
+
+  return 1
+fi
+echo ""
+{
+  ls "$1" -lash
+} || {
+  return 1
+}
+
+echo "\nAre you sure you want to delete the $1 directory with above files? [y/N]"
+read CONFIRM
+
+if [ "$CONFIRM" = "y" ]; then
+  rm -rf "$1"
+  echo "Deleted $1 directory"
+else
+  echo "Okay, not gonna do it"
+fi

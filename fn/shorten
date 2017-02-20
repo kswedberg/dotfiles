@@ -1,0 +1,11 @@
+# http://brettterpstra.com/2016/04/27/shell-tricks-shorten-every-line-of-output/
+
+# truncate each line of the input to X characters ($1)
+shorten () {
+	cat | sed -E "s/(.{${1-70}}).*(\.[^\.]+)?$/\1...\2/"
+}
+
+# truncate from left
+lshorten () {
+	cat | sed -E "s/.*(.{$((20-3))})$/...\1/"
+}

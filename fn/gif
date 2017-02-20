@@ -1,0 +1,8 @@
+# simply display commands for gif generation
+
+echo 'Animated gif command-line tools:\n'
+echo 'gifify: video to gif'
+echo 'ttystudio: terminal to animated gif'
+echo '* For multiple images to gif, Use Photoshop:'
+echo '\tFile > Scripts > Load files into stack. '
+echo '\tWindow > Timeline'
