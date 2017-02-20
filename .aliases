@@ -26,7 +26,7 @@ alias ohmyzsh="$EDITOR -n ~/.oh-my-zsh"
 alias aliases="$EDITOR -n ~/dotfiles/.aliases"
 
 # SourceTree
-alias st="stree"
+alias st="/Applications/SourceTree.app/Contents/Resources/stree"
 
 # PostGreSQL
 alias startpg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
@@ -54,6 +54,12 @@ alias gsdeploy="gulp shipit -r deploy"
 alias gsdb="gulp shipit -r db:pull"
 alias gsass="gulp shipit -r assets:pull"
 alias gsapp="gulp shipit -r app:pull"
+
+# yarn
+alias yap="yarn add"
+alias yad="yarn add --dev"
+alias yae="yarn add --exact"
+alias yi="yarn install"
 
 # DOCKER
 # (PROJECT-SPECIFIC DOCKER aliases are in .extra)
