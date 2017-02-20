@@ -26,6 +26,7 @@ installcask integrity
 installcask iterm2
 # installcask livereload
 # installcask macvim
+installcask macdown
 installcask miro-video-converter
 installcask namechanger
 # installcask nv-alt

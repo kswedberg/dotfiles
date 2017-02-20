@@ -23,7 +23,7 @@ fi
 
 # Install rbenv if not already there
 if [[ ! -d ~/.rbenv ]]; then
-  echo ".nvm does not exist. Installing…"
+  echo ".rbenv does not exist. Installing…"
   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
   # cd ~/.rbenv && src/configure && make -C src
 fi

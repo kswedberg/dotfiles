@@ -54,11 +54,13 @@ brew install couchdb
 # network grep
 brew install ngrep
 
+# More friendly cURL-like CLI using `http`
+brew install httpie
+
 ## Optional things to possibly install
 # brew install exiv2
 # brew install git ##
 # brew install imagemagick
-# brew install node ## use nvm instead
 # brew install pigz
 # brew install webkit2png
 

@@ -1,6 +1,6 @@
 gem install bundler
-gem install sass --pre
-gem install compass --pre
+gem install sass
+gem install compass
 gem install pygmentize
 gem install git_remote_branch
 gem install rubygems-bundler
