@@ -3,18 +3,19 @@
 # need at least a user specified
 
 NEWVERSION="$1"
+CMD=""
 
 if [ -z $1 ]; then
   about "nvm updater"
   about "* installs node to specified version and reinstalls packages from another version if specified"
-  example "nvmupdate stable 4.2 #updates node to latest stable and reinstalls global packages from 4.2"
+  example "# updates node to latest stable and reinstalls global packages from 5.2\n\tnvmupdate node 5.2"
 
-  echo '\n\nType a version name or stable to install.\n'
+  echo '\n\nType a version name or node to install.\n'
   read NEWVERSION
 fi
 
 if [ -z $NEWVERSION ]; then
-  echo "No version ${NEVERSION} specified. Bailing."
+  echo "No version specified. Bailing."
   return;
 fi
 
@@ -30,9 +31,11 @@ if [ -z $2 ]; then
 fi
 
 if [ -z $REINSTALL ]; then
-  echo "Installing node ${NEWVERSION} without reinstalling packages"
+  echo "Installing version '${NEWVERSION}' without reinstalling packages"
+  CMD="nvm install $NEWVERSION"
 else
-  REINSTALL=" --reinstall-packages-from=${REINSTALL}"
+  echo "Installing version '${NEWVERSION}' with packages from ${REINSTALL}"
+  CMD="nvm install $NEWVERSION --reinstall-packages-from=${REINSTALL}"
 fi
 
-$(nvm install ${NEWVERSION}${REINSTALL})
+eval $CMD
