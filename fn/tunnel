@@ -1,6 +1,4 @@
 #!/bin/bash
-# --reinstall-packages-from=4.2
-# need at least a user specified
 
 SERVER="$1"
 REMOTE_PORT="$2"

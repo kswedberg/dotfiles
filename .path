@@ -7,7 +7,7 @@ PATH="/usr/local/heroku/bin:$PATH"
 # Homebrew libraries
 PATH=/usr/local/sbin:$PATH
 PATH=/usr/local/bin:$PATH
-PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
+# PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
 
 # MAMP (if running rails app that requires mysql2 lib, put this before Homebrew libraries paths)
 PATH=/Applications/MAMP/Library/bin:$PATH
