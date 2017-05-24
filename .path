@@ -26,7 +26,7 @@ PATH="./node_modules/.bin:$PATH"
 # RBENV
 PATH=$HOME/.rbenv/bin:$PATH
 
-# MY PATHS
+# MY PATHS : make them come later so they don't accidentally override something critical
 PATH="$PATH:$HOME/bin:$HOME/bin/tfs:$HOME/dotfiles"
 
 # COREUTILS added via homebrew...

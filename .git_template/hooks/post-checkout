@@ -33,10 +33,19 @@ then
 fi
 
 # And same for package.json
-if [ -f package.json ] && command -v npm >/dev/null &&
+node_msg="${red}YOUR NODE MODULES COULD BE OUT OF DATE. RUN ${reset}"
+
+if [ -f yarn.lock ] && [ -f package.json ] &&
+  command yarn help >/dev/null &&
   git diff --name-only $old $2 | egrep -q '^package\.json$'
 then
-  msg="${red}YOUR NODE MODULES COULD BE OUT OF DATE. RUN \"npm install\".${reset}"
-  (echo ${div}${msg}${div})
+  msg="${yellow}\"yarn install\".${reset}"
+  (echo ${div}${node_msg}${msg}${div})
+  true
+elif [ -f package.json ] && command -v npm >/dev/null &&
+  git diff --name-only $old $2 | egrep -q '^package\.json$'
+then
+  msg="${yellow}\"npm install\".${reset}"
+  (echo ${div}${node_msg}${msg}${div})
   true
 fi
