@@ -1,3 +1,4 @@
+
 # DEFAULT EDITOR
 # alias e="subl"
 # alias e.="subl ."
@@ -8,6 +9,8 @@
 # SET EDITOR="..." IN .exports AND
 # DEFINE e() FUNCTION IN dotfiles/fn/e
 
+# Caddy Server
+alias caddyserve="sudo caddy -conf ~/Caddyfile"
 
 # TextMate
 alias m="mate"
