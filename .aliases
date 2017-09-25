@@ -19,7 +19,6 @@ alias tmbundles='cd ~/Library/Application\ Support/TextMate/Bundles/'
 
 # Sublime Text 2
 alias sb="subl"
-alias sb.="subl ."
 
 # OPEN files/projects in default editor
 # Also, see ./fn/e file
@@ -66,11 +65,13 @@ alias gsass="gulp shipit -r assets:pull"
 alias gsapp="gulp shipit -r app:pull"
 
 # yarn
+alias y="yarn"
 alias yap="yarn add"
 alias yad="yarn add --dev"
 alias yae="yarn add --exact"
 alias yi="yarn install"
 alias yip="yarn install --production"
+alias yrm="yarn remove"
 
 # DOCKER
 # (PROJECT-SPECIFIC DOCKER aliases are in .extra)
