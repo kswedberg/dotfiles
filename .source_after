@@ -5,6 +5,7 @@ src_files=(
   .functions
   .jekyll
   .completion-pm2
+  .nvm_load
   .extra
 )
 
