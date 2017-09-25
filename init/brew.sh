@@ -41,7 +41,9 @@ brew install tidy
 brew install sshfs
 # brew install fuse4x (install os-x binary instead)
 
-## GITHUB
+## GIT
+brew install git --without-completions
+brew install git-extras
 brew install hub
 brew install ghi
 
