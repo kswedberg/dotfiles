@@ -34,7 +34,7 @@ brew install wget --enable-iri
 brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
-# Install html5 tidy. Eventually, won't need the --HEAD part
+# Install html5 tidy.
 brew install tidy
 
 ## Binaries needed for `rmount` function
@@ -44,6 +44,7 @@ brew install sshfs
 ## GITHUB
 brew install hub
 brew install ghi
+
 ## Oher useful binaries
 brew install ack
 brew install rename
@@ -59,7 +60,7 @@ brew install httpie
 
 ## Optional things to possibly install
 # brew install exiv2
-# brew install git ##
+
 # brew install imagemagick
 # brew install pigz
 # brew install webkit2png
