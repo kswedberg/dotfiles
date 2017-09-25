@@ -5,12 +5,24 @@ REMOTE_PORT="$2"
 LOCAL_PORT="$3"
 
 if [ -z $1 ]; then
-  about "tunnel db connector"
-  about "* Uses ssh tunnel to proxy to localhost:[9999]"
-  example "# connects to example.com on default remote :8080 and localhost:9999:\n\ttunnel user@example.com"
-  example "# connects to example.com on custom remote :8090 and localhost:9999:\n\ttunnel user@example.com 8090"
-  example "# connects to example.com on custom remote :8090 and localhost:9191:\n\ttunnel user@example.com 8090 9191"
-  echo '\n\nType the user@server.com address for the server.\n'
+cat <<TUNNELINSTRUCTIONS
+
+tunnel db connector
+  * Uses ssh tunnel to proxy to localhost:[9999]
+
+EXAMPLES
+  # connects to example.com on default remote :8080 and localhost:9999:
+    tunnel user@example.com
+
+  # connects to example.com on custom remote :8090 and localhost:9999:
+    tunnel user@example.com 8090
+
+  # connects to example.com on custom remote :8090 and localhost:9191:
+    tunnel user@example.com 8090 9191
+
+Type the user@server.com address for the server.
+TUNNELINSTRUCTIONS
+
   read SERVER
 fi
 
@@ -35,4 +47,8 @@ fi
 CMD='ssh -f '${SERVER}' -L '${LOCAL_PORT}':127.0.0.1:'${REMOTE_PORT}' -N'
 echo 'Connecting…'
 echo $CMD
+echo ''
+echo 'To kill the process, type ` ps aux | grep ssh ` and find the pid of the tunnel process'
+echo 'Then run kill [PID]'
+
 eval $CMD
