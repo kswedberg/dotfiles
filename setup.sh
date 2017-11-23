@@ -42,6 +42,7 @@ symlink_files=(
   .slate
   .zshrc
   .zprofile
+  bin/git-push-to
 )
 
 function symlink {
