@@ -1,3 +1,5 @@
+# this file sourced in ./.source_after
+
 ###-begin-pm2-completion-###
 ### credits to npm for the completion file model
 #

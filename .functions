@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# this file sourced in ./.source_after
+
 # For use in other functions/scripts
 function about {
   echo "$1"
