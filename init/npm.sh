@@ -1,19 +1,14 @@
 # npm install -g autoprefixer
-# npm install -g babel
 # npm install -g bower
-# npm install -g browser-sync
-# npm install -g express-generator
+npm install -g browser-sync
+npm install -g express-generator
 #
 # ### Task Runners
 # npm install -g grunt-cli
 # npm install -g grunt-init
-#
-# # TEMPORARY UNTIL gulp-cli 4.0 IS RELEASED:
-# npm install -g gulpjs/gulp-cli#4.0
-# # npm install -g gulp
-#
-# # Nice simple alternative to man. Gives good examples
-# npm install -g tldr
+
+
+npm install -g tldr # Nice simple alternative to man. Gives good examples
 #
 # # Linters
 # npm install -g jscs
@@ -48,7 +43,7 @@ npm install -g hoodie-cli
 # npm install -g ios-sim
 npm install -g cordova
 npm install -g plugman
-npm install -g grommet # react design stuff
+# npm install -g grommet # react design stuff
 
 
 ### 3rd Party Services:

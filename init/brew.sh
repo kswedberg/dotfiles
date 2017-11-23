@@ -17,6 +17,10 @@ echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH.
 # GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
 
+# More recent versions of some OS X tools
+brew tap homebrew/dupes
+brew install homebrew/dupes/grep
+
 # Bash 4
 brew install bash
 
@@ -27,42 +31,34 @@ brew install composer
 brew install php-code-sniffer
 brew install php-cs-fixer
 
-# wget with IRI support
-brew install wget --enable-iri
-
-# More recent versions of some OS X tools
-brew tap homebrew/dupes
-brew install homebrew/dupes/grep
-
 # Install html5 tidy.
 brew install tidy
 
-## Binaries needed for `rmount` function
-brew install sshfs
+# Network tools
+brew install wget --enable-iri # wget with IRI support
+brew install sshfs ## Binaries needed for `rmount` function
+brew install ngrep # network grep
+brew install httpie # More friendly cURL-like CLI using `http`
+
 # brew install fuse4x (install os-x binary instead)
 
 ## GIT
+# Need to install git without completions so git-extras completions will work for some reason
 brew install git --without-completions
 brew install git-extras
 brew install hub
 brew install ghi
 
 ## Oher useful binaries
-brew install ack
-brew install rename
+brew install ack # find files
+brew install rename # nice file renaming
+brew install fzf # fast fuzzy finder
 brew install tree
 brew install zopfli
 brew install couchdb
 
-# network grep
-brew install ngrep
-
-# More friendly cURL-like CLI using `http`
-brew install httpie
-
 ## Optional things to possibly install
 # brew install exiv2
-
 # brew install imagemagick
 # brew install pigz
 # brew install webkit2png
