@@ -1,0 +1,5 @@
+{
+  "bem.elementSeparator": "-",
+  "bem.modifierSeparator": "--",
+  "css.autoInsertVendorPrefixes": false
+}
