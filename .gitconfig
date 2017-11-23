@@ -41,7 +41,7 @@
   st = status
   su = submodule update --init
 
-  ## The following aliases require git-extras (http://github.com/visionmedia/git-extras)
+  ## The following aliases require git-extras (http://github.com/tj/git-extras)
   delete = delete-branch
   del = delete-branch
 
@@ -88,7 +88,7 @@
   tool = sourcetree
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true

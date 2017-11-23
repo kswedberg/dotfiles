@@ -20,7 +20,7 @@ set convert-meta off
 set completion-ignore-case on
 
 # List all matches in case multiple possible completions are possible
-set show-all-if-ambiguous on
+# set show-all-if-ambiguous on
 
 # Immediately add a trailing slash when autocompleting symlinks to directories
 set mark-symlinked-directories on
@@ -41,5 +41,3 @@ set mark-symlinked-directories on
 # commands (i.e. more intelligent Up/Down behavior)
 # "\e[B": history-search-forward
 # "\e[A": history-search-backward
-
-

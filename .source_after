@@ -1,9 +1,11 @@
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # These files get sourced AFTER $ZSH/oh-my-zsh.sh
+
 src_files=(
   .opts
   .aliases
   .functions
-  .jekyll
   .completion-pm2
   .nvm_load
   .extra

@@ -48,6 +48,8 @@ CMD='ssh -f '${SERVER}' -L '${LOCAL_PORT}':127.0.0.1:'${REMOTE_PORT}' -N'
 echo 'Connecting…'
 echo $CMD
 echo ''
+echo "Access the database at http://localhost:"${LOCAL_PORT}
+echo ''
 echo 'To kill the process, type ` ps aux | grep ssh ` and find the pid of the tunnel process'
 echo 'Then run kill [PID]'
 
