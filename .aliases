@@ -10,6 +10,11 @@
 # SET EDITOR="..." IN .exports AND
 # DEFINE e() FUNCTION IN dotfiles/fn/e
 
+# usage for "sa" on command line:
+# 1: alias foo="bar"
+# 2: sa
+# alias sa="alias > ~/dotfiles/.aliases"
+
 # Caddy Server
 alias caddyserve="sudo caddy -conf ~/Caddyfile"
 
@@ -20,6 +25,9 @@ alias tmbundles='cd ~/Library/Application\ Support/TextMate/Bundles/'
 
 # Sublime Text 2
 alias sb="subl"
+
+# Micro
+alias mi="micro"
 
 # OPEN files/projects in default editor
 # Also, see ./fn/e file
@@ -65,6 +73,14 @@ alias gsdb="gulp shipit -r db:pull"
 alias gsass="gulp shipit -r assets:pull"
 alias gsapp="gulp shipit -r app:pull"
 
+# doing (http://brettterpstra.com/projects/doing/)
+alias d="doing"
+alias dd="doing done"
+alias dn="doing now"
+alias dt="doing today"
+alias dy='d yesterday | cut -d " " -f 2- | sed -e "s/^/ /"'
+alias idea="doing now -s Ideas"
+
 # yarn
 alias y="yarn"
 alias yap="yarn add"
@@ -98,6 +114,7 @@ alias dcr="docker-compose run"
 alias dctr="docker-compose run --rm"
 
 # NPM
+alias nr="npm run"
 alias nid="npm install -D"
 alias nis="npm install -S"
 alias npmls="npm ls --depth=0"
@@ -183,7 +200,7 @@ alias random_mac='sudo ifconfig en0 ether `openssl rand -hex 6 | sed "s/\(..\)/\
 alias restore_mac='sudo ifconfig en0 ether 10:9a:dd:ad:82:5e'
 
 # Utilities
-alias d="du -h -d 1"
+alias dl="du -h -d 1"
 alias df="df -h"
 alias weather='curl http://wttr.in/'
 # alias g="git"
