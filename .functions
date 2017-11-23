@@ -11,6 +11,25 @@ function example {
   echo "\t$1"
 }
 
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# fkill - kill process
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
+
 #url encode the passed string
 urlenc () {
   echo -n "$@" | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'
@@ -69,13 +88,6 @@ function gz() {
   printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
 
-# Install Grunt plugins and add them as `devDependencies` to `package.json`
-# Usage: `gi contrib-watch contrib-uglify zopfli`
-# function gi() {
-#   local IFS=,
-#   eval npm install --save-dev grunt-$*
-# }
-
 # # `m` with no arguments opens the current directory in TextMate, otherwise
 # # opens the given location
 # function m() {
@@ -104,43 +116,6 @@ function o() {
 function tre() {
   tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
 }
-
-
-### Following functions from divya (https://github.com/nimbupani/dotfiles)
-
-# Header logging
-e_header() {
-    echo -e "\n$(tput setaf 7)$@$(tput sgr0)";
-}
-
-# Success logging
-e_success() {
-    echo -e "$(tput setaf 64)✓ $@$(tput sgr0)";
-}
-
-# Error logging
-e_error() {
-    echo -e "$(tput setaf 1)x $@$(tput sgr0)";
-}
-
-# Warning logging
-e_warning() {
-    echo -e "$(tput setaf 136)! $@$(tput sgr0)";
-}
-
-# Test whether a command exists
-# $1 - cmd to test
-type_exists() {
-
-  exists=`type -a $1`
-  echo $exists
-  # return $exists
-  # if [ `type -w $1` ]; then
-  #   return 0
-  # fi
-  # return 1
-}
-
 
 # Test whether a Homebrew formula is already installed
 # $1 - formula name (may include options)
