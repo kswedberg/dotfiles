@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+  about 'check the expiration date of an ssl certificate'
+  example 'ssl-expires foo.example.com'
+
+  return 1
+fi
+echo | openssl s_client -connect $1:443 -servername $1 2>/dev/null | openssl x509 -noout -dates
