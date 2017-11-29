@@ -52,7 +52,7 @@ alias ....='cd ../../..'
 # alias ..='cd ..'
 # alias ...='cd ../..'
 
-alias ls="ls --color=auto"
+alias ls="ls"
 
 # -l    use a long listing format
 # -A    almost-all: do not list implied . and ..
@@ -60,7 +60,7 @@ alias ls="ls --color=auto"
 # -h    with -l and/or -s, print human readable sizes (e.g., 1K 234M 2G)
 # -b    print C-style escapes for nongraphic characters
 # p     append / indicator to directories
-alias ll="ls -lAshbp --color=auto"
+alias ll="ls -lAshbp"
 alias lll="stat -c '%A %a (%F) %n' *"
 alias lo="ls -alh --color | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
 # alias lo="stat -c '%A %a %h %U %G %s %y %n' *| sed 's/\.[[:digit:]]\+[ ]\+-[[:digit:]]\+/ /'"

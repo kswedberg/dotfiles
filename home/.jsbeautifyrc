@@ -1,0 +1,10 @@
+{
+  "indent_size": 2,
+  "indent_char": " ",
+  "space_after_anon_function": false,
+  "brace_style": "expand",
+  "space_before_conditional": true,
+  "wrap_attributes": false,
+  "end_with_newline": true,
+  "preserve_newlines": false
+}

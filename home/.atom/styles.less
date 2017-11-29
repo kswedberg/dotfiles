@@ -1,0 +1,156 @@
+/*
+ * Your Stylesheet
+ *
+ * This stylesheet is loaded when Atom starts up and is reloaded automatically
+ * when it is changed.
+ *
+ * If you are unfamiliar with LESS, you can read more about it here:
+ * http://www.lesscss.org
+ */
+
+.tree-view {
+
+}
+.editor {
+  .invisible-character {
+    color: rgba(0,0,0,0.5);
+  }
+}
+
+// SETTINGS:
+atom-pane-container atom-pane .item-views .pane-item.settings-view > .panels {
+  background-color: #e6e6e6;
+
+  .breadcrumb a {
+    color: #444;
+  }
+  .breadcrumb > .active a {
+    color: #777;
+  }
+  *::after,
+  .icon::before {
+    color: rgba(60,60,60, 0.6);
+  }
+
+  .btn,
+  .package-card {
+    &::before,
+    .icon::before {
+      color: rgba(167, 168, 169, 0.6);
+    }
+  }
+
+  code {
+    background-color: #777;
+    color: #fff
+  }
+  pre code {
+    background-color: transparent;
+  }
+  .badge,
+  .section-heading {
+    color: #222;
+    text-shadow: 1px 1px #fff;
+  }
+  h1, h2, h3, h4,
+  .setting-title,
+  .text,
+  .package-readme,
+  .setting-description,
+  .settings-panel label {
+    color: #333;
+  }
+
+  .setting-description {
+    color: #666;
+  }
+
+
+  // Collapse/expand packages
+  .sub-section.collapsed {
+    .package-container {
+      display: none;
+    }
+  }
+  thead tr {
+    background-color: #292c2f;
+    color: #fff;
+  }
+  tbody tr {
+    background-color: rgba(255, 255, 255, 0.07)
+  }
+}
+.path-input-container {
+  height: 100%;
+  max-height: 100%;
+  .path-input {
+    max-height: 100%;
+    flex: 0 0 4.7;
+    margin-bottom: 0;
+  }
+}
+// Text EDITOR
+atom-text-editor {
+  text-rendering: optimizeLegibility;
+  font-family: "Fira Code", Monaco;
+}
+
+atom-text-editor.editor .syntax--string.syntax--regexp {
+  -webkit-font-feature-settings: "liga" off, "calt" off;
+}
+
+// Modal Overlay (for advanced open file)
+.modal.overlay.from-top {
+  min-width: 50%;
+}
+
+// ACTIVE TAB
+.tab-bar .tab.active,
+.tab-bar .tab.active:before,
+.tab-bar .tab.active:after {
+  color: #343434;
+  font-weight: bold;
+  background-image: linear-gradient(to bottom, #fff, #ccc);
+}
+
+
+atom-pane.active .tab.active:before {
+  box-shadow: inset 3px 3px 0 rgba(0, 0, 250, 0.4), -4px 0px 4px rgba(0, 0, 0, 0.3)
+}
+atom-pane.active .tab.active:after {
+  box-shadow: inset -3px 3px 0 rgba(0, 0, 250, 0.4), 4px 0px 4px rgba(0, 0, 0, 0.3)
+}
+atom-pane.active .tab.active {
+  box-shadow: inset 0 3px 0 rgba(0, 0, 250, 0.4);
+}
+
+/*
+ * Current Line
+ */
+  atom-text-editor.is-focused .line.cursor-line {
+    background-color: rgba(200, 200, 210, 0.2);
+  }
+/*
+ * SELECTION/FIND HIGHLIGHTING
+ * Make sure "Use Shadow DOM" is checked in general settings
+ */
+
+atom-text-editor.editor {
+  .selection .region {
+    background-color: rgba(100, 100, 255, 0.12);
+  }
+
+  .highlight.find-result .region {
+    background-color: rgba(220, 220, 220, 0.4);
+    border-width: 0;
+  }
+  // to distinguish currently selected result from the other results
+  .current-result .region.region.region {
+    border-width: 1px;
+  }
+  // .highlight.current-result .region {
+  //   // background-color: rgba(255, 165, 0, 0.3);
+  //   background-color: transparent;
+  // }
+
+}

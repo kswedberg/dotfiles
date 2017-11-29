@@ -1,21 +1,27 @@
-### THIS IS A STARTER TEMPLATE. YOU'LL NEED TO CHANGE THE VALUES BELOW IN ALL CAPS TO REAL VALUES
-### exludesfile and templatedir are referenced to the ~/dotfiles/ directory
+### included .gitconfig.secrets file should have the following:
+# [user]
+  # name = FIRSTNAME LASTNAME
+  # email = USER@EXAMPLE.com
+# [github]
+  # user = USER
+  # token = TOKEN
+# [gist-diff]
+	# token = TOKEN
+###
+[include]
+  path = ~/.gitconfig.secrets
+###
+
 [core]
   # autocrlf = input
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
   eol = lf
-	excludesfile = ~/dotfiles/.gitignore_global
   pager = less
-  editor = subl -n -w
+	excludesfile = /Users/kswedberg/.gitignore_global
+  # editor = subl -n -w
 
-[user]
-  # name = FIRSTNAME LASTNAME
-  # email = USER@EXAMPLE.com
-[github]
-  # user = USER
-  # token = TOKEN
 [init]
-  templatedir = ~/dotfiles/.git_template
+  templatedir = ~/.git_template
 
 [push]
 	default = current
@@ -25,6 +31,7 @@
   all = add --all
   br = branch
   ci = commit
+  cia = commit --allow-empty
   co = checkout
   df = diff
   dt = difftool --no-prompt
@@ -41,23 +48,13 @@
   st = status
   su = submodule update --init
 
-  ## The following aliases require git-extras (http://github.com/tj/git-extras)
+  push-to = git-push-to
+
+  syncupstream = !"git fetch upstream; git checkout master; git merge upstream/master; git push; echo 'Check out your branch and run git rebase master. See: http://www.xanthir.com/b4hf0'"
+
+  ## The following aliases require git-extras (http://github.com/visionmedia/git-extras)
   delete = delete-branch
   del = delete-branch
-
-  ## The following aliases require legit:
-  # pb = publish-branch
-  # rb = rbranch
-  # rc = rank-contributors
-  # sm = show-merges
-  # switch = !legit switch \"$@\"
-  # branches = !legit branches
-  # sprout = !legit sprout \"$@\"
-  # unpublish = !legit unpublish \"$@\"
-  # harvest = !legit harvest \"$@\"
-  # sync = !legit sync \"$@\"
-  # publish = !legit publish \"$@\"
-  # graft = !legit graft \"$@\"
 
 [color]
   ui = auto
@@ -75,25 +72,32 @@
   changed = green
   untracked = cyan
 
-[instaweb]
-  #httpd = apache2 -f
 [apply]
   # whitespace = nowarn
-# [merge]
-#   tool = extMerge
-# [mergetool "extMerge"]
-#   cmd = extMerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
-#   trustExitCode = false
 [merge]
-  tool = sourcetree
+	tool = sourcetree
+[mergetool]
+  prompt = false
+# [mergetool "extMerge"]
+#   cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+#   trustExitCode = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-
+	path = 
 [branch]
 	autosetuprebase = always
 [pull]
 	rebase = true
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/kswedberg/.stCommitMsg
+[user]
+	name = Karl Swedberg
+	email = kswedberg@gmail.com
+[github]
+	user = kswedberg
+	token = 2bd67f5be70386d922e1b15174e617b8
+[gist-diff]
+	token = 09d304b119dc42981f513035fc6aab7c8db04ed0

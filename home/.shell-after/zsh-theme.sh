@@ -66,7 +66,7 @@ RUBY_ICON=$'\U2B18'
 
 PROMPT='
 ${KARL_CURRENT_TIME_} ${KARL_OPEN_ANGLE}${RUBY_ICON} '"${rvm_ruby}"'${KARL_CLOSE_ANGLE} [%{$fg[green]%}${NODE_ICON} `node -v`%{$reset_color%}]${PATHCOLOR} ${current_dir}
-$(git_super_status)${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
+%{$reset_color%}$(git_super_status)${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{$reset_color%}'
 # $(git_prompt_info)${KARL_PRE_STATUS}$(git_prompt_status)${KARL_POST_STATUS}${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
 # RPROMPT='[`node -v`]'
 RPROMPT=''

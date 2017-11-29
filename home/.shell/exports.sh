@@ -29,7 +29,3 @@ export JIRA_URL="http://fusionary.jira.com"
 
 # Set a couple paths for use elsewhere
 export DOTFILES="$HOME/dotfiles"
-
-# For fn/rmount & fn/rumount functions
-export RMOUNT_DIRNAME="volumes"
-export RMOUNT_DIR="$HOME/volumes"

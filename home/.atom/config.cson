@@ -1,0 +1,172 @@
+"*":
+  "atom-alignment":
+    addSpacePostfix: true
+  "atom-beautify":
+    general:
+      _analyticsUserId: "05c56071-6859-4f96-bcb2-992bc66f7e33"
+      analytics: false
+      beautifyEntireFileOnSave: false
+    html:
+      end_with_newline: true
+    js:
+      end_with_newline: true
+      keep_array_indentation: true
+      max_preserve_newlines: 2
+    json:
+      indent_size: 2
+    php:
+      disabled: true
+  "atom-minify":
+    checkOutputFileAlreadyExists: true
+    jsMinifier: "UglifyJS2"
+    jsParametersForUglifyJS2: "nomangle"
+  "auto-update-packages": {}
+  "autocomplete-modules":
+    includeExtension: true
+  "autocomplete-plus":
+    confirmCompletion: "enter"
+    useAlternateScoring: true
+  autosave: {}
+  blame: {}
+  core:
+    audioBeep: false
+    customFileTypes:
+      "source.js.jsx": [
+        "js"
+        "jsx"
+      ]
+    disabledPackages: [
+      "language-gfm"
+    ]
+    excludeVcsIgnoredPaths: false
+    ignoredNames: [
+      ".git"
+      ".svn"
+      ".DS_Store"
+      ".sass-cache"
+    ]
+    packagesWithKeymapsDisabled: [
+      "es6-javascript"
+      "tag"
+      "coffee-compile"
+      "atom-minify"
+      "symbols-list"
+    ]
+    telemetryConsent: "no"
+    themes: [
+      "atom-dark-ui"
+      "one-light-syntax"
+    ]
+  editor:
+    fontFamily: "Fira Code"
+    invisibles: {}
+    preferredLineLength: 100
+    showIndentGuide: true
+    softWrap: true
+    softWrapHangingIndent: 2
+  emmet:
+    useEmmetComments: true
+  "exception-reporting":
+    userId: "e83ab2a0-8d55-46e7-aef9-c693ffbb4a77"
+  "file-types":
+    Caddyfile$: "source.nginx"
+    "\\.git(config|ignore).*$": "source.ini"
+    "^(cdf|cps|dash|dman|down|e|g|gif|keycopy|mkcd|nvmupdate|quit|rmkcd|rmount|rmrf|rumount|shorten|ssl-cert)$": "source.shell"
+    "^\\.(aliases|exports|functions|inputrc|jekyll|path|opts|slate|source_after|zprofile|.*\\-theme)$": "source.shell"
+    hosts$: "source.apache-config"
+  "find-and-replace":
+    projectSearchResultsPaneSplitDirection: "right"
+  "fuzzy-finder":
+    ignoredNames: [
+      "*.png"
+      "*.gif"
+      "*.jp*g"
+      "*.bin"
+      "*.psd"
+      "*.pdf"
+      "*.doc*"
+      ".sass-cache"
+      "cache"
+      "gitignore"
+      "node_modules/instantsearch.js"
+      "public/storage"
+    ]
+    preserveLastSearch: true
+  "git-blame":
+    ignoreWhiteSpaceDiffs: false
+  "git-plus":
+    general:
+      _analyticsUserId: "f25d6e98-e9bb-47c0-a499-4d7a06f4f75d"
+  "js-autoimport":
+    trailingSemicolon: true
+  linter:
+    lintPreviewTabs: false
+  "linter-annotations": {}
+  "linter-eslint":
+    fixOnSave: true
+    globalNodePath: "/Users/kswedberg/.nvm/versions/node/v8.9.1"
+    lintHtmlFiles: true
+    rulesToSilenceWhileTyping: [
+      "no-trailing-spaces"
+    ]
+  "linter-jscs":
+    displayAs: "warning"
+    esnext: true
+    fixOnSave: true
+    onlyConfig: true
+    preset: "grunt"
+  "linter-jshint":
+    disableWhenNoJshintrcFileInPath: true
+    lintJSXFiles: true
+  "linter-jsxhint":
+    harmony: true
+  "linter-php":
+    executablePath: "/usr/bin/php"
+  "linter-ui-default":
+    showPanel: true
+    showTooltip: false
+    statusBarPosition: "Right"
+  "markdown-preview":
+    grammars: [
+      "source.gfm"
+      "source.litcoffee"
+      "text.plain"
+      "text.plain.null-grammar"
+    ]
+  "markdown-preview-plus":
+    grammars: [
+      "text.md"
+      "source.gfm"
+      "text.html.basic"
+      "text.plan"
+      "text.plain.null-grammar"
+    ]
+    liveUpdate: false
+    useGitHubStyle: true
+  "one-dark-ui": {}
+  "show-invisibles-plus":
+    show: false
+  "spell-check":
+    grammars: [
+      "source.asciidoc"
+      "source.gfm"
+      "text.git-commit"
+      "text.plain"
+      "text.plain.null-grammar"
+      "text.md"
+    ]
+  "todo-show":
+    sortBy: "Path"
+  "tree-ignore": {}
+  "tree-view":
+    alwaysOpenExisting: true
+    autoReveal: true
+    focusOnReveal: false
+    hideIgnoredNames: true
+    squashDirectoryNames: true
+  uglify:
+    mangle: false
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false

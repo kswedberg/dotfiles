@@ -1,2 +1,17 @@
-.config
-.extra
+
+# bin
+home/bin/*
+!home/bin/*.sh
+!home/bin/subl
+
+# Secrets
+.gnupg
+.ssh
+*.secrets
+config.sh
+extra.sh
+secrets.sh
+auto_volumes
+
+# App preferences
+Library
