@@ -20,11 +20,11 @@ function karl_precmd {
 "
   fi
 
-  local IN_RMOUNT_PATH=`echo "${PWD}" | grep "${RMOUNT_DIR}"`
+  # local IN_RMOUNT_PATH=`echo "${PWD}" | grep "${RMOUNT_DIR}"`
   PATHCOLOR="%{$reset_color%}"
-  if [[ -n "${IN_RMOUNT_PATH}" ]]; then
-    PATHCOLOR="%{${fg[red]}%}"
-  fi
+  # if [[ -n "${IN_RMOUNT_PATH}" ]]; then
+  #   PATHCOLOR="%{${fg[red]}%}"
+  # fi
 }
 
 # Remove `add-zsh-hook precmd karl_precmd` in favor of `precmd_function+=(...)`

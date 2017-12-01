@@ -36,7 +36,7 @@
   'ctrl-cmd-i': 'swed:toggle-vcs-ignored-files'
   "cmd-alt-r": "symbols-list:toggle"
 
-'body':
+'.platform-darwin atom-pane atom-text-editor':
   # Multi-pane:
   "cmd-alt-right": "window:focus-previous-pane"
   "cmd-alt-left": "window:focus-next-pane"
@@ -44,10 +44,10 @@
   'ctrl-cmd-shift-right': 'window:move-active-item-to-pane-on-right'
   'ctrl-cmd-shift-left':  'window:move-active-item-to-pane-on-left'
 
-  'ctrl-cmd-alt-right': 'pane:split-right'
-  'ctrl-cmd-alt-left': 'pane:split-left'
-  'ctrl-cmd-alt-up': 'pane:split-up'
-  'ctrl-cmd-alt-down': 'pane:split-down'
+  'ctrl-alt-cmd-right': 'pane:split-right'
+  'ctrl-alt-cmd-left': 'pane:split-left'
+  'ctrl-alt-cmd-up': 'pane:split-up'
+  'ctrl-alt-cmd-down': 'pane:split-down'
 
 
 'atom-text-editor:not([mini]),

@@ -32,8 +32,8 @@ PATH=$HOME/.rbenv/bin:$PATH
 PATH="$PATH:$HOME/bin:$HOME/bin/tfs:$HOME/dotfiles"
 
 # COREUTILS added via homebrew...
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+# PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 

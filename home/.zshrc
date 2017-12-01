@@ -1,8 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
 
-# LOAD STUFF BEFORE oh-my-zsh
-
-# oh my zsh
 COMPLETION_WAITING_DOTS="true"
 # DISABLE_UPDATE_PROMPT=true
 
@@ -14,11 +11,10 @@ zmodload -F zsh/stat b:zstat
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-
-# Load shell dotfiles **BEFPRE* oh-my-zsh
+# Load shell dotfiles **BEFORE* oh-my-zsh
 source $HOME/.shell/index.sh
 
-# Antigen
+# Antigen (loads oh-my-zsh and others)
 source /usr/local/share/antigen/antigen.zsh
 antigen init $HOME/.antigenrc
 

@@ -10,28 +10,23 @@ antigen bundle git-prompt
 antigen bundle git-remote-branch
 antigen bundle gnu-utils
 antigen bundle gulp
+antigen bundle npm
 antigen bundle rbenv
+antigen bundle ssh-agent
 antigen bundle z
+antigen bundle zsh_reload
 
-
-# antigen bundle brew
-# antigen bundle brew-cask
 # antigen bundle capistrano
 # antigen bundle composer
 # antigen bundle gem
 # antigen bundle git-remote-branch
 # antigen bundle nmap
-antigen bundle npm
-# antigen bundle rbenv
-# antigen bundle rsync
-# antigen bundle ssh-agent
-# antigen bundle web-search
-# antigen bundle zsh_reload
-
-# antigen bundle zsh-syntax-highlighting
 
 # Expand aliases
 # antigen bundle globalias
+
+# Auto ls on cd
+# antigen bundle desyncr/auto-ls
 
 # More completions
 antigen bundle zsh-users/zsh-completions
@@ -46,9 +41,6 @@ antigen bundle tarruda/zsh-autosuggestions
 # Colors
 antigen bundle chrissicool/zsh-256color
 
-# Auto ls on cd
-# antigen bundle desyncr/auto-ls
-
 # Back to directory with `bd`
 antigen bundle Tarrasch/zsh-bd
 
@@ -59,7 +51,7 @@ antigen bundle psprint/history-search-multi-word
 antigen bundle b4b4r07/cli-finder
 
 # Pure theme
-antigen bundle mafredri/zsh-async
+# antigen bundle mafredri/zsh-async
 # antigen bundle sindresorhus/pure
 
 # Done with Antigen

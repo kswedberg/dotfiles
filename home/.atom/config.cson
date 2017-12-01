@@ -64,8 +64,7 @@
     showIndentGuide: true
     softWrap: true
     softWrapHangingIndent: 2
-  emmet:
-    useEmmetComments: true
+  emmet: {}
   "exception-reporting":
     userId: "e83ab2a0-8d55-46e7-aef9-c693ffbb4a77"
   "file-types":

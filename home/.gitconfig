@@ -39,7 +39,6 @@
   g = grep -I
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
   logl = log --oneline --decorate
-  me = log --author 'kswedberg' --since '2 weeks ago' --pretty='format:%C(cyan)%h%Cgreen %ad %C(yellow)%an %Creset%s'
   pp = !"echo 'Pull'; git pull --rebase; echo 'Push'; git push"
   pusht = !"git push; git push --tags"
   ms = merge --squash
@@ -48,7 +47,7 @@
   st = status
   su = submodule update --init
 
-  push-to = git-push-to
+  push-to = !"git-push-to.sh"
 
   syncupstream = !"git fetch upstream; git checkout master; git merge upstream/master; git push; echo 'Check out your branch and run git rebase master. See: http://www.xanthir.com/b4hf0'"
 
