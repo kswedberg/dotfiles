@@ -48,11 +48,18 @@ alias mmv='noglob zmv -W'
 # Dir navigation
 alias ....='cd ../../..'
 
-## These are handled by ohmyzsh
-# alias ..='cd ..'
-# alias ...='cd ../..'
+# Homebrew Bundle
+alias bbundle="brew bundle --file=$DOTFILES/Brewfile"
+alias bbundledump="brew bundle dump --file=$DOTFILES/Brewfile"
 
-alias ls="ls"
+# Directory Listings
+#
+# use coreutils `gls` if possible…
+hash gls >/dev/null 2>&1 || alias gls="ls"
+
+# always use color, even when piping (to awk,grep,etc)
+if gls --color > /dev/null 2>&1; then colorflag="--color"; else colorflag="-G"; fi;
+export CLICOLOR_FORCE=1
 
 # -l    use a long listing format
 # -A    almost-all: do not list implied . and ..
@@ -60,10 +67,14 @@ alias ls="ls"
 # -h    with -l and/or -s, print human readable sizes (e.g., 1K 234M 2G)
 # -b    print C-style escapes for nongraphic characters
 # p     append / indicator to directories
-alias ll="ls -lAshbp"
-alias lll="stat -c '%A %a (%F) %n' *"
-alias lo="ls -alh --color | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
-# alias lo="stat -c '%A %a %h %U %G %s %y %n' *| sed 's/\.[[:digit:]]\+[ ]\+-[[:digit:]]\+/ /'"
+
+alias ls='gls -Aphb ${colorflag} --group-directories-first'
+# alias ll='ls -lAshbp'
+
+# ll alias here sets the command to the autoloading "ll" file in dotfiles/fn/
+# The alias is needed here to override the oh-my-zsh `ll` alias
+alias ll="ll"
+
 alias sites='cd ~/Sites'
 alias sties='cd ~/Sites'
 
@@ -166,15 +177,13 @@ alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/
 
 alias gr='grunt'
 alias gp='gulp'
-# alias lg='legit'
 alias tailphp='tail -f /Applications/MAMP/logs/php_error.log'
-alias profile='e ~/.zprofile'
 
 # use `src` function from zsh_reload plugin instead.
 # alias src='source ~/.zshrc'
 
-alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
-alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
+alias hiddenshow="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
+alias hiddenhide="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
 
 # Show/Hide all desktop icons (useful when presenting)
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
