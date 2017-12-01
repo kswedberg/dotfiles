@@ -6,12 +6,16 @@ home/bin/*
 
 # Secrets
 .gnupg
+.npmrc
 .ssh
 *.secrets
-config.sh
 extra.sh
 secrets.sh
+
 auto_volumes
 
 # App preferences
 Library
+
+# Other unnecessary
+home/.vim/bundle
