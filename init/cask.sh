@@ -11,6 +11,7 @@ installcask firefox
 installcask google-chrome
 installcask iterm2
 installcask 1password
+installcask keybase
 
 # APPS TO CONSIDER
 # installcask google-chrome-canary

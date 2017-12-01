@@ -31,7 +31,6 @@ antigen bundle zsh_reload
 # More completions
 antigen bundle zsh-users/zsh-completions
 
-
 # Syntax highlighting on the readline
 antigen bundle zsh-users/zsh-syntax-highlighting
 
