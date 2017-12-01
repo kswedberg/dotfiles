@@ -1,51 +1,47 @@
 # dot files
 
 These are the dot files for my MacBook Pro. A lot of the stuff in here was
-taken from the illustrious Mathias Bynens (https://github.com/mathiasbynens/dotfiles).
+taken from the illustrious Mathias Bynens (https://github.com/mathiasbynens/dotfiles) and others.
 
+**This README is a work in progress.**
+
+Using:
+* Mackup: This is the primary thing
+* Antigen for zsh bundles
+* Homebrew
 
 ## Initial Setup
 
-To get things rolling on a new machine, **you can run `./setup.sh` from this project's main directory**. Doing so should make the following happen:
+* Modify `Brewfile` to only include the apps you want to install.
+* Modify files in `init/` directory to only install dependencies you want to install
+* **Important**: The `init/macos.sh` file has some very opinionated settings. Make sure you comment out the ones you don't want to set.
+* Run `./setup.sh` from _this project's main directory_. Doing so makes the following happen:
+  * **Homebrew**: Installs Homebrew if not already installed. Updates brew, and runs `brew bundle`, which install a crap-ton of brew, cask, and Mac App Store apps via the `Brewfile`.
+  * **Node.js / nvm**: Installs `nvm` if not already installed. Installs the most recent version of node.js. Installs global npm packages specified in `init/npm.sh`.
+  * **Zsh**: Sets the default shell environment to Zsh
+  * **Ruby / rbenv**: Installs a "recent" Ruby version (as of 2017-12-01) via `rbenv` (which was installed via Homebrew).
+  * **Composer** Installs global Composer packages for PHP
 
-* Install Homebrew, `oh my zsh`, `nvm`, and `rbenv` if they aren't already installed.
-* Add the *unsourced* `.extra ` file into this directory, if it doesn't already exist.
-* Sym-link the following files to the home directory (if real files by these names exist already, they'll be renamed to, for example, `.gitconfig-pre-dotfiles`. If symlinks exist, they'll be left alone.):
-    * `.gitconfig` : **You'll need to change the user name and email in this file**
-    * `.jscsrc`
-    * `.jshintrc`
-    * `.profile`
-    * `.slate`
-    * `.zshrc`
-    * `.zprofile`
+* Run `mackup restore` (?)
+* In **Atom**: install the package-sync package. Then run the `package-sync:Sync` command (using ⌘⇧P)
 
-## Init files
+## RethinkDB
 
-Files in the `init` folder install various applications (`brew.sh`, `cask.sh`) and modules (`gem.sh` for Ruby, `npm.sh` for Node.js). **Look through these files and comment out unwanted apps/modules before calling them**.
+Additional customizing is required for rethinkdb after initial setup.
 
-Whatever you do, **DON'T run `init/osx.sh` wholesale**. You probably don't want to run most of the commands. Either comment out all the lines you don't want to run
-first, or grab the settings line by line and paste them in the terminal.
+* Probably want to change the host port from `:8080` to something that won't clobber a lot of local dev sites—something like `:8090`.
+* Set password for admin user
+* Create a new user and grant privileges
 
-## Git files
+## Apps Not Installed Here
+* Luminar
+* Mamp Pro
 
-If you want to use `.gitignore_global` as your global `.gitignore` file, run this in the terminal:
+## Before wiping a drive
 
-```bash
-git config --global core.excludesfile  ~/dotfiles/.gitignore_global
-```
-
-To have the post-checkout git hook loaded whenever you init or clone a new repo, run this line in the terminal:
-
-```bash
-git config --global init.templatedir ~/dotfiles/.git_template
-```
-
-To change the git user name and email:
-
-```bash
-git config --global user.name "John Doe"
-git config --global user.email "john@example.com"
-```
+* Backup the whole thing. Duh.
+* Dump local rethinkdb databases
+* Dump local MySQL databases
 
 ## Syntax Highlighting for SublimeText
 
