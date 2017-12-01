@@ -143,6 +143,9 @@
     liveUpdate: false
     useGitHubStyle: true
   "one-dark-ui": {}
+  "package-sync":
+    createOnChange: true
+    forceOverwrite: true
   "show-invisibles-plus":
     show: false
   "spell-check":
@@ -169,3 +172,6 @@
     showOnStartup: false
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
+  zentabs:
+    maximumOpenedTabs: 12
+    neverCloseUnsaved: true

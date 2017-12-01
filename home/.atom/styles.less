@@ -8,88 +8,114 @@
  * http://www.lesscss.org
  */
 
-.tree-view {
 
+
+/**
+ * Theme UI Overrides
+ */
+.tree-view {
+  // background-color: #333;
 }
+
+// Settings Panels:
+// atom-pane-container atom-pane .item-views .pane-item.settings-view > .panels {
+//   background-color: #e6e6e6;
+//
+//   .breadcrumb a {
+//     color: #444;
+//   }
+//   .breadcrumb > .active a {
+//     color: #777;
+//   }
+//   *::after,
+//   .icon::before {
+//     color: rgba(60,60,60, 0.6);
+//   }
+//
+//   .btn,
+//   .package-card {
+//     &::before,
+//     .icon::before {
+//       color: rgba(167, 168, 169, 0.6);
+//     }
+//   }
+//
+//   code {
+//     background-color: #777;
+//     color: #fff
+//   }
+//   pre code {
+//     background-color: transparent;
+//   }
+//   .badge,
+//   .section-heading {
+//     color: #222;
+//     text-shadow: 1px 1px #fff;
+//   }
+//   h1, h2, h3, h4,
+//   .setting-title,
+//   .text,
+//   .package-readme,
+//   .setting-description,
+//   .settings-panel label {
+//     color: #333;
+//   }
+//
+//   .setting-description {
+//     color: #666;
+//   }
+//
+//
+//   // Collapse/expand packages
+//   .sub-section.collapsed {
+//     .package-container {
+//       display: none;
+//     }
+//   }
+//   thead tr {
+//     background-color: #292c2f;
+//     color: #fff;
+//   }
+//   tbody tr {
+//     background-color: rgba(255, 255, 255, 0.07)
+//   }
+// }
+//
+// .path-input-container {
+//   height: 100%;
+//   max-height: 100%;
+//   .path-input {
+//     max-height: 100%;
+//     flex: 0 0 4.7;
+//     margin-bottom: 0;
+//   }
+// }
+
+// Active tab
+.tab-bar .tab.active,
+.tab-bar .tab.active:before,
+.tab-bar .tab.active:after {
+  color: #343434;
+  font-weight: bold;
+  background: linear-gradient(to bottom, #fff, #ccc);
+}
+
+// Modal Overlay (for advanced open file)
+.modal.overlay.from-top {
+  min-width: 50%;
+}
+
+
+/**
+ * TEXT EDITOR Overrides
+ */
+
 .editor {
   .invisible-character {
     color: rgba(0,0,0,0.5);
   }
 }
 
-// SETTINGS:
-atom-pane-container atom-pane .item-views .pane-item.settings-view > .panels {
-  background-color: #e6e6e6;
-
-  .breadcrumb a {
-    color: #444;
-  }
-  .breadcrumb > .active a {
-    color: #777;
-  }
-  *::after,
-  .icon::before {
-    color: rgba(60,60,60, 0.6);
-  }
-
-  .btn,
-  .package-card {
-    &::before,
-    .icon::before {
-      color: rgba(167, 168, 169, 0.6);
-    }
-  }
-
-  code {
-    background-color: #777;
-    color: #fff
-  }
-  pre code {
-    background-color: transparent;
-  }
-  .badge,
-  .section-heading {
-    color: #222;
-    text-shadow: 1px 1px #fff;
-  }
-  h1, h2, h3, h4,
-  .setting-title,
-  .text,
-  .package-readme,
-  .setting-description,
-  .settings-panel label {
-    color: #333;
-  }
-
-  .setting-description {
-    color: #666;
-  }
-
-
-  // Collapse/expand packages
-  .sub-section.collapsed {
-    .package-container {
-      display: none;
-    }
-  }
-  thead tr {
-    background-color: #292c2f;
-    color: #fff;
-  }
-  tbody tr {
-    background-color: rgba(255, 255, 255, 0.07)
-  }
-}
-.path-input-container {
-  height: 100%;
-  max-height: 100%;
-  .path-input {
-    max-height: 100%;
-    flex: 0 0 4.7;
-    margin-bottom: 0;
-  }
-}
-// Text EDITOR
 atom-text-editor {
   text-rendering: optimizeLegibility;
   font-family: "Fira Code", Monaco;
@@ -98,21 +124,6 @@ atom-text-editor {
 atom-text-editor.editor .syntax--string.syntax--regexp {
   -webkit-font-feature-settings: "liga" off, "calt" off;
 }
-
-// Modal Overlay (for advanced open file)
-.modal.overlay.from-top {
-  min-width: 50%;
-}
-
-// ACTIVE TAB
-.tab-bar .tab.active,
-.tab-bar .tab.active:before,
-.tab-bar .tab.active:after {
-  color: #343434;
-  font-weight: bold;
-  background-image: linear-gradient(to bottom, #fff, #ccc);
-}
-
 
 atom-pane.active .tab.active:before {
   box-shadow: inset 3px 3px 0 rgba(0, 0, 250, 0.4), -4px 0px 4px rgba(0, 0, 0, 0.3)
@@ -132,7 +143,7 @@ atom-pane.active .tab.active {
   }
 /*
  * SELECTION/FIND HIGHLIGHTING
- * Make sure "Use Shadow DOM" is checked in general settings
+ * Make sure "Use Shadow DOM" is checked in general settings (?)
  */
 
 atom-text-editor.editor {
