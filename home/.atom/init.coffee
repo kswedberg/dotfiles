@@ -18,3 +18,6 @@ atom.commands.add 'atom-workspace', 'swed:ignore-toggle', ->
 atom.commands.add 'atom-workspace', 'swed:toggle-vcs-ignored-files', ->
   treeView = atom.views.getView(document.querySelector('div.tree-view.tool-panel'))
   atom.commands.dispatch(treeView, 'tree-view:toggle-vcs-ignored-files');
+
+atom.commands.add 'atom-text-editor', 'swed:revert-to-saved', (event) ->
+  event.target.closest('atom-text-editor').getModel().getBuffer().reload()

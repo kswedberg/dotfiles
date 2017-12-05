@@ -23,6 +23,7 @@
   "auto-update-packages": {}
   "autocomplete-modules":
     includeExtension: true
+  "autocomplete-php": {}
   "autocomplete-plus":
     confirmCompletion: "enter"
     useAlternateScoring: true
@@ -37,6 +38,7 @@
       ]
     disabledPackages: [
       "language-gfm"
+      "linter-twig"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -99,6 +101,7 @@
   "js-autoimport":
     trailingSemicolon: true
   linter:
+    lintOnOpen: false
     lintPreviewTabs: false
   "linter-annotations": {}
   "linter-eslint":
@@ -142,10 +145,18 @@
     ]
     liveUpdate: false
     useGitHubStyle: true
+  "native-ui":
+    ui:
+      macTransparency: false
   "one-dark-ui": {}
   "package-sync":
     createOnChange: true
     forceOverwrite: true
+  "seti-ui":
+    compactView: true
+    fileIcons: false
+    hideProjectTab: true
+    themeColor: "Steel"
   "show-invisibles-plus":
     show: false
   "spell-check":
