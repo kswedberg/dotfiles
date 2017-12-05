@@ -185,6 +185,8 @@ alias tailphp='tail -f /Applications/MAMP/logs/php_error.log'
 alias hiddenshow="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
 alias hiddenhide="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
 
+alias random="node -e \"process.stdout.write(require('crypto').randomBytes(8).toString('hex'))"\"
+
 # Show/Hide all desktop icons (useful when presenting)
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
