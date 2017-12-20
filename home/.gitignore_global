@@ -21,6 +21,10 @@
 *.bz2
 *~
 
+# Local Ruby Bundles #
+######################
+.bundle
+
 # Node Modules #
 ######################
 node_modules

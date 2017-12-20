@@ -25,6 +25,9 @@ PATH="$(yarn global bin):$PATH"
 # Project-specific NODE modules
 PATH="./node_modules/.bin:$PATH"
 
+# Project-specific Ruby gems
+PATH="./bin:$PATH"
+
 # RBENV
 PATH=$HOME/.rbenv/bin:$PATH
 
