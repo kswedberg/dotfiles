@@ -34,6 +34,14 @@
     body: '''
     {% else %}$0
     '''
+'.text.html.php':
+  'dump':
+    prefix: 'dmp'
+    body: """
+    echo '<pre>';
+    var_dump(\$${1:var});
+    echo '</pre>';
+    """
 '.source.js':
   'winston logger':
     prefix: 'logg'

@@ -39,6 +39,7 @@
     disabledPackages: [
       "language-gfm"
       "linter-twig"
+      "vuejs2-snippets"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -125,7 +126,6 @@
   "linter-php":
     executablePath: "/usr/bin/php"
   "linter-ui-default":
-    showPanel: true
     showTooltip: false
     statusBarPosition: "Right"
   "markdown-preview":
@@ -143,7 +143,6 @@
       "text.plan"
       "text.plain.null-grammar"
     ]
-    liveUpdate: false
     useGitHubStyle: true
   "native-ui":
     ui:
@@ -152,6 +151,8 @@
   "package-sync":
     createOnChange: true
     forceOverwrite: true
+  "php-cs-fixer":
+    executeOnSave: true
   "seti-ui":
     compactView: true
     fileIcons: false
@@ -186,3 +187,6 @@
   zentabs:
     maximumOpenedTabs: 12
     neverCloseUnsaved: true
+".html.text.vue":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-…"
