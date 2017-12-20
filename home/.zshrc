@@ -1,5 +1,10 @@
 ZSH=$HOME/.oh-my-zsh
 
+# Some OMZ plugins rely on this
+if [[ -z "$ZSH_CACHE_DIR" ]]; then
+  ZSH_CACHE_DIR="$ZSH/cache"
+fi
+
 COMPLETION_WAITING_DOTS="true"
 # DISABLE_UPDATE_PROMPT=true
 
