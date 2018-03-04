@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<ruleset name="Karl">
-  <description>PSR2, but without LineLength check.</description>
-  <rule ref="PSR2">
-    <exclude name="Generic.Files.LineLength"/>
-  </rule>
-</ruleset>
