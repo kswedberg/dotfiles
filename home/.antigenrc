@@ -6,7 +6,7 @@ antigen bundle robbyrussell/oh-my-zsh lib/completion.zsh
 antigen bundle robbyrussell/oh-my-zsh lib/correction.zsh
 antigen bundle robbyrussell/oh-my-zsh lib/git.zsh
 antigen bundle robbyrussell/oh-my-zsh lib/grep.zsh
-antigen bundle robbyrussell/oh-my-zsh lib/history.zsh
+# antigen bundle robbyrussell/oh-my-zsh lib/history.zsh
 antigen bundle robbyrussell/oh-my-zsh lib/key-bindings.zsh
 antigen bundle robbyrussell/oh-my-zsh lib/termsupport.zsh
 antigen bundle robbyrussell/oh-my-zsh lib/theme-and-appearance.zsh
@@ -22,6 +22,8 @@ antigen bundle gulp
 antigen bundle npm
 antigen bundle rbenv
 antigen bundle ssh-agent
+antigen bundle virtualenv
+antigen bundle virtualenvwrapper
 antigen bundle z
 antigen bundle zsh_reload
 
