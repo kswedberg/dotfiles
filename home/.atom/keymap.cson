@@ -37,12 +37,13 @@
   "cmd-alt-r": "symbols-list:toggle"
 
 '.platform-darwin atom-pane atom-text-editor':
+
   # Multi-pane:
   "cmd-alt-right": "window:focus-previous-pane"
   "cmd-alt-left": "window:focus-next-pane"
 
-  'ctrl-cmd-shift-right': 'window:move-active-item-to-pane-on-right'
-  'ctrl-cmd-shift-left':  'window:move-active-item-to-pane-on-left'
+  'cmd-alt-shift-right': 'window:move-active-item-to-pane-on-right'
+  'cmd-alt-shift-left':  'window:move-active-item-to-pane-on-left'
 
   'ctrl-alt-cmd-right': 'pane:split-right'
   'ctrl-alt-cmd-left': 'pane:split-left'

@@ -14,22 +14,44 @@
  * Theme UI Overrides
  */
 
- // Active tab
+// Active tab
 
- .tab-bar .tab.active,
- .tab-bar .tab.active:before,
- .tab-bar .tab.active:after {
-   background: transparent;
-   box-shadow: none;
- }
+.tab-bar .tab.active,
+.tab-bar .tab.active:before,
+.tab-bar .tab.active:after {
+  background: transparent;
+  box-shadow: none;
+}
 
- .tab-bar .tab.texteditor.active,
- .tab-bar .tab.texteditor.active:before,
- .tab-bar .tab.texteditor.active:after {
-   color: #343434;
-   font-weight: bold;
-   background: linear-gradient(to bottom, #fff, #ccc);
- }
+.pane {
+  .tab-bar .tab.active {
+    &.texteditor {
+      &,
+      &:before,
+      &:after {
+        color: #343434;
+        background: linear-gradient(to bottom, #aaa, #888);
+      }
+    }
+  }
+}
+
+.pane.active,
+.pane:only-child {
+  .tab-bar .tab.active {
+    &[data-type="ResultsPaneView"],
+    &.texteditor {
+      &,
+      &:before,
+      &:after {
+        color: #343434;
+        font-weight: bold;
+        background: linear-gradient(to bottom, #fff, #ccc);
+      }
+    }
+  }
+}
+
 .tab-bar .tab[data-type="PanelDock"] {
   &, &:before {
     box-shadow: inset 1px 1px 0 #484848, -4px -4px 4px rgba(0, 0, 0, 0.1);
@@ -106,7 +128,7 @@ atom-text-editor.editor .syntax--string.syntax--regexp {
 
 atom-text-editor.editor {
   .selection .region {
-    background-color: rgba(150, 200, 255, 0.12);
+    background-color: rgba(150, 200, 255, 0.2);
   }
 
   .highlight.find-result .region {

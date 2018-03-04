@@ -1,6 +1,9 @@
 "*":
+  "advanced-open-file":
+    fuzzyMatch: true
   "atom-alignment":
     addSpacePostfix: true
+  "atom-autocomplete-php": {}
   "atom-beautify":
     general:
       _analyticsUserId: "05c56071-6859-4f96-bcb2-992bc66f7e33"
@@ -8,6 +11,8 @@
       beautifyEntireFileOnSave: false
     html:
       end_with_newline: true
+      indent_size: 4
+      wrap_attributes: "force"
     js:
       end_with_newline: true
       keep_array_indentation: true
@@ -40,6 +45,8 @@
       "language-gfm"
       "linter-twig"
       "vuejs2-snippets"
+      "autocomplete-php"
+      "linter-phpcs"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -73,6 +80,7 @@
   "file-types":
     Caddyfile$: "source.nginx"
     "\\.git(config|ignore).*$": "source.ini"
+    "\\.njk$": "text.html.twig"
     "^(cdf|cps|dash|dman|down|e|g|gif|keycopy|mkcd|nvmupdate|quit|rmkcd|rmount|rmrf|rumount|shorten|ssl-cert)$": "source.shell"
     "^\\.(aliases|exports|functions|inputrc|jekyll|path|opts|slate|source_after|zprofile|.*\\-theme)$": "source.shell"
     hosts$: "source.apache-config"
@@ -125,7 +133,15 @@
     harmony: true
   "linter-php":
     executablePath: "/usr/bin/php"
+  "linter-phpcs":
+    ignorePatterns: [
+      "**/*.blade.php"
+      "**/*.twig.php"
+      "**/wp-content/**/*.php"
+    ]
   "linter-ui-default":
+    panelHeight: 217
+    showPanel: true
     showTooltip: false
     statusBarPosition: "Right"
   "markdown-preview":
@@ -153,6 +169,15 @@
     forceOverwrite: true
   "php-cs-fixer":
     executeOnSave: true
+  "prettier-atom":
+    formatOnSaveOptions:
+      showInStatusBar: true
+    prettierOptions:
+      arrowParens: "always"
+      printWidth: 100
+      singleQuote: true
+      trailingComma: "es5"
+    useEslint: true
   "seti-ui":
     compactView: true
     fileIcons: false
@@ -169,7 +194,22 @@
       "text.plain.null-grammar"
       "text.md"
     ]
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    scrollSyncType: "Vertical + Horizontal"
   "todo-show":
+    ignoreThesePaths: [
+      "node_modules"
+      "vendor"
+      "bower_components"
+      "*.pdf"
+      "wp-admin"
+      "wp-includes"
+      "uploads"
+    ]
     sortBy: "Path"
   "tree-ignore": {}
   "tree-view":
@@ -187,6 +227,9 @@
   zentabs:
     maximumOpenedTabs: 12
     neverCloseUnsaved: true
+".css.source":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;<>~!#$@%^&*|+=[]{}`?-…"
 ".html.text.vue":
   editor:
     nonWordCharacters: "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-…"
