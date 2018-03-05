@@ -79,13 +79,32 @@ function fs() {
   fi
 }
 
+function readsie() {
+  num=$2
+  if [[ $num -gt "1024" ]]; then
+    ret="$(($num / 1024)) Kb"
+  else
+    ret="$num bytes"
+  fi
+
+  echo "$1: $ret"
+}
+
 # Compare original and gzipped file size
 function gz() {
-  local origsize=$(wc -c < "$1")
-  local gzipsize=$(gzip -c "$1" | wc -c)
-  local ratio=$(echo "$gzipsize * 100/ $origsize" | bc -l)
-  printf "orig: %d bytes\n" "$origsize"
-  printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
+  local files=($@)
+  for file in $files; do
+    if [[ -f "$file" ]]; then
+      local origsize=$(wc -c < "$file")
+      local gzipsize=$(gzip -c "$file" | wc -c)
+      local ratio=$(echo "$gzipsize * 100/ $origsize" | bc -l)
+
+      echo "\n${file}:"
+      echo "\t`readsie "orig" $origsize`"
+      printf "\t`readsie "gzip" $gzipsize` (%2.2f%%)" "$ratio"
+      echo ""
+    fi
+  done
 }
 
 # # `m` with no arguments opens the current directory in TextMate, otherwise

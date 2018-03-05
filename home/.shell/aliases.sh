@@ -34,7 +34,8 @@ alias mi="micro"
 alias dotfiles="$EDITOR -n $DOTFILES $ZSH"
 alias zshconfig="$EDITOR -n ~/.zshrc"
 alias ohmyzsh="$EDITOR -n ~/.oh-my-zsh"
-alias aliases="$EDITOR -n ~/dotfiles/.aliases"
+alias aliases="$EDITOR -n ~/dotfiles/home/.shell/aliases.sh"
+alias brewfile="$EDITOR -n ~/dotfiles/Brewfile"
 
 # SourceTree
 alias st="/Applications/SourceTree.app/Contents/Resources/stree"
@@ -46,10 +47,14 @@ alias startpg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/serv
 alias mmv='noglob zmv -W'
 
 # Dir navigation
+alias ...="cd ../../"
 alias ....='cd ../../..'
+alias .....='cd ../../../..'
 
 # Homebrew Bundle
 alias bbundle="brew bundle --file=$DOTFILES/Brewfile"
+
+# Create a Brewfile from all the currently installed Homebrew packages. Add --force to overwrite an existing Brewfile
 alias bbundledump="brew bundle dump --file=$DOTFILES/Brewfile"
 
 # Directory Listings

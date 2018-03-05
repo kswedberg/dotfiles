@@ -14,6 +14,11 @@ function source_files {
 src_files=(
   path.sh
   exports.sh
+  aliases.sh
+  autoloads.sh
+  functions.sh
+  nvm_load.sh
+  opts.sh
 )
 
 source_files ${src_files}
