@@ -27,7 +27,6 @@ antigen init $HOME/.antigenrc
 eval "$(rbenv init -)"
 
 # LOAD STUFF ***AFTER*** oh-my-zsh
-
 source $HOME/.shell-after/index.sh
 
 unsetopt correct_all

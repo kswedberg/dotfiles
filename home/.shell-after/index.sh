@@ -1,13 +1,8 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 src_files=(
-  autoloads.sh
-  aliases.sh
   completion-pm2.sh
   extra.sh
-  functions.sh
-  nvm_load.sh
-  opts.sh
   zsh-theme.sh
 )
 

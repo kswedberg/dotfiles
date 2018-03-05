@@ -9,6 +9,7 @@ home/bin/*
 .npmrc
 .ssh
 *.secrets
+auth.json
 extra.sh
 secrets.sh
 

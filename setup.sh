@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `macos.sh` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
 DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 red=`tput setaf 1`
 reset=`tput sgr0`
@@ -39,8 +46,25 @@ nvm install node
 source $DOTFILES/init/npm.sh
 
 # Install a "recent" Ruby version (as of 2017-12-01) and use it
+# (rbenv was installed from homebrew with the brew bundle command above)
 rbenv install 2.4.2
 rbenv global 2.4.2
+
+# Create default directory and set permissions for MongoDB
+sudo mkdir -p /data/db
+sudo chown -R `id -un` /data/db
+
+echo "\nDo you want launchd to start mongodb now and restart at login? (y/n)"
+read CONFIRM
+
+if [ "$CONFIRM" = "y" ]; then
+  brew services start mongodb
+  echo "mongodb added to launchd"
+else
+  echo "Okay. To run mongodb on your own… "
+  echo "$ mongod --config /usr/local/etc/mongod.conf"
+fi
+
 
 # Install Ruby Gems
 source $DOTFILES/init/gem.sh
@@ -49,6 +73,6 @@ source $DOTFILES/init/gem.sh
 composer global require laravel/installer
 
 # Set some MacOS defaults
-source $DOTFILES/init/macos.sh
+# source $DOTFILES/init/macos.sh
 
 echo "All done!"

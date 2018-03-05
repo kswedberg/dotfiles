@@ -27,5 +27,17 @@ export JEKYLL_EDITOR="atom"
 
 export JIRA_URL="http://fusionary.jira.com"
 
+# CORDOVA BUG requires Java 8 installed and this in path:
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
+
 # Set a couple paths for use elsewhere
 export DOTFILES="$HOME/dotfiles"
+
+# virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+export PIP_RESPECT_VIRTUALENV=true
+if [ -f /Users/kswedberg/Library/Python/2.7/bin/virtualenvwrapper.sh ]
+then
+    source /Users/kswedberg/Library/Python/2.7/bin/virtualenvwrapper.sh
+fi

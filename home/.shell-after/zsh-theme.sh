@@ -20,6 +20,8 @@ function karl_precmd {
 "
   fi
 
+  karl_virtualenv=$(virtualenv_prompt_info)
+
   # local IN_RMOUNT_PATH=`echo "${PWD}" | grep "${RMOUNT_DIR}"`
   PATHCOLOR="%{$reset_color%}"
   # if [[ -n "${IN_RMOUNT_PATH}" ]]; then
@@ -61,11 +63,18 @@ ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}⇡"
 ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[cyan]%}⇣"
 ZSH_THEME_GIT_PROMPT_DIVERGED="%{$fg[yellow]%}⚑"
 
+# local KS_VIRTUAL_ENV_PROMPT = ''
+# if [[ -n ${VIRTUAL_ENV} ]]; then
+#   KS_VIRTUAL_ENV_PROMPT = ''
+# else
+#   KS_VIRTUAL_ENV_PROMPT = "${ZSH_THEME_VIRTUALENV_PREFIX:=[}${VIRTUAL_ENV:t}${ZSH_THEME_VIRTUALENV_SUFFIX:=]}"
+# fi
+
 NODE_ICON=$'\U2B22'
 RUBY_ICON=$'\U2B18'
 
 PROMPT='
-${KARL_CURRENT_TIME_} ${KARL_OPEN_ANGLE}${RUBY_ICON} '"${rvm_ruby}"'${KARL_CLOSE_ANGLE} [%{$fg[green]%}${NODE_ICON} `node -v`%{$reset_color%}]${PATHCOLOR} ${current_dir}
+${KARL_CURRENT_TIME_} ${karl_virtualenv} ${KARL_OPEN_ANGLE}${RUBY_ICON} '"${rvm_ruby}"'${KARL_CLOSE_ANGLE} [%{$fg[green]%}${NODE_ICON} `node -v`%{$reset_color%}]${PATHCOLOR} ${current_dir}
 %{$reset_color%}$(git_super_status)${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{$reset_color%}'
 # $(git_prompt_info)${KARL_PRE_STATUS}$(git_prompt_status)${KARL_POST_STATUS}${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
 # RPROMPT='[`node -v`]'

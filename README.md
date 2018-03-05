@@ -29,19 +29,50 @@ Using:
 
 Additional customizing is required for rethinkdb after initial setup.
 
-* Probably want to change the host port from `:8080` to something that won't clobber a lot of local dev sites—something like `:8090`.
+* Probably want to change the host port from `:8080` to one that won't clobber a lot of local dev sites—something like `:8090`.
 * Set password for admin user
 * Create a new user and grant privileges
+
+## MongoDB
+
+Additional customizing is required for mongodb after initial setup.
+
+1. Create a user administration account. This user only has privileges to manage users and roles, so you can use it to create other users that have permission to manage actual databases. (Details: https://docs.mongodb.com/manual/tutorial/enable-authentication/)
+
+    `$ mongo --port 27017`
+
+    ```js
+    use admin
+    db.createUser(
+      {
+        user: 'userAdmin',
+        pwd: 'YOURPASSWORD',
+        roles: [ { role: 'userAdminAnyDatabase', db: 'admin' } ]
+      }
+    )
+    ```
+
+2. Restart mongod with auth
+    `brew services restart mongod --auth`
+3. Start a mongo shell with `userAdmin`
+    `$ mongo --port 27017 -u "userAdmin" -p "YOURPASSWORD" --authenticationDatabase "admin"`
 
 ## Apps Not Installed Here
 * Luminar
 * Mamp Pro
+
+## Some Important Files
+* **Brewfile**: manifest for installing brew packages, cask apps, and MacOS App Store apps
+* **home/.antigenrc**: config for installing zsh plugins, etc
+* **home/.mackup/custom.cfg**: config for extra files to symlink from `~/dotfiles/home/` to `~/`
+
 
 ## Before wiping a drive
 
 * Backup the whole thing. Duh.
 * Dump local rethinkdb databases
 * Dump local MySQL databases
+* * Dump local mongodb databases
 
 ## Syntax Highlighting for SublimeText
 
