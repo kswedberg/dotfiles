@@ -5,7 +5,10 @@
 PATH="/usr/local/heroku/bin:$PATH"
 
 # MAMP (if running rails app that requires mysql2 lib, put this before Homebrew libraries paths)
-PATH=/Applications/MAMP/Library/bin:$PATH
+# PATH=/Applications/MAMP/Library/bin:$PATH
+
+# For virtualenv:
+PATH=$HOME/Library/Python/2.7/bin:$PATH
 
 # Homebrew libraries
 PATH=/usr/local/sbin:$PATH
@@ -29,7 +32,8 @@ PATH="./node_modules/.bin:$PATH"
 PATH="./bin:$PATH"
 
 # RBENV
-PATH=$HOME/.rbenv/bin:$PATH
+# (No need to set this here, because ohmyzsh rbenv plugin loaded in .antigenrc is taking care of it)
+# PATH=$HOME/.rbenv/bin:$PATH
 
 # MY PATHS : make them come later so they don't accidentally override something critical
 PATH="$PATH:$HOME/bin:$HOME/bin/tfs:$HOME/dotfiles"
