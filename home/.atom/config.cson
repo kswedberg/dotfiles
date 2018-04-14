@@ -27,6 +27,7 @@
     jsParametersForUglifyJS2: "nomangle"
   "auto-update-packages": {}
   "autocomplete-modules":
+    babelPluginModuleResolver: true
     includeExtension: true
   "autocomplete-php": {}
   "autocomplete-plus":
@@ -43,9 +44,19 @@
       ]
     disabledPackages: [
       "language-gfm"
-      "linter-twig"
       "vuejs2-snippets"
-      "autocomplete-php"
+      "atom-minify"
+      "editorconfig"
+      "git-time-machine"
+      "nativescript-atom-snippets"
+      "hey-pane"
+      "intentions"
+      "linter-jscs"
+      "linter-jshint"
+      "script"
+      "zentabs"
+      "language-expressionengine"
+      "php-cs-fixer"
       "linter-phpcs"
     ]
     excludeVcsIgnoredPaths: false
@@ -123,7 +134,6 @@
   "linter-jscs":
     displayAs: "warning"
     esnext: true
-    fixOnSave: true
     onlyConfig: true
     preset: "grunt"
   "linter-jshint":
@@ -137,10 +147,9 @@
     ignorePatterns: [
       "**/*.blade.php"
       "**/*.twig.php"
-      "**/wp-content/**/*.php"
+      "**/wp-content/**"
     ]
   "linter-ui-default":
-    panelHeight: 217
     showPanel: true
     showTooltip: false
     statusBarPosition: "Right"
@@ -168,7 +177,7 @@
     createOnChange: true
     forceOverwrite: true
   "php-cs-fixer":
-    executeOnSave: true
+    executeOnSave: false
   "prettier-atom":
     formatOnSaveOptions:
       showInStatusBar: true
@@ -227,9 +236,18 @@
   zentabs:
     maximumOpenedTabs: 12
     neverCloseUnsaved: true
+".css.postcss.source":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;<>~!#$@%^&*|+=[]{}`?-…"
+".css.postcss.source.sugarss":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;<>~!#$@%^&*|+=[]{}`?-…"
+".css.scss.source":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;<>~!#%^&*|+=[]{}`?…"
 ".css.source":
   editor:
     nonWordCharacters: "/\\()\"':,.;<>~!#$@%^&*|+=[]{}`?-…"
-".html.text.vue":
+".sass.source":
   editor:
-    nonWordCharacters: "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-…"
+    nonWordCharacters: "/\\()\"':,.;<>~!#%^&*|+=[]{}`?-…"

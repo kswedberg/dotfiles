@@ -36,7 +36,7 @@
   'ctrl-cmd-i': 'swed:toggle-vcs-ignored-files'
   "cmd-alt-r": "symbols-list:toggle"
 
-'.platform-darwin atom-pane atom-text-editor':
+'.platform-darwin atom-pane':
 
   # Multi-pane:
   "cmd-alt-right": "window:focus-previous-pane"

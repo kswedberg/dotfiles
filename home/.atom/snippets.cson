@@ -28,6 +28,13 @@
       $0
     }
     '''
+'.text.html':
+  'tag':
+    prefix: 'tag'
+    body: '''
+    <${1:div}>$0</${1/[ ]+.*$//}>
+    '''
+
 '.text.html.nunjucks, .text.html.twig':
   'else':
     prefix: 'else'
