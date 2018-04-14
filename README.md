@@ -22,7 +22,7 @@ Using:
   * **Ruby / rbenv**: Installs a "recent" Ruby version (as of 2017-12-01) via `rbenv` (which was installed via Homebrew).
   * **Composer** Installs global Composer packages for PHP
 
-* Run `mackup restore` (?)
+* Run `mackup restore` 
 * In **Atom**: install the package-sync package. Then run the `package-sync:Sync` command (using ⌘⇧P)
 
 ## RethinkDB
