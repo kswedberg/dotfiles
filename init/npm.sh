@@ -19,7 +19,7 @@ npm install -g snyk
 # npm install -g nodemon
 
 # General Utilities
-npm install -g hyperlink
+# npm install -g hyperlink
 npm install -g gifify # video -> animated gif
 npm install -g ttystudio # terminal -> animated gif
 npm install -g shipit-cli
