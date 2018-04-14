@@ -25,13 +25,19 @@ brew update
 brew tap homebrew/bundle
 brew bundle
 
-# Install a few other apps that I forgot to do via Homebrew last time. Doh!
-source $DOTFILES/init/cask.sh
-
 # Make ZSH the default shell environment
 chsh -s $(which zsh)
 
+# In case there is no .zshrc yet:
+touch ~/.zshrc
+
 source ~/.zshrc
+
+# Python package
+pip install virtualenvwrapper
+
+# Symlink the Mackup config file to the home directory
+ln -s ~/dotfiles/home/.mackup.cfg ~/
 
 # Install nvm if not already there
 if [[ ! -d ~/.nvm ]]; then
@@ -41,9 +47,6 @@ fi
 
 # Install latest node.js
 nvm install node
-
-# Install global npm packages
-source $DOTFILES/init/npm.sh
 
 # Install a "recent" Ruby version (as of 2017-12-01) and use it
 # (rbenv was installed from homebrew with the brew bundle command above)
@@ -64,10 +67,6 @@ else
   echo "Okay. To run mongodb on your own… "
   echo "$ mongod --config /usr/local/etc/mongod.conf"
 fi
-
-
-# Install Ruby Gems
-source $DOTFILES/init/gem.sh
 
 # Install global Composer packages
 composer global require laravel/installer
