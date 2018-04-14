@@ -15,21 +15,28 @@ PATH=/usr/local/sbin:$PATH
 PATH=/usr/local/bin:$PATH
 # PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
 
+# brew-installed libraries
 PATH="/usr/local/opt/curl/bin:$PATH"
+PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
+# golang
+PATH=$PATH:/usr/local/opt/go/libexec/bin
+PATH=$PATH:$(go env GOPATH)/bin
+
+# Yarn
 PATH="$(yarn global bin):$PATH"
-
-# DRUPAL
-# PATH="$PATH:$HOME/Sites/drush"
-
-# FONT CONVERTER STUFF
-# PATH="$PATH:$HOME/bin/ttf2eot:$HOME/bin/font-converter"
 
 # Project-specific NODE modules
 PATH="./node_modules/.bin:$PATH"
 
 # Project-specific Ruby gems
 PATH="./bin:$PATH"
+
+# DRUPAL
+# PATH="$PATH:$HOME/Sites/drush"
+
+# FONT CONVERTER STUFF
+# PATH="$PATH:$HOME/bin/ttf2eot:$HOME/bin/font-converter"
 
 # RBENV
 # (No need to set this here, because ohmyzsh rbenv plugin loaded in .antigenrc is taking care of it)
@@ -41,7 +48,5 @@ PATH="$PATH:$HOME/bin:$HOME/bin/tfs:$HOME/dotfiles"
 # COREUTILS added via homebrew...
 # PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 # MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
 export PATH

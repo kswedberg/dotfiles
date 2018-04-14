@@ -27,11 +27,12 @@ setopt hist_verify
 # Don't beep on errors
 setopt no_beep
 
+# Allow tabs to share history.
+# Shouldn't have to set this explicitly, but something else must be unsetting it
+setopt share_history
+
 # Case-insensitive globbing (used in pathname expansion)
 setopt no_case_glob
 
-unsetopt inc_append_history
-
 # Turn off shared history between tabs:
-
-# unsetopt share_history
+# unsetopt inc_append_history

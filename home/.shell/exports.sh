@@ -1,3 +1,5 @@
+# For `export PATH…`, see ./path.sh
+
 # Prefer US English and use UTF-8
 export LANG="en_US"
 export LC_ALL="en_US.UTF-8"
