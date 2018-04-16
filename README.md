@@ -22,7 +22,7 @@ Using:
   * **Ruby / rbenv**: Installs a "recent" Ruby version (as of 2017-12-01) via `rbenv` (which was installed via Homebrew).
   * **Composer** Installs global Composer packages for PHP
 
-* Run `mackup restore` 
+* Run `mackup restore`
 * In **Atom**: install the package-sync package. Then run the `package-sync:Sync` command (using ⌘⇧P)
 
 ## RethinkDB
@@ -53,7 +53,7 @@ Additional customizing is required for mongodb after initial setup.
     ```
 
 2. Restart mongod with auth
-    `brew services restart mongod --auth`
+    `brew services restart mongodb --auth`
 3. Start a mongo shell with `userAdmin`
     `$ mongo --port 27017 -u "userAdmin" -p "YOURPASSWORD" --authenticationDatabase "admin"`
 

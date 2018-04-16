@@ -188,7 +188,9 @@ alias tailphp='tail -f /Applications/MAMP/logs/php_error.log'
 # alias src='source ~/.zshrc'
 
 alias hiddenshow="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
+alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
 alias hiddenhide="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
+alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
 
 alias random="node -e \"process.stdout.write(require('crypto').randomBytes(8).toString('hex'))"\"
 

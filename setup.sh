@@ -23,7 +23,7 @@ brew update
 
 # Install all Homebrew dependencies with bundle (See Brewfile)
 brew tap homebrew/bundle
-brew bundle
+brew bundle -v
 
 # Make ZSH the default shell environment
 chsh -s $(which zsh)
