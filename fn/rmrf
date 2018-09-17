@@ -7,8 +7,13 @@ if [ -z "$1" ]; then
   return 1
 fi
 echo ""
+if [ ! -e $1 ];
+then
+  echo "File $1 doesn't exist."
+  return 1
+fi
 {
-  ls "$1" -lash
+  ls -lash "$1"
 } || {
   return 1
 }
