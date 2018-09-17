@@ -9,7 +9,7 @@ for (( i = 0; i < ${#backup_cmds[@]} ; i++ )); do
     printf "\n* ${backup_cmds[$i]}"
 done
 
-echo "\n\nAre you sure? (y/n)"
+echo "\n\nAre you sure? (y/N)"
 read CONFIRM
 
 if [ "$CONFIRM" = "y" ]; then
