@@ -21,6 +21,10 @@
 *.bz2
 *~
 
+# Local SSL Certs    #
+######################
+*.pem
+
 # Local Ruby Bundles #
 ######################
 .bundle
