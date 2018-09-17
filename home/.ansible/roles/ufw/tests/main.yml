@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  roles:
+    - franklinkim.ufw
+  vars:
+    ufw_rules:
+      - { port: 80, rule: allow }
+      - { from_ip: '127.0.0.1/8' }
+      - { from_ip: '127.0.42.0/24', rule: deny }
+    ufw_default_forward_policy: ACCEPT
+    ufw_logging: full
+    ufw_applications:
+     - { name: "OpenSSH" }
