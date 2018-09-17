@@ -50,7 +50,7 @@ echo $CMD
 echo ''
 echo "Access the database at http://localhost:"${LOCAL_PORT}
 echo ''
-echo 'To kill the process, type ` ps aux | grep ssh ` and find the pid of the tunnel process'
+echo "To kill the process, type  ps aux | grep ${SERVER} and find the pid of the tunnel process"
 echo 'Then run kill [PID]'
 
 eval $CMD
