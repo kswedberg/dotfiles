@@ -4,3 +4,5 @@
 --ignore-dir=public/generated
 --sort-files
 --smart-case
+--type-set=md=.md,.mkd,.markdown
+--pager=less
