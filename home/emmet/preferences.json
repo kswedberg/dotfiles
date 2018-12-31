@@ -1,5 +1,7 @@
 {
   "bem.elementSeparator": "-",
   "bem.modifierSeparator": "--",
-  "css.autoInsertVendorPrefixes": false
+  "css.autoInsertVendorPrefixes": false,
+  "css.color.case": "lower",
+  "css.gradient.defaultProperty": "background"
 }
