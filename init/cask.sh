@@ -13,7 +13,6 @@ function cask() {
 # cask slowy
 # cask "jeromelebel-mongohub"
 # cask "karabiner-elements"
-# cask "mongodb-compass"
 # cask "sublime-text"
 
 # PROBABLY WON'T INSTALL
