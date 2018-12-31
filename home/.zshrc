@@ -15,6 +15,7 @@ zmodload -F zsh/stat b:zstat
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Load shell dotfiles **BEFORE* oh-my-zsh
 source $HOME/.shell/index.sh
@@ -36,7 +37,7 @@ unsetopt correct_all
 [[ -f /Users/kswedberg/.nvm/versions/node/v8.9.1/lib/node_modules/yarn-completions/node_modules/tabtab/.completions/yarn.zsh ]] && . /Users/kswedberg/.nvm/versions/node/v8.9.1/lib/node_modules/yarn-completions/node_modules/tabtab/.completions/yarn.zsh
 
 ###-tns-completion-start-###
-if [ -f /Users/kswedberg/.tnsrc ]; then 
-    source /Users/kswedberg/.tnsrc 
+if [ -f /Users/kswedberg/.tnsrc ]; then
+    source /Users/kswedberg/.tnsrc
 fi
 ###-tns-completion-end-###
