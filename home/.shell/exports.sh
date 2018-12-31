@@ -26,6 +26,9 @@ export GREP_OPTIONS="--color=auto"
 # Link Homebrew casks in `/Applications` rather than `~/Applications`
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+# Style options for `bat` command (which I've aliased to `cat`)
+export BAT_STYLE="header,changes"
+
 # The place for hosting Git repos. Use this for private repos.
 export GIT_HOSTING='git@github.com'
 
