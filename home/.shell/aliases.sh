@@ -28,7 +28,7 @@ alias diff="icdiff"
 
 
 # Caddy Server
-alias caddyserve="sudo caddy -conf ~/Caddyfile"
+alias caddyserve="sudo caddy -cst=onf ~/Caddyfile"
 
 # TextMate
 alias m="mate"
@@ -43,7 +43,7 @@ alias mi="micro"
 
 # OPEN files/projects in default editor
 # Also, see ./fn/e file
-alias dotfiles="$EDITOR -n $DOTFILES $ZSH"
+alias dotfiles="$EDITOR -n $DOTFILES $HOME/.antigen/bundles/"
 alias zshconfig="$EDITOR -n ~/.zshrc"
 alias ohmyzsh="$EDITOR -n ~/.oh-my-zsh"
 alias aliases="$EDITOR -n ~/dotfiles/home/.shell/aliases.sh"
@@ -51,6 +51,10 @@ alias brewfile="$EDITOR -n ~/dotfiles/Brewfile"
 
 # SourceTree
 alias st="/Applications/SourceTree.app/Contents/Resources/stree"
+
+# Fork Git Client
+# alias st="fork" # until I lose the muscle memory of opening SourceTree
+alias f="fork"
 
 # PostGreSQL
 alias startpg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
@@ -119,12 +123,17 @@ alias yip="yarn install --production"
 alias yrm="yarn remove"
 
 # DOCKER
-# (PROJECT-SPECIFIC DOCKER aliases are in .extra)
+# `daliases` function is in .shell-after/extra.sh
+# (PROJECT-SPECIFIC DOCKER aliases are in .shell-after/extra.sh)
+alias dsp="docker system prune"
+alias dps="docker ps -a"
+# DOCKER MACHINE
 alias dmstart="docker-machine start default"
 alias dmstop="docker-machine stop default"
 # Get ip address of docker machine
 alias dmip="docker-machine ip default"
 
+# DOCKER COMPOSE
 # Build a docker image based on a Dockerfile in current dir
 # And do it after every `git pull` because gems might change
 alias dcb="docker-compose build"
@@ -132,6 +141,8 @@ alias dcb="docker-compose build"
 # start the built image
 alias dcu="docker-compose up"
 
+# start the built image and get terminal back
+alias dcud="docker-compose up -d"
 # stop the built image
 alias dcd="docker-compose down"
 
@@ -140,6 +151,17 @@ alias dcr="docker-compose run"
 
 # "transient run" removes the container after it finishes.
 alias dctr="docker-compose run --rm"
+alias dcrt="docker-compose run --rm"
+
+# View running docker processes
+alias dcps="docker-compose ps"
+
+# Execute a command within the docker container
+# e.g. dce container_name npm install
+alias dce="docker-compose exec"
+
+
+###############
 
 # NPM
 alias nr="npm run"
