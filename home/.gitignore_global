@@ -21,6 +21,10 @@
 *.bz2
 *~
 
+# Fusionary Timesheets RC File  #
+#################################
+.fmtsrc
+
 # Local SSL Certs    #
 ######################
 *.pem
