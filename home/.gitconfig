@@ -48,7 +48,7 @@
   su = submodule update --init
 
   push-to = !"git-push-to.sh"
-
+  wtf = !"git-wtf.sh"
   syncupstream = !"git fetch upstream; git checkout master; git merge upstream/master; git push; echo 'Check out your branch and run git rebase master. See: http://www.xanthir.com/b4hf0'"
 
   ## The following aliases require git-extras (http://github.com/visionmedia/git-extras)
@@ -82,7 +82,7 @@
 #   trustExitCode = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [branch]
 	autosetuprebase = always
 [pull]
@@ -100,3 +100,5 @@
 	token = 2bd67f5be70386d922e1b15174e617b8
 [gist-diff]
 	token = 09d304b119dc42981f513035fc6aab7c8db04ed0
+[icdiff]
+	options = " --line-numbers"
