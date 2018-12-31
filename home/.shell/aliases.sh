@@ -15,6 +15,18 @@
 # 2: sa
 # alias sa="alias > ~/dotfiles/.aliases"
 
+####
+#### OVERRIDE standard shell commands
+####
+alias du="ncdu --color dark -rr"
+
+# For "bat" styles, see BAT_STYLE line in exports.sh
+alias cat="bat"
+
+alias top="sudo htop"
+alias diff="icdiff"
+
+
 # Caddy Server
 alias caddyserve="sudo caddy -conf ~/Caddyfile"
 
