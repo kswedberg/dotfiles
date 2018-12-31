@@ -1,39 +1,61 @@
 # npm install -g autoprefixer
 # npm install -g bower
-npm install -g browser-sync
-npm install -g express-generator
-#
-# ### Task Runners
-npm install -g gulp-cli
-npm install -g grunt-cli
+modules=(
+  @storybook/cli
+  @vue/cli
+  @vue/cli-init
+  browser-sync
+  cordova
+  create-react-native-app
+  depcheck
+  exp
+  express-generator
+  gatsby-cli
+  gifify # video -> animated gif
+  git-changelog
+  grunt-cli
+  gulp-cli
+  http-server
+  lerna # for mono repos
+  localtunnel # command is `lt`
+  napa
+  nativescript
+  nectarjs
+  ngrok
+  plugman
+  pm2
+  prettier
+  react-native-cli
+  react-viro-cli
+  shipit-cli
+  snyk
+  tldr # Nice simple alternative to man. Gives good examples
+  ttystudio # terminal -> animated gif
+  uglify-js
+  webpack
+  yarn-completions
+  yo
+)
+
+printf -v str_modules ' %s' "${modules[@]}"
+str_modules=${str_modules:1}
+
+npm install -g $str_modules
+
+# Others:
 # npm install -g grunt-init
 
-npm install -g tldr # Nice simple alternative to man. Gives good examples
-
 # # Node Utilities
-npm install -g pm2
-npm install -g npm-dview
-npm install -g depcheck
-npm install -g napa
-npm install -g snyk
+
 # npm install -g nodemon
 
 # General Utilities
 # npm install -g hyperlink
-npm install -g gifify # video -> animated gif
-npm install -g ttystudio # terminal -> animated gif
-npm install -g shipit-cli
-npm install -g uglify-js
-npm install -g webpack
-npm install -g git-changelog
-npm install -g http-server
 # npm install -g lodash-cli
 # npm install -g marked
 # npm install -g mermaid # http://knsv.github.io/mermaid/
 
 # Mobile & Desktop Dev
-npm install -g cordova
-npm install -g plugman
 # npm install -g electron-prebuilt
 # npm install -g hoodie-cli
 # npm install -g ios-sim
@@ -44,8 +66,6 @@ npm install -g plugman
 # npm install -g surge
 # npm install -g jitsu
 
-npm install -g yo
-npm i -g yarn-completions
 
 ### Yeoman Generators:
 # npm install -g generator-craftplugin
