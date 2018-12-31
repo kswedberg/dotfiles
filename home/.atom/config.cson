@@ -55,9 +55,11 @@
       "linter-jshint"
       "script"
       "zentabs"
-      "language-expressionengine"
-      "php-cs-fixer"
+      "linter-twig"
       "linter-phpcs"
+      "markdown-preview"
+      "pigments"
+      "language-todo"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -72,6 +74,7 @@
       "coffee-compile"
       "atom-minify"
       "symbols-list"
+      "git-plus"
     ]
     telemetryConsent: "no"
     themes: [
@@ -126,10 +129,20 @@
   "linter-annotations": {}
   "linter-eslint":
     fixOnSave: true
-    globalNodePath: "/Users/kswedberg/.nvm/versions/node/v8.9.1"
+    globalNodePath: "/Users/kswedberg/.nvm/versions/node/v10.9.0"
+    ignoreFixableRulesWhileTyping: true
     lintHtmlFiles: true
     rulesToSilenceWhileTyping: [
       "no-trailing-spaces"
+      "no-unused-vars"
+    ]
+    scopes: [
+      "source.js"
+      "text.html.vue"
+      "source.jsx"
+      "source.js.jsx"
+      "source.babel"
+      "source.js-semantic"
     ]
   "linter-jscs":
     displayAs: "warning"
@@ -149,6 +162,7 @@
       "**/*.twig.php"
       "**/wp-content/**"
     ]
+  "linter-twig": {}
   "linter-ui-default":
     showPanel: true
     showTooltip: false
@@ -177,7 +191,7 @@
     createOnChange: true
     forceOverwrite: true
   "php-cs-fixer":
-    executeOnSave: false
+    executeOnSave: true
   "prettier-atom":
     formatOnSaveOptions:
       showInStatusBar: true
@@ -220,7 +234,8 @@
       "uploads"
     ]
     sortBy: "Path"
-  "tree-ignore": {}
+  "tree-ignore":
+    enabled: false
   "tree-view":
     alwaysOpenExisting: true
     autoReveal: true
@@ -248,6 +263,9 @@
 ".css.source":
   editor:
     nonWordCharacters: "/\\()\"':,.;<>~!#$@%^&*|+=[]{}`?-…"
+".json.source":
+  editor:
+    softWrap: false
 ".sass.source":
   editor:
-    nonWordCharacters: "/\\()\"':,.;<>~!#%^&*|+=[]{}`?-…"
+    nonWordCharacters: "/\\()\"':,.;<>~!#$@%^&*|+=[]{}`?-…"

@@ -28,6 +28,16 @@
       $0
     }
     '''
+  'font-family system fonts':
+    'prefix': 'ffsys'
+    'body': '''
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
+    '''
+  'system font list':
+    'prefix': 'sys'
+    'body': '''
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
+    '''
 '.text.html':
   'tag':
     prefix: 'tag'
@@ -69,6 +79,12 @@
       $0
     };
     '''
+  "Object.defineProperty":
+    prefix: "defineProperty"
+    body: "Object.defineProperty(${1:object}, ${2:key}, ${3:propSettings})"
+  "Object.defineProperty +":
+    prefix: "Object.defineProperty"
+    body: "Object.defineProperty(${1:object}, ${2:key}, ${3:propSettings})"
 
   # Need this here to override some other `req` that I can't find
   'Require':
