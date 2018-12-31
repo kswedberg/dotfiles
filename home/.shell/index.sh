@@ -19,6 +19,7 @@ src_files=(
   functions.sh
   nvm_load.sh
   opts.sh
+  secrets.sh
 )
 
 source_files ${src_files}
