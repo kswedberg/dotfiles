@@ -11,15 +11,27 @@ function example {
   echo "\t$1"
 }
 
-# fd - cd to selected directory
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
+help() {
+  env man "$@" && tldr "$@"
+}
+# copy
+# If argument passed, cat the file and pipe through copy
+#   …otherwise, pipe stdin into copy.
+# Finally, paste to stdout
+copy() {
+  if [ -t 0 ]; then
+    cat $@ | pbcopy
+  else
+    pbcopy < /dev/stdin
+  fi
+  echo "\nCopied to your clipboard:\n"
+  pbpaste
 }
 
-# fkill - kill process
+# Alias paste to pbpaste
+alias paste=pbpaste
+
+# fkill - find process using fuzzy finder and kill it
 fkill() {
   local pid
   pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
@@ -67,19 +79,20 @@ function targz() {
 
 # Determine size of a file or total size of a directory
 function fs() {
-  if du -b /dev/null > /dev/null 2>&1; then
-    local arg=-sbh
-  else
-    local arg=-sh
-  fi
+  # if du -b /dev/null > /dev/null 2>&1; then
+  #   local arg=-sbh
+  # else
+  #   local arg=-sh
+  # fi
   if [[ -n "$@" ]]; then
-    du $arg -- "$@"
+    du -- "$@"
   else
-    du $arg .[^.]* *
+    du .[^.]* *
   fi
 }
 
-function readsie() {
+# Used in gz() function below
+function _readsie() {
   num=$2
   if [[ $num -gt "1024" ]]; then
     ret="$(($num / 1024)) Kb"
@@ -100,8 +113,8 @@ function gz() {
       local ratio=$(echo "$gzipsize * 100/ $origsize" | bc -l)
 
       echo "\n${file}:"
-      echo "\t`readsie "orig" $origsize`"
-      printf "\t`readsie "gzip" $gzipsize` (%2.2f%%)" "$ratio"
+      echo "\t`_readsie "orig" $origsize`"
+      printf "\t`_readsie "gzip" $gzipsize` (%2.2f%%)" "$ratio"
       echo ""
     fi
   done
