@@ -22,6 +22,7 @@ Using:
   * **Ruby / rbenv**: Installs a "recent" Ruby version (as of 2017-12-01) via `rbenv` (which was installed via Homebrew).
   * **Composer** Installs global Composer packages for PHP
 
+* Run `./setup2.sh` from _this project's main directory_ to install global node modules and ruby gems.
 * Run `mackup restore`
 * In **Atom**: install the package-sync package. Then run the `package-sync:Sync` command (using ⌘⇧P)
 
@@ -58,8 +59,8 @@ Additional customizing is required for mongodb after initial setup.
     `$ mongo --port 27017 -u "userAdmin" -p "YOURPASSWORD" --authenticationDatabase "admin"`
 
 ## Apps Not Installed Here
-* Luminar
-* Mamp Pro
+* Luminar 3
+* MAMP Pro
 
 ## Some Important Files
 * **Brewfile**: manifest for installing brew packages, cask apps, and MacOS App Store apps
@@ -70,9 +71,10 @@ Additional customizing is required for mongodb after initial setup.
 ## Before wiping a drive
 
 * Backup the whole thing. Duh.
+* Run `./backup.sh` from _this project's main directory_
 * Dump local rethinkdb databases
 * Dump local MySQL databases
-* * Dump local mongodb databases
+* Dump local mongodb databases
 
 ## Syntax Highlighting for SublimeText
 
