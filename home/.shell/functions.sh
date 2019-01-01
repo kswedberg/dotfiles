@@ -11,8 +11,42 @@ function example {
   echo "\t$1"
 }
 
+reload() {
+  exec $SHELL -l
+}
+
 help() {
-  env man "$@" && tldr "$@"
+
+  setopt sh_word_split
+  echo 'What type of help do you want? Pick a number and press Return'
+  list="man tldr cht.sh"
+  select var in $list; do
+    unsetopt sh_word_split
+    if [ x"$var" != x"" ]; then
+      export COLUMNS=99
+      case $var in
+        "man")
+          echo "$(man "$@")"
+          break
+          ;;
+        "tldr")
+          echo "$(tldr "$@")"
+          break
+          ;;
+        "cht.sh")
+          echo "$(cht.sh "$@")"
+          break
+          ;;
+      esac
+
+    return
+    fi
+  done
+
+  # MAN=$(env man "$@")
+  # TLDR=$(tldr "$@")
+  # less $MAN
+  # echo $TLDR
 }
 # copy
 # If argument passed, cat the file and pipe through copy
