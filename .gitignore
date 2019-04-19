@@ -1,4 +1,3 @@
-
 # bin
 home/bin/*
 !home/bin/*.sh
@@ -21,3 +20,4 @@ Library
 # Other unnecessary
 home/.vim/bundle
 home/.vscode/extensions
+home/Caddyfile
