@@ -28,6 +28,8 @@
 # Local SSL Certs    #
 ######################
 *.pem
+*.key
+*.crt
 
 # Local Ruby Bundles #
 ######################
@@ -40,6 +42,8 @@ node_modules
 # Logs and databases #
 ######################
 *.log
+nohup.out
+
 *.sql
 *.sqlite
 

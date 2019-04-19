@@ -45,8 +45,12 @@
   msn = merge --squash --no-commit
   rv = review
   st = status
+  rename = branch -m
+  t = tag
+  # Tags are sorted  by version:refname per [tag] config below
+  tagl = tag -l
+  taglt = !"git tag -l | tail"
   su = submodule update --init
-
   push-to = !"git-push-to.sh"
   wtf = !"git-wtf.sh"
   syncupstream = !"git fetch upstream; git checkout master; git merge upstream/master; git push; echo 'Check out your branch and run git rebase master. See: http://www.xanthir.com/b4hf0'"
@@ -102,3 +106,5 @@
 	token = 09d304b119dc42981f513035fc6aab7c8db04ed0
 [icdiff]
 	options = " --line-numbers"
+[tag]
+	sort = version:refname
