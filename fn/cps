@@ -16,9 +16,9 @@ else
     dirname="${dirname}/"
   fi
 
-  OPTIONS="All New Update Bail"
+  OPTIONS=(All New Update Bail)
 
-  select OPTION in $OPTIONS; do
+  select OPTION in "${OPTIONS[@]}"; do
     if [[ $OPTION = "All" ]]
     then
       COPYTYPE="-avzP"

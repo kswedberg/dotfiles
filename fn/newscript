@@ -13,8 +13,11 @@ newscript() {
 	local scriptdir=$2
 
 	if [ ! $2 ]; then
-		scriptdir=~/bin/
+		scriptdir=`pwd`
+		read "?Choose a directory [$scriptdir]: " userscript
+		scriptdir=${userscript:-$scriptdir}
 	fi
+
 	# if no extension is provided, default to
 	local default_ext=js
 
