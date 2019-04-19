@@ -14,6 +14,8 @@
       indent_size: 4
       wrap_attributes: "force"
     js:
+      brace_style: "none"
+      default_beautifier: "ESLint Fixer"
       end_with_newline: true
       keep_array_indentation: true
       max_preserve_newlines: 2
@@ -67,6 +69,7 @@
       ".svn"
       ".DS_Store"
       ".sass-cache"
+      ".next"
     ]
     packagesWithKeymapsDisabled: [
       "es6-javascript"
@@ -82,7 +85,8 @@
       "one-light-syntax"
     ]
   editor:
-    fontFamily: "Fira Code"
+    fontFamily: "Iosevka Regular"
+    fontSize: 16
     invisibles: {}
     preferredLineLength: 100
     showIndentGuide: true
@@ -128,14 +132,17 @@
     lintPreviewTabs: false
   "linter-annotations": {}
   "linter-eslint":
-    fixOnSave: true
-    globalNodePath: "/Users/kswedberg/.nvm/versions/node/v10.9.0"
-    ignoreFixableRulesWhileTyping: true
+    autofix:
+      fixOnSave: true
+      ignoreFixableRulesWhileTyping: true
+    disabling:
+      rulesToSilenceWhileTyping: [
+        "no-trailing-spaces"
+        "no-unused-vars"
+      ]
+    global:
+      globalNodePath: "/Users/kswedberg/.nvm/versions/node/v10.15.1"
     lintHtmlFiles: true
-    rulesToSilenceWhileTyping: [
-      "no-trailing-spaces"
-      "no-unused-vars"
-    ]
     scopes: [
       "source.js"
       "text.html.vue"
@@ -164,6 +171,7 @@
     ]
   "linter-twig": {}
   "linter-ui-default":
+    panelHeight: 164
     showPanel: true
     showTooltip: false
     statusBarPosition: "Right"
