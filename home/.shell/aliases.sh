@@ -26,9 +26,8 @@ alias cat="bat"
 alias top="sudo htop"
 alias diff="icdiff"
 
-
 # Caddy Server
-alias caddyserve="sudo caddy -cst=onf ~/Caddyfile"
+alias caddyserve="ulimit -n 8192 && caddy -conf ~/Caddyfile"
 
 # TextMate
 alias m="mate"
@@ -43,7 +42,6 @@ alias mi="micro"
 
 # OPEN files/projects in default editor
 # Also, see ./fn/e file
-alias dotfiles="$EDITOR -n $DOTFILES $HOME/.antigen/bundles/"
 alias zshconfig="$EDITOR -n ~/.zshrc"
 alias ohmyzsh="$EDITOR -n ~/.oh-my-zsh"
 alias aliases="$EDITOR -n ~/dotfiles/home/.shell/aliases.sh"
@@ -67,19 +65,13 @@ alias ...="cd ../../"
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-# Homebrew Bundle
-alias bbundle="brew bundle --file=$DOTFILES/Brewfile"
-
-# Create a Brewfile from all the currently installed Homebrew packages. Add --force to overwrite an existing Brewfile
-alias bbundledump="brew bundle dump --file=$DOTFILES/Brewfile"
-
 # Directory Listings
 #
 # use coreutils `gls` if possible…
 hash gls >/dev/null 2>&1 || alias gls="ls"
 
 # always use color, even when piping (to awk,grep,etc)
-if gls --color > /dev/null 2>&1; then colorflag="--color"; else colorflag="-G"; fi;
+if gls --color >/dev/null  2>&1; then colorflag="--color"; else colorflag="-G"; fi
 export CLICOLOR_FORCE=1
 
 # -l    use a long listing format
@@ -160,7 +152,6 @@ alias dcps="docker-compose ps"
 # e.g. dce container_name npm install
 alias dce="docker-compose exec"
 
-
 ###############
 
 # NPM
@@ -172,6 +163,7 @@ alias npmlsg="npm ls -g --depth=0"
 
 # capistrano / rails
 alias capd='cap deploy'
+alias be='bundle exec'
 alias bers='bundle exec rails server'
 alias beu='bundle exec unicorn -E local -c config/unicorn.rb'
 alias dbm='rake db:migrate'
@@ -206,9 +198,7 @@ alias push\?="git cherry -v origin"
 # alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 # alias changelog='git log `git log -1 --format=%H -- changelog*`; cat changelog*'
 
-
 ############### Miscellaneous ###############
-
 
 # Quick way to rebuild the Launch Services database and get rid
 # of duplicates in the Open With submenu.
@@ -240,7 +230,7 @@ alias chromed="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --
 
 # Empty the Trash on all mounted volumes and the main HDD
 # Also, clear Apple’s System Logs to improve shell startup speed
- alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+alias  emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
 
 # alias c9="~/bin/cloud9.sh"
 

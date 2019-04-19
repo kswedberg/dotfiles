@@ -34,7 +34,8 @@ export GIT_HOSTING='git@github.com'
 
 # Set my editor and git editor
 # export EDITOR="subl"
-export EDITOR="atom"
+# export EDITOR="atom"
+export EDITOR="code"
 export GIT_EDITOR="vim"
 export JEKYLL_EDITOR="atom"
 
@@ -50,7 +51,6 @@ export DOTFILES="$HOME/dotfiles"
 export WORKON_HOME=$HOME/.virtualenvs
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
-if [ -f /Users/kswedberg/Library/Python/2.7/bin/virtualenvwrapper.sh ]
-then
+if [ -f /Users/kswedberg/Library/Python/2.7/bin/virtualenvwrapper.sh ]; then
     source /Users/kswedberg/Library/Python/2.7/bin/virtualenvwrapper.sh
 fi
