@@ -12,12 +12,15 @@ function setup() {
   sudo -v
 
   # Keep-alive: update existing `sudo` time stamp until `setup.sh` has finished
-  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+  while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+  done 2>/dev/null &
 
-
-  DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-  red=`tput setaf 1`
-  reset=`tput sgr0`
+  DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}")"  && pwd)"
+  red=$(tput setaf 1)
+  reset=$(tput sgr0)
 
   #### HOMEBREW
   # Install Homebrew if not already there
@@ -39,7 +42,7 @@ function setup() {
   # Create some unsourced files if they don't already exist:
   touch "$DOTFILES/home/.gitconfig.secrets"
   touch "$DOTFILES/home/.shell/secrets.sh"
-  touch "$DOTFILES/home/.shell-after/extra.sh"
+  touch "$DOTFILES/home/.shell-after/secrets.sh"
   # In case there is no .zshrc yet:
   touch ~/.zshrc
 
@@ -67,7 +70,7 @@ function setup() {
 
   # Create default directory and set permissions for MongoDB
   sudo mkdir -p /data/db
-  sudo chown -R `id -un` /data/db
+  sudo chown -R $(id -un) /data/db
 
   echo "\nDo you want launchd to start mongodb now and restart at login? (y/n)"
   read CONFIRM
