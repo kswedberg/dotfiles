@@ -32,12 +32,12 @@ source $HOME/.shell-after/index.sh
 
 unsetopt correct_all
 
-# tabtab source for yarn package
-# uninstall by removing these lines or running `tabtab uninstall yarn`
-[[ -f /Users/kswedberg/.nvm/versions/node/v8.9.1/lib/node_modules/yarn-completions/node_modules/tabtab/.completions/yarn.zsh ]] && . /Users/kswedberg/.nvm/versions/node/v8.9.1/lib/node_modules/yarn-completions/node_modules/tabtab/.completions/yarn.zsh
-
 ###-tns-completion-start-###
 if [ -f /Users/kswedberg/.tnsrc ]; then
-    source /Users/kswedberg/.tnsrc
+  source /Users/kswedberg/.tnsrc
 fi
 ###-tns-completion-end-###
+
+# tabtab source for yarn package
+# uninstall by removing these lines or running `tabtab uninstall yarn`
+# [[ -f /Users/kswedberg/.nvm/versions/node/v10.9.0/lib/node_modules/yarn-completions/node_modules/tabtab/.completions/yarn.zsh ]] && . /Users/kswedberg/.nvm/versions/node/v10.9.0/lib/node_modules/yarn-completions/node_modules/tabtab/.completions/yarn.zsh
