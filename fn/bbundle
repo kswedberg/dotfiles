@@ -1,0 +1,41 @@
+#!/usr/bin/env zsh
+# Homebrew Bundle
+
+CMD="brew bundle"
+BREWFILE="$DOTFILES/Brewfile"
+# alias bbundle="brew bundle --file=$DOTFILES/Brewfile"
+#
+# # Create a Brewfile from all the currently installed Homebrew packages. Add --force to overwrite an existing Brewfile
+# alias bbundledump="brew bundle dump --file=$DOTFILES/Brewfile"
+
+echo 'Do you want to:'
+echo "*Install* apps listed in $BREWFILE, or"
+echo "*Update/Create* the Brewfile based on your current apps, or"
+echo "*Bail*"
+echo ""
+
+OPTIONS=(Install Update/Create Bail)
+select OPTION in "${OPTIONS[@]}"; do
+  if [[ $OPTION = "Update/Create" ]]
+  then
+    CMD="$CMD dump --force"
+    break
+  fi
+  if [[ $OPTION = "Bail" ]]
+  then
+    CMD="Bail"
+    break
+  fi
+
+  break
+done
+
+if [[ $OPTION = "Bail" ]]; then
+  echo $OPTION
+  echo 'Okay. Bailing…'
+else
+  CMD="$CMD --file=$BREWFILE"
+  echo "Running ${CMD} …"
+
+  eval $CMD
+fi
