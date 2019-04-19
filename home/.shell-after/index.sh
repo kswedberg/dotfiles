@@ -2,11 +2,12 @@
 
 src_files=(
   completion-pm2.sh
-  extra.sh
+  secrets.sh
+  # spaceship-theme-options.sh
   zsh-theme.sh
 )
 
-function source_files {
+function source_files() {
   for file in "${@}"; do
     src_file=$HOME/.shell-after/${file}
     if [[ -f $src_file ]]; then
