@@ -56,12 +56,16 @@ function setup() {
 
   # Install nvm if not already there
   if [[ ! -d ~/.nvm ]]; then
-    echo ".nvm does not exist. Installing…"
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
+    echo "nvm does not exist. Installing…"
+    export NVM_DIR="$HOME/.nvm" && (
+      git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+      cd "$NVM_DIR"
+      git checkout $(git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1))
+    ) && \. "$NVM_DIR/nvm.sh"
   fi
 
-  # Install latest node.js
-  nvm install node
+  # Install latest LTS node.js
+  nvm install --lts
 
   # Install a "recent" Ruby version (as of 2017-12-01) and use it
   # (rbenv was installed from homebrew with the brew bundle command above)
