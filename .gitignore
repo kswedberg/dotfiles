@@ -11,7 +11,7 @@ home/bin/*
 auth.json
 extra.sh
 secrets.sh
-
+credentials
 auto_volumes
 
 # App preferences
