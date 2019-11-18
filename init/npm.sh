@@ -17,10 +17,10 @@ modules=(
   gulp-cli
   http-server
   lerna # for mono repos
-  localtunnel # command is `lt`
+  # localtunnel # command is `lt`
   napa
   nativescript
-  nectarjs
+  # nectarjs
   ngrok
   plugman
   pm2
@@ -31,9 +31,9 @@ modules=(
   snyk
   tldr # Nice simple alternative to man. Gives good examples
   ttystudio # terminal -> animated gif
-  uglify-js
-  webpack
-  yarn-completions
+  # uglify-js
+  # webpack
+  # yarn-completions
   yo
 )
 

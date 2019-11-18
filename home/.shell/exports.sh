@@ -32,6 +32,9 @@ export BAT_STYLE="header,changes"
 # The place for hosting Git repos. Use this for private repos.
 export GIT_HOSTING='git@github.com'
 
+# navi (https://github.com/denisidoro/navi)
+NAVI_PATH=$HOME/.navi/cheats
+
 # Set my editor and git editor
 # export EDITOR="subl"
 # export EDITOR="atom"

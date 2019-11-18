@@ -1,0 +1,15 @@
+{
+  "html": {
+    "snippets": {
+      "ulli": "ul>li[id=${1} class=${2}]*2{ Will work with html, jade, haml and slim }",
+      "oll": "<ol><li id=${1} class=${2}> Will only work in html </ol>",
+      "ran": "{ Wrap plain text in curly braces }"
+    }
+  },
+  "css": {
+    "snippets": {
+      "wsnw": "white-space: nowrap",
+      "lst": "list-style-type: ${1}"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "generator-nm:5.0.0": {
+    "promptValues": {
+      "githubUsername": "kswedberg",
+      "website": "https://karlswedberg.com",
+      "license": "MIT"
+    }
+  },
+  "generator-express-es6:0.6.2": {
+    "promptValues": {
+      "cssPreprocessor": "sass"
+    }
+  }
+}

@@ -14,6 +14,3 @@ function cask() {
 # cask "jeromelebel-mongohub"
 # cask "karabiner-elements"
 # cask "sublime-text"
-
-# PROBABLY WON'T INSTALL
-# mas "Aperture", id: 408981426
