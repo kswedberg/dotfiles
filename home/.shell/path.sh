@@ -1,4 +1,3 @@
-
 ######## PATHS: EARLIER in path takes precedence ######
 
 ### Added by the Heroku Toolbelt
@@ -24,7 +23,10 @@ PATH=$PATH:/usr/local/opt/go/libexec/bin
 PATH=$PATH:$(go env GOPATH)/bin
 
 # Yarn
-PATH="$(yarn global bin):$PATH"
+YARNPKG="$(which yarn)"
+if [[ "$(which yarn)" != "yarn not found" ]]; then
+  PATH="$(yarn global bin):$PATH"
+fi
 
 # Project-specific NODE modules
 PATH="./node_modules/.bin:$PATH"
