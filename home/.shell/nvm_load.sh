@@ -1,5 +1,3 @@
-# this file sourced in ./.source_after
-
 # place this after nvm initialization!
 autoload -U add-zsh-hook
 load-nvmrc() {
@@ -12,11 +10,11 @@ load-nvmrc() {
     if [ "$nvmrc_node_version" = "N/A" ]; then
       nvm install
     elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
+      nvm use --delete-prefix $nvmrc_node_version
     fi
   elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
+    echo "Reverting to nvm default version $(nvm version default) from $node_version"
+    nvm use --delete-prefix default
   fi
 }
 add-zsh-hook chpwd load-nvmrc
