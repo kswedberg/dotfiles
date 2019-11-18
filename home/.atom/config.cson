@@ -48,7 +48,6 @@
       "language-gfm"
       "vuejs2-snippets"
       "atom-minify"
-      "editorconfig"
       "git-time-machine"
       "nativescript-atom-snippets"
       "hey-pane"
@@ -62,6 +61,7 @@
       "markdown-preview"
       "pigments"
       "language-todo"
+      "editorconfig"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -171,7 +171,6 @@
     ]
   "linter-twig": {}
   "linter-ui-default":
-    panelHeight: 164
     showPanel: true
     showTooltip: false
     statusBarPosition: "Right"

@@ -1,0 +1,21 @@
+{
+	"cwd": "/Users/kswedberg/Dropbox/Notes",
+	"monaco": {
+		"editorOptions": {
+			"minimap": {
+				"enabled": false
+			},
+			"wordWrap": "bounded"
+		}
+	},
+	"sorting": {
+		"by": "title",
+		"type": "ascending"
+	},
+	"tutorial": true,
+	"codemirror": {
+		"options": {
+			"lineWrapping": true
+		}
+	}
+}

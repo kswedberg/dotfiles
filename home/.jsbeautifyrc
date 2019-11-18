@@ -1,10 +1,15 @@
 {
-  "indent_size": 2,
-  "indent_char": " ",
-  "space_after_anon_function": false,
-  "brace_style": "expand",
-  "space_before_conditional": true,
-  "wrap_attributes": false,
+  "brace_style": "none",
   "end_with_newline": true,
-  "preserve_newlines": false
+  "indent_char": " ",
+  "indent_size": 2,
+  "keep_array_indentation": true,
+  "max_preserve_newlines": 3,
+  "newline_between_rules": true,
+  "preserve_newlines": true,
+  "space_after_anon_function": false,
+  "space_before_conditional": true,
+  "unindent_chained_methods": true,
+  "wrap_attributes": "force-expand-multiline",
+  "wrap_line_length": 200
 }
