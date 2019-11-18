@@ -58,9 +58,11 @@ Additional customizing is required for mongodb after initial setup.
 3. Start a mongo shell with `userAdmin`
     `$ mongo --port 27017 -u "userAdmin" -p "YOURPASSWORD" --authenticationDatabase "admin"`
 
+
 ## Apps Not Installed Here
 * Luminar 3
 * MAMP Pro
+* SuperDuper!
 
 ## Some Important Files
 * **Brewfile**: manifest for installing brew packages, cask apps, and MacOS App Store apps
