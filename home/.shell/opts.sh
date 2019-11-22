@@ -1,5 +1,3 @@
-# this file sourced in ./.source_after
-
 # setopt autocd
 ## Command history configuration
 # if [ -z "$HISTFILE" ]; then

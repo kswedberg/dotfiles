@@ -47,7 +47,8 @@ PATH="./bin:$PATH"
 # MY PATHS : make them come later so they don't accidentally override something critical
 PATH="$PATH:$HOME/bin:$HOME/bin/tfs:$HOME/dotfiles"
 
-# COREUTILS added via homebrew...
+# gnu commands added via homebrew...
+PATH="$(brew --prefix)/opt/gnu-tar/libexec/gnubin:$PATH"
 # PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 # MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
