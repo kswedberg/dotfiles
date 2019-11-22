@@ -1,6 +1,6 @@
 These caveats appeared when I ran `brew bundle` with this repo's `Brewfile`:
 
-```
+```bash
 ==> Installing vim dependency: ruby
 ==> Downloading https://homebrew.bintray.com/bottles/ruby-2.6.1.mojave.bottle.tar.gz
 ==> Pouring ruby-2.6.1.mojave.bottle.tar.gz
