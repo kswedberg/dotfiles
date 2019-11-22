@@ -1,0 +1,21 @@
+function node-project() {
+  ARG="$1"
+
+  if [[ $ARG != '-e' && $ARG != '--eslint' ]]; then
+    echo "Install eslint and eslint-config-kswedberg? (y/N)"
+    read ESLINT
+  fi
+
+  git init
+  npx license $(npm get init-license) -o "$(npm get init-author-name)" >LICENSE
+  npx gitignore node
+  # npx covgen "$(npm get init-author-email)"
+  npm init -y
+  git add -A
+  git commit -m "Initial commit"
+
+  if [[ $ARG == '-e' || $ARG == '--eslint' || $ESLINT == 'y' ]]; then
+    yarn add --dev eslint eslint-config-kswedberg
+    echo "module.exports = {\n  extends: ['kswedberg']\n}\n" >.eslintrc.js
+  fi
+}
