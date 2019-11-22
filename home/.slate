@@ -14,6 +14,7 @@ alias righthalf     move screenOriginX+screenSizeX/2;screenOriginY    screenSize
 alias upperleft     move screenOriginX;screenOriginY                  screenSizeX/2;screenSizeY/2
 alias upperright    move screenOriginX+screenSizeX/2;screenOriginY    screenSizeX/2;screenSizeY/2
 alias lowerright    move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2   screenSizeX/2;screenSizeY/2
+alias lowerhalf     move screenOriginX;screenOriginY+screenSizeY/2   screenSizeX;screenSizeY/2
 alias lowerleft     move screenOriginX;screenOriginY+screenSizeY/2   screenSizeX/2;screenSizeY/2
 alias rightmost     move screenOriginX+screenSizeX*0.4;screenOriginY  screenSizeX*0.6;screenSizeY
 alias rightless     move screenOriginX+screenSizeX*0.6;screenOriginY  screenSizeX*0.4;screenSizeY
@@ -21,25 +22,37 @@ alias leftmost      move screenOriginX;screenOriginY                  screenSize
 alias leftless      move screenOriginX;screenOriginY                  screenSizeX*0.4;screenSizeY
 alias centermost    move screenOriginX+screenSizeX*0.125;screenOriginY screenSizeX*0.75;screenSizeY
 alias centersome    move screenOriginX+screenSizeX*0.2;screenOriginY+screenSizeY*0.2 screenSizeX*0.6;screenSizeY*0.6
+
 # Basic location Bindings
 bind pad0:cmd ${full}
 bind pad1:cmd ${leftless}
-bind pad2:cmd push bottom bar-resize:screenSizeY/2
+;bind pad2:cmd push bottom bar-resize:screenSizeY/2
+bind pad2:cmd ${lowerhalf}
 bind pad3:cmd ${rightless}
 bind pad4:cmd ${lefthalf}
-bind pad5:cmd ${centermost}
+bind pad5:cmd ${centersome}
 bind pad6:cmd ${righthalf}
 bind pad7:cmd ${leftmost}
-bind pad8:cmd push top bar-resize:screenSizeY/2
+; bind pad8:cmd push top bar-resize:screenSizeY/2
+bind pad8:cmd ${centermost}
 bind pad9:cmd ${rightmost}
 bind padClear:cmd throw prev
 bind pad/:cmd throw next
 
 bind up:cmd;alt;ctrl    ${full}
+; bind left:cmd;alt;ctrl  ${lefthalf}
+; bind right:cmd;alt;ctrl ${righthalf}
 
+bind =:cmd;alt;ctrl       resize +10% +10%
+bind -:cmd;alt;ctrl       resize -10% -10%
+
+bind up:ctrl;alt    resize +0 -10%
+bind up:ctrl;alt    nudge +0 -10%
+
+bind ]:cmd;alt;ctrl       ${rightgutter}
 bind 0:cmd;alt;ctrl       ${full}
 bind 1:cmd;alt;ctrl       ${rightgutter}
-bind 2:cmd;alt;ctrl       ${lowerleft}
+bind 2:cmd;alt;ctrl       ${lowerhalf}
 bind 3:cmd;alt;ctrl       ${lowerright}
 bind 4:cmd;alt;ctrl       ${lefthalf}
 bind 5:cmd;alt;ctrl       ${centersome}
@@ -47,5 +60,3 @@ bind 6:cmd;alt;ctrl       ${righthalf}
 bind 7:cmd;alt;ctrl       ${upperleft}
 bind 8:cmd;alt;ctrl       ${centermost}
 bind 9:cmd;alt;ctrl       ${upperright}
-; bind left:cmd;alt;ctrl  ${lefthalf}
-; bind right:cmd;alt;ctrl ${righthalf}
