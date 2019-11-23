@@ -12,6 +12,9 @@ Using:
 
 ## Initial Setup
 
+* From Terminal.app, clone this repository from the home directory. 
+    * If you get a warning about xCode developer tools being required, follow the instructions to install them. 
+    * After installing xCode dev tools, run `sudo xcodebuild -license accept`. Otherwise, the setup routine could abort.
 * Modify `Brewfile` to only include the apps you want to install.
 * Modify files in `init/` directory to only install dependencies you want to install
 * **Important**: The `init/macos.sh` file has some very opinionated settings. Make sure you comment out the ones you don't want to set.
