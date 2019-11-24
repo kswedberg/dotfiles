@@ -1,0 +1,47 @@
+extensions=(
+  .cfg
+  .css
+  .csv
+  .erb
+  .html
+  .js
+  .json
+  .md
+  .njk
+  .rb
+  .scss
+  .sh
+  .sh
+  .svg
+  .ts
+  .twig
+  .xml
+  .yaml
+  .yml
+)
+
+function create_dummy_files() {
+  dummy_dir=$DOTFILES/dummies
+  if [[ ! -d dummy_dir ]]; then
+    mkdir $dummy_dir
+  fi
+
+  for file in "${@}"; do
+    dummy_file=$dummy_dir/dummy${file}
+    if [[ ! -e $dummy_file ]]; then
+      echo "creating $dummy_file"
+      mkfile 1b ${dummy_file}
+    fi
+  done
+
+  echo ""
+  echo "1. open $dummy_dir"
+  echo "2. select all files"
+  echo "3. press ⌘⌥i and do the 'Open with' / 'Change All...' thing"
+  echo ""
+  echo "You can then delete the $dummy_dir directory"
+}
+
+create_dummy_files ${extensions}
+
+unset extensions
