@@ -9,20 +9,18 @@ BREWFILE="$DOTFILES/Brewfile"
 # alias bbundledump="brew bundle dump --file=$DOTFILES/Brewfile"
 
 echo 'Do you want to:'
-echo "*Install* apps listed in $BREWFILE, or"
+echo "*Install* apps listed in $BREWFILE (default), or"
 echo "*Update/Create* the Brewfile based on your current apps, or"
 echo "*Bail*"
 echo ""
 
 OPTIONS=(Install Update/Create Bail)
 select OPTION in "${OPTIONS[@]}"; do
-  if [[ $OPTION = "Update/Create" ]]
-  then
+  if [[ $OPTION == "Update/Create" ]]; then
     CMD="$CMD dump --force"
     break
   fi
-  if [[ $OPTION = "Bail" ]]
-  then
+  if [[ $OPTION == "Bail" ]]; then
     CMD="Bail"
     break
   fi
@@ -30,7 +28,7 @@ select OPTION in "${OPTIONS[@]}"; do
   break
 done
 
-if [[ $OPTION = "Bail" ]]; then
+if [[ $OPTION == "Bail" ]]; then
   echo $OPTION
   echo 'Okay. Bailing…'
 else
