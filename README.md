@@ -6,68 +6,72 @@ taken from the illustrious Mathias Bynens (https://github.com/mathiasbynens/dotf
 **This README is a work in progress.**
 
 Using:
+
 * Mackup: This is the primary thing
 * Antigen for zsh bundles
 * Homebrew
 
 ## Initial Setup
 
-* From Terminal.app, clone this repository from the home directory. 
-    * If you get a warning about xCode developer tools being required, follow the instructions to install them. 
+1. From Terminal.app, clone this repository from the home directory.
+    * If you get a warning about xCode developer tools being required, follow the instructions to install them.
     * After installing xCode dev tools, run `sudo xcodebuild -license accept`. Otherwise, the setup routine could abort.
-* Modify `Brewfile` to only include the apps you want to install.
-* Modify files in `init/` directory to only install dependencies you want to install
-* **Important**: The `init/macos.sh` file has some very opinionated settings. Make sure you comment out the ones you don't want to set.
-* Run `./setup.sh` from _this project's main directory_. Doing so makes the following happen:
-  * **Homebrew**: Installs Homebrew if not already installed. Updates brew, and runs `brew bundle`, which install a crap-ton of brew, cask, and Mac App Store apps via the `Brewfile`.
-  * **Node.js / nvm**: Installs `nvm` if not already installed. Installs the most recent version of node.js. Installs global npm packages specified in `init/npm.sh`.
-  * **Zsh**: Sets the default shell environment to Zsh
-  * **Ruby / rbenv**: Installs a "recent" Ruby version (as of 2017-12-01) via `rbenv` (which was installed via Homebrew).
-  * **Composer** Installs global Composer packages for PHP
+2. Modify `Brewfile` to only include the apps you want to install.
+3. Modify files in `init/` directory to only install dependencies you want to install
+4. **Important**: The `init/macos.sh` file has some very opinionated settings. Make sure you comment out the ones you don't want to set.
+5. Run `./setup.sh` from *this project's main directory*. Doing so makes the following happen:
+    * **Homebrew**: Installs Homebrew if not already installed. Updates brew, and runs `brew bundle`, which install a crap-ton of brew, cask, and Mac App Store apps via the `Brewfile`.
+    * **Node.js / nvm**: Installs `nvm` if not already installed. Installs the most recent version of node.js. Installs global npm packages specified in `init/npm.sh`.
+    * **Zsh**: Sets the default shell environment to Zsh
+    * **Composer** Installs global Composer packages for PHP
+6. Install and set a global Ruby version using `rbenv`:
 
-* Run `./setup2.sh` from _this project's main directory_ to install global node modules and ruby gems.
-* Run `mackup restore`
-* In **Atom**: install the package-sync package. Then run the `package-sync:Sync` command (using ⌘⇧P)
-
-## RethinkDB
-
-Additional customizing is required for rethinkdb after initial setup.
-
-* Probably want to change the host port from `:8080` to one that won't clobber a lot of local dev sites—something like `:8090`.
-* Set password for admin user
-* Create a new user and grant privileges
-
-## MongoDB
-
-Additional customizing is required for mongodb after initial setup.
-
-1. Create a user administration account. This user only has privileges to manage users and roles, so you can use it to create other users that have permission to manage actual databases. (Details: https://docs.mongodb.com/manual/tutorial/enable-authentication/)
-
-    `$ mongo --port 27017`
-
-    ```js
-    use admin
-    db.createUser(
-      {
-        user: 'userAdmin',
-        pwd: 'YOURPASSWORD',
-        roles: [ { role: 'userAdminAnyDatabase', db: 'admin' } ]
-      }
-    )
+    ```bash
+    # List available versions
+    rbenv install -l
+    # Install a recent version. For example:
+    rbenv install 2.6.5
+    # Set global version to installed. For example:
+    rbenv global 2.6.5
     ```
 
-2. Restart mongod with auth
-    `brew services restart mongodb --auth`
-3. Start a mongo shell with `userAdmin`
-    `$ mongo --port 27017 -u "userAdmin" -p "YOURPASSWORD" --authenticationDatabase "admin"`
+7. Run `./setup2.sh` from *this project's main directory* to install global node modules and ruby gems listed in `./init/npm.sh` and `./init/gem.sh`, respectively.
+8. Run `mackup restore`
 
+## Files to manually copy
+
+* ~/Library/Fonts
+
+## Additional Configuration
+
+* [Text Editors](docs/text-editors.md): Vim, VSCode, Atom, Sublime
+* [Database Servers](docs/db.md): Rethink, Mongo
+* [MacOS Apps](docs/apps-macos.md): Finder, Messages
+* [Third-party Apps](docs/apps-3rd-party.md): QuickLook Applets, iTerm
+
+## File Associations
+
+Associating multiple files types with a particular app can be a hassle, so this repo contains a function to make the process a little easier for files you might want to open with your text editor of choice.
+
+* From the command line, run `create-dummies-for-open-with`
+* Follow the instructions, repeated here for your edification:
+  1. Open `~/dotfiles/dummies` in the Finder
+  2. Select all the files (<kbd>⌘</kbd> <kbd>a</kbd>)
+  3. Press <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>i</kbd>
+  4. In the info window that appears, click "Open with…", select the app, click "Change All…"
+
+When you're finished, you can delete the `dummies` folder.
 
 ## Apps Not Installed Here
-* Luminar 3
+
+The following apps need to be manually installed:
+
+* Luminar
 * MAMP Pro
 * SuperDuper!
 
 ## Some Important Files
+
 * **Brewfile**: manifest for installing brew packages, cask apps, and MacOS App Store apps
 * **home/.antigenrc**: config for installing zsh plugins, etc
 * **home/.mackup/custom.cfg**: config for extra files to symlink from `~/dotfiles/home/` to `~/`
@@ -80,20 +84,3 @@ Additional customizing is required for mongodb after initial setup.
 * Dump local rethinkdb databases
 * Dump local MySQL databases
 * Dump local mongodb databases
-
-## Syntax Highlighting for SublimeText
-
-To get the files in this repo to appear in SublimeText as shell scripts, install the ApplySyntax package and add this to the "syntaxes" array in its Settings - User file:
-
-```json
-{
-    "name": "ShellScript/Shell-Unix-Generic",
-    "rules": [
-        {"file_name": ".*\\/(dotfiles)\\/(?!\\.git).*(?<!\\.(md|txt))$"}
-    ]
-}
-```
-
-That applies the ShellScript syntax to all files within the `/dotfiles/` directory, except for those that start with `.git` or end with `.md` or `.txt`.
-
-Alternatively, you can directly modify the fileTypes array in `~/Library/Application Support/Sublime Text 2/Packages/ShellScript/Shell-Unix-Generic.tmLanguage`. See [Addy Osmani's dotfiles repo](https://github.com/addyosmani/dotfiles) for more info about this approach.
