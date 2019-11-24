@@ -73,14 +73,14 @@ function setup() {
   rbenv global 2.4.2
 
   # Create default directory and set permissions for MongoDB
-  sudo mkdir -p /data/db
-  sudo chown -R $(id -un) /data/db
+  # sudo mkdir -p /data/db
+  # sudo chown -R $(id -un) /data/db
 
   echo "\nDo you want launchd to start mongodb now and restart at login? (y/n)"
   read CONFIRM
 
   if [ "$CONFIRM" = "y" ]; then
-    brew services start mongodb
+    brew services start mongodb-community
     echo "mongodb added to launchd"
   else
     echo "Okay. To run mongodb on your own… "
