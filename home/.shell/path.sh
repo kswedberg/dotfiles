@@ -7,7 +7,7 @@ PATH="/usr/local/heroku/bin:$PATH"
 # PATH=/Applications/MAMP/Library/bin:$PATH
 
 # For virtualenv:
-PATH=$HOME/Library/Python/2.7/bin:$PATH
+# PATH=/usr/local/bin/python2.7:$PATH
 
 # Homebrew libraries
 PATH=/usr/local/sbin:$PATH
@@ -23,10 +23,12 @@ PATH=$PATH:/usr/local/opt/go/libexec/bin
 PATH=$PATH:$(go env GOPATH)/bin
 
 # Yarn
-YARNPKG="$(which yarn)"
-if [[ "$(which yarn)" != "yarn not found" ]]; then
-  PATH="$(yarn global bin):$PATH"
-fi
+PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# YARNPKG="$(which yarn)"
+# if [[ "$(which yarn)" != "yarn not found" ]]; then
+#   PATH="$(yarn global bin):$PATH"
+# fi
 
 # Project-specific NODE modules
 PATH="./node_modules/.bin:$PATH"
