@@ -86,6 +86,7 @@
 #   trustExitCode = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [branch]
 	autosetuprebase = always
 [pull]

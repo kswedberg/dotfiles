@@ -19,7 +19,7 @@ antigen bundle git-prompt
 antigen bundle git-remote-branch
 antigen bundle gnu-utils
 antigen bundle gulp
-antigen bundle npm
+# antigen bundle npm
 antigen bundle rbenv
 antigen bundle ssh-agent
 antigen bundle virtualenv
