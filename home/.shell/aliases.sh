@@ -255,3 +255,6 @@ alias flush="dscacheutil -flushcache"
 alias remoteip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
 alias localip="ipconfig getifaddr en0"
 alias ip="echo external: && remoteip && echo local: && localip"
+
+alias sleep-disable="sudo pmset -a hibernatemode 0; sudo pmset -a disablesleep 1;"
+alias sleep-enable="sudo pmset -a hibernatemode 3; sudo pmset -a disablesleep 0;"
