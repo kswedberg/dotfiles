@@ -47,6 +47,7 @@ Using:
 * [Text Editors](docs/text-editors.md): Vim, VSCode, Atom, Sublime
 * [Database Servers](docs/db.md): Rethink, Mongo
 * [MacOS Apps](docs/apps-macos.md): Finder, Messages
+* [MacOS System Preferences](docs/system-prefs.md): Keyboard Shortcuts
 * [Third-party Apps](docs/apps-3rd-party.md): QuickLook Applets, iTerm
 
 ## File Associations
