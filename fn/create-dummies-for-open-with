@@ -1,11 +1,14 @@
 extensions=(
   .cfg
+  .conf
   .css
   .csv
   .erb
   .html
   .js
+  .jsx
   .json
+  .log
   .md
   .njk
   .rb
@@ -14,6 +17,7 @@ extensions=(
   .sh
   .svg
   .ts
+  .tpl
   .twig
   .xml
   .yaml
