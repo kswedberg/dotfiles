@@ -48,9 +48,6 @@ function setup() {
 
   source ~/.zshrc
 
-  # Python package
-  pip install virtualenvwrapper
-
   # Symlink the Mackup config file to the home directory
   ln -s ~/dotfiles/home/.mackup.cfg ~/
 

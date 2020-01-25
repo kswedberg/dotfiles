@@ -23,7 +23,6 @@ antigen bundle gulp
 antigen bundle rbenv
 antigen bundle ssh-agent
 antigen bundle virtualenv
-antigen bundle virtualenvwrapper
 antigen bundle z
 antigen bundle zsh_reload
 
