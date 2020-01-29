@@ -5,7 +5,7 @@ REMOTE_PORT="$2"
 LOCAL_PORT="$3"
 
 if [ -z $1 ]; then
-cat <<TUNNELINSTRUCTIONS
+  cat <<TUNNELINSTRUCTIONS
 
 tunnel db connector
   * Uses ssh tunnel to proxy to localhost:[9999]
@@ -28,7 +28,7 @@ fi
 
 if [ -z $SERVER ]; then
   echo "No server specified. Bailing."
-  return;
+  return
 fi
 if [ -z $2 ]; then
   echo 'Change the remote db port? Default is 8080'
@@ -50,7 +50,13 @@ echo $CMD
 echo ''
 echo "Access the database at http://localhost:"${LOCAL_PORT}
 echo ''
-echo "To kill the process, type  ps aux | grep ${SERVER} and find the pid of the tunnel process"
-echo 'Then run kill [PID]'
 
 eval $CMD
+
+line=$(ps aux | grep ${SERVER} | tail -n1)
+echo $line >/tmp/.tunnelpid
+
+_pid=$(awk '{print $2}' /tmp/.tunnelpid)
+
+echo "When you are finished, run the following command:"
+echo "kill $_pid"
