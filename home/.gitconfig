@@ -108,3 +108,5 @@
 	options = " --line-numbers"
 [tag]
 	sort = version:refname
+[rebase]
+	autoStash = true
