@@ -14,10 +14,10 @@
 
 [core]
   # autocrlf = input
+  excludesfile = ~/.gitignore_global
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
   eol = lf
   pager = less
-	excludesfile = /Users/kswedberg/.gitignore_global
   # editor = subl -n -w
 
 [init]
@@ -61,6 +61,7 @@
 
 [color]
   ui = auto
+
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -70,6 +71,7 @@
   frag = magenta bold
   old = red bold
   new = green bold
+
 [color "status"]
   added = yellow
   changed = green
@@ -77,36 +79,36 @@
 
 [apply]
   # whitespace = nowarn
+
+[branch]
+	autosetuprebase = always
+
+[pull]
+	rebase = true
+
+[rebase]
+  autoStash = true
+
+[tag]
+  sort = version:refname
+
 [merge]
-	tool = sourcetree
+  tool = sourcetree
+
 [mergetool]
   prompt = false
+
 # [mergetool "extMerge"]
 #   cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
 #   trustExitCode = true
+
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
-[branch]
-	autosetuprebase = always
-[pull]
-	rebase = true
+
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-[commit]
-	template = /Users/kswedberg/.stCommitMsg
-[user]
-	name = Karl Swedberg
-	email = kswedberg@gmail.com
-[github]
-	user = kswedberg
-	token = 2bd67f5be70386d922e1b15174e617b8
-[gist-diff]
-	token = 09d304b119dc42981f513035fc6aab7c8db04ed0
+
 [icdiff]
 	options = " --line-numbers"
-[tag]
-	sort = version:refname
-[rebase]
-	autoStash = true
