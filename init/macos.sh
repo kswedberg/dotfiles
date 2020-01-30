@@ -16,7 +16,6 @@
 # Finder: show all filename extensions
 # defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-
 ###############################################################################
 # Commands for initial setup
 ###############################################################################
@@ -33,7 +32,11 @@ if [ "$CONFIRMMACOS" = "y" ]; then
   sudo -v
 
   # Keep-alive: update existing `sudo` time stamp until `macos.sh` has finished
-  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+  while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+  done 2>/dev/null &
 
   ######################################
   # General UI/UX
@@ -51,7 +54,6 @@ if [ "$CONFIRMMACOS" = "y" ]; then
 
   # Automatically quit printer app once the print jobs complete
   defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
 
   ######################################
   # Trackpad, mouse, keyboard, $ input
@@ -74,9 +76,10 @@ if [ "$CONFIRMMACOS" = "y" ]; then
   defaults write NSGlobalDomain KeyRepeat -int 1
 
   # Disable smart quotes as they’re annoying when typing code
-  defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+  # defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
   # Disable automatic capitalization as it’s annoying when typing code
-  defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+  # defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 
   ######################################
   # Screenshots
@@ -187,7 +190,7 @@ if [ "$CONFIRMMACOS" = "y" ]; then
   ######################################
 
   for app in "Dock" "Finder" "Safari" "SystemUIServer" "Transmission"; do
-    killall "${app}" > /dev/null 2>&1
+    killall "${app}" >/dev/null  2>&1
   done
   echo "Done. Note that some of these changes require a logout/restart to take effect."
 
