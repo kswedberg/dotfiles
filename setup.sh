@@ -69,6 +69,16 @@ function setup() {
   rbenv install 2.4.2
   rbenv global 2.4.2
 
+  echo "\nDo you want to install Rust via rustup?  (y/N)"
+  read CONFIRM_RUST
+  if [ "$CONFIRM_RUST" = "y" ]; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+  else
+    echo "Okay, skipping Rust. You can install it later with this command:"
+    echo "$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+  fi
+
   # Create default directory and set permissions for MongoDB
   # sudo mkdir -p /data/db
   # sudo chown -R $(id -un) /data/db
