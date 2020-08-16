@@ -15,6 +15,7 @@ credentials
 auto_volumes
 
 # App preferences
+.vscode/
 Library
 
 # Other unnecessary
