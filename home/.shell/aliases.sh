@@ -115,9 +115,9 @@ alias yip="yarn install --production"
 alias yrm="yarn remove"
 
 # DOCKER
-# `daliases` function is in .shell-after/extra.sh
+# `daliases` function is in .shell-after/secrets.sh so as not to pollute common files
 # (PROJECT-SPECIFIC DOCKER aliases are in .shell-after/extra.sh)
-alias dsp="docker system prune"
+alias dsp="docker system prune -a"
 alias dps="docker ps -a"
 # DOCKER MACHINE
 alias dmstart="docker-machine start default"

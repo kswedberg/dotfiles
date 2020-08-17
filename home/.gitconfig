@@ -55,9 +55,13 @@
   wtf = !"git-wtf.sh"
   syncupstream = !"git fetch upstream; git checkout master; git merge upstream/master; git push; echo 'Check out your branch and run git rebase master. See: http://www.xanthir.com/b4hf0'"
 
-  ## The following aliases require git-extras (http://github.com/visionmedia/git-extras)
+  ## These aliases require git-extras (http://github.com/visionmedia/git-extras)
   delete = delete-branch
   del = delete-branch
+  ####
+
+  # new = !"git init && git symbolic-ref HEAD refs/heads/main"
+  # sync2main = !"git checkout master && git branch -m master main && git fetch && git branch --unset-upstream && git branch -u origin/main && git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main"
 
 [color]
   ui = auto
@@ -104,7 +108,7 @@
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"

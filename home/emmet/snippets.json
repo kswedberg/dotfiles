@@ -1,7 +1,7 @@
 {
   "html": {
     "snippets": {
-      "ulli": "ul>li[id=${1} class=${2}]*2{ Will work with html, jade, haml and slim }",
+      "ulli": "ul>li[id=${1} class=${2}]*2{ item }",
       "oll": "<ol><li id=${1} class=${2}> Will only work in html </ol>",
       "ran": "{ Wrap plain text in curly braces }"
     }

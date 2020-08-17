@@ -18,6 +18,9 @@ PATH=/usr/local/bin:$PATH
 PATH="/usr/local/opt/curl/bin:$PATH"
 PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
+# Cargo: Rust package manager
+PATH="$HOME/.cargo/bin:$PATH"
+
 # golang
 PATH=$PATH:/usr/local/opt/go/libexec/bin
 PATH=$PATH:$(go env GOPATH)/bin

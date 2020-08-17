@@ -1,7 +1,6 @@
 # bin
 home/bin/*
 !home/bin/*.sh
-!home/bin/subl
 
 # Secrets
 .gnupg
@@ -10,15 +9,19 @@ home/bin/*
 *.secrets
 auth.json
 extra.sh
-secrets.sh
+secrets.*
 credentials
 auto_volumes
 
 # App preferences
 .vscode/
+.vsce
 Library
+.yarnrc
+.docker/config.json
 
 # Other unnecessary
 home/.vim/bundle
-home/.vscode/extensions
 home/Caddyfile
+tmp/
+cache/

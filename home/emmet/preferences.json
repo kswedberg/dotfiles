@@ -3,5 +3,5 @@
   "bem.modifierSeparator": "--",
   "css.autoInsertVendorPrefixes": false,
   "css.color.case": "lower",
-  "css.gradient.defaultProperty": "background"
+  "css.gradient.defaultProperty": "backgroundImage"
 }

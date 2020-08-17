@@ -23,7 +23,13 @@ alias leftless      move screenOriginX;screenOriginY                  screenSize
 alias centermost    move screenOriginX+screenSizeX*0.125;screenOriginY screenSizeX*0.75;screenSizeY
 alias centersome    move screenOriginX+screenSizeX*0.2;screenOriginY+screenSizeY*0.2 screenSizeX*0.6;screenSizeY*0.6
 
+alias movetoleft   move screenOriginX;windowTopLeftY                 windowSizeX;windowSizeY
+alias movetoright  move screenSizeX-windowSizeX;windowTopLeftY        windowSizeX;windowSizeY
+alias movetotop    move windowTopLeftX;screenOriginY                 windowSizeX;windowSizeY
+alias movetobottom move windowTopLeftX;screenSizeY-windowSizeY       windowSizeX;windowSizeY
+
 # Basic location Bindings
+
 bind pad0:cmd ${full}
 bind pad1:cmd ${leftless}
 ;bind pad2:cmd push bottom bar-resize:screenSizeY/2
@@ -33,21 +39,28 @@ bind pad4:cmd ${lefthalf}
 bind pad5:cmd ${centersome}
 bind pad6:cmd ${righthalf}
 bind pad7:cmd ${leftmost}
-; bind pad8:cmd push top bar-resize:screenSizeY/2
+# bind pad8:cmd push top bar-resize:screenSizeY/2
 bind pad8:cmd ${centermost}
 bind pad9:cmd ${rightmost}
 bind padClear:cmd throw prev
 bind pad/:cmd throw next
 
-bind up:cmd;alt;ctrl    ${full}
-; bind left:cmd;alt;ctrl  ${lefthalf}
-; bind right:cmd;alt;ctrl ${righthalf}
+# move window to a side
+bind up:cmd;alt;ctrl    ${movetotop}
+bind left:cmd;alt;ctrl  ${movetoleft}
+bind right:cmd;alt;ctrl ${movetoright}
+bind down:cmd;alt;ctrl ${movetobottom}
 
 bind =:cmd;alt;ctrl       resize +10% +10%
 bind -:cmd;alt;ctrl       resize -10% -10%
 
-bind up:ctrl;alt    resize +0 -10%
+# nudge window
+# bind up:ctrl;alt    resize +0 -10%
 bind up:ctrl;alt    nudge +0 -10%
+bind down:ctrl;alt    nudge +0 +10%
+bind left:ctrl;alt    nudge -10% +0
+bind right:ctrl;alt    nudge +10% +0
+
 
 bind ]:cmd;alt;ctrl       ${rightgutter}
 bind 0:cmd;alt;ctrl       ${full}

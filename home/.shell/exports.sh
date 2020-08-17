@@ -42,7 +42,6 @@ export EDITOR="code"
 export GIT_EDITOR="vim"
 export JEKYLL_EDITOR="atom"
 
-
 # CORDOVA BUG requires Java 8 installed and this in path:
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
 
