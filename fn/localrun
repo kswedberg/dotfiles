@@ -1,0 +1,6 @@
+if [ $# -eq 0 ]; then
+  echo "Please provide the port of your running localhost instance"
+  echo "  e.g. localrun 8089"
+else
+  ssh -R 80:localhost:$@ ssh.localhost.run
+fi
