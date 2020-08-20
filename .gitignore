@@ -13,12 +13,12 @@ secrets.*
 credentials
 auto_volumes
 
-# App preferences
+# Per-device config/preferences
 .vscode/
 .vsce
 Library
 .yarnrc
-.docker/config.json
+**/.docker/config.json
 
 # Other unnecessary
 home/.vim/bundle
