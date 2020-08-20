@@ -2,7 +2,7 @@
 
 ## Vim
 
-Before using Vim, you should  and the plugins in:
+Before using Vim, you should install Vundle and then run it to install other Vim plugins:
 
 * Install Vundle:
 

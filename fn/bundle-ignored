@@ -55,7 +55,7 @@ function copy_files() {
   printf "FINISHED!"
 }
 
-IGNORED=$(git ls-files -o -x .DS_Store -x Library -x tmp)
+IGNORED=$(git ls-files -o -x .DS_Store -x Library -x tmp -x secrets.tar.gz)
 copy_files ${IGNORED}
 
 unset IGNORED
