@@ -6,6 +6,7 @@ home/bin/*
 .gnupg
 .npmrc
 .ssh
+.aws
 *.secrets
 auth.json
 extra.sh
