@@ -63,6 +63,16 @@ Associating multiple files types with a particular app can be a hassle, so this 
 
 When you're finished, you can delete the `dummies` folder.
 
+## Enable TouchID for sudo
+
+Source: [tweet on 2017-11-16 by @cabel](https://twitter.com/cabel/status/931292107372838912)
+
+_Note:_ There might be security implications to doing this. Proceed at your own risk.
+
+1. Open `/etc/pam.d/sudo` for editing: `sudo vim /etc/pam.d/sudo`
+2. Add this to the top of the file and save: `auth sufficient pam_tid.so`
+3. Profit
+
 ## Apps Not Installed Here
 
 The following apps need to be manually installed:
