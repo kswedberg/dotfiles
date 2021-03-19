@@ -1,5 +1,4 @@
-
-function source_files {
+function source_files() {
   for file in "${@}"; do
     src_file=$HOME/.shell/${file}
     if [[ -f $src_file ]]; then
@@ -17,7 +16,7 @@ src_files=(
   aliases.sh
   autoloads.sh
   functions.sh
-  nvm_load.sh
+  # nvm_load.sh
   opts.sh
   secrets.sh
 )
