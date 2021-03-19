@@ -180,10 +180,11 @@ alias sassw="sass --watch --style expanded"
 alias sassu="sass --update --style expanded"
 
 # git
-alias stash="git stash"
+alias stash="git stash push"
 alias stashp="git stash pop"
 alias stashl="git stash list"
 alias stasha="git stash apply"
+alias stashd="git stash drop"
 alias stashc="git stash clear"
 
 alias gitst='git status -sb'
