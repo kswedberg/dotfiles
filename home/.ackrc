@@ -4,5 +4,6 @@
 --ignore-dir=public/generated
 --sort-files
 --smart-case
---type-set=md=.md,.mkd,.markdown
+--type-set=markdown:ext:md,mkd,markdown
+--type-set=vue:ext:vue
 --pager=less
