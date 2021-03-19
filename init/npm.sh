@@ -3,34 +3,34 @@
 modules=(
   @storybook/cli
   @vue/cli
-  @vue/cli-init
-  browser-sync
-  cordova
-  create-react-native-app
-  depcheck
-  exp
-  express-generator
-  gatsby-cli
-  gifify # video -> animated gif
+  # @vue/cli-init
+  # browser-sync
+  # cordova
+  # create-react-native-app
+  # depcheck
+  # exp
+  # express-generator
+  # gatsby-cli
+  # gifify # video -> animated gif
   git-changelog
-  grunt-cli
+  # grunt-cli
   gulp-cli
   http-server
   lerna # for mono repos
   # localtunnel # command is `lt`
-  napa
-  nativescript
+  # napa
+  # nativescript
   # nectarjs
-  ngrok
-  plugman
+  # ngrok
+  # plugman
   pm2
   prettier
-  react-native-cli
-  react-viro-cli
+  # react-native-cli
+  # react-viro-cli
   shipit-cli
   snyk
   tldr # Nice simple alternative to man. Gives good examples
-  ttystudio # terminal -> animated gif
+  # ttystudio # terminal -> animated gif
   # uglify-js
   # webpack
   # yarn-completions
@@ -60,12 +60,10 @@ npm install -g $str_modules
 # npm install -g hoodie-cli
 # npm install -g ios-sim
 
-
 ### 3rd Party Services:
 # npm install -g firebase-tools
 # npm install -g surge
 # npm install -g jitsu
-
 
 ### Yeoman Generators:
 # npm install -g generator-craftplugin
