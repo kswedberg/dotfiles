@@ -7,7 +7,7 @@ Before using Vim, you should install Vundle and then run it to install other Vim
 * Install Vundle:
 
     ```bash
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     ```
 
 Vundle.vim
@@ -15,7 +15,7 @@ Vundle.vim
 * Install plugins listed in this project's `.vimrc` file:
 
     ```bash
-    vim +PluginInstall +qall`
+    vim +PluginInstall +qall
     ```
 
 ## Visual Studio Code

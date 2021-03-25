@@ -9,6 +9,8 @@
 
 ## iTerm
 
+### General Preferences
+
 * Open Preferences
 * In General pane, select Preferences
 * Check "Load preferences from a custom folder…"
@@ -16,6 +18,19 @@
 * Quit iTerm
 * Open iTerm and go back into Preferences > General > Preferences
 * Check "Save changes to folder when iTerm2 quits
+
+### Profiles
+
+* On old machine:
+  * Open Preferences > Profiles
+  * Click "Other Actions…" below the list of profiles
+  * Choose "Save All Profiles" as JSON
+* On new machine:
+  * Open Preferences > Profiles
+  * Click "Other Actions…" below the list of profiles
+  * Choose "Import JSON Profiles" and select the file you saved above
+
+
 
 ## Others to copy from ~/Library
 
