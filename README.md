@@ -11,6 +11,8 @@ Using:
 * Antigen for zsh bundles
 * Homebrew
 
+**Note**: If you are using a 2020+ Mac with an **Apple Silicon** CPU, some of the file paths have changed for tools installed by Homebrew. In particular, `/usr/local` has changed to `/opt/homebrew`. In this case, you should use the [apple-silicon](https://github.com/kswedberg/dotfiles/tree/apple-silicon) branch instead.
+
 ## Initial Setup
 
 1. From Terminal.app, clone this repository from the home directory.
