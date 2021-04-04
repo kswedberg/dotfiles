@@ -31,12 +31,17 @@ if [ "$CONFIRMMACOS" = "y" ]; then
   # Ask for the administrator password upfront
   sudo -v
 
+  osascript -e 'tell application "System Preferences" to quit'
+
   # Keep-alive: update existing `sudo` time stamp until `macos.sh` has finished
   while true; do
     sudo -n true
     sleep 60
     kill -0 "$$" || exit
   done 2>/dev/null &
+
+  # Disable the sound effects on boot
+  sudo nvram SystemAudioVolume=" "
 
   ######################################
   # General UI/UX
@@ -125,8 +130,18 @@ if [ "$CONFIRMMACOS" = "y" ]; then
   # Enable AirDrop over Ethernet and on unsupported Macs running Lion
   defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
+  # Remove duplicates in the “Open With” menu (also see `lscleanup` alias)
+  /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+
   # Show the ~/Library folder
   chflags nohidden ~/Library
+
+  # Expand the following File Info panes:
+  # “General”, “Open with”, and “Sharing & Permissions”
+  defaults write com.apple.finder FXInfoPanesExpanded -dict \
+    General -bool true \
+    OpenWith -bool true \
+    Privileges -bool true
 
   ######################################
   # Dock
@@ -148,6 +163,9 @@ if [ "$CONFIRMMACOS" = "y" ]; then
 
   # Disable hibernation (speeds up entering sleep mode)
   sudo pmset -a hibernatemode 0
+
+  # Enable lid wakeup
+  sudo pmset -a lidwake 1
 
   # Remove the sleep image file to save disk space
   # sudo rm /private/var/vm/sleepimage
