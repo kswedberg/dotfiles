@@ -17,8 +17,20 @@
   excludesfile = ~/.gitignore_global
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
   eol = lf
-  pager = less
+  pager = delta
   # editor = subl -n -w
+
+[delta]
+  plus-style = "syntax #016600"
+  minus-style = "syntax #340001"
+  syntax-theme = Monokai Extended
+  navigate = true
+  line-numbers = true
+  file-style = bold yellow ul
+  commit-decoration-style = bold yellow box ul
+
+[interactive]
+  diffFilter = delta --color-only
 
 [init]
   templatedir = ~/.git_template
