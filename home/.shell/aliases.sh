@@ -65,6 +65,8 @@ alias ...="cd ../../"
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+# Command-line JavaScript
+alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers/jsc"
 # Directory Listings
 #
 # use coreutils `gls` if possible…
@@ -90,12 +92,6 @@ alias ll="ll"
 
 alias sites='cd ~/Sites'
 alias sties='cd ~/Sites'
-
-# gulp shipit
-alias gsdeploy="gulp shipit -r deploy"
-alias gsdb="gulp shipit -r db:pull"
-alias gsass="gulp shipit -r assets:pull"
-alias gsapp="gulp shipit -r app:pull"
 
 # doing (http://brettterpstra.com/projects/doing/)
 alias d="doing"
@@ -195,7 +191,7 @@ alias gitpush='git push'
 alias gitdiff='git diff | e'
 alias gitbr='git branch'
 alias pullall="git submodule foreach git pull origin master"
-alias push\?="git cherry -v origin"
+alias push\?="git cherry -v"
 # alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 # alias changelog='git log `git log -1 --format=%H -- changelog*`; cat changelog*'
 
