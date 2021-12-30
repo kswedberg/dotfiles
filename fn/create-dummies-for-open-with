@@ -11,6 +11,7 @@ extensions=(
   .log
   .md
   .njk
+  .php
   .rb
   .scss
   .sh
