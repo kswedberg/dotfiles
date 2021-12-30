@@ -66,11 +66,13 @@
   su = submodule update --init
   push-to = !"git-push-to.sh"
   wtf = !"git-wtf.sh"
-  syncupstream = !"git fetch upstream; git checkout master; git merge upstream/master; git push; echo 'Check out your branch and run git rebase master. See: http://www.xanthir.com/b4hf0'"
+  syncupstreammaster = !"git fetch upstream; git checkout master; git merge upstream/master; git push; echo 'Check out your branch and run git rebase master. See: http://www.xanthir.com/b4hf0'"
+  syncupstreammain = !"git fetch upstream; git checkout main; git merge upstream/main; git push; echo 'Check out your branch and run git rebase main. See: http://www.xanthir.com/b4hf0'"
 
   ## These aliases require git-extras (http://github.com/visionmedia/git-extras)
   delete = delete-branch
   del = delete-branch
+  cb = create-branch
   ####
 
   # new = !"git init && git symbolic-ref HEAD refs/heads/main"
