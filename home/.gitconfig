@@ -17,7 +17,7 @@
   excludesfile = ~/.gitignore_global
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
   eol = lf
-  pager = delta
+  # pager = delta
   # editor = subl -n -w
 
 [delta]
@@ -30,7 +30,7 @@
   commit-decoration-style = bold yellow box ul
 
 [interactive]
-  diffFilter = delta --color-only
+  # diffFilter = delta --color-only
 
 [init]
   templatedir = ~/.git_template
@@ -52,10 +52,10 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
   logl = log --oneline --decorate
   pp = !"echo 'Pull'; git pull --rebase; echo 'Push'; git push"
+  cop = !"git checkout .; git pull"
   pusht = !"git push; git push --tags"
   ms = merge --squash
   msn = merge --squash --no-commit
-  rv = review
   st = status
   rename = branch -m
   t = tag
@@ -70,6 +70,7 @@
   ## These aliases require git-extras (http://github.com/visionmedia/git-extras)
   delete = delete-branch
   del = delete-branch
+  cb = create-branch
   ####
 
   # new = !"git init && git symbolic-ref HEAD refs/heads/main"
