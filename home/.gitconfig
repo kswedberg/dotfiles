@@ -53,6 +53,7 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
   logl = log --oneline --decorate
   pp = !"echo 'Pull'; git pull --rebase; echo 'Push'; git push"
+  cop = !"git checkout .; git pull"
   pusht = !"git push; git push --tags"
   ms = merge --squash
   msn = merge --squash --no-commit
