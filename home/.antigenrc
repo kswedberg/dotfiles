@@ -24,7 +24,7 @@ antigen bundle rbenv
 antigen bundle ssh-agent
 antigen bundle virtualenv
 antigen bundle z
-antigen bundle zsh_reload
+# antigen bundle zsh_reload
 
 # antigen bundle capistrano
 # antigen bundle composer
@@ -54,7 +54,7 @@ antigen bundle chrissicool/zsh-256color
 antigen bundle Tarrasch/zsh-bd
 
 # Awesome history search
-antigen bundle psprint/history-search-multi-word
+# antigen bundle psprint/history-search-multi-word
 
 # `finder` fzf
 antigen bundle b4b4r07/cli-finder

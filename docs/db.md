@@ -1,5 +1,10 @@
 # Database Server Configuration
 
+* [MongoDB](#mongodb)
+* [RethinkDB](#rethinkdb)
+  * [Change port](#change-port)
+  * [Set up permisions](#set-up-permisions)
+
 ## MongoDB
 
 Additional customizing is required for mongodb after initial setup.
@@ -82,7 +87,7 @@ You'll probably want to change the host port from `:8080` to one that won't clob
 * Create a new user
 
     ```js
-    r.db('rethinkdb').table('users').insert(({id: '[USERNAME]', password: '[YOURPASSWORD]'})
+    r.db('rethinkdb').table('users').insert({id: '[USERNAME]', password: '[YOURPASSWORD]'})
 
     ```
 

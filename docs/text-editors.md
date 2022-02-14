@@ -7,27 +7,16 @@ Before using Vim, you should install Vundle and then run it to install other Vim
 * Install Vundle:
 
     ```bash
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     ```
 
 Vundle.vim
 
-* Install plugins listed in this project's `.vimrc` file:
+* Install plugins listed in this project's `.vimrc` file (might not be necessary):
 
     ```bash
     vim +PluginInstall +qall`
     ```
-
-## Visual Studio Code
-
-* Install the **Settings Sync extension** (`shan.code-settings-sync`)
-* Log in with Github
-* If a new tab appears with a gist that you can select, select it.
-* If you already have a gist, but it didn't appear:
-* go to old computer and copy `Sync: Gist` value from `Extensions > Code Settings Sync` in Preferences
-* paste it into same place on new computer
-* Press `⌥ ⇧ d` to download settings
-
 
 ## Atom
 

@@ -30,8 +30,8 @@ alias diff="icdiff"
 alias caddyserve="ulimit -n 8192 && caddy -conf ~/Caddyfile"
 
 # TextMate
-alias m="mate"
-alias m.="mate ."
+# alias m="mate"
+# alias m.="mate ."
 alias tmbundles='cd ~/Library/Application\ Support/TextMate/Bundles/'
 
 # Sublime Text 2
@@ -205,8 +205,7 @@ alias gr='grunt'
 alias gp='gulp'
 alias tailphp='tail -f /Applications/MAMP/logs/php_error.log'
 
-# use `src` function from zsh_reload plugin instead.
-# alias src='source ~/.zshrc'
+alias src='source ~/.zshrc > /dev/null && echo "reloaded ~/.zshrc" '
 
 alias hiddenshow="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
 alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
