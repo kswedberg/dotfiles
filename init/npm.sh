@@ -27,14 +27,14 @@ modules=(
   prettier
   # react-native-cli
   # react-viro-cli
-  shipit-cli
+  # shipit-cli
   snyk
   tldr # Nice simple alternative to man. Gives good examples
   # ttystudio # terminal -> animated gif
   # uglify-js
   # webpack
   # yarn-completions
-  yo
+  # yo
 )
 
 printf -v str_modules ' %s' "${modules[@]}"
