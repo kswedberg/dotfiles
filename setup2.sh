@@ -1,5 +1,5 @@
 # Install Yarn
-curl -o- -L https://yarnpkg.com/install.sh | bash
+# curl -o- -L https://yarnpkg.com/install.sh | bash
 
 # Install global npm packages
 source $DOTFILES/init/npm.sh
