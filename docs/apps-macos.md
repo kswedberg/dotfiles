@@ -18,4 +18,5 @@
 ## Messages
 
 * Open Preferences > iMessage
-* Check "Enable Messages in iCloud
+* Check "Enable Messages in iCloud"
+* **On iPhone**, open Settings > Messages > Text Message Forwarding. Then turn on slider for your computer

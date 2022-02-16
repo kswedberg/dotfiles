@@ -11,6 +11,7 @@ extensions=(
   .log
   .md
   .njk
+  .plist
   .rb
   .scss
   .sh
