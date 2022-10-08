@@ -24,7 +24,7 @@ function setup() {
 
   #### HOMEBREW
   # Install Homebrew if not already there
-  if [[ ! -f /usr/local/bin/brew ]]; then
+  if [[ ! -f /usr/local/bin/brew && ! -f /opt/homebrew/bin/brew ]]; then
     echo "Homebrew does not exist. Installing…"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
@@ -37,6 +37,8 @@ function setup() {
   brew bundle -v
 
   # Make ZSH the default shell environment
+  # TODO: since Big Sur uses zsh by default already, need to check first to see if it's already being used.
+
   chsh -s $(which zsh)
 
   # Create some unsourced files if they don't already exist:
@@ -51,23 +53,24 @@ function setup() {
   # Symlink the Mackup config file to the home directory
   ln -s ~/dotfiles/home/.mackup.cfg ~/
 
+### Using volta now instead of nvm
   # Install nvm if not already there
-  if [[ ! -d ~/.nvm ]]; then
-    echo "nvm does not exist. Installing…"
-    export NVM_DIR="$HOME/.nvm" && (
-      git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
-      cd "$NVM_DIR"
-      git checkout $(git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1))
-    ) && \. "$NVM_DIR/nvm.sh"
-  fi
+# if [[ ! -d ~/.nvm ]]; then
+#    echo "nvm does not exist. Installing…"
+#    export NVM_DIR="$HOME/.nvm" && (
+#      git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+#      cd "$NVM_DIR"
+#      git checkout $(git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1))
+#    ) && \. "$NVM_DIR/nvm.sh"
+#  fi
 
   # Install latest LTS node.js
-  nvm install --lts
+#  nvm install --lts
 
   # Install a "recent" Ruby version (as of 2017-12-01) and use it
   # (rbenv was installed from homebrew with the brew bundle command above)
-  rbenv install 2.4.2
-  rbenv global 2.4.2
+#  rbenv install 2.4.2
+#  rbenv global 2.4.2
 
   echo "\nDo you want to install Rust via rustup?  (y/N)"
   read CONFIRM_RUST
@@ -91,7 +94,7 @@ function setup() {
     echo "mongodb added to launchd"
   else
     echo "Okay. To run mongodb on your own… "
-    echo "$ mongod --config /usr/local/etc/mongod.conf"
+    echo "$ mongod --config ${HOMEBREW}/etc/mongod.conf"
   fi
 
   # Install global Composer packages

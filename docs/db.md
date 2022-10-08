@@ -28,7 +28,7 @@ Additional customizing is required for mongodb after initial setup.
     ```
 
 2. Return to bash (or zsh, etc) shell: <kbd>^</kbd> <kbd>d</kbd>
-3. Update `/usr/local/etc/mongodb.conf`
+3. Update `${HOMEBREW}/etc/mongodb.conf`
 
     ```bash
     security:
@@ -71,7 +71,7 @@ Additional customizing is required for rethinkdb after initial setup.
 
 You'll probably want to change the host port from `:8080` to one that won't clobber a lot of local dev sites — something like `:8090`.
 
-* Open `/usr/local/etc/rethinkdb.conf`
+* Open `${HOMEBREW}/etc/rethinkdb.conf`
 * Uncomment the `http-port` line and change the value to 8090
 * Run `brew services restart rethinkdb`
 

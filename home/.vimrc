@@ -48,6 +48,8 @@ colorscheme badwolf
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 let g:markdown_fenced_languages = ['html', 'javascript=js', 'bash=sh']
 
+let g:snipMate = { 'snippet_version' : 1 }
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

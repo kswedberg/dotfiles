@@ -20,6 +20,7 @@ To list all files that would be deleted:
 Possible conflicting files are:
 /usr/local/bin/bundle -> /usr/local/Cellar/ruby/2.5.1/libexec/gembin/bundle
 /usr/local/bin/bundler -> /usr/local/Cellar/ruby/2.5.1/libexec/gembin/bundler
+
 ==> Caveats
 By default, binaries installed by gem will be placed into:
   /usr/local/lib/ruby/gems/2.6.0/bin

@@ -55,7 +55,7 @@ alias st="/Applications/SourceTree.app/Contents/Resources/stree"
 alias f="fork"
 
 # PostGreSQL
-alias startpg="pg_ctl -D /opt/homebrew/var/postgres -l /opt/homebrew/var/postgres/server.log start"
+alias startpg="pg_ctl -D $HOMEBREW/var/postgres -l $HOMEBREW/var/postgres/server.log start"
 
 # File Manipulation (rename multiple files mmv stands for multiple move)
 alias mmv='noglob zmv -W'

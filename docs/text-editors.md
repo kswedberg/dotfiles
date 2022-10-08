@@ -15,7 +15,7 @@ Vundle.vim
 * Install plugins listed in this project's `.vimrc` file (might not be necessary):
 
     ```bash
-    vim +PluginInstall +qall`
+    vim +PluginInstall +qall
     ```
 
 ## Atom

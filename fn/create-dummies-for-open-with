@@ -12,6 +12,7 @@ extensions=(
   .md
   .njk
   .plist
+  .php
   .rb
   .scss
   .sh

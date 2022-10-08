@@ -1,28 +1,28 @@
 ######## PATHS: EARLIER in path takes precedence ######
 
 ### Added by the Heroku Toolbelt
-PATH="/usr/local/heroku/bin:$PATH"
+PATH="$(brew --prefix)/heroku/bin:$PATH"
 
 # MAMP (if running rails app that requires mysql2 lib, put this before Homebrew libraries paths)
 # PATH=/Applications/MAMP/Library/bin:$PATH
 
 # For virtualenv:
-# PATH=/usr/local/bin/python2.7:$PATH
+# PATH=$(brew --prefix)/bin/python2.7:$PATH
 
 # Homebrew libraries
-PATH=/usr/local/sbin:$PATH
-PATH=/usr/local/bin:$PATH
+PATH="$(brew --prefix)/sbin:$PATH"
+PATH="$(brew --prefix)/bin:$PATH"
 # PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
 
 # brew-installed libraries
-PATH="/usr/local/opt/curl/bin:$PATH"
-PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+PATH="$(brew --prefix)/opt/curl/bin:$PATH"
+PATH="$(brew --prefix)/opt/imagemagick@7/bin:$PATH"
 
 # Cargo: Rust package manager
 PATH="$HOME/.cargo/bin:$PATH"
 
 # golang
-PATH=$PATH:/usr/local/opt/go/libexec/bin
+PATH=$PATH:$(brew --prefix)/opt/go/libexec/bin
 PATH=$PATH:$(go env GOPATH)/bin
 
 # Yarn
@@ -54,7 +54,7 @@ PATH="$PATH:$HOME/bin:$HOME/bin/tfs:$HOME/dotfiles"
 
 # gnu commands added via homebrew...
 PATH="$(brew --prefix)/opt/gnu-tar/libexec/gnubin:$PATH"
-# PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-# MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+# PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+# MANPATH="$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH"
 
 export PATH
