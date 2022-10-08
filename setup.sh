@@ -94,7 +94,7 @@ function setup() {
     echo "mongodb added to launchd"
   else
     echo "Okay. To run mongodb on your own… "
-    echo "$ mongod --config /opt/homebrew/etc/mongod.conf"
+    echo "$ mongod --config ${HOMEBREW}/etc/mongod.conf"
   fi
 
   # Install global Composer packages

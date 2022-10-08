@@ -1,5 +1,5 @@
 ZSH=$HOME/.oh-my-zsh
-
+HOMEBREW=$(brew --prefix)
 # Some OMZ plugins rely on this
 if [[ -z "$ZSH_CACHE_DIR" ]]; then
   ZSH_CACHE_DIR="$ZSH/cache"
@@ -17,15 +17,17 @@ zmodload -F zsh/stat b:zstat
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(${HOMEBREW}/bin/brew shellenv)"
 export VOLTA_HOME="$HOME/.volta"
+
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Load shell dotfiles **BEFORE* oh-my-zsh
 source $HOME/.shell/index.sh
 
 # Antigen (loads oh-my-zsh and others)
-source /opt/homebrew/share/antigen/antigen.zsh
+source $HOMEBREW/share/antigen/antigen.zsh
 antigen init $HOME/.antigenrc
 
 # Load RBENV
@@ -55,3 +57,5 @@ fi;
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
