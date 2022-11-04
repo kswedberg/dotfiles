@@ -124,29 +124,33 @@ alias dmip="docker-machine ip default"
 # DOCKER COMPOSE
 # Build a docker image based on a Dockerfile in current dir
 # And do it after every `git pull` because gems might change
-alias dcb="docker-compose build"
+alias dcb="docker compose build"
 
 # start the built image
-alias dcu="docker-compose up"
+alias dcu="docker compose up"
 
 # start the built image and get terminal back
-alias dcud="docker-compose up -d"
+alias dcud="docker compose up -d"
+
+# restart a built image (can be followed by name)
+alias dcrs="docker compose restart"
+
 # stop the built image
-alias dcd="docker-compose down"
+alias dcd="docker compose down"
 
 # run a one-off command in the container
-alias dcr="docker-compose run"
+alias dcr="docker compose run"
 
 # "transient run" removes the container after it finishes.
-alias dctr="docker-compose run --rm"
-alias dcrt="docker-compose run --rm"
+alias dctr="docker compose run --rm"
+alias dcrt="docker compose run --rm"
 
 # View running docker processes
-alias dcps="docker-compose ps"
+alias dcps="docker compose ps"
 
 # Execute a command within the docker container
 # e.g. dce container_name npm install
-alias dce="docker-compose exec"
+alias dce="docker compose exec"
 
 ###############
 
