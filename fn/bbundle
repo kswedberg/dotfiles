@@ -11,10 +11,12 @@ BREWFILE="$DOTFILES/Brewfile"
 echo 'Do you want to:'
 echo "*Install* apps listed in $BREWFILE (default), or"
 echo "*Update/Create* the Brewfile based on your current apps, or"
+echo "*Show* Brewfile"
 echo "*Bail*"
 echo ""
 
-OPTIONS=(Install Update/Create Bail)
+OPTIONS=(Install Update/Create Show Bail)
+
 select OPTION in "${OPTIONS[@]}"; do
   if [[ $OPTION == "Update/Create" ]]; then
     CMD="$CMD dump --force"
@@ -31,6 +33,11 @@ done
 if [[ $OPTION == "Bail" ]]; then
   echo $OPTION
   echo 'Okay. Bailing…'
+elif [[ $OPTION == "Show" ]]; then
+  CMD="cat $BREWFILE"
+  echo "Running ${CMD} …"
+
+  eval $CMD
 else
   CMD="$CMD --file=$BREWFILE"
   echo "Running ${CMD} …"
