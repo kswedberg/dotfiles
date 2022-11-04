@@ -192,6 +192,7 @@ if [ "$CONFIRMMACOS" = "y" ]; then
 
   # Add a context menu item for showing the Web Inspector in web views
   defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+  defaults write -g WebKitDeveloperExtras -bool YES
 
   ######################################
   # Terminal
