@@ -11,6 +11,8 @@ extensions=(
   .log
   .md
   .njk
+  .php
+  .py
   .plist
   .php
   .rb
