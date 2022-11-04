@@ -15,6 +15,7 @@
 # 2: sa
 # alias sa="alias > ~/dotfiles/.aliases"
 
+alias python="python3"
 ####
 #### OVERRIDE standard shell commands
 ####
@@ -25,6 +26,8 @@ alias cat="bat"
 
 alias top="sudo htop"
 alias diff="icdiff"
+
+alias 7z="7zz"
 
 # Caddy Server
 alias caddyserve="ulimit -n 8192 && caddy -conf ~/Caddyfile"
