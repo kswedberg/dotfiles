@@ -12,3 +12,8 @@ fpath=(
   "${fpath[@]}"
 )
 autoload -Uz ${fpath[1]}/*(:t)
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
