@@ -21,3 +21,5 @@ function source_files() {
 source_files $src_files
 
 unset src_files
+
+autoload -U compinit && compinit
