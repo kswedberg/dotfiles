@@ -11,6 +11,7 @@ function source_files() {
 
 # These files get sourced BEFORE $ZSH/oh-my-zsh.sh
 src_files=(
+  nodejs.sh
   path.sh
   exports.sh
   aliases.sh
