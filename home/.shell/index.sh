@@ -17,7 +17,7 @@ src_files=(
   aliases.sh
   autoloads.sh
   functions.sh
-  # nvm_load.sh
+  # nvm_load.sh # this gets sourced in ./nodejs.sh, but only if nvm is installed and being used
   opts.sh
   secrets.sh
 )
