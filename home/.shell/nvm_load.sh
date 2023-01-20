@@ -1,6 +1,6 @@
 # place this after nvm initialization!
 autoload -U add-zsh-hook
-load-nvmrc() {
+load_nvmrc() {
   local node_version="$(nvm version)"
   local nvmrc_path="$(nvm_find_nvmrc)"
 
@@ -17,5 +17,5 @@ load-nvmrc() {
     nvm use --delete-prefix default
   fi
 }
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+add-zsh-hook chpwd load_nvmrc
+load_nvmrc
