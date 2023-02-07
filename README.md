@@ -69,7 +69,7 @@ When you're finished, you can delete the `dummies` folder.
 
 Source: [tweet on 2017-11-16 by @cabel](https://twitter.com/cabel/status/931292107372838912)
 
-_Note:_ There might be security implications to doing this. Proceed at your own risk.
+*Note:* There might be security implications to doing this. Proceed at your own risk.
 
 1. Open `/etc/pam.d/sudo` for editing: `sudo vim /etc/pam.d/sudo`
 2. Add this to the top of the file and save: `auth sufficient pam_tid.so`
@@ -93,7 +93,7 @@ The following apps need to be manually installed:
 ## Before wiping a drive
 
 * Backup the whole thing. Duh.
-* Run `./backup.sh` from _this project's main directory_
+* Run `./backup.sh` from *this project's main directory*
 * Dump local rethinkdb databases
 * Dump local MySQL databases
 * Dump local mongodb databases
