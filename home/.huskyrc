@@ -4,5 +4,6 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 export PATH="/Users/kswedberg/.yarn/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
+export TERM="xterm-256color"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/nvm.sh" ] && source $HOME/.shell/nvm_load.sh &>/dev/null
