@@ -64,6 +64,7 @@
   tagl = tag -l
   taglt = !"git tag -l | tail"
   su = submodule update --init
+  fb = !"git-fb.sh"
   push-to = !"git-push-to.sh"
   wtf = !"git-wtf.sh"
   syncupstreammaster = !"git fetch upstream; git checkout master; git merge upstream/master; git push; echo 'Check out your branch and run git rebase master. See: http://www.xanthir.com/b4hf0'"
