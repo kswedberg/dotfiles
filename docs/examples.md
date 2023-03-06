@@ -10,3 +10,7 @@
 
 * Run a command from a variable: `fn/nvmupdate`
 * Create an array of commands and loop through them, executing each one in turn: `backup.sh`
+
+## Misc
+
+* [Flags for conditions](https://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html)
