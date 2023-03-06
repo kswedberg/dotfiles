@@ -1,0 +1,16 @@
+
+slugify () {
+  if [ -p /dev/stdin ]; then
+    read text
+    slug="$text"
+  elif [ -n "$1" ]; then
+    slug="$1"
+  else
+    echo "Type something to slugify…\n"
+    read slug
+  fi
+
+  if [ -n "$slug" ]; then
+    echo "$slug" | iconv -c -t ascii//TRANSLIT | sed -E 's/[~^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+|-+$//g' | tr A-Z a-z
+  fi
+}
