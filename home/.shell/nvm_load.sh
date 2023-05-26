@@ -1,4 +1,5 @@
 # place this after nvm initialization!
+# this gets sourced in ./nodejs.sh if nvm is being used
 autoload -U add-zsh-hook
 loadnvmrc() {
   local node_version="$(nvm version)"
