@@ -30,7 +30,7 @@ alias diff="icdiff"
 alias 7z="7zz"
 
 # Caddy Server
-alias caddyserve="ulimit -n 8192 && caddy -conf ~/Caddyfile"
+alias caddyserve="ulimit -n 8192 && caddy start -config ~/Caddyfile"
 
 # TextMate
 # alias m="mate"
