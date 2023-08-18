@@ -16,7 +16,7 @@ auto_volumes
 
 # Per-device config/preferences
 .vscode/
-.vsce
+# .vsce
 home/Library
 .yarnrc
 **/.docker/config.json
