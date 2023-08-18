@@ -57,6 +57,12 @@ if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
     fi
   fi
 
+  local node_version='?'
+  if which node &>/dev/null; then
+    node_version="$(node -v)"
+  fi
+
+
   ZSH_THEME_GIT_PROMPT_PREFIX="[%{$reset_color%}"
   ZSH_THEME_GIT_PROMPT_SUFFIX="] %{$reset_color%}"
 
@@ -79,7 +85,7 @@ if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
   RUBY_ICON=$'\U2B18'
 
   PROMPT='
-  ${KARL_CURRENT_TIME_} ${karl_virtualenv} ${KARL_OPEN_ANGLE}${RUBY_ICON} '"${rvm_ruby}"'${KARL_CLOSE_ANGLE} [%{$fg[green]%}${NODE_ICON} `node -v`%{$reset_color%}]${PATHCOLOR} ${current_dir}
+  ${KARL_CURRENT_TIME_} ${karl_virtualenv} ${KARL_OPEN_ANGLE}${RUBY_ICON} '"${rvm_ruby}"'${KARL_CLOSE_ANGLE} [%{$fg[green]%}${NODE_ICON} '"${node_version}"'%{$reset_color%}]${PATHCOLOR} ${current_dir}
   %{$reset_color%}$(git_super_status)${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{$reset_color%}'
   # $(git_prompt_info)${KARL_PRE_STATUS}$(git_prompt_status)${KARL_POST_STATUS}${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
   # RPROMPT='[`node -v`]'
