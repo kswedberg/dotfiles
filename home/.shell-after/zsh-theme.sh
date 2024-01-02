@@ -28,16 +28,6 @@ function karl_precmd() {
   fi
   # local IN_RMOUNT_PATH=`echo "${PWD}" | grep "${RMOUNT_DIR}"`
   PATHCOLOR="%{$reset_color%}"
-  # if [[ -n "${IN_RMOUNT_PATH}" ]]; then
-  #   PATHCOLOR="%{${fg[red]}%}"
-  # fi
-}
-
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-
-  # Remove `add-zsh-hook precmd karl_precmd` in favor of `precmd_function+=(...)`
-  # cf https://github.com/robbyrussell/oh-my-zsh/issues/748#issuecomment-37862691
-  precmd_functions+=(karl_precmd)
 
   if [[ $USER == "root" ]]; then
     CARETCOLOR="red"
@@ -90,4 +80,11 @@ if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
   # $(git_prompt_info)${KARL_PRE_STATUS}$(git_prompt_status)${KARL_POST_STATUS}${KARL_POST_GIT}%{${fg[$CARETCOLOR]}%}❯ %{${reset_color}%}'
   # RPROMPT='[`node -v`]'
   RPROMPT=''
+}
+
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+
+  # Remove `add-zsh-hook precmd karl_precmd` in favor of `precmd_function+=(...)`
+  # cf https://github.com/robbyrussell/oh-my-zsh/issues/748#issuecomment-37862691
+  precmd_functions+=(karl_precmd)
 fi
