@@ -1,7 +1,7 @@
 # bin
 home/bin/*
 !home/bin/*.sh
-
+!home/bin/icons
 # Secrets
 .gnupg
 .npmrc
