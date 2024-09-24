@@ -8,7 +8,7 @@ export CLICOLOR=1
 
 export LESS=-RXFi
 # Highlight section titles in manual pages
-export LESS_TERMCAP_md="$ORANGE"
+# export LESS_TERMCAP_md="$ORANGE"
 # export LESS_TERMCAP_mb=$(printf "\e[1;31m")
 # export LESS_TERMCAP_md=$(printf "\e[1;31m")
 # export LESS_TERMCAP_me=$(printf "\e[0m")
@@ -18,7 +18,7 @@ export LESS_TERMCAP_md="$ORANGE"
 # export LESS_TERMCAP_us=$(printf "\e[1;32m")
 
 # Don’t clear the screen after quitting a manual page
-export MANPAGER="less -X"
+export MANPAGER="less -X -M +Gg"
 
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto"
