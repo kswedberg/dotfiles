@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 declare -a backup_cmds=(
   "brew bundle dump --file=$DOTFILES/Brewfile --force"
-  "mackup backup --force"
+  # "mackup backup --force"
 )
 
 echo "You are about to back up your settings and files."
