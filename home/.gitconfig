@@ -103,17 +103,27 @@
 [branch]
 	autosetuprebase = always
 
+[fetch]
+  prune = true
+
 [pull]
 	rebase = true
 
 [rebase]
   autoStash = true
 
+[url "git@github.com:"]
+  pushInsteadOf = "https://github.com/"
+
 [tag]
   sort = version:refname
 
+[log]
+  date = iso
+
 [merge]
   tool = sourcetree
+  conflictstyle = diff3
 
 [mergetool]
   prompt = false
