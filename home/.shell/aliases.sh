@@ -135,6 +135,9 @@ alias dcu="docker compose up"
 # start the built image and get terminal back
 alias dcud="docker compose up -d"
 
+# start the built image but FORCE A RECREATE first
+alias dcuf="docker compose up -V --force-recreate"
+
 # restart a built image (can be followed by name)
 alias dcrs="docker compose restart"
 
@@ -163,7 +166,7 @@ alias nid="npm install -D"
 alias nis="npm install -S"
 alias npmls="npm ls --depth=0"
 alias npmlsg="npm ls -g --depth=0"
-
+alias ncu="ncu -i --format group,ownerChanged"
 # capistrano / rails
 alias capd='cap deploy'
 alias be='bundle exec'
@@ -189,6 +192,7 @@ alias stashl="git stash list"
 alias stasha="git stash apply"
 alias stashd="git stash drop"
 alias stashc="git stash clear"
+alias stashs="git stash show -pu"
 
 alias gitst='git status -sb'
 alias gitlog="git log --pretty='format:%C(cyan)%h%Cgreen %ad %C(yellow)%an %Creset%s'"
