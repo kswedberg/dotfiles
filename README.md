@@ -7,7 +7,7 @@ taken from the illustrious Mathias Bynens (https://github.com/mathiasbynens/dotf
 
 Using:
 
-* Mackup: This is the primary thing
+* ~~Mackup: This is the primary thing~~ (apparently this [no longer works on MacOS Sonoma or later](https://github.com/lra/mackup/issues/1924))
 * Antigen for zsh bundles
 * Homebrew
 
@@ -23,9 +23,9 @@ Using:
 4. **Important**: The `init/macos.sh` file has some very opinionated settings. Make sure you comment out the ones you don't want to set.
 5. Run `./setup.sh` from *this project's main directory*. Doing so makes the following happen:
     * **Homebrew**: Installs Homebrew if not already installed. Updates brew, and runs `brew bundle`, which install a crap-ton of brew, cask, and Mac App Store apps via the `Brewfile`.
-    * **Node.js / nvm**: Installs `nvm` if not already installed. Installs the most recent version of node.js. Installs global npm packages specified in `init/npm.sh`.
-    * **Zsh**: Sets the default shell environment to Zsh
+    * **Node.js / nvm**: nstalls `nvm` if not already installed. Optionally installs the most recent version of node.js. (See and possibly run `init/npm.sh` if you want to install some global npm packages.)
     * **Composer** Installs global Composer packages for PHP
+    * **Ruby / rbenv**: Optionally installs and sets a globally Ruby version using `rbenv`. If you answer "n" to installing, you can do it manually as outlined in step 6.
 6. Install and set a global Ruby version using `rbenv`:
 
     ```bash
@@ -38,7 +38,7 @@ Using:
     ```
 
 7. Run `./setup2.sh` from *this project's main directory* to install global node modules and ruby gems listed in `./init/npm.sh` and `./init/gem.sh`, respectively.
-8. Run `mackup restore`
+8. Copy or symlink files from this project's `home/` directory to the MacOS home directory (`~/`). *This should be automated in the future.*
 
 ## Files to manually copy
 
