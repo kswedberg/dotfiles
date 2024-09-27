@@ -51,9 +51,9 @@ function setup() {
   source ~/.zshrc
 
   # Symlink the Mackup config file to the home directory
-  ln -s ~/dotfiles/home/.mackup.cfg ~/
+  # ln -s ~/dotfiles/home/.mackup.cfg ~/
 
-### Using volta now instead of nvm
+### Using volta instead of nvm
   # Install nvm if not already there
 # if [[ ! -d ~/.nvm ]]; then
 #    echo "nvm does not exist. Installing…"
@@ -65,13 +65,34 @@ function setup() {
 #  fi
 
   # Install latest LTS node.js
-#  nvm install --lts
+  echo "\nDo you want to install the lts version of Node.js?  (y/N)"
+  read CONFIRM_NODE_LTS
+
+  if [ "$CONFIRM_NODE_LTS" = "y" ]; then
+    nvm install --lts
+    nvm use --lts
+    nvm alias default --lts
+
+    node --version
+    npm --version
+  else
+    echo "Okay, skipping Node installation. You can install it later with nvm install"
+  fi
 
   # Install a "recent" Ruby version (as of 2017-12-01) and use it
   # (rbenv was installed from homebrew with the brew bundle command above)
-#  rbenv install 2.4.2
-#  rbenv global 2.4.2
+  echo "\nDo you want to a version of Ruby? (y/N)"
+  read CONFIRM_RUBY
 
+  if [ "$CONFIRM_RUBY" = "y" ]; then
+    RUBY_VERSION="3.0.4"
+    read "?Choose a version [default is $RUBY_VERSION]: " USER_RUBY_VERSION
+    RUBY_VERSION=${USER_RUBY_VERSION:-$RUBY_VERSION}
+    rbenv install $RUBY_VERSION
+    rbenv global $RUBY_VERSION
+  else
+    echo "Okay, skipping Node installation. You can install it later with rbenv install"
+  fi
   echo "\nDo you want to install Rust via rustup?  (y/N)"
   read CONFIRM_RUST
   if [ "$CONFIRM_RUST" = "y" ]; then
@@ -86,10 +107,10 @@ function setup() {
   # sudo mkdir -p /data/db
   # sudo chown -R $(id -un) /data/db
 
-  echo "\nDo you want launchd to start mongodb now and restart at login? (y/n)"
-  read CONFIRM
+  echo "\nDo you want launchd to start mongodb now and restart at login? (y/N)"
+  read CONFIRM_MONGO_LAUNCHD
 
-  if [ "$CONFIRM" = "y" ]; then
+  if [ "$CONFIRM_MONGO_LAUNCHD" = "y" ]; then
     brew services start mongodb-community
     echo "mongodb added to launchd"
   else
