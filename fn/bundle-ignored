@@ -7,8 +7,11 @@ if [ ! $1 ]; then
   BUNDLE="bundle"
 fi
 
-[ -d "${BUNDLE}" ] && rm -rf $BUNDLE
+# [ -d "${BUNDLE}" ] && rm -rf $BUNDLE
 mkdir -p $BUNDLE
+
+# Copy extra dotfiles from ~/
+node "$PWD/copy-dotfiles.mjs" $BUNDLE
 
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function tar_gz() {
@@ -55,7 +58,9 @@ function copy_files() {
   printf "FINISHED!"
 }
 
-IGNORED=$(git ls-files -o -x .DS_Store -x Library -x tmp -x secrets.tar.gz)
+IGNORED=$(git ls-files -o -x .DS_Store -x Library -x tmp -x secrets.tar.gz -x cache -x home/bin -x $BUNDLE)
+echo "About to copy the following ignored files:"
+echo $IGNORED
 copy_files ${IGNORED}
 
 unset IGNORED
