@@ -8,8 +8,10 @@ antigen bundle robbyrussell/oh-my-zsh lib/git.zsh
 antigen bundle robbyrussell/oh-my-zsh lib/grep.zsh
 antigen bundle robbyrussell/oh-my-zsh lib/history.zsh
 antigen bundle robbyrussell/oh-my-zsh lib/key-bindings.zsh
-antigen bundle robbyrussell/oh-my-zsh lib/termsupport.zsh
 antigen bundle robbyrussell/oh-my-zsh lib/theme-and-appearance.zsh
+
+# termsupport.zsh was causing error "command not found: omz_urlencode"
+# antigen bundle robbyrussell/oh-my-zsh lib/termsupport.zsh
 
 antigen bundle docker
 antigen bundle docker-compose
