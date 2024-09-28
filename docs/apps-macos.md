@@ -20,3 +20,24 @@
 * Open Preferences > iMessage
 * Check "Enable Messages in iCloud"
 * **On iPhone**, open Settings > Messages > Text Message Forwarding. Then turn on slider for your computer
+
+## Keyboard shortcuts
+
+* Open System Settings > Keyboard and click the Keyboard Shortcuts button and then App Shortcuts
+
+### Photos
+
+* Adjust Date and Time... ⇧⌘D
+
+### Mail
+
+* Archive ⇧⌘A
+
+### Safari
+
+* Inspect Element: ⇧⌘C
+
+### Orion:
+
+* Inspect Element: ⇧⌘C
+* Open Console: ⌥⌘J
