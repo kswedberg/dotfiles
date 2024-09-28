@@ -87,6 +87,8 @@ if [[ ! -d ~/.nvm ]]; then
 
     node --version
     npm --version
+
+    echo "\n**NOTE**: Some things installed by Homebrew (such as mongodb) might require node, thus installing a homebrew version of node.js, which could force it as the default version. If this happens, run `brew unlink node`.
   else
     echo "Okay, skipping Node installation. You can install it later with nvm install"
   fi
