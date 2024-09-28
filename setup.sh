@@ -22,11 +22,21 @@ function setup() {
   red=$(tput setaf 1)
   reset=$(tput sgr0)
 
+  rm ~/.zshrc
+  for file in $(find $DOTFILES/home -maxdepth 1)
+  do
+    if [[ ! "$file" =~ DS_Store ]]
+    then
+      base=`basename $file`
+      ln -s $file "$HOME/$base"
+    fi
+  done
+
   #### HOMEBREW
   # Install Homebrew if not already there
   if [[ ! -f /usr/local/bin/brew && ! -f /opt/homebrew/bin/brew ]]; then
     echo "Homebrew does not exist. Installing…"
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
   # Update Homebrew recipes
@@ -39,7 +49,7 @@ function setup() {
   # Make ZSH the default shell environment
   # TODO: since Big Sur uses zsh by default already, need to check first to see if it's already being used.
 
-  chsh -s $(which zsh)
+  # chsh -s $(which zsh)
 
   # Create some unsourced files if they don't already exist:
   touch "$DOTFILES/home/.gitconfig.secrets"
@@ -55,23 +65,25 @@ function setup() {
 
 ### Using volta instead of nvm
   # Install nvm if not already there
-# if [[ ! -d ~/.nvm ]]; then
-#    echo "nvm does not exist. Installing…"
-#    export NVM_DIR="$HOME/.nvm" && (
-#      git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
-#      cd "$NVM_DIR"
-#      git checkout $(git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1))
-#    ) && \. "$NVM_DIR/nvm.sh"
-#  fi
+if [[ ! -d ~/.nvm ]]; then
+   echo "nvm does not exist. Installing…"
+   export NVM_DIR="$HOME/.nvm" && (
+     git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+     cd "$NVM_DIR"
+     git checkout $(git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1))
+   ) && \. "$NVM_DIR/nvm.sh"
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+ fi
 
   # Install latest LTS node.js
   echo "\nDo you want to install the lts version of Node.js?  (y/N)"
   read CONFIRM_NODE_LTS
 
   if [ "$CONFIRM_NODE_LTS" = "y" ]; then
-    nvm install --lts
-    nvm use --lts
-    nvm alias default --lts
+    nvm install node
+    nvm use node
+    nvm alias default node
 
     node --version
     npm --version
