@@ -27,17 +27,17 @@
 
 ### Photos
 
-* Adjust Date and Time... ⇧⌘D
+* Adjust Date and Time... <kbd>⇧⌘D</kbd>
 
 ### Mail
 
-* Archive ⇧⌘A
+* Archive <kbd>⇧⌘A</kbd>
 
 ### Safari
 
-* Inspect Element: ⇧⌘C
+* Inspect Element <kbd>⇧⌘C</kbd>
 
 ### Orion:
 
-* Inspect Element: ⇧⌘C
-* Open Console: ⌥⌘J
+* Inspect Element <kbd>⇧⌘C</kbd>
+* Open Console <kbd>⌥⌘J</kbd>
