@@ -39,7 +39,14 @@ function setup() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
+  fi
+  PATH="/opt/homebrew/bin:$PATH"
+  if [[ ! -f /usr/local/bin/brew && -f /opt/homebrew/bin/brew ]]; then
+    echo "Homebrew is installed at /opt/homebrew but not at /usr/local. Setting path to /opt/homebrew/bin for setup"
+    PATH="/opt/homebrew/bin:$PATH"
+  fi
   # Update Homebrew recipes
+
   brew update
 
   # Install all Homebrew dependencies with bundle (See Brewfile)
@@ -125,7 +132,7 @@ if [[ ! -d ~/.nvm ]]; then
   read CONFIRM_MONGO_LAUNCHD
 
   if [ "$CONFIRM_MONGO_LAUNCHD" = "y" ]; then
-    brew services start mongodb-community
+    brew services start mongodb/brew/mongodb-community
     echo "mongodb added to launchd"
   else
     echo "Okay. To run mongodb on your own… "
