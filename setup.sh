@@ -50,38 +50,36 @@ function setup() {
   brew update
 
   # Install all Homebrew dependencies with bundle (See Brewfile)
+  echo "Installing Homebrew apps…"
   brew tap homebrew/bundle
   brew bundle -v
 
-  # Make ZSH the default shell environment
-  # TODO: since Big Sur uses zsh by default already, need to check first to see if it's already being used.
+  # Install Vim Vundle
+  echo "Installing Vim Vundle…"
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-  # chsh -s $(which zsh)
 
   # Create some unsourced files if they don't already exist:
   touch "$DOTFILES/home/.gitconfig.secrets"
   touch "$DOTFILES/home/.shell/secrets.sh"
   touch "$DOTFILES/home/.shell-after/secrets.sh"
+
   # In case there is no .zshrc yet:
   touch ~/.zshrc
-
+  # Get shell to recognize all the new goodness
   source ~/.zshrc
 
-  # Symlink the Mackup config file to the home directory
-  # ln -s ~/dotfiles/home/.mackup.cfg ~/
-
-### Using volta instead of nvm
   # Install nvm if not already there
-if [[ ! -d ~/.nvm ]]; then
-   echo "nvm does not exist. Installing…"
-   export NVM_DIR="$HOME/.nvm" && (
-     git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
-     cd "$NVM_DIR"
-     git checkout $(git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1))
-   ) && \. "$NVM_DIR/nvm.sh"
+  if [[ ! -d ~/.nvm ]]; then
+    echo "nvm does not exist. Installing…"
+    export NVM_DIR="$HOME/.nvm" && (
+      git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+      cd "$NVM_DIR"
+      git checkout $(git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1))
+    ) && \. "$NVM_DIR/nvm.sh"
     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
- fi
+  fi
 
   # Install latest LTS node.js
   echo "\nDo you want to install the lts version of Node.js?  (y/N)"
@@ -95,9 +93,19 @@ if [[ ! -d ~/.nvm ]]; then
     node --version
     npm --version
 
-    echo "\n**NOTE**: Some things installed by Homebrew (such as mongodb) might require node, thus installing a homebrew version of node.js, which could force it as the default version. If this happens, run `brew unlink node`.
+    echo "\n**NOTE**: Some things installed by Homebrew (such as mongodb) might automatically install node.js as a dependency, which could force the homebrew node as the default version. If this happens, run `brew unlink node`."
   else
     echo "Okay, skipping Node installation. You can install it later with nvm install"
+  fi
+
+  # Install Classic Yarn
+
+  echo "\nDo you want to install Yarn?  (y/N)"
+  read CONFIRM_YARN
+  if [ "$CONFIRM_YARN" = "y" ]; then
+    curl -o- -L https://yarnpkg.com/install.sh | bash
+    echo "Yarn installed. Version:"
+    yarn --version
   fi
 
   # Install a "recent" Ruby version (as of 2017-12-01) and use it
@@ -141,9 +149,6 @@ if [[ ! -d ~/.nvm ]]; then
 
   # Install global Composer packages
   composer global require laravel/installer
-
-  # Set some MacOS defaults
-  # source $DOTFILES/init/macos.sh
 
   echo "All done!"
 

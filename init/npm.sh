@@ -1,37 +1,35 @@
-# npm install -g autoprefixer
-# npm install -g bower
 modules=(
-  @storybook/cli
-  @vue/cli
+  # @storybook/cli
+  # @vue/cli
   # @vue/cli-init
+  # autoprefixer
   # browser-sync
   # cordova
-  # create-react-native-app
   # depcheck
-  # exp
   # express-generator
-  # gatsby-cli
   # gifify # video -> animated gif
-  git-changelog
+  # git-changelog
   # grunt-cli
-  gulp-cli
+  # grunt-init
+  # gulp-cli
   http-server
-  lerna # for mono repos
+  # hyperlink
+  # lerna # for mono repos
   # localtunnel # command is `lt`
-  # napa
+  # lodash-cli
+  # marked
+  # mermaid # http://knsv.github.io/mermaid/
   # nativescript
-  # nectarjs
   # ngrok
+  # nodemon
+  npm-check-updates # command is `ncu`
   # plugman
   pm2
-  prettier
+  # prettier
   # react-native-cli
-  # react-viro-cli
-  # shipit-cli
   snyk
   tldr # Nice simple alternative to man. Gives good examples
   # ttystudio # terminal -> animated gif
-  # uglify-js
   # webpack
   # yarn-completions
   # yo
@@ -40,35 +38,12 @@ modules=(
 printf -v str_modules ' %s' "${modules[@]}"
 str_modules=${str_modules:1}
 
-npm install -g $str_modules
+echo "About to install the following packages global modules:\n\t$str_modules\n"
 
-# Others:
-# npm install -g grunt-init
-
-# # Node Utilities
-
-# npm install -g nodemon
-
-# General Utilities
-# npm install -g hyperlink
-# npm install -g lodash-cli
-# npm install -g marked
-# npm install -g mermaid # http://knsv.github.io/mermaid/
-
-# Mobile & Desktop Dev
-# npm install -g electron-prebuilt
-# npm install -g hoodie-cli
-# npm install -g ios-sim
-
-### 3rd Party Services:
-# npm install -g firebase-tools
-# npm install -g surge
-# npm install -g jitsu
-
-### Yeoman Generators:
-# npm install -g generator-craftplugin
-# npm install -g generator-baseline
-# npm install -g generator-mobile
-# npm install -g generator-mocha
-# npm install -g generator-webapp
-# npm install -g generator-react-webpack
+echo "Do you want to use Yarn [default] or npm? (Y/n)"
+read CONFIRM_PKG
+if [ "$CONFIRM_PKG" == "n" ]; then
+  npm install -g $str_modules
+else
+  yarn global add $str_modules
+fi
