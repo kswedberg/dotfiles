@@ -37,12 +37,6 @@ alias caddyserve="ulimit -n 8192 && caddy start -config ~/Caddyfile"
 # alias m.="mate ."
 alias tmbundles='cd ~/Library/Application\ Support/TextMate/Bundles/'
 
-# Sublime Text 2
-alias sb="subl"
-
-# Micro
-alias mi="micro"
-
 # OPEN files/projects in default editor
 # Also, see ./fn/e file
 alias zshconfig="$EDITOR -n ~/.zshrc"
@@ -53,10 +47,6 @@ alias brewfile="$EDITOR -n ~/dotfiles/Brewfile"
 # SourceTree
 alias st="/Applications/SourceTree.app/Contents/Resources/stree"
 
-# Fork Git Client
-# alias st="fork" # until I lose the muscle memory of opening SourceTree
-alias f="fork"
-
 # PostGreSQL
 alias startpg="pg_ctl -D $HOMEBREW/var/postgres -l $HOMEBREW/var/postgres/server.log start"
 
@@ -64,6 +54,7 @@ alias startpg="pg_ctl -D $HOMEBREW/var/postgres -l $HOMEBREW/var/postgres/server
 alias mmv='noglob zmv -W'
 
 # Dir navigation
+alias ..="cd ../"
 alias ...="cd ../../"
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
