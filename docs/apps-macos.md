@@ -23,7 +23,12 @@
 
 ## Keyboard shortcuts
 
-* Open System Settings > Keyboard and click the Keyboard Shortcuts button and then App Shortcuts
+* Open System Settings > Keyboard and click the Keyboard Shortcuts button and then App Shortcuts. Recommended settings:
+
+<figure>
+  <img alt="recommended app keyboard settings" src="img/app-keyboard-shortcuts.png">
+  <figcaption>Note: Orion's <code>Save Window...</code> shortcut is there to override its default <kbd>⇧⌘S</kbd> because my Chrome extension uses that for saving bookmarks.</figcaption>
+</figure>
 
 ### Photos
 
