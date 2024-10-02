@@ -7,6 +7,19 @@
 * Navigate to `Contents/MacOS/` and double-click the file in there.
 * When the Confirmation prompt appears, click ok
 
+## Sequel Ace
+
+* Old machine: Export connections (bottom left statusbar item) to `~/Documents/Settings/Sequel Ace`
+* New machine: Import connections from same place
+
+## elasticvue
+
+* Export/back up config from old machine and import into new
+
+## SSH Tunnel Manager
+
+* Note to self: See connections in Notes.app
+
 ## iTerm
 
 ### General Preferences
@@ -38,7 +51,6 @@
 
 * Dash
 * Insomnia
-* Sequel Pro
 * Transmit
 
 
