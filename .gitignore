@@ -7,10 +7,9 @@ home/bin/*
 .npmrc
 .ssh
 .aws
-*.secrets
 auth.json
 extra.sh
-secrets.*
+*secret*
 credentials
 auto_volumes
 
