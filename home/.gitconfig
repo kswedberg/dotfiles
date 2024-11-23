@@ -143,3 +143,5 @@
 
 [icdiff]
   options = " --line-numbers"
+[http]
+  postBuffer = 524288000
