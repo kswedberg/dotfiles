@@ -148,7 +148,9 @@ cask "imagealpha"
 cask "imageoptim"
 cask "insomnia"
 cask "iterm2"
+cask "keybase"
 cask "keyboardcleantool"
+cask "menumeters"
 cask "microsoft-edge"
 cask "mongodb-compass"
 cask "namechanger"
@@ -173,17 +175,21 @@ cask "visual-studio-code"
 cask "vlc"
 cask "webpquicklook"
 cask "zettlr"
-# mas "1Password for Safari", id: 1569813296
+mas "1Password for Safari", id: 1569813296
 mas "Acorn", id: 1547371478
 mas "Actions", id: 1586435171
 mas "Affinity Designer", id: 824171161
-# mas "Keynote", id: 409183694
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
 mas "Medis", id: 1579200037
 mas "Next Meeting", id: 1017470484
-# mas "Numbers", id: 409203825
-# mas "Pages", id: 409201541
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Pixelmator Pro", id: 1289583905
 mas "Reeder", id: 1529448980
 mas "Sequel Ace", id: 1518036000
+mas "Slack", id: 803453959
 mas "Soulver 2", id: 413965349
 mas "Svgsus", id: 1106867065
 mas "Xcode", id: 497799835

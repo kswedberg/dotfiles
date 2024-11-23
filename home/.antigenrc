@@ -13,7 +13,7 @@ antigen bundle robbyrussell/oh-my-zsh lib/theme-and-appearance.zsh
 # termsupport.zsh was causing error "command not found: omz_urlencode"
 # antigen bundle robbyrussell/oh-my-zsh lib/termsupport.zsh
 
-antigen bundle docker
+# antigen bundle docker
 antigen bundle docker-compose
 antigen bundle extract
 antigen bundle git-extras
