@@ -44,6 +44,9 @@ alias ohmyzsh="$EDITOR -n ~/.oh-my-zsh"
 alias aliases="$EDITOR -n ~/dotfiles/home/.shell/aliases.sh"
 alias brewfile="$EDITOR -n ~/dotfiles/Brewfile"
 
+# Create a lowercase UUID
+alias uuid="uuidgen | tr '[:upper:]' '[:lower:]'"
+
 # SourceTree
 alias st="/Applications/SourceTree.app/Contents/Resources/stree"
 
@@ -167,6 +170,19 @@ alias yae="yarn add --exact"
 alias yi="yarn install"
 alias yip="yarn install --production"
 alias yrm="yarn remove"
+
+# pnpm
+alias p="pnpm"
+alias pa="pnpm add"
+alias pap="pnpm add"
+alias pad="pnpm add --save-dev"
+alias pi="pnpm install"
+alias prm="pnpm remove"
+alias pt="pnpm test"
+alias pu="pnpm update -i"
+
+###############
+
 # compass
 alias cc="compass compile"
 alias cw="compass watch"
@@ -190,7 +206,7 @@ alias gitlog="git log --pretty='format:%C(cyan)%h%Cgreen %ad %C(yellow)%an %Cres
 # alias gitlog='git log --oneline --decorate'
 alias gitpull='git pull --rebase'
 alias gitpush='git push'
-alias gitdiff='git diff | e'
+alias gitdiff='git diff | e -'
 alias gitbr='git branch'
 alias pullall="git submodule foreach git pull origin master"
 alias push\?="git cherry -v"
