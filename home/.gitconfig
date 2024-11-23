@@ -6,7 +6,7 @@
   # user = USER
   # token = TOKEN
 # [gist-diff]
-	# token = TOKEN
+  # token = TOKEN
 ###
 [include]
   path = ~/.gitconfig.secrets
@@ -17,6 +17,7 @@
   excludesfile = ~/.gitignore_global
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
   eol = lf
+  longpaths = true
   # pager = delta
   # editor = subl -n -w
 
@@ -34,10 +35,10 @@
 
 [init]
   templatedir = ~/.git_template
-	defaultBranch = main
+  defaultBranch = main
 
 [push]
-	default = current
+  default = current
 
 [alias]
   a = add --all
@@ -50,7 +51,7 @@
   dt = difftool --no-prompt
   fetchp = fetch --prune
   g = grep -I
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
   logl = log --oneline --decorate
   pp = !"echo 'Pull'; git pull --rebase; echo 'Push'; git push"
   cop = !"git checkout .; git pull"
@@ -101,13 +102,13 @@
   # whitespace = nowarn
 
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 
 [fetch]
   prune = true
 
 [pull]
-	rebase = true
+  rebase = true
 
 [rebase]
   autoStash = true
@@ -133,12 +134,12 @@
 #   trustExitCode = true
 
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
 
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 
 [icdiff]
-	options = " --line-numbers"
+  options = " --line-numbers"
