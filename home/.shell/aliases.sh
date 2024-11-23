@@ -95,15 +95,6 @@ alias dt="doing today"
 alias dy='d yesterday | cut -d " " -f 2- | sed -e "s/^/ /"'
 alias idea="doing now -s Ideas"
 
-# yarn
-alias y="yarn"
-alias yap="yarn add"
-alias yad="yarn add --dev"
-alias yae="yarn add --exact"
-alias yi="yarn install"
-alias yip="yarn install --production"
-alias yrm="yarn remove"
-
 # DOCKER
 # `daliases` function is in .shell-after/secrets.sh so as not to pollute common files
 # (PROJECT-SPECIFIC DOCKER aliases are in .shell-after/extra.sh)
@@ -118,19 +109,19 @@ alias dmip="docker-machine ip default"
 # DOCKER COMPOSE
 # Build a docker image based on a Dockerfile in current dir
 # And do it after every `git pull` because gems might change
-alias dcb="docker compose build"
+alias dcb="docker compose --progress plain build"
 
 # start the built image
-alias dcu="docker compose up"
+alias dcu="docker compose --progress plain up"
 
 # start the built image and get terminal back
 alias dcud="docker compose up -d"
 
 # start the built image but FORCE A RECREATE first
-alias dcuf="docker compose up -V --force-recreate"
+alias dcuf="docker compose --progress plain up -V --force-recreate"
 
 # restart a built image (can be followed by name)
-alias dcrs="docker compose restart"
+alias dcrs="docker compose --progress plain restart"
 
 # stop the built image
 alias dcd="docker compose down"
@@ -150,6 +141,7 @@ alias dcps="docker compose ps"
 alias dce="docker compose exec"
 
 ###############
+### Node Package Managers
 
 # NPM
 alias nr="npm run"
@@ -167,6 +159,14 @@ alias dbm='rake db:migrate'
 alias ss='./script/server'
 alias sc='./script/console'
 
+# yarn
+alias y="yarn"
+alias yap="yarn add"
+alias yad="yarn add --dev"
+alias yae="yarn add --exact"
+alias yi="yarn install"
+alias yip="yarn install --production"
+alias yrm="yarn remove"
 # compass
 alias cc="compass compile"
 alias cw="compass watch"
