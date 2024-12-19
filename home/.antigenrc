@@ -14,7 +14,7 @@ antigen bundle robbyrussell/oh-my-zsh lib/theme-and-appearance.zsh
 # antigen bundle robbyrussell/oh-my-zsh lib/termsupport.zsh
 
 # antigen bundle docker
-antigen bundle docker-compose
+# antigen bundle docker-compose
 antigen bundle extract
 antigen bundle git-extras
 antigen bundle git-prompt

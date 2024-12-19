@@ -118,7 +118,7 @@ alias dcb="docker compose --progress plain build"
 alias dcu="docker compose --progress plain up"
 
 # start the built image and get terminal back
-alias dcud="docker compose up -d"
+alias dcud="docker compose --progress plain up -d"
 
 # start the built image but FORCE A RECREATE first
 alias dcuf="docker compose --progress plain up -V --force-recreate"
@@ -128,6 +128,8 @@ alias dcrs="docker compose --progress plain restart"
 
 # stop the built image
 alias dcd="docker compose down"
+
+alias dcl="docker compose logs --follow"
 
 # run a one-off command in the container
 alias dcr="docker compose run"
