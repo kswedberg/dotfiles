@@ -154,15 +154,9 @@ alias nid="npm install -D"
 alias nis="npm install -S"
 alias npmls="npm ls --depth=0"
 alias npmlsg="npm ls -g --depth=0"
+# npm-check-updates
 alias ncu="ncu -i --format group,ownerChanged"
-# capistrano / rails
-alias capd='cap deploy'
-alias be='bundle exec'
-alias bers='bundle exec rails server'
-alias beu='bundle exec unicorn -E local -c config/unicorn.rb'
-alias dbm='rake db:migrate'
-alias ss='./script/server'
-alias sc='./script/console'
+alias nup="ncu -i --format group,ownerChanged"
 
 # yarn
 alias y="yarn"
@@ -172,6 +166,7 @@ alias yae="yarn add --exact"
 alias yi="yarn install"
 alias yip="yarn install --production"
 alias yrm="yarn remove"
+alias yup="yarn upgrade-interactive"
 
 # pnpm
 alias p="pnpm"
@@ -182,6 +177,7 @@ alias pi="pnpm install"
 alias prm="pnpm remove"
 alias pt="pnpm test"
 alias pu="pnpm update -i"
+alias pup="pnpm update -i"
 
 ###############
 
