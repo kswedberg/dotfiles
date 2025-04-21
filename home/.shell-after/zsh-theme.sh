@@ -9,19 +9,19 @@ function karl_precmd() {
   KARL_POST_GIT="%{$reset_color%}"
   karl_virtualenv=""
 
-  if which git_prompt_status &>/dev/null; then
-    gitstatus=$(git_prompt_status)
-    if [ ${#gitstatus} != 0 ]; then
-      KARL_PRE_STATUS="( "
-      KARL_POST_STATUS=" %{$reset_color%})"
-    fi
+#   if which git_prompt_status &>/dev/null; then
+#     gitstatus=$(git_prompt_status)
+#     if [ ${#gitstatus} != 0 ]; then
+#       KARL_PRE_STATUS="( "
+#       KARL_POST_STATUS=" %{$reset_color%})"
+#     fi
 
-    git=$(git_prompt_info)
-    if [ ${#git} != 0 ]; then
-      KARL_POST_GIT=" %{$reset_color%}
-"
-    fi
-  fi
+#     git=$(git_prompt_info)
+#     if [ ${#git} != 0 ]; then
+#       KARL_POST_GIT=" %{$reset_color%}
+# "
+#     fi
+#   fi
 
   if which virtualenv_prompt_info &>/dev/null; then
     karl_virtualenv=$(virtualenv_prompt_info)
@@ -58,8 +58,10 @@ function karl_precmd() {
 
   ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}✗%{$reset_color%}"
   ZSH_THEME_GIT_PROMPT_CLEAN=" %{$fg[green]%}✔%{$reset_color%}"
-
-  ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%}✚"
+  ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[yellow]%}%{~%G%}"
+  ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%}%{-%G%}"
+  ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[magenta]%}"
+  ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}✚"
   ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}⇡"
   ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[cyan]%}⇣"
   ZSH_THEME_GIT_PROMPT_DIVERGED="%{$fg[yellow]%}⚑"
