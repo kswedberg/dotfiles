@@ -115,13 +115,13 @@ alias dmip="docker-machine ip default"
 alias dcb="docker compose --progress plain build"
 
 # start the built image
-alias dcu="docker compose --progress plain up"
+alias dcu="docker compose --progress plain up --watch"
 
 # start the built image and get terminal back
-alias dcud="docker compose --progress plain up -d"
+alias dcud="docker compose --progress plain up -d --watch"
 
 # start the built image but FORCE A RECREATE first
-alias dcuf="docker compose --progress plain up -V --force-recreate"
+alias dcuf="docker compose --progress plain up -V --force-recreate --watch"
 
 # restart a built image (can be followed by name)
 alias dcrs="docker compose --progress plain restart"
