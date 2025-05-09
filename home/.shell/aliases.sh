@@ -149,9 +149,12 @@ alias dce="docker compose exec"
 ### Node Package Managers
 
 # NPM
+alias n="npm"
 alias nr="npm run"
 alias nid="npm install -D"
+alias nad="npm install -D"
 alias nis="npm install -S"
+alias nap="npm install -S"
 alias npmls="npm ls --depth=0"
 alias npmlsg="npm ls -g --depth=0"
 # npm-check-updates
