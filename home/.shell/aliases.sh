@@ -157,6 +157,7 @@ alias nis="npm install -S"
 alias nap="npm install -S"
 alias npmls="npm ls --depth=0"
 alias npmlsg="npm ls -g --depth=0"
+
 # npm-check-updates
 alias ncu="ncu -i --format group,ownerChanged"
 alias nup="ncu -i --format group,ownerChanged"
@@ -183,11 +184,6 @@ alias pu="pnpm update -i"
 alias pup="pnpm update -i"
 
 ###############
-
-# compass
-alias cc="compass compile"
-alias cw="compass watch"
-alias cwh="compass watch httpdocs/compass"
 
 # sass
 alias sassw="sass --watch --style expanded"
@@ -219,10 +215,6 @@ alias push\?="git cherry -v"
 # Quick way to rebuild the Launch Services database and get rid
 # of duplicates in the Open With submenu.
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder'
-
-alias gr='grunt'
-alias gp='gulp'
-alias tailphp='tail -f /Applications/MAMP/logs/php_error.log'
 
 alias src='source ~/.zshrc > /dev/null && echo "reloaded ~/.zshrc" '
 
