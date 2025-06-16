@@ -1,0 +1,6 @@
+
+if [ $# -eq 0 ]; then
+  cursor .
+else
+  cursor "$@"
+fi
