@@ -38,7 +38,7 @@ NAVI_PATH=$HOME/.navi/cheats
 # Set my editor and git editor
 # export EDITOR="subl"
 # export EDITOR="atom"
-export EDITOR="code"
+export EDITOR="cursor"
 export GIT_EDITOR="vim"
 export JEKYLL_EDITOR="code"
 
