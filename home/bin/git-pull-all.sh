@@ -41,7 +41,7 @@ while getopts ':p:b:h' OPTION; do
   esac
 done
 
-REPOS=(backend clinic scheduling treatment)
+REPOS=(backend clinic scheduling treatment preview-clinic)
 
 if [[ $PROJECT == "rrx" ]]
 then
