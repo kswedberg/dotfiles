@@ -23,7 +23,6 @@ source $HOME/.shell/index.sh
 source $HOMEBREW/share/antigen/antigen.zsh
 antigen init $HOME/.antigenrc
 
-
 # Load RBENV [don't need to load it here because ohmyzsh rbenv plugin in .antigenrc is taking care of it ]
 # eval "$(rbenv init -)"
 
@@ -39,16 +38,16 @@ fi
 ###-tns-completion-end-###
 
 # From https://github.com/mathiasbynens/dotfiles
-if which brew &> /dev/null && [ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
+if which brew &>/dev/null  && [ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]; then
   # Ensure existing Homebrew v1 completions continue to work
-  export BASH_COMPLETION_COMPAT_DIR="$(brew --prefix)/etc/bash_completion.d";
-  source "$(brew --prefix)/etc/profile.d/bash_completion.sh";
+  export BASH_COMPLETION_COMPAT_DIR="$(brew --prefix)/etc/bash_completion.d"
+  source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 elif [ -f /etc/bash_completion ]; then
-  source /etc/bash_completion;
-fi;
+  source /etc/bash_completion
+fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 
 # Add tab completion for 1Password
 eval "$(op completion zsh)"; compdef _op op
