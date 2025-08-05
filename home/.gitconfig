@@ -130,6 +130,9 @@
 [mergetool]
   prompt = false
 
+[diff]
+  tool = sourcetree
+
 # [mergetool "extMerge"]
 #   cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
 #   trustExitCode = true
