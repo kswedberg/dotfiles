@@ -1,7 +1,7 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 src_files=(
-  completion-pm2.sh
+  completion.sh
   secrets.sh
   # spaceship-theme-options.sh
   zsh-theme.sh
@@ -23,3 +23,5 @@ source_files $src_files
 unset src_files
 
 autoload -U compinit && compinit
+
+fpath=(~/.shell-after/completions $fpath)

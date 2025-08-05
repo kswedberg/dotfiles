@@ -1,0 +1,8 @@
+#compdef git-del
+
+# Completion for 'git del' to show local git branches
+_git_del() {
+  compadd "${(@)${(f)$(git branch)}#??}"
+}
+
+compdef _git_del git-del
