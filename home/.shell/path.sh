@@ -21,6 +21,9 @@ PATH="$(brew --prefix)/opt/imagemagick@7/bin:$PATH"
 # Cargo: Rust package manager
 PATH="$HOME/.cargo/bin:$PATH"
 
+# For cursor-agent:
+export PATH="$HOME/.local/bin:$PATH"
+
 # golang
 PATH=$PATH:$(brew --prefix)/opt/go/libexec/bin
 PATH=$PATH:$(go env GOPATH)/bin

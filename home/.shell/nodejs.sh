@@ -1,6 +1,12 @@
 #### Find and load a node version manager
 
-if [ -d "$HOME/.volta" ]; then
+if [ -d "/opt/homebrew/opt/fnm/bin" ]; then
+  # fnm node version manager (https://github.com/Schniz/fnm)
+  export FNM_PATH="/opt/homebrew/opt/fnm/bin"
+  eval "`fnm env`"
+  eval "$(fnm env --use-on-cd --shell zsh)"
+  # echo "fnm loaded from $FNM_PATH"
+elif [ -d "$HOME/.volta" ]; then
   ### Volta node version manager
   export VOLTA_HOME="$HOME/.volta"
   export PATH="$VOLTA_HOME/bin:$PATH"
@@ -17,6 +23,7 @@ else
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
   [ -s "$NVM_DIR/nvm.sh" ] && source $HOME/.shell/nvm_load.sh
+  # echo "nvm loaded"
 fi
 
 

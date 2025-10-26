@@ -1,0 +1,6 @@
+if [ -d "/opt/homebrew/opt/fnm/bin" ]; then
+  echo "** Using fnm…"
+  fnm $@
+else
+  nvm $@
+fi

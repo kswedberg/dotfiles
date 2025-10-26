@@ -1,3 +1,6 @@
+# The following line enables Docker CLI completions.
+fpath=(/Users/kswedberg/.docker/completions $fpath)
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 src_files=(
@@ -22,6 +25,7 @@ source_files $src_files
 
 unset src_files
 
-autoload -U compinit && compinit
-
 fpath=(~/.shell-after/completions $fpath)
+
+autoload -Uz compinit
+compinit
