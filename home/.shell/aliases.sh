@@ -115,13 +115,16 @@ alias dmip="docker-machine ip default"
 alias dcb="docker compose --progress plain build"
 
 # start the built image
-alias dcu="docker compose --progress plain up --watch"
+alias dcu="echo 'Running docker compose up WITHOUT --watch\n' && docker compose --progress plain up"
+alias dcw="echo 'Running docker compose up WITH --watch\n' && docker compose --progress plain up --watch"
 
 # start the built image and get terminal back
-alias dcud="docker compose --progress plain up -d --watch"
+alias dcud="docker compose --progress plain up -d"
+alias dcwd="docker compose --progress plain up -d --watch"
 
 # start the built image but FORCE A RECREATE first
-alias dcuf="docker compose --progress plain up -V --force-recreate --watch"
+alias dcuf="docker compose --progress plain up -V --force-recreate"
+alias dcwf="docker compose --progress plain up -V --force-recreate --watch"
 
 # restart a built image (can be followed by name)
 alias dcrs="docker compose --progress plain restart"
@@ -210,6 +213,8 @@ alias push\?="git cherry -v"
 # alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 # alias changelog='git log `git log -1 --format=%H -- changelog*`; cat changelog*'
 
+alias gh="GITHUB_TOKEN='' gh"
+
 ############### Miscellaneous ###############
 
 # Quick way to rebuild the Launch Services database and get rid
@@ -248,7 +253,9 @@ alias random_mac='sudo ifconfig en0 ether `openssl rand -hex 6 | sed "s/\(..\)/\
 # Should it be 10:9a:dd:58:fd:fc ?
 alias restore_mac='sudo ifconfig en0 ether 10:9a:dd:ad:82:5e'
 
-# Utilities
+# Utilities and cli overrides
+alias cp="cp -iv"
+alias mv="mv -iv"
 alias dl="du -h -d 1"
 alias df="df -h"
 alias weather='curl http://wttr.in/'

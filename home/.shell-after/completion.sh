@@ -1,7 +1,7 @@
 # this file sourced in ./.source_after
 
-# GIT EXTRAS (sourced in secrets.sh)
-# source /opt/homebrew/opt/git-extras/share/git-extras/git-extras-completion.zsh
+# UT completion
+eval "$(ut completions zsh)"
 
 ###-begin-pm2-completion-###
 ### credits to npm for the completion file model
