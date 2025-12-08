@@ -4,7 +4,7 @@ if [ -d "/opt/homebrew/opt/fnm/bin" ]; then
   # fnm node version manager (https://github.com/Schniz/fnm)
   export FNM_PATH="/opt/homebrew/opt/fnm/bin"
   eval "`fnm env`"
-  eval "$(fnm env --use-on-cd --shell zsh)"
+  eval "$(fnm env --use-on-cd --version-file-strategy recursive --shell zsh)"
   # echo "fnm loaded from $FNM_PATH"
 elif [ -d "$HOME/.volta" ]; then
   ### Volta node version manager
