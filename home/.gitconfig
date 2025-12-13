@@ -78,6 +78,11 @@
   cb = create-branch
   ####
 
+  wta = "!f() { git worktree add -b \"$1\" \"../$1\"; }; f"
+  wtr = "!f() { git worktree remove \"../$1\"; }; f"
+  wtl = "!f() { git worktree list; }; f"
+
+
   # new = !"git init && git symbolic-ref HEAD refs/heads/main"
   # sync2main = !"git checkout master && git branch -m master main && git fetch && git branch --unset-upstream && git branch -u origin/main && git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main"
 
@@ -88,6 +93,7 @@
   current = yellow reverse
   local = yellow
   remote = green
+
 [color "diff"]
   meta = yellow bold
   frag = magenta bold
