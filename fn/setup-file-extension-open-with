@@ -1,0 +1,66 @@
+#!/usr/bin/env zsh
+setopt ERR_EXIT NO_UNSET PIPE_FAIL
+
+readonly EXTENSIONS=(
+  .cfg
+  .conf
+  .css
+  .csv
+  .erb
+  .html
+  .js
+  .json
+  .jsx
+  .log
+  .md
+  .njk
+  .php
+  .plist
+  .py
+  .rb
+  .scss
+  .sh
+  .svg
+  .toml
+  .tpl
+  .ts
+  .twig
+  .xml
+  .yaml
+  .yml
+)
+
+function create_dummy_files() {
+  local dummy_dir="${DOTFILES}/dummies"
+  local dummy_file
+
+  if [[ ! -d "${dummy_dir}" ]]; then
+    mkdir "${dummy_dir}"
+  fi
+
+  for file in "${(@)@}"; do
+    dummy_file="${dummy_dir}/dummy${file}"
+    if [[ ! -e "${dummy_file}" ]]; then
+      echo "creating ${dummy_file}"
+      mkfile 1b "${dummy_file}"
+    fi
+  done
+
+  echo ""
+  echo "1. open ${dummy_dir}"
+  echo "2. select all files"
+  echo "3. press ⌘⌥i and do the 'Open with' / 'Change All...' thing"
+  echo ""
+  echo "You can then delete the ${dummy_dir} directory"
+}
+
+function main() {
+  if [[ -z "${DOTFILES:-}" ]]; then
+    echo "Error: DOTFILES environment variable is not set" >&2
+    return 1
+  fi
+
+  create_dummy_files "${(@)EXTENSIONS}"
+}
+
+main "${@}"
