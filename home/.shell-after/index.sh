@@ -4,6 +4,7 @@ fpath=(/Users/kswedberg/.docker/completions $fpath)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 src_files=(
+  git-prompt-nounset-compat.sh
   completion.sh
   secrets.sh
   # spaceship-theme-options.sh
