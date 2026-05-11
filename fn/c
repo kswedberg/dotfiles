@@ -1,6 +1,5 @@
-
-if [ $# -eq 0 ]; then
+if [[ "${#}" -eq 0 ]]; then
   cursor .
 else
-  cursor "$@"
+  cursor "${@}"
 fi

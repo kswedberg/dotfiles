@@ -1,17 +1,17 @@
 #!/usr/bin/env zsh
 
-PWD=$(pwd)
-BUNDLE=$1
+bundle_root="$(pwd)"
+BUNDLE="${1}"
 
-if [ ! $1 ]; then
+if [[ -z "${1}" ]]; then
   BUNDLE="bundle"
 fi
 
 # [ -d "${BUNDLE}" ] && rm -rf $BUNDLE
-mkdir -p $BUNDLE
+mkdir -p "${BUNDLE}"
 
 # Copy extra dotfiles from ~/
-node "$PWD/copy-dotfiles.mjs" $BUNDLE
+node "${bundle_root}/copy-dotfiles.mjs" "${BUNDLE}"
 
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function tar_gz() {
@@ -38,30 +38,31 @@ function tar_gz() {
   echo "Compressing .tar using \`${cmd}\`…"
   "${cmd}" -v "${tmpFile}" || return 1
   [ -f "${tmpFile}" ] && rm "${tmpFile}"
-  printf "${PWD}/${BUNDLE}.tar.gz created successfully."
+  printf "%s/%s.tar.gz created successfully." "${bundle_root}" "${BUNDLE}"
 }
 
 function copy_files() {
-  while read -r file; do
-    dest=${BUNDLE}/${file}
-    dir=$(dirname $dest)
+  local file dest dir
+  for file in "${@}"; do
+    [[ -z "${file}" ]] && continue
+    dest="${BUNDLE}/${file}"
+    dir="$(dirname "${dest}")"
 
-    mkdir -p $dir
-    cp -r ${file} ${dest}
+    mkdir -p "${dir}"
+    cp -r "${file}" "${dest}"
+  done
 
-  done <<<"${@}"
+  tar_gz "${BUNDLE}"
 
-  tar_gz $BUNDLE
-
-  [ -d "${BUNDLE}" ] && rm -rf $BUNDLE
+  [[ -d "${BUNDLE}" ]] && rm -rf "${BUNDLE}"
 
   printf "FINISHED!"
 }
 
-IGNORED=$(git ls-files -o -x .DS_Store -x Library -x tmp -x secrets.tar.gz -x cache -x home/bin -x $BUNDLE)
+IGNORED="$(git ls-files -o -x .DS_Store -x Library -x tmp -x secrets.tar.gz -x cache -x home/bin -x "${BUNDLE}")"
 echo "About to copy the following ignored files:"
-echo $IGNORED
-copy_files ${IGNORED}
+echo "${IGNORED}"
+copy_files "${(@f)IGNORED}"
 
 unset IGNORED
 unset copy_files

@@ -3,5 +3,5 @@ function g() {
   if [[ -e Gruntfile.js ]]; then
     cmd=grunt
   fi
-  ${cmd} $@
+  "${cmd}" "${@}"
 }

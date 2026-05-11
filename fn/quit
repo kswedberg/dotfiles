@@ -186,7 +186,7 @@ if [ -z "$1" ]; then usage; fi
 
 for arg in "$@"
 do
-  if [[ searchall == "true" ]]
+  if [[ "${searchall}" == "true" ]]
   then
     appname=`osascript -e "tell application \"System Events\" to return displayed name of every application process whose (displayed name $is_contains \"$arg\" or name $is_contains \"$arg\" or short name $is_contains \"$arg\" or title $is_contains \"$arg\")"`
   else
@@ -209,7 +209,7 @@ do
 
   elif [[ -z $appname ]] # found no matching application
   then
-                if [ [ $ignoreNotRunning == "false" ]]
+                if [[ "${ignoreNotRunning}" == "false" ]]
                 then
        echo "No running application matches \"$arg\"" 1>&2
                 fi

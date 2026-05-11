@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -z "$1" ]; then
+if [[ -z "${1}" ]]; then
   about 'remove a directory…if you confirm'
   example 'rmrf foo'
   example 'rmrf /tmp/img/photos/large'
@@ -7,9 +7,8 @@ if [ -z "$1" ]; then
   return 1
 fi
 echo ""
-if [ ! -e $1 ];
-then
-  echo "File $1 doesn't exist."
+if [[ ! -e "${1}" ]]; then
+  echo "File ${1} doesn't exist."
   return 1
 fi
 {
@@ -21,7 +20,7 @@ fi
 echo "\nAre you sure you want to delete the $1 directory with above files? [y/N]"
 read CONFIRM
 
-if [ "$CONFIRM" = "y" ]; then
+if [[ "${CONFIRM}" == "y" ]]; then
   rm -rf "$1"
   echo "Deleted $1 directory"
 else

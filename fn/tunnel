@@ -4,7 +4,7 @@ SERVER="$1"
 REMOTE_PORT="$2"
 LOCAL_PORT="$3"
 
-if [ -z $1 ]; then
+if [[ -z "${1}" ]]; then
   cat <<TUNNELINSTRUCTIONS
 
 tunnel db connector
@@ -26,37 +26,36 @@ TUNNELINSTRUCTIONS
   read SERVER
 fi
 
-if [ -z $SERVER ]; then
+if [[ -z "${SERVER}" ]]; then
   echo "No server specified. Bailing."
   return
 fi
-if [ -z $2 ]; then
+if [[ -z "${2}" ]]; then
   echo 'Change the remote db port? Default is 8080'
   read REMOTE_PORT
   REMOTE_PORT=${REMOTE_PORT:-8080}
   echo 'Using' $REMOTE_PORT
 fi
 
-if [ -z $3 ]; then
+if [[ -z "${3}" ]]; then
   echo 'Change the localhost port? Default is 9999'
   read LOCAL_PORT
   LOCAL_PORT=${LOCAL_PORT:-9999}
   echo 'Using' $LOCAL_PORT
 fi
 
-CMD='ssh -f '${SERVER}' -L '${LOCAL_PORT}':127.0.0.1:'${REMOTE_PORT}' -N'
 echo 'Connecting…'
-echo $CMD
+printf '%s\n' "ssh -f ${SERVER} -L ${LOCAL_PORT}:127.0.0.1:${REMOTE_PORT} -N"
 echo ''
-echo "Access the database at http://localhost:"${LOCAL_PORT}
+echo "Access the database at http://localhost:${LOCAL_PORT}"
 echo ''
 
-eval $CMD
+ssh -f "${SERVER}" -L "${LOCAL_PORT}:127.0.0.1:${REMOTE_PORT}" -N
 
-line=$(ps aux | grep ${SERVER} | tail -n1)
-echo $line >/tmp/.tunnelpid
+line="$(ps aux | grep "${SERVER}" | tail -n1)"
+echo "${line}" >/tmp/.tunnelpid
 
-_pid=$(awk '{print $2}' /tmp/.tunnelpid)
+_pid="$(awk '{print $2}' /tmp/.tunnelpid)"
 
 echo "When you are finished, run the following command:"
 echo "kill $_pid"

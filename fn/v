@@ -1,6 +1,5 @@
-
-if [ $# -eq 0 ]; then
+if [[ "${#}" -eq 0 ]]; then
   code .
 else
-  code "$@"
+  code "${@}"
 fi

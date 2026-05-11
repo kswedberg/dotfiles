@@ -19,8 +19,8 @@ fi
 
 mname=${mname##*@}
 
-mkdir -p $RMOUNT_DIR/$mname > /dev/null
-sshfs $host$folder $RMOUNT_DIR/$mname -oauto_cache,reconnect,defer_permissions,negative_vncache,volname=$mname,noappledouble
+mkdir -p "${RMOUNT_DIR}/${mname}" > /dev/null
+sshfs "${host}${folder}" "${RMOUNT_DIR}/${mname}" -oauto_cache,reconnect,defer_permissions,negative_vncache,volname="${mname}",noappledouble
 
-cd $RMOUNT_DIR/$mname
-echo "mounted $RMOUNT_DIR/$mname"
+cd "${RMOUNT_DIR}/${mname}"
+echo "mounted ${RMOUNT_DIR}/${mname}"

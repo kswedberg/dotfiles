@@ -1,5 +1,5 @@
 mkcd () {
-  if [ -z $1 ]; then
+  if [[ -z "${1}" ]]; then
     about "Make a directory and cd into it"
     example "mkcd foo"
     example "mkcd /tmp/img/photos/large"

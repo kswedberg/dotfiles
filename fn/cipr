@@ -3,7 +3,7 @@
 # Create proper commit message for pull requests on jQuery repos
 if [ -z "$1" ]
 then
-  echo `git log -1 --no-merges --pretty=format:'git commit -a --author="'"%an <%aE>"'" --message="'"%s %b"'"'`
+  echo "$(git log -1 --no-merges --pretty=format:'git commit -a --author="'"%an <%aE>"'" --message="'"%s %b"'"')"
   return 1
 fi
 
@@ -37,4 +37,4 @@ while getopts "a:m:h" Option; do
   esac
 done
 
-echo `git log -1 $MSG $AUTHOR --no-merges --pretty=format:'git commit -a --author="'"%an <%aE>"'" --message="'"%s %b"'"'`
+echo "$(git log -1 ${MSG} ${AUTHOR} --no-merges --pretty=format:'git commit -a --author="'"%an <%aE>"'" --message="'"%s %b"'"')"

@@ -1,21 +1,125 @@
 function node-project() {
-  ARG="$1"
+  local ARG="${1}"
+  local ESLINT=""
+  local license author year
 
-  if [[ $ARG != '-e' && $ARG != '--eslint' ]]; then
+  if [[ "${ARG}" != '-e' && "${ARG}" != '--eslint' ]]; then
     echo "Install eslint and eslint-config-kswedberg? (y/N)"
-    read ESLINT
+    read -r ESLINT
   fi
 
   git init
-  npx license $(npm get init-license) -o "$(npm get init-author-name)" >LICENSE
-  npx gitignore node
-  # npx covgen "$(npm get init-author-email)"
-  npm init -y
-  git add -A
-  git commit -m "Initial commit"
+  echo "Initialized git repository"
 
-  if [[ $ARG == '-e' || $ARG == '--eslint' || $ESLINT == 'y' ]]; then
-    yarn add --dev eslint eslint-config-kswedberg
-    echo "module.exports = {\n  extends: ['kswedberg']\n}\n" >.eslintrc.js
+  if [[ ! -f package.json ]]; then
+    if ! command npm init -y 2>/dev/null; then
+      echo "npm init failed (often an invalid package name from the folder name). Writing a minimal package.json." >&2
+      printf '%s\n' '{"name":"node-project","version":"1.0.0","private":true}' >package.json
+    fi
+  fi
+  echo "Initialized npm package"
+
+  license="$(npm get init-license 2>/dev/null)"
+  author="$(npm get init-author-name 2>/dev/null)"
+  [[ -z "${license}" || "${license}" == "undefined" ]] && license="MIT"
+  [[ -z "${author}" ]] && author="$(git config user.name 2>/dev/null)"
+  [[ -z "${author}" ]] && author="$(whoami)"
+
+  year="$(date +%Y)"
+  case "${(L)license}" in
+    mit)
+      {
+        print -r 'MIT License'
+        print -r ''
+        print -r -- "Copyright (c) ${year} ${author}"
+        print -r ''
+        cat <<'MIT1'
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+MIT1
+      } >LICENSE
+      ;;
+    isc)
+      {
+        print -r 'ISC License'
+        print -r ''
+        print -r -- "Copyright (c) ${year} ${author}"
+        print -r ''
+        cat <<'ISC1'
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+THIS SOFTWARE.
+ISC1
+      } >LICENSE
+      ;;
+    *)
+      echo "node-project: SPDX '${license}' not built-in; wrote MIT. Replace LICENSE if needed." >&2
+      {
+        print -r 'MIT License'
+        print -r ''
+        print -r -- "Copyright (c) ${year} ${author}"
+        print -r ''
+        cat <<'MIT1'
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+MIT1
+      } >LICENSE
+      ;;
+  esac
+
+  echo "Created license file"
+
+  if [[ "${ARG}" == '-e' || "${ARG}" == '--eslint' || "${ESLINT}" == 'y' ]]; then
+    if command -v pnpm >/dev/null 2>&1; then
+      pnpm add -D eslint eslint-config-kswedberg
+    else
+      npm install --save-dev eslint eslint-config-kswedberg
+    fi
+    cat >eslint.config.js <<'EOF'
+import js from 'eslint-config-kswedberg/flat/js.mjs';
+
+export default [
+  ...js,
+];
+EOF
+    echo "Created eslint.config.js"
   fi
 }

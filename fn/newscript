@@ -12,9 +12,9 @@ newscript() {
 	# where your scripts are stored
 	local scriptdir=$2
 
-	if [ ! $2 ]; then
-		scriptdir=`pwd`
-		read "?Choose a directory [$scriptdir]: " userscript
+		if [[ -z "${2}" ]]; then
+		scriptdir="$(pwd)"
+		read -r "?Choose a directory [${scriptdir}]: " userscript
 		scriptdir=${userscript:-$scriptdir}
 	fi
 
@@ -47,8 +47,8 @@ Usage: mynewscript SCRIPT_NAME.ext\n"
 		# create a file for the given extension with appropriate shebang
 		case $ext in
 			js ) echo -e "#!/usr/bin/env node" >> $filename;;
-			sh | bash ) echo -e "#!/bin/bash" >> $filename;;
-			zsh | bash ) echo -e "#!/bin/zbash" >> $filename;;
+			sh | bash ) echo -e "#!/usr/bin/env bash" >> $filename;;
+			zsh ) echo -e "#!/usr/bin/env zsh" >> $filename;;
 			rb ) echo -e "#!/usr/bin/env ruby" >> $filename;;
 			py ) echo -e "#!/usr/bin/env python" >> $filename;;
 			 * ) touch $filename;; # any other extension create blank file

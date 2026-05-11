@@ -1,5 +1,5 @@
 # from http://brettterpstra.com/2014/05/10/bash-and-dash/
 function dman() {
   # %3A is the urlencoded colon
-  open "dash://man%3A$(urlenc $@)"
+  open "dash://man%3A$(urlenc "${@}")"
 }

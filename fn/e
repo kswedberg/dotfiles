@@ -1,6 +1,5 @@
-
-if [ $# -eq 0 ]; then
-  $EDITOR .
+if [[ "${#}" -eq 0 ]]; then
+  "${EDITOR:-vim}" .
 else
-  $EDITOR "$@"
+  "${EDITOR:-vim}" "${@}"
 fi
