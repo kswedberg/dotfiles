@@ -1,5 +1,8 @@
 #!/bin/sh
 
+########################################################
+# This is no longer used because we are using Antidote now.
+########################################################
 # antigen use oh-my-zsh
 antigen bundle robbyrussell/oh-my-zsh lib/clipboard.zsh
 antigen bundle robbyrussell/oh-my-zsh lib/completion.zsh
@@ -18,9 +21,9 @@ antigen bundle robbyrussell/oh-my-zsh lib/theme-and-appearance.zsh
 antigen bundle extract
 antigen bundle git-extras
 antigen bundle git-prompt
-antigen bundle git-remote-branch
+# antigen bundle git-remote-branch
 antigen bundle gnu-utils
-antigen bundle gulp
+# antigen bundle gulp
 # antigen bundle npm
 antigen bundle rbenv
 antigen bundle ssh-agent
