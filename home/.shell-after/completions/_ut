@@ -1,0 +1,2533 @@
+#compdef ut
+
+autoload -U is-at-least
+
+_ut() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut_commands" \
+"*::: :->ut" \
+&& ret=0
+    case $state in
+    (ut)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-command-$line[1]:"
+        case $line[1] in
+            (completions)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+':shell:(bash elvish fish powershell zsh nushell)' \
+&& ret=0
+;;
+(base64)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__base64_commands" \
+"*::: :->base64" \
+&& ret=0
+
+    case $state in
+    (base64)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-base64-command-$line[1]:"
+        case $line[1] in
+            (encode)
+_arguments "${_arguments_options[@]}" : \
+'--urlsafe[Encode with urlsafe character set]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Input to encode (use "-" for stdin):_default' \
+&& ret=0
+;;
+(decode)
+_arguments "${_arguments_options[@]}" : \
+'--urlsafe[Decode with urlsafe character set]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Input to decode (use "-" for stdin):_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__base64__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-base64-help-command-$line[1]:"
+        case $line[1] in
+            (encode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(decode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(bcrypt)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__bcrypt_commands" \
+"*::: :->bcrypt" \
+&& ret=0
+
+    case $state in
+    (bcrypt)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-bcrypt-command-$line[1]:"
+        case $line[1] in
+            (hash)
+_arguments "${_arguments_options[@]}" : \
+'-c+[Cost factor (4-31, default\: 12). Higher values are more secure but slower]:COST:_default' \
+'--cost=[Cost factor (4-31, default\: 12). Higher values are more secure but slower]:COST:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+':password -- Password to hash (use "-" for stdin):_default' \
+&& ret=0
+;;
+(verify)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':password -- Password to verify (use "-" for stdin):_default' \
+':hash -- Bcrypt hash to verify against:_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__bcrypt__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-bcrypt-help-command-$line[1]:"
+        case $line[1] in
+            (hash)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(verify)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(calc)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':expression -- Expression to evaluate (use "-" for stdin) Supports arithmetic, functions, constants, and multiple number formats:_default' \
+&& ret=0
+;;
+(cal)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':expression -- Expression to evaluate (use "-" for stdin) Supports arithmetic, functions, constants, and multiple number formats:_default' \
+&& ret=0
+;;
+(case)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__case_commands" \
+"*::: :->case" \
+&& ret=0
+
+    case $state in
+    (case)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-case-command-$line[1]:"
+        case $line[1] in
+            (lower)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Text to convert (use "-" for stdin):_default' \
+&& ret=0
+;;
+(upper)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Text to convert (use "-" for stdin):_default' \
+&& ret=0
+;;
+(camel)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Text to convert (use "-" for stdin):_default' \
+&& ret=0
+;;
+(title)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Text to convert (use "-" for stdin):_default' \
+&& ret=0
+;;
+(constant)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Text to convert (use "-" for stdin):_default' \
+&& ret=0
+;;
+(header)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Text to convert (use "-" for stdin):_default' \
+&& ret=0
+;;
+(sentence)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Text to convert (use "-" for stdin):_default' \
+&& ret=0
+;;
+(snake)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Text to convert (use "-" for stdin):_default' \
+&& ret=0
+;;
+(kebab)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Text to convert (use "-" for stdin):_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__case__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-case-help-command-$line[1]:"
+        case $line[1] in
+            (lower)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(upper)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(camel)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(title)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(constant)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(header)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sentence)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(snake)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(kebab)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(color)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__color_commands" \
+"*::: :->color" \
+&& ret=0
+
+    case $state in
+    (color)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-color-command-$line[1]:"
+        case $line[1] in
+            (convert)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':color -- Color value in any supported format (hex, rgb, rgba, hsl, hwb, cmyk, lch, oklch). Use "-" for stdin:_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__color__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-color-help-command-$line[1]:"
+        case $line[1] in
+            (convert)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(crontab)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__crontab_commands" \
+"*::: :->crontab" \
+&& ret=0
+
+    case $state in
+    (crontab)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-crontab-command-$line[1]:"
+        case $line[1] in
+            (schedule)
+_arguments "${_arguments_options[@]}" : \
+'-n+[Number of upcoming firing times to show (default\: 5)]:COUNT:_default' \
+'--count=[Number of upcoming firing times to show (default\: 5)]:COUNT:_default' \
+'-a+[Calculate firing times after this time (ISO 8601 format, defaults to now)]:AFTER:_default' \
+'--after=[Calculate firing times after this time (ISO 8601 format, defaults to now)]:AFTER:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+':expression -- Crontab expression (e.g., "0 9 * * 1-5" for weekdays at 9 AM, or "0 0 9 * * 1-5" for extended format). Use "-" for stdin:_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__crontab__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-crontab-help-command-$line[1]:"
+        case $line[1] in
+            (schedule)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(cron)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__crontab_commands" \
+"*::: :->crontab" \
+&& ret=0
+
+    case $state in
+    (crontab)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-crontab-command-$line[1]:"
+        case $line[1] in
+            (schedule)
+_arguments "${_arguments_options[@]}" : \
+'-n+[Number of upcoming firing times to show (default\: 5)]:COUNT:_default' \
+'--count=[Number of upcoming firing times to show (default\: 5)]:COUNT:_default' \
+'-a+[Calculate firing times after this time (ISO 8601 format, defaults to now)]:AFTER:_default' \
+'--after=[Calculate firing times after this time (ISO 8601 format, defaults to now)]:AFTER:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+':expression -- Crontab expression (e.g., "0 9 * * 1-5" for weekdays at 9 AM, or "0 0 9 * * 1-5" for extended format). Use "-" for stdin:_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__crontab__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-crontab-help-command-$line[1]:"
+        case $line[1] in
+            (schedule)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(datetime)
+_arguments "${_arguments_options[@]}" : \
+'-s+[Input timezone to use when parsing datetime without timezone info (overrides any timezone in the input)]:SOURCE_TIMEZONE:_default' \
+'--source-timezone=[Input timezone to use when parsing datetime without timezone info (overrides any timezone in the input)]:SOURCE_TIMEZONE:_default' \
+'-t+[Target timezone to convert to (e.g., "America/New_York", "UTC", "Asia/Tokyo")]:TARGET_TIMEZONE:_default' \
+'--target-timezone=[Target timezone to convert to (e.g., "America/New_York", "UTC", "Asia/Tokyo")]:TARGET_TIMEZONE:_default' \
+'-f+[]:PARSE_FORMAT:_default' \
+'--parse-format=[]:PARSE_FORMAT:_default' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+':datetime -- DateTime value to parse (use "-" for stdin):_default' \
+&& ret=0
+;;
+(dt)
+_arguments "${_arguments_options[@]}" : \
+'-s+[Input timezone to use when parsing datetime without timezone info (overrides any timezone in the input)]:SOURCE_TIMEZONE:_default' \
+'--source-timezone=[Input timezone to use when parsing datetime without timezone info (overrides any timezone in the input)]:SOURCE_TIMEZONE:_default' \
+'-t+[Target timezone to convert to (e.g., "America/New_York", "UTC", "Asia/Tokyo")]:TARGET_TIMEZONE:_default' \
+'--target-timezone=[Target timezone to convert to (e.g., "America/New_York", "UTC", "Asia/Tokyo")]:TARGET_TIMEZONE:_default' \
+'-f+[]:PARSE_FORMAT:_default' \
+'--parse-format=[]:PARSE_FORMAT:_default' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+':datetime -- DateTime value to parse (use "-" for stdin):_default' \
+&& ret=0
+;;
+(diff)
+_arguments "${_arguments_options[@]}" : \
+'-a+[First version of the file, omit to use editor]:A:_files' \
+'--a=[First version of the file, omit to use editor]:A:_files' \
+'-b+[Second version of the file, omit to use editor]:B:_files' \
+'--b=[Second version of the file, omit to use editor]:B:_files' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(hash)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__hash_commands" \
+"*::: :->hash" \
+&& ret=0
+
+    case $state in
+    (hash)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-hash-command-$line[1]:"
+        case $line[1] in
+            (md5)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':input -- Input to hash (use "-" for stdin):_default' \
+&& ret=0
+;;
+(sha1)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':input -- Input to hash (use "-" for stdin):_default' \
+&& ret=0
+;;
+(sha224)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':input -- Input to hash (use "-" for stdin):_default' \
+&& ret=0
+;;
+(sha256)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':input -- Input to hash (use "-" for stdin):_default' \
+&& ret=0
+;;
+(sha384)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':input -- Input to hash (use "-" for stdin):_default' \
+&& ret=0
+;;
+(sha512)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':input -- Input to hash (use "-" for stdin):_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__hash__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-hash-help-command-$line[1]:"
+        case $line[1] in
+            (md5)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sha1)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sha224)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sha256)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sha384)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sha512)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(http)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__http_commands" \
+"*::: :->http" \
+&& ret=0
+
+    case $state in
+    (http)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-http-command-$line[1]:"
+        case $line[1] in
+            (status)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+'::code -- HTTP status code to lookup (omit to list all):_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__http__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-http-help-command-$line[1]:"
+        case $line[1] in
+            (status)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(json)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__json_commands" \
+"*::: :->json" \
+&& ret=0
+
+    case $state in
+    (json)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-json-command-$line[1]:"
+        case $line[1] in
+            (builder)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+'*::inputs -- Key-value pairs in the format key=value (e.g., a.b.c=hello, "a.b\[\].c"=1 or "a.b\[2\].c"=false):_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__json__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-json-help-command-$line[1]:"
+        case $line[1] in
+            (builder)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(jwt)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__jwt_commands" \
+"*::: :->jwt" \
+&& ret=0
+
+    case $state in
+    (jwt)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-jwt-command-$line[1]:"
+        case $line[1] in
+            (decode)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':token -- JWT token to decode:_default' \
+&& ret=0
+;;
+(encode)
+_arguments "${_arguments_options[@]}" : \
+'-p+[JSON payload for the JWT (must be valid JSON)]:PAYLOAD:_default' \
+'--payload=[JSON payload for the JWT (must be valid JSON)]:PAYLOAD:_default' \
+'-s+[Secret key for signing (for HMAC algorithms)]:SECRET:_default' \
+'--secret=[Secret key for signing (for HMAC algorithms)]:SECRET:_default' \
+'-a+[Algorithm to use for signing]:ALGORITHM:((hs256\:"HMAC using SHA-256"
+hs384\:"HMAC using SHA-384"
+hs512\:"HMAC using SHA-512"))' \
+'--algorithm=[Algorithm to use for signing]:ALGORITHM:((hs256\:"HMAC using SHA-256"
+hs384\:"HMAC using SHA-384"
+hs512\:"HMAC using SHA-512"))' \
+'--issuer=[Issuer claim (iss)]:ISSUER:_default' \
+'--subject=[Subject claim (sub)]:SUBJECT:_default' \
+'--audience=[Audience claim (aud)]:AUDIENCE:_default' \
+'--expires-in=[Expiration time in seconds from now (exp)]:EXPIRES_IN:_default' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+&& ret=0
+;;
+(verify)
+_arguments "${_arguments_options[@]}" : \
+'-s+[Secret key for verification (for HMAC algorithms)]:SECRET:_default' \
+'--secret=[Secret key for verification (for HMAC algorithms)]:SECRET:_default' \
+'-a+[Algorithm to use for verification]:ALGORITHM:((hs256\:"HMAC using SHA-256"
+hs384\:"HMAC using SHA-384"
+hs512\:"HMAC using SHA-512"))' \
+'--algorithm=[Algorithm to use for verification]:ALGORITHM:((hs256\:"HMAC using SHA-256"
+hs384\:"HMAC using SHA-384"
+hs512\:"HMAC using SHA-512"))' \
+'--issuer=[Expected issuer (iss)]:ISSUER:_default' \
+'--subject=[Expected subject (sub)]:SUBJECT:_default' \
+'--audience=[Expected audience (aud)]:AUDIENCE:_default' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+':token -- JWT token to verify:_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__jwt__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-jwt-help-command-$line[1]:"
+        case $line[1] in
+            (decode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(encode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(verify)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(lorem)
+_arguments "${_arguments_options[@]}" : \
+'-p+[Number of paragraphs to generate]:PARAGRAPHS:_default' \
+'--paragraphs=[Number of paragraphs to generate]:PARAGRAPHS:_default' \
+'--min-sentences=[Minimum number of sentences per paragraph]:MIN_SENTENCES:_default' \
+'--max-sentences=[Maximum number of sentences per paragraph]:MAX_SENTENCES:_default' \
+'--min-words=[Minimum number of words per sentence]:MIN_WORDS:_default' \
+'--max-words=[Maximum number of words per sentence]:MAX_WORDS:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(pretty-print)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+'::text -- Text to unescape. Use "-" to read from stdin, or omit to open editor:_default' \
+&& ret=0
+;;
+(pp)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+'::text -- Text to unescape. Use "-" to read from stdin, or omit to open editor:_default' \
+&& ret=0
+;;
+(qr)
+_arguments "${_arguments_options[@]}" : \
+'-o+[Save QR code to file (PNG format)]:OUTPUT:_files' \
+'--output=[Save QR code to file (PNG format)]:OUTPUT:_files' \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- The text or URL to encode as QR code (use "-" for stdin):_default' \
+&& ret=0
+;;
+(random)
+_arguments "${_arguments_options[@]}" : \
+'-c+[Number of random numbers to generate]:QUANTITY:_default' \
+'--count=[Number of random numbers to generate]:QUANTITY:_default' \
+'--min=[Minimum value (inclusive)]:MIN:_default' \
+'--max=[Maximum value (inclusive)]:MAX:_default' \
+'-s+[Step value for precision (e.g., 0.01 for 2 decimal places)]:STEP:_default' \
+'--step=[Step value for precision (e.g., 0.01 for 2 decimal places)]:STEP:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(regex)
+_arguments "${_arguments_options[@]}" : \
+'-t+[File to load test string content from]:TEST:_files' \
+'--test=[File to load test string content from]:TEST:_files' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(serve)
+_arguments "${_arguments_options[@]}" : \
+'-d+[Path to the directory to serve]:DIRECTORY:_files' \
+'--directory=[Path to the directory to serve]:DIRECTORY:_files' \
+'-p+[Port number the server should listen to]:PORT:_default' \
+'--port=[Port number the server should listen to]:PORT:_default' \
+'--host=[Host address the server should bind to]:HOST:_default' \
+'--auth=[Authentication credentials (username\:password)]:AUTH:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(token)
+_arguments "${_arguments_options[@]}" : \
+'-l+[Length of the token to generate]:LENGTH:_default' \
+'--length=[Length of the token to generate]:LENGTH:_default' \
+'--no-uppercase[Do not include uppercase letters]' \
+'--no-lowercase[Do not include lowercase letters]' \
+'--no-numbers[Do not include numbers]' \
+'--no-symbols[Do not include symbols]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(secret)
+_arguments "${_arguments_options[@]}" : \
+'-l+[Length of the token to generate]:LENGTH:_default' \
+'--length=[Length of the token to generate]:LENGTH:_default' \
+'--no-uppercase[Do not include uppercase letters]' \
+'--no-lowercase[Do not include lowercase letters]' \
+'--no-numbers[Do not include numbers]' \
+'--no-symbols[Do not include symbols]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(password)
+_arguments "${_arguments_options[@]}" : \
+'-l+[Length of the token to generate]:LENGTH:_default' \
+'--length=[Length of the token to generate]:LENGTH:_default' \
+'--no-uppercase[Do not include uppercase letters]' \
+'--no-lowercase[Do not include lowercase letters]' \
+'--no-numbers[Do not include numbers]' \
+'--no-symbols[Do not include symbols]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(url)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__url_commands" \
+"*::: :->url" \
+&& ret=0
+
+    case $state in
+    (url)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-url-command-$line[1]:"
+        case $line[1] in
+            (encode)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Text to URL encode (use "-" for stdin):_default' \
+&& ret=0
+;;
+(decode)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+':text -- Text to URL decode (use "-" for stdin):_default' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__url__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-url-help-command-$line[1]:"
+        case $line[1] in
+            (encode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(decode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(uuid)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_ut__uuid_commands" \
+"*::: :->uuid" \
+&& ret=0
+
+    case $state in
+    (uuid)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-uuid-command-$line[1]:"
+        case $line[1] in
+            (v1)
+_arguments "${_arguments_options[@]}" : \
+'-c+[Number of UUIDs to generate]:QUANTITY:_default' \
+'--count=[Number of UUIDs to generate]:QUANTITY:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(v3)
+_arguments "${_arguments_options[@]}" : \
+'-n+[Namespace to use]:NAMESPACE:((dns\:"DNS namespace"
+url\:"URL namespace"
+oid\:"ISO OID namespace"
+x500\:"X.500 DN namespace"))' \
+'--namespace=[Namespace to use]:NAMESPACE:((dns\:"DNS namespace"
+url\:"URL namespace"
+oid\:"ISO OID namespace"
+x500\:"X.500 DN namespace"))' \
+'-N+[Name to hash]:NAME:_default' \
+'--name=[Name to hash]:NAME:_default' \
+'-c+[Number of UUIDs to generate]:QUANTITY:_default' \
+'--count=[Number of UUIDs to generate]:QUANTITY:_default' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+&& ret=0
+;;
+(v4)
+_arguments "${_arguments_options[@]}" : \
+'-c+[Number of UUIDs to generate]:QUANTITY:_default' \
+'--count=[Number of UUIDs to generate]:QUANTITY:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(v5)
+_arguments "${_arguments_options[@]}" : \
+'-n+[Namespace to use]:NAMESPACE:((dns\:"DNS namespace"
+url\:"URL namespace"
+oid\:"ISO OID namespace"
+x500\:"X.500 DN namespace"))' \
+'--namespace=[Namespace to use]:NAMESPACE:((dns\:"DNS namespace"
+url\:"URL namespace"
+oid\:"ISO OID namespace"
+x500\:"X.500 DN namespace"))' \
+'-N+[Name to hash]:NAME:_default' \
+'--name=[Name to hash]:NAME:_default' \
+'-c+[Number of UUIDs to generate]:QUANTITY:_default' \
+'--count=[Number of UUIDs to generate]:QUANTITY:_default' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+&& ret=0
+;;
+(v7)
+_arguments "${_arguments_options[@]}" : \
+'-c+[Number of UUIDs to generate]:QUANTITY:_default' \
+'--count=[Number of UUIDs to generate]:QUANTITY:_default' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__uuid__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-uuid-help-command-$line[1]:"
+        case $line[1] in
+            (v1)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(v3)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(v4)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(v5)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(v7)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+;;
+(unicode)
+_arguments "${_arguments_options[@]}" : \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help_commands" \
+"*::: :->help" \
+&& ret=0
+
+    case $state in
+    (help)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-command-$line[1]:"
+        case $line[1] in
+            (completions)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(base64)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help__base64_commands" \
+"*::: :->base64" \
+&& ret=0
+
+    case $state in
+    (base64)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-base64-command-$line[1]:"
+        case $line[1] in
+            (encode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(decode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(bcrypt)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help__bcrypt_commands" \
+"*::: :->bcrypt" \
+&& ret=0
+
+    case $state in
+    (bcrypt)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-bcrypt-command-$line[1]:"
+        case $line[1] in
+            (hash)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(verify)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(calc)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(case)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help__case_commands" \
+"*::: :->case" \
+&& ret=0
+
+    case $state in
+    (case)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-case-command-$line[1]:"
+        case $line[1] in
+            (lower)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(upper)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(camel)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(title)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(constant)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(header)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sentence)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(snake)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(kebab)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(color)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help__color_commands" \
+"*::: :->color" \
+&& ret=0
+
+    case $state in
+    (color)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-color-command-$line[1]:"
+        case $line[1] in
+            (convert)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(crontab)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help__crontab_commands" \
+"*::: :->crontab" \
+&& ret=0
+
+    case $state in
+    (crontab)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-crontab-command-$line[1]:"
+        case $line[1] in
+            (schedule)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(datetime)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(diff)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(hash)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help__hash_commands" \
+"*::: :->hash" \
+&& ret=0
+
+    case $state in
+    (hash)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-hash-command-$line[1]:"
+        case $line[1] in
+            (md5)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sha1)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sha224)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sha256)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sha384)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(sha512)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(http)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help__http_commands" \
+"*::: :->http" \
+&& ret=0
+
+    case $state in
+    (http)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-http-command-$line[1]:"
+        case $line[1] in
+            (status)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(json)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help__json_commands" \
+"*::: :->json" \
+&& ret=0
+
+    case $state in
+    (json)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-json-command-$line[1]:"
+        case $line[1] in
+            (builder)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(jwt)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help__jwt_commands" \
+"*::: :->jwt" \
+&& ret=0
+
+    case $state in
+    (jwt)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-jwt-command-$line[1]:"
+        case $line[1] in
+            (decode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(encode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(verify)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(lorem)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(pretty-print)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(qr)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(random)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(regex)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(serve)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(token)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(url)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help__url_commands" \
+"*::: :->url" \
+&& ret=0
+
+    case $state in
+    (url)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-url-command-$line[1]:"
+        case $line[1] in
+            (encode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(decode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(uuid)
+_arguments "${_arguments_options[@]}" : \
+":: :_ut__help__uuid_commands" \
+"*::: :->uuid" \
+&& ret=0
+
+    case $state in
+    (uuid)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:ut-help-uuid-command-$line[1]:"
+        case $line[1] in
+            (v1)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(v3)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(v4)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(v5)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(v7)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(unicode)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" : \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+        esac
+    ;;
+esac
+}
+
+(( $+functions[_ut_commands] )) ||
+_ut_commands() {
+    local commands; commands=(
+'completions:Generate shell completions for ut' \
+'base64:Base64 encode and decode utilities' \
+'bcrypt:bcrypt hashing and verification utilities' \
+'calc:Expression calculator with math functions' \
+'cal:Expression calculator with math functions' \
+'case:Convert text between different case formats' \
+'color:Color utilities' \
+'crontab:Cron utilities for scheduling and parsing' \
+'cron:Cron utilities for scheduling and parsing' \
+'datetime:Parse and convert datetime to different timezones' \
+'dt:Parse and convert datetime to different timezones' \
+'diff:Compare text contents' \
+'hash:Generate hash digests using various algorithms' \
+'http:HTTP status codes and their descriptions' \
+'json:JSON utilities' \
+'jwt:JWT (JSON Web Token) utilities' \
+'lorem:Generate lorem ipsum text' \
+'pretty-print:Resolve escaped newlines and tab characters' \
+'pp:Resolve escaped newlines and tab characters' \
+'qr:Generate QR codes' \
+'random:Generate random numbers within specified range' \
+'regex:Interactive regex tester' \
+'serve:Start a local HTTP file server' \
+'token:Generate a cryptographically secure random token.' \
+'secret:Generate a cryptographically secure random token.' \
+'password:Generate a cryptographically secure random token.' \
+'url:URL encode and decode utilities' \
+'uuid:Generate UUIDs' \
+'unicode:Unicode symbol reference' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut commands' commands "$@"
+}
+(( $+functions[_ut__base64_commands] )) ||
+_ut__base64_commands() {
+    local commands; commands=(
+'encode:Base64 encode contents' \
+'decode:Base64 decode contents' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut base64 commands' commands "$@"
+}
+(( $+functions[_ut__base64__decode_commands] )) ||
+_ut__base64__decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut base64 decode commands' commands "$@"
+}
+(( $+functions[_ut__base64__encode_commands] )) ||
+_ut__base64__encode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut base64 encode commands' commands "$@"
+}
+(( $+functions[_ut__base64__help_commands] )) ||
+_ut__base64__help_commands() {
+    local commands; commands=(
+'encode:Base64 encode contents' \
+'decode:Base64 decode contents' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut base64 help commands' commands "$@"
+}
+(( $+functions[_ut__base64__help__decode_commands] )) ||
+_ut__base64__help__decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut base64 help decode commands' commands "$@"
+}
+(( $+functions[_ut__base64__help__encode_commands] )) ||
+_ut__base64__help__encode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut base64 help encode commands' commands "$@"
+}
+(( $+functions[_ut__base64__help__help_commands] )) ||
+_ut__base64__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut base64 help help commands' commands "$@"
+}
+(( $+functions[_ut__bcrypt_commands] )) ||
+_ut__bcrypt_commands() {
+    local commands; commands=(
+'hash:Hash a password using bcrypt' \
+'verify:Verify a password against a bcrypt hash' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut bcrypt commands' commands "$@"
+}
+(( $+functions[_ut__bcrypt__hash_commands] )) ||
+_ut__bcrypt__hash_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut bcrypt hash commands' commands "$@"
+}
+(( $+functions[_ut__bcrypt__help_commands] )) ||
+_ut__bcrypt__help_commands() {
+    local commands; commands=(
+'hash:Hash a password using bcrypt' \
+'verify:Verify a password against a bcrypt hash' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut bcrypt help commands' commands "$@"
+}
+(( $+functions[_ut__bcrypt__help__hash_commands] )) ||
+_ut__bcrypt__help__hash_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut bcrypt help hash commands' commands "$@"
+}
+(( $+functions[_ut__bcrypt__help__help_commands] )) ||
+_ut__bcrypt__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut bcrypt help help commands' commands "$@"
+}
+(( $+functions[_ut__bcrypt__help__verify_commands] )) ||
+_ut__bcrypt__help__verify_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut bcrypt help verify commands' commands "$@"
+}
+(( $+functions[_ut__bcrypt__verify_commands] )) ||
+_ut__bcrypt__verify_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut bcrypt verify commands' commands "$@"
+}
+(( $+functions[_ut__calc_commands] )) ||
+_ut__calc_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut calc commands' commands "$@"
+}
+(( $+functions[_ut__case_commands] )) ||
+_ut__case_commands() {
+    local commands; commands=(
+'lower:Convert text to lowercase' \
+'upper:Convert text to UPPERCASE' \
+'camel:Convert text to camelCase' \
+'title:Convert text to Title Case' \
+'constant:Convert text to CONSTANT_CASE' \
+'header:Convert text to Header-Case' \
+'sentence:Convert text to sentence case' \
+'snake:Convert text to snake_case' \
+'kebab:Convert text to kebab-case' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut case commands' commands "$@"
+}
+(( $+functions[_ut__case__camel_commands] )) ||
+_ut__case__camel_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case camel commands' commands "$@"
+}
+(( $+functions[_ut__case__constant_commands] )) ||
+_ut__case__constant_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case constant commands' commands "$@"
+}
+(( $+functions[_ut__case__header_commands] )) ||
+_ut__case__header_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case header commands' commands "$@"
+}
+(( $+functions[_ut__case__help_commands] )) ||
+_ut__case__help_commands() {
+    local commands; commands=(
+'lower:Convert text to lowercase' \
+'upper:Convert text to UPPERCASE' \
+'camel:Convert text to camelCase' \
+'title:Convert text to Title Case' \
+'constant:Convert text to CONSTANT_CASE' \
+'header:Convert text to Header-Case' \
+'sentence:Convert text to sentence case' \
+'snake:Convert text to snake_case' \
+'kebab:Convert text to kebab-case' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut case help commands' commands "$@"
+}
+(( $+functions[_ut__case__help__camel_commands] )) ||
+_ut__case__help__camel_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case help camel commands' commands "$@"
+}
+(( $+functions[_ut__case__help__constant_commands] )) ||
+_ut__case__help__constant_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case help constant commands' commands "$@"
+}
+(( $+functions[_ut__case__help__header_commands] )) ||
+_ut__case__help__header_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case help header commands' commands "$@"
+}
+(( $+functions[_ut__case__help__help_commands] )) ||
+_ut__case__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case help help commands' commands "$@"
+}
+(( $+functions[_ut__case__help__kebab_commands] )) ||
+_ut__case__help__kebab_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case help kebab commands' commands "$@"
+}
+(( $+functions[_ut__case__help__lower_commands] )) ||
+_ut__case__help__lower_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case help lower commands' commands "$@"
+}
+(( $+functions[_ut__case__help__sentence_commands] )) ||
+_ut__case__help__sentence_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case help sentence commands' commands "$@"
+}
+(( $+functions[_ut__case__help__snake_commands] )) ||
+_ut__case__help__snake_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case help snake commands' commands "$@"
+}
+(( $+functions[_ut__case__help__title_commands] )) ||
+_ut__case__help__title_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case help title commands' commands "$@"
+}
+(( $+functions[_ut__case__help__upper_commands] )) ||
+_ut__case__help__upper_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case help upper commands' commands "$@"
+}
+(( $+functions[_ut__case__kebab_commands] )) ||
+_ut__case__kebab_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case kebab commands' commands "$@"
+}
+(( $+functions[_ut__case__lower_commands] )) ||
+_ut__case__lower_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case lower commands' commands "$@"
+}
+(( $+functions[_ut__case__sentence_commands] )) ||
+_ut__case__sentence_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case sentence commands' commands "$@"
+}
+(( $+functions[_ut__case__snake_commands] )) ||
+_ut__case__snake_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case snake commands' commands "$@"
+}
+(( $+functions[_ut__case__title_commands] )) ||
+_ut__case__title_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case title commands' commands "$@"
+}
+(( $+functions[_ut__case__upper_commands] )) ||
+_ut__case__upper_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut case upper commands' commands "$@"
+}
+(( $+functions[_ut__color_commands] )) ||
+_ut__color_commands() {
+    local commands; commands=(
+'convert:Convert colors between different formats' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut color commands' commands "$@"
+}
+(( $+functions[_ut__color__convert_commands] )) ||
+_ut__color__convert_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut color convert commands' commands "$@"
+}
+(( $+functions[_ut__color__help_commands] )) ||
+_ut__color__help_commands() {
+    local commands; commands=(
+'convert:Convert colors between different formats' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut color help commands' commands "$@"
+}
+(( $+functions[_ut__color__help__convert_commands] )) ||
+_ut__color__help__convert_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut color help convert commands' commands "$@"
+}
+(( $+functions[_ut__color__help__help_commands] )) ||
+_ut__color__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut color help help commands' commands "$@"
+}
+(( $+functions[_ut__completions_commands] )) ||
+_ut__completions_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut completions commands' commands "$@"
+}
+(( $+functions[_ut__crontab_commands] )) ||
+_ut__crontab_commands() {
+    local commands; commands=(
+'schedule:Parse crontab expression and show upcoming firing times' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut crontab commands' commands "$@"
+}
+(( $+functions[_ut__crontab__help_commands] )) ||
+_ut__crontab__help_commands() {
+    local commands; commands=(
+'schedule:Parse crontab expression and show upcoming firing times' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut crontab help commands' commands "$@"
+}
+(( $+functions[_ut__crontab__help__help_commands] )) ||
+_ut__crontab__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut crontab help help commands' commands "$@"
+}
+(( $+functions[_ut__crontab__help__schedule_commands] )) ||
+_ut__crontab__help__schedule_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut crontab help schedule commands' commands "$@"
+}
+(( $+functions[_ut__crontab__schedule_commands] )) ||
+_ut__crontab__schedule_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut crontab schedule commands' commands "$@"
+}
+(( $+functions[_ut__datetime_commands] )) ||
+_ut__datetime_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut datetime commands' commands "$@"
+}
+(( $+functions[_ut__diff_commands] )) ||
+_ut__diff_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut diff commands' commands "$@"
+}
+(( $+functions[_ut__hash_commands] )) ||
+_ut__hash_commands() {
+    local commands; commands=(
+'md5:Generate MD5 hash' \
+'sha1:Generate SHA-1 hash' \
+'sha224:Generate SHA-224 hash' \
+'sha256:Generate SHA-256 hash' \
+'sha384:Generate SHA-384 hash' \
+'sha512:Generate SHA-512 hash' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut hash commands' commands "$@"
+}
+(( $+functions[_ut__hash__help_commands] )) ||
+_ut__hash__help_commands() {
+    local commands; commands=(
+'md5:Generate MD5 hash' \
+'sha1:Generate SHA-1 hash' \
+'sha224:Generate SHA-224 hash' \
+'sha256:Generate SHA-256 hash' \
+'sha384:Generate SHA-384 hash' \
+'sha512:Generate SHA-512 hash' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut hash help commands' commands "$@"
+}
+(( $+functions[_ut__hash__help__help_commands] )) ||
+_ut__hash__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash help help commands' commands "$@"
+}
+(( $+functions[_ut__hash__help__md5_commands] )) ||
+_ut__hash__help__md5_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash help md5 commands' commands "$@"
+}
+(( $+functions[_ut__hash__help__sha1_commands] )) ||
+_ut__hash__help__sha1_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash help sha1 commands' commands "$@"
+}
+(( $+functions[_ut__hash__help__sha224_commands] )) ||
+_ut__hash__help__sha224_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash help sha224 commands' commands "$@"
+}
+(( $+functions[_ut__hash__help__sha256_commands] )) ||
+_ut__hash__help__sha256_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash help sha256 commands' commands "$@"
+}
+(( $+functions[_ut__hash__help__sha384_commands] )) ||
+_ut__hash__help__sha384_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash help sha384 commands' commands "$@"
+}
+(( $+functions[_ut__hash__help__sha512_commands] )) ||
+_ut__hash__help__sha512_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash help sha512 commands' commands "$@"
+}
+(( $+functions[_ut__hash__md5_commands] )) ||
+_ut__hash__md5_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash md5 commands' commands "$@"
+}
+(( $+functions[_ut__hash__sha1_commands] )) ||
+_ut__hash__sha1_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash sha1 commands' commands "$@"
+}
+(( $+functions[_ut__hash__sha224_commands] )) ||
+_ut__hash__sha224_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash sha224 commands' commands "$@"
+}
+(( $+functions[_ut__hash__sha256_commands] )) ||
+_ut__hash__sha256_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash sha256 commands' commands "$@"
+}
+(( $+functions[_ut__hash__sha384_commands] )) ||
+_ut__hash__sha384_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash sha384 commands' commands "$@"
+}
+(( $+functions[_ut__hash__sha512_commands] )) ||
+_ut__hash__sha512_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut hash sha512 commands' commands "$@"
+}
+(( $+functions[_ut__help_commands] )) ||
+_ut__help_commands() {
+    local commands; commands=(
+'completions:Generate shell completions for ut' \
+'base64:Base64 encode and decode utilities' \
+'bcrypt:bcrypt hashing and verification utilities' \
+'calc:Expression calculator with math functions' \
+'case:Convert text between different case formats' \
+'color:Color utilities' \
+'crontab:Cron utilities for scheduling and parsing' \
+'datetime:Parse and convert datetime to different timezones' \
+'diff:Compare text contents' \
+'hash:Generate hash digests using various algorithms' \
+'http:HTTP status codes and their descriptions' \
+'json:JSON utilities' \
+'jwt:JWT (JSON Web Token) utilities' \
+'lorem:Generate lorem ipsum text' \
+'pretty-print:Resolve escaped newlines and tab characters' \
+'qr:Generate QR codes' \
+'random:Generate random numbers within specified range' \
+'regex:Interactive regex tester' \
+'serve:Start a local HTTP file server' \
+'token:Generate a cryptographically secure random token.' \
+'url:URL encode and decode utilities' \
+'uuid:Generate UUIDs' \
+'unicode:Unicode symbol reference' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut help commands' commands "$@"
+}
+(( $+functions[_ut__help__base64_commands] )) ||
+_ut__help__base64_commands() {
+    local commands; commands=(
+'encode:Base64 encode contents' \
+'decode:Base64 decode contents' \
+    )
+    _describe -t commands 'ut help base64 commands' commands "$@"
+}
+(( $+functions[_ut__help__base64__decode_commands] )) ||
+_ut__help__base64__decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help base64 decode commands' commands "$@"
+}
+(( $+functions[_ut__help__base64__encode_commands] )) ||
+_ut__help__base64__encode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help base64 encode commands' commands "$@"
+}
+(( $+functions[_ut__help__bcrypt_commands] )) ||
+_ut__help__bcrypt_commands() {
+    local commands; commands=(
+'hash:Hash a password using bcrypt' \
+'verify:Verify a password against a bcrypt hash' \
+    )
+    _describe -t commands 'ut help bcrypt commands' commands "$@"
+}
+(( $+functions[_ut__help__bcrypt__hash_commands] )) ||
+_ut__help__bcrypt__hash_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help bcrypt hash commands' commands "$@"
+}
+(( $+functions[_ut__help__bcrypt__verify_commands] )) ||
+_ut__help__bcrypt__verify_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help bcrypt verify commands' commands "$@"
+}
+(( $+functions[_ut__help__calc_commands] )) ||
+_ut__help__calc_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help calc commands' commands "$@"
+}
+(( $+functions[_ut__help__case_commands] )) ||
+_ut__help__case_commands() {
+    local commands; commands=(
+'lower:Convert text to lowercase' \
+'upper:Convert text to UPPERCASE' \
+'camel:Convert text to camelCase' \
+'title:Convert text to Title Case' \
+'constant:Convert text to CONSTANT_CASE' \
+'header:Convert text to Header-Case' \
+'sentence:Convert text to sentence case' \
+'snake:Convert text to snake_case' \
+'kebab:Convert text to kebab-case' \
+    )
+    _describe -t commands 'ut help case commands' commands "$@"
+}
+(( $+functions[_ut__help__case__camel_commands] )) ||
+_ut__help__case__camel_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help case camel commands' commands "$@"
+}
+(( $+functions[_ut__help__case__constant_commands] )) ||
+_ut__help__case__constant_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help case constant commands' commands "$@"
+}
+(( $+functions[_ut__help__case__header_commands] )) ||
+_ut__help__case__header_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help case header commands' commands "$@"
+}
+(( $+functions[_ut__help__case__kebab_commands] )) ||
+_ut__help__case__kebab_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help case kebab commands' commands "$@"
+}
+(( $+functions[_ut__help__case__lower_commands] )) ||
+_ut__help__case__lower_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help case lower commands' commands "$@"
+}
+(( $+functions[_ut__help__case__sentence_commands] )) ||
+_ut__help__case__sentence_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help case sentence commands' commands "$@"
+}
+(( $+functions[_ut__help__case__snake_commands] )) ||
+_ut__help__case__snake_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help case snake commands' commands "$@"
+}
+(( $+functions[_ut__help__case__title_commands] )) ||
+_ut__help__case__title_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help case title commands' commands "$@"
+}
+(( $+functions[_ut__help__case__upper_commands] )) ||
+_ut__help__case__upper_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help case upper commands' commands "$@"
+}
+(( $+functions[_ut__help__color_commands] )) ||
+_ut__help__color_commands() {
+    local commands; commands=(
+'convert:Convert colors between different formats' \
+    )
+    _describe -t commands 'ut help color commands' commands "$@"
+}
+(( $+functions[_ut__help__color__convert_commands] )) ||
+_ut__help__color__convert_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help color convert commands' commands "$@"
+}
+(( $+functions[_ut__help__completions_commands] )) ||
+_ut__help__completions_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help completions commands' commands "$@"
+}
+(( $+functions[_ut__help__crontab_commands] )) ||
+_ut__help__crontab_commands() {
+    local commands; commands=(
+'schedule:Parse crontab expression and show upcoming firing times' \
+    )
+    _describe -t commands 'ut help crontab commands' commands "$@"
+}
+(( $+functions[_ut__help__crontab__schedule_commands] )) ||
+_ut__help__crontab__schedule_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help crontab schedule commands' commands "$@"
+}
+(( $+functions[_ut__help__datetime_commands] )) ||
+_ut__help__datetime_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help datetime commands' commands "$@"
+}
+(( $+functions[_ut__help__diff_commands] )) ||
+_ut__help__diff_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help diff commands' commands "$@"
+}
+(( $+functions[_ut__help__hash_commands] )) ||
+_ut__help__hash_commands() {
+    local commands; commands=(
+'md5:Generate MD5 hash' \
+'sha1:Generate SHA-1 hash' \
+'sha224:Generate SHA-224 hash' \
+'sha256:Generate SHA-256 hash' \
+'sha384:Generate SHA-384 hash' \
+'sha512:Generate SHA-512 hash' \
+    )
+    _describe -t commands 'ut help hash commands' commands "$@"
+}
+(( $+functions[_ut__help__hash__md5_commands] )) ||
+_ut__help__hash__md5_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help hash md5 commands' commands "$@"
+}
+(( $+functions[_ut__help__hash__sha1_commands] )) ||
+_ut__help__hash__sha1_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help hash sha1 commands' commands "$@"
+}
+(( $+functions[_ut__help__hash__sha224_commands] )) ||
+_ut__help__hash__sha224_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help hash sha224 commands' commands "$@"
+}
+(( $+functions[_ut__help__hash__sha256_commands] )) ||
+_ut__help__hash__sha256_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help hash sha256 commands' commands "$@"
+}
+(( $+functions[_ut__help__hash__sha384_commands] )) ||
+_ut__help__hash__sha384_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help hash sha384 commands' commands "$@"
+}
+(( $+functions[_ut__help__hash__sha512_commands] )) ||
+_ut__help__hash__sha512_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help hash sha512 commands' commands "$@"
+}
+(( $+functions[_ut__help__help_commands] )) ||
+_ut__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help help commands' commands "$@"
+}
+(( $+functions[_ut__help__http_commands] )) ||
+_ut__help__http_commands() {
+    local commands; commands=(
+'status:Look up HTTP status codes' \
+    )
+    _describe -t commands 'ut help http commands' commands "$@"
+}
+(( $+functions[_ut__help__http__status_commands] )) ||
+_ut__help__http__status_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help http status commands' commands "$@"
+}
+(( $+functions[_ut__help__json_commands] )) ||
+_ut__help__json_commands() {
+    local commands; commands=(
+'builder:Build JSON from key-value pairs with dot notation and array support' \
+    )
+    _describe -t commands 'ut help json commands' commands "$@"
+}
+(( $+functions[_ut__help__json__builder_commands] )) ||
+_ut__help__json__builder_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help json builder commands' commands "$@"
+}
+(( $+functions[_ut__help__jwt_commands] )) ||
+_ut__help__jwt_commands() {
+    local commands; commands=(
+'decode:Decode a JWT without verification (inspect only)' \
+'encode:Encode and sign a JWT' \
+'verify:Verify and decode a JWT' \
+    )
+    _describe -t commands 'ut help jwt commands' commands "$@"
+}
+(( $+functions[_ut__help__jwt__decode_commands] )) ||
+_ut__help__jwt__decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help jwt decode commands' commands "$@"
+}
+(( $+functions[_ut__help__jwt__encode_commands] )) ||
+_ut__help__jwt__encode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help jwt encode commands' commands "$@"
+}
+(( $+functions[_ut__help__jwt__verify_commands] )) ||
+_ut__help__jwt__verify_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help jwt verify commands' commands "$@"
+}
+(( $+functions[_ut__help__lorem_commands] )) ||
+_ut__help__lorem_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help lorem commands' commands "$@"
+}
+(( $+functions[_ut__help__pretty-print_commands] )) ||
+_ut__help__pretty-print_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help pretty-print commands' commands "$@"
+}
+(( $+functions[_ut__help__qr_commands] )) ||
+_ut__help__qr_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help qr commands' commands "$@"
+}
+(( $+functions[_ut__help__random_commands] )) ||
+_ut__help__random_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help random commands' commands "$@"
+}
+(( $+functions[_ut__help__regex_commands] )) ||
+_ut__help__regex_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help regex commands' commands "$@"
+}
+(( $+functions[_ut__help__serve_commands] )) ||
+_ut__help__serve_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help serve commands' commands "$@"
+}
+(( $+functions[_ut__help__token_commands] )) ||
+_ut__help__token_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help token commands' commands "$@"
+}
+(( $+functions[_ut__help__unicode_commands] )) ||
+_ut__help__unicode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help unicode commands' commands "$@"
+}
+(( $+functions[_ut__help__url_commands] )) ||
+_ut__help__url_commands() {
+    local commands; commands=(
+'encode:URL encode text' \
+'decode:URL decode text' \
+    )
+    _describe -t commands 'ut help url commands' commands "$@"
+}
+(( $+functions[_ut__help__url__decode_commands] )) ||
+_ut__help__url__decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help url decode commands' commands "$@"
+}
+(( $+functions[_ut__help__url__encode_commands] )) ||
+_ut__help__url__encode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help url encode commands' commands "$@"
+}
+(( $+functions[_ut__help__uuid_commands] )) ||
+_ut__help__uuid_commands() {
+    local commands; commands=(
+'v1:Generate UUID v1 (timestamp-based)' \
+'v3:Generate UUID v3 (namespace + MD5 hash)' \
+'v4:Generate UUID v4 (random)' \
+'v5:Generate UUID v5 (namespace + SHA-1 hash)' \
+'v7:Generate UUID v7 (timestamp-based, sortable)' \
+    )
+    _describe -t commands 'ut help uuid commands' commands "$@"
+}
+(( $+functions[_ut__help__uuid__v1_commands] )) ||
+_ut__help__uuid__v1_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help uuid v1 commands' commands "$@"
+}
+(( $+functions[_ut__help__uuid__v3_commands] )) ||
+_ut__help__uuid__v3_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help uuid v3 commands' commands "$@"
+}
+(( $+functions[_ut__help__uuid__v4_commands] )) ||
+_ut__help__uuid__v4_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help uuid v4 commands' commands "$@"
+}
+(( $+functions[_ut__help__uuid__v5_commands] )) ||
+_ut__help__uuid__v5_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help uuid v5 commands' commands "$@"
+}
+(( $+functions[_ut__help__uuid__v7_commands] )) ||
+_ut__help__uuid__v7_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut help uuid v7 commands' commands "$@"
+}
+(( $+functions[_ut__http_commands] )) ||
+_ut__http_commands() {
+    local commands; commands=(
+'status:Look up HTTP status codes' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut http commands' commands "$@"
+}
+(( $+functions[_ut__http__help_commands] )) ||
+_ut__http__help_commands() {
+    local commands; commands=(
+'status:Look up HTTP status codes' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut http help commands' commands "$@"
+}
+(( $+functions[_ut__http__help__help_commands] )) ||
+_ut__http__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut http help help commands' commands "$@"
+}
+(( $+functions[_ut__http__help__status_commands] )) ||
+_ut__http__help__status_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut http help status commands' commands "$@"
+}
+(( $+functions[_ut__http__status_commands] )) ||
+_ut__http__status_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut http status commands' commands "$@"
+}
+(( $+functions[_ut__json_commands] )) ||
+_ut__json_commands() {
+    local commands; commands=(
+'builder:Build JSON from key-value pairs with dot notation and array support' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut json commands' commands "$@"
+}
+(( $+functions[_ut__json__builder_commands] )) ||
+_ut__json__builder_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut json builder commands' commands "$@"
+}
+(( $+functions[_ut__json__help_commands] )) ||
+_ut__json__help_commands() {
+    local commands; commands=(
+'builder:Build JSON from key-value pairs with dot notation and array support' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut json help commands' commands "$@"
+}
+(( $+functions[_ut__json__help__builder_commands] )) ||
+_ut__json__help__builder_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut json help builder commands' commands "$@"
+}
+(( $+functions[_ut__json__help__help_commands] )) ||
+_ut__json__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut json help help commands' commands "$@"
+}
+(( $+functions[_ut__jwt_commands] )) ||
+_ut__jwt_commands() {
+    local commands; commands=(
+'decode:Decode a JWT without verification (inspect only)' \
+'encode:Encode and sign a JWT' \
+'verify:Verify and decode a JWT' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut jwt commands' commands "$@"
+}
+(( $+functions[_ut__jwt__decode_commands] )) ||
+_ut__jwt__decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut jwt decode commands' commands "$@"
+}
+(( $+functions[_ut__jwt__encode_commands] )) ||
+_ut__jwt__encode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut jwt encode commands' commands "$@"
+}
+(( $+functions[_ut__jwt__help_commands] )) ||
+_ut__jwt__help_commands() {
+    local commands; commands=(
+'decode:Decode a JWT without verification (inspect only)' \
+'encode:Encode and sign a JWT' \
+'verify:Verify and decode a JWT' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut jwt help commands' commands "$@"
+}
+(( $+functions[_ut__jwt__help__decode_commands] )) ||
+_ut__jwt__help__decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut jwt help decode commands' commands "$@"
+}
+(( $+functions[_ut__jwt__help__encode_commands] )) ||
+_ut__jwt__help__encode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut jwt help encode commands' commands "$@"
+}
+(( $+functions[_ut__jwt__help__help_commands] )) ||
+_ut__jwt__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut jwt help help commands' commands "$@"
+}
+(( $+functions[_ut__jwt__help__verify_commands] )) ||
+_ut__jwt__help__verify_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut jwt help verify commands' commands "$@"
+}
+(( $+functions[_ut__jwt__verify_commands] )) ||
+_ut__jwt__verify_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut jwt verify commands' commands "$@"
+}
+(( $+functions[_ut__lorem_commands] )) ||
+_ut__lorem_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut lorem commands' commands "$@"
+}
+(( $+functions[_ut__pretty-print_commands] )) ||
+_ut__pretty-print_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut pretty-print commands' commands "$@"
+}
+(( $+functions[_ut__qr_commands] )) ||
+_ut__qr_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut qr commands' commands "$@"
+}
+(( $+functions[_ut__random_commands] )) ||
+_ut__random_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut random commands' commands "$@"
+}
+(( $+functions[_ut__regex_commands] )) ||
+_ut__regex_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut regex commands' commands "$@"
+}
+(( $+functions[_ut__serve_commands] )) ||
+_ut__serve_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut serve commands' commands "$@"
+}
+(( $+functions[_ut__token_commands] )) ||
+_ut__token_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut token commands' commands "$@"
+}
+(( $+functions[_ut__unicode_commands] )) ||
+_ut__unicode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut unicode commands' commands "$@"
+}
+(( $+functions[_ut__url_commands] )) ||
+_ut__url_commands() {
+    local commands; commands=(
+'encode:URL encode text' \
+'decode:URL decode text' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut url commands' commands "$@"
+}
+(( $+functions[_ut__url__decode_commands] )) ||
+_ut__url__decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut url decode commands' commands "$@"
+}
+(( $+functions[_ut__url__encode_commands] )) ||
+_ut__url__encode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut url encode commands' commands "$@"
+}
+(( $+functions[_ut__url__help_commands] )) ||
+_ut__url__help_commands() {
+    local commands; commands=(
+'encode:URL encode text' \
+'decode:URL decode text' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut url help commands' commands "$@"
+}
+(( $+functions[_ut__url__help__decode_commands] )) ||
+_ut__url__help__decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut url help decode commands' commands "$@"
+}
+(( $+functions[_ut__url__help__encode_commands] )) ||
+_ut__url__help__encode_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut url help encode commands' commands "$@"
+}
+(( $+functions[_ut__url__help__help_commands] )) ||
+_ut__url__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut url help help commands' commands "$@"
+}
+(( $+functions[_ut__uuid_commands] )) ||
+_ut__uuid_commands() {
+    local commands; commands=(
+'v1:Generate UUID v1 (timestamp-based)' \
+'v3:Generate UUID v3 (namespace + MD5 hash)' \
+'v4:Generate UUID v4 (random)' \
+'v5:Generate UUID v5 (namespace + SHA-1 hash)' \
+'v7:Generate UUID v7 (timestamp-based, sortable)' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut uuid commands' commands "$@"
+}
+(( $+functions[_ut__uuid__help_commands] )) ||
+_ut__uuid__help_commands() {
+    local commands; commands=(
+'v1:Generate UUID v1 (timestamp-based)' \
+'v3:Generate UUID v3 (namespace + MD5 hash)' \
+'v4:Generate UUID v4 (random)' \
+'v5:Generate UUID v5 (namespace + SHA-1 hash)' \
+'v7:Generate UUID v7 (timestamp-based, sortable)' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'ut uuid help commands' commands "$@"
+}
+(( $+functions[_ut__uuid__help__help_commands] )) ||
+_ut__uuid__help__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut uuid help help commands' commands "$@"
+}
+(( $+functions[_ut__uuid__help__v1_commands] )) ||
+_ut__uuid__help__v1_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut uuid help v1 commands' commands "$@"
+}
+(( $+functions[_ut__uuid__help__v3_commands] )) ||
+_ut__uuid__help__v3_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut uuid help v3 commands' commands "$@"
+}
+(( $+functions[_ut__uuid__help__v4_commands] )) ||
+_ut__uuid__help__v4_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut uuid help v4 commands' commands "$@"
+}
+(( $+functions[_ut__uuid__help__v5_commands] )) ||
+_ut__uuid__help__v5_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut uuid help v5 commands' commands "$@"
+}
+(( $+functions[_ut__uuid__help__v7_commands] )) ||
+_ut__uuid__help__v7_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut uuid help v7 commands' commands "$@"
+}
+(( $+functions[_ut__uuid__v1_commands] )) ||
+_ut__uuid__v1_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut uuid v1 commands' commands "$@"
+}
+(( $+functions[_ut__uuid__v3_commands] )) ||
+_ut__uuid__v3_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut uuid v3 commands' commands "$@"
+}
+(( $+functions[_ut__uuid__v4_commands] )) ||
+_ut__uuid__v4_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut uuid v4 commands' commands "$@"
+}
+(( $+functions[_ut__uuid__v5_commands] )) ||
+_ut__uuid__v5_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut uuid v5 commands' commands "$@"
+}
+(( $+functions[_ut__uuid__v7_commands] )) ||
+_ut__uuid__v7_commands() {
+    local commands; commands=()
+    _describe -t commands 'ut uuid v7 commands' commands "$@"
+}
+
+if [ "$funcstack[1]" = "_ut" ]; then
+    _ut "$@"
+else
+    compdef _ut ut
+fi
