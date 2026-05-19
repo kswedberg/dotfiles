@@ -1,0 +1,47 @@
+# OH MY ZSH (OMZ)
+getantidote/use-omz
+
+# OMZ lib files
+ohmyzsh/ohmyzsh path:lib/clipboard.zsh
+ohmyzsh/ohmyzsh path:lib/completion.zsh
+ohmyzsh/ohmyzsh path:lib/correction.zsh
+ohmyzsh/ohmyzsh path:lib/git.zsh
+ohmyzsh/ohmyzsh path:lib/grep.zsh
+ohmyzsh/ohmyzsh path:lib/history.zsh
+ohmyzsh/ohmyzsh path:lib/key-bindings.zsh
+ohmyzsh/ohmyzsh path:lib/theme-and-appearance.zsh
+
+# Pick OMZ plugins.
+# ohmyzsh/ohmyzsh path:plugins/git
+# ohmyzsh/ohmyzsh path:plugins/magic-enter
+
+ohmyzsh/ohmyzsh path:plugins/extract
+ohmyzsh/ohmyzsh path:plugins/git-extras
+ohmyzsh/ohmyzsh path:plugins/git-prompt
+ohmyzsh/ohmyzsh path:plugins/gnu-utils
+ohmyzsh/ohmyzsh path:plugins/rbenv
+ohmyzsh/ohmyzsh path:plugins/ssh-agent
+ohmyzsh/ohmyzsh path:plugins/virtualenv
+ohmyzsh/ohmyzsh path:plugins/z
+
+### Other plugins
+# More completions
+zsh-users/zsh-completions
+
+# Syntax highlighting on the readline
+zsh-users/zsh-syntax-highlighting
+
+# Autocomplete suggestions
+tarruda/zsh-autosuggestions
+
+# Colors
+chrissicool/zsh-256color
+
+# Back to directory with `bd`
+Tarrasch/zsh-bd
+
+# Awesome history search
+# psprint/history-search-multi-word
+
+# `finder` fzf
+b4b4r07/cli-finder
