@@ -68,6 +68,10 @@
   su = submodule update --init
   fb = !"git-fb.sh"
   push-to = !"git-push-to.sh"
+
+  # from https://remysharp.com/2026/02/12/git-recent
+  recent = !git for-each-ref --sort=committerdate --format='%(committerdate:relative) %(refname:short)' refs/heads/ | tail -10
+
   wtf = !"git-wtf.sh"
   syncupstreammaster = !"git fetch upstream; git checkout master; git merge upstream/master; git push; echo 'Check out your branch and run git rebase master. See: http://www.xanthir.com/b4hf0'"
   syncupstreammain = !"git fetch upstream; git checkout main; git merge upstream/main; git push; echo 'Check out your branch and run git rebase main. See: http://www.xanthir.com/b4hf0'"
