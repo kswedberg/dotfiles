@@ -79,3 +79,13 @@ FNM_PATH="/opt/homebrew/opt/fnm/bin"
 if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kswedberg/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kswedberg/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kswedberg/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kswedberg/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Completion for uv (Python package manager) and uvx
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
