@@ -22,6 +22,8 @@ source $HOME/.shell/index.sh
 # Load RBENV [don't need to load it here because ohmyzsh rbenv plugin in .zsh_plugins.txt is taking care of it ]
 # eval "$(rbenv init -)"
 
+[[ -z "${TERM}" ]] && export TERM=xterm-256color
+
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load
 
