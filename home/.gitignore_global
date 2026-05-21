@@ -21,6 +21,7 @@
 *.bz2
 *~
 
+
 # Fusionary Timesheets RC File  #
 #################################
 .fmtsrc
@@ -66,3 +67,4 @@ Thumbs.db
 ######################
 gitignore
 .atomignore
+.ump.debug.json
