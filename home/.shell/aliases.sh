@@ -130,8 +130,12 @@ alias dcwf="docker compose --progress plain up -V --force-recreate --watch"
 alias dcrs="docker compose --progress plain restart"
 
 # stop the built image
+alias dcs="docker compose stop"
+
+# stop the built image and remove the container
 alias dcd="docker compose down"
 
+# view logs of the built image
 alias dcl="docker compose logs --follow"
 
 # run a one-off command in the container
