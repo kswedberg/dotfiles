@@ -24,6 +24,7 @@ source $HOME/.shell/index.sh
 
 [[ -z "${TERM}" ]] && export TERM=xterm-256color
 
+# LOAD ANTIDOTE: https://antidote.sh/ (gets everything from .zsh_plugins.txt)
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load
 

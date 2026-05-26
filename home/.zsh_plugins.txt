@@ -1,3 +1,4 @@
+# https://antidote.sh/
 # OH MY ZSH (OMZ)
 getantidote/use-omz
 
