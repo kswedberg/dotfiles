@@ -46,7 +46,11 @@ colorscheme badwolf
 
 " autocmd Filetype gitcommit setlocal spell text
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-let g:markdown_fenced_languages = ['html', 'javascript=js', 'bash=sh']
+
+" Markdown settings
+let g:markdown_fenced_languages = ['html', 'css', 'javascript', 'js=javascript', 'bash', 'sh=bash']
+let g:markdown_recommended_style = 0
+
 
 let g:snipMate = { 'snippet_version' : 1 }
 
