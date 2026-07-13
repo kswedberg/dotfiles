@@ -28,6 +28,9 @@ export PATH="$HOME/.local/bin:$PATH"
 PATH=$PATH:$(brew --prefix)/opt/go/libexec/bin
 PATH=$PATH:$(go env GOPATH)/bin
 
+# PostgreSQL
+PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
+
 # Yarn
 PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
