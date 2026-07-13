@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+
+# These gems are used by the Ruby LSP server inside Cursor and VSCode
+# to provide autocomplete and linting for Ruby code.
+
+# Version of Ruby LSP will run on
+ruby '3.2.2'
+gem 'debug'
+gem 'ruby-lsp'
+gem 'rubocop'
+gem 'rubocop-performance'
+gem 'rubocop-rails'
