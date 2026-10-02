@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
-SERVER="$1"
-REMOTE_PORT="$2"
-LOCAL_PORT="$3"
+function tunnel() {
+  typeset -r default_remote_port=8080
+  typeset -r default_local_port=9999
+  local server="${1:-}" remote_port="${2:-}" local_port="${3:-}" pid
 
-if [[ -z "${1}" ]]; then
-  cat <<TUNNELINSTRUCTIONS
-
+  if [[ -z "${server}" ]]; then
+    cat <<'EOF'
 tunnel db connector
   * Uses ssh tunnel to proxy to localhost:[9999]
 
@@ -21,41 +21,49 @@ EXAMPLES
     tunnel user@example.com 8090 9191
 
 Type the user@server.com address for the server.
-TUNNELINSTRUCTIONS
+EOF
+    read -r server
+  fi
 
-  read SERVER
-fi
+  if [[ -z "${server}" ]]; then
+    print "No server specified. Bailing."
+    return 1
+  fi
+  if [[ "${server}" == -* || "${server}" == *[[:space:]]* ]]; then
+    print -u2 "tunnel: invalid server"
+    return 1
+  fi
 
-if [[ -z "${SERVER}" ]]; then
-  echo "No server specified. Bailing."
-  return
-fi
-if [[ -z "${2}" ]]; then
-  echo 'Change the remote db port? Default is 8080'
-  read REMOTE_PORT
-  REMOTE_PORT=${REMOTE_PORT:-8080}
-  echo 'Using' $REMOTE_PORT
-fi
+  if [[ -z "${remote_port}" ]]; then
+    print "Change the remote db port? Default is ${default_remote_port}"
+    read -r remote_port
+    remote_port="${remote_port:-${default_remote_port}}"
+    print "Using ${remote_port}"
+  fi
 
-if [[ -z "${3}" ]]; then
-  echo 'Change the localhost port? Default is 9999'
-  read LOCAL_PORT
-  LOCAL_PORT=${LOCAL_PORT:-9999}
-  echo 'Using' $LOCAL_PORT
-fi
+  if [[ -z "${local_port}" ]]; then
+    print "Change the localhost port? Default is ${default_local_port}"
+    read -r local_port
+    local_port="${local_port:-${default_local_port}}"
+    print "Using ${local_port}"
+  fi
 
-echo 'Connecting…'
-printf '%s\n' "ssh -f ${SERVER} -L ${LOCAL_PORT}:127.0.0.1:${REMOTE_PORT} -N"
-echo ''
-echo "Access the database at http://localhost:${LOCAL_PORT}"
-echo ''
+  if [[ ! "${remote_port}" == <-> || ! "${local_port}" == <-> ]]; then
+    print -u2 "tunnel: ports must be numbers"
+    return 1
+  fi
 
-ssh -f "${SERVER}" -L "${LOCAL_PORT}:127.0.0.1:${REMOTE_PORT}" -N
+  print "Connecting…"
+  print -r -- "ssh -N -L ${local_port}:127.0.0.1:${remote_port} ${server}"
+  print ""
+  print "Access the database at http://localhost:${local_port}"
+  print ""
 
-line="$(ps aux | grep "${SERVER}" | tail -n1)"
-echo "${line}" >/tmp/.tunnelpid
+  ssh -N -o ExitOnForwardFailure=yes -L "${local_port}:127.0.0.1:${remote_port}" "${server}" &
+  pid=$!
+  disown "${pid}"
+  print "When you are finished, run the following command:"
+  print "kill ${pid}"
+}
 
-_pid="$(awk '{print $2}' /tmp/.tunnelpid)"
-
-echo "When you are finished, run the following command:"
-echo "kill $_pid"
+tunnel "$@"

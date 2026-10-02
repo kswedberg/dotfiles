@@ -1,40 +1,53 @@
+local opt author="" message="" output status
+local OPTIND=1
 
-
-# Create proper commit message for pull requests on jQuery repos
-if [ -z "$1" ]
-then
-  echo "$(git log -1 --no-merges --pretty=format:'git commit -a --author="'"%an <%aE>"'" --message="'"%s %b"'"')"
-  return 1
+if (( $# == 0 )); then
+  output="$(git log -1 --no-merges --pretty=format:'git commit -a --author="%an <%aE>" --message="%s %b"')"
+  status=$?
+  print -r -- "${output}"
+  return "${status}"
 fi
 
-AUTHOR=""
-MSG=""
-while getopts "a:m:h" Option; do
-  case $Option in
-    a )
-      AUTHOR="--author=${OPTARG}"
+while getopts ":a:m:h" opt; do
+  case "${opt}" in
+    a) author="${OPTARG}" ;;
+    m) message="${OPTARG}" ;;
+    h)
+      print "cipr"
+      print "Create proper commit message for pull requests on jQuery repos"
+      print "Option: -m"
+      print "\tA piece of the commit message used by the pull request author"
+      print "Option: -a"
+      print "\tA part of the author's name"
+      print ""
+      print "Example:"
+      print "\t# Get the last commit"
+      print "\tcipr"
+      print ""
+      print "Example:"
+      print "\t# Get the last commit made by someone named scott"
+      print "\tcipr -a scott"
+      print ""
+      print "Example:"
+      print "\t# Get the last commit scott made with the word 'wow' in the msg"
+      print "\tcipr -a scott -m wow"
+      return 0
       ;;
-    m )
-      MSG="--grep=${OPTARG}"
+    :)
+      print -u2 "cipr: option -${OPTARG} requires an argument"
+      return 1
       ;;
-    h )
-      echo "cipr\n"
-      echo "Create proper commit message for pull requests on jQuery repos"
-      echo "Option: -m"
-      echo "\tA piece of the commit message used by the pull request author"
-      echo "Option: -a"
-      echo "\tA part of the author's name"
-      echo "\nExample:"
-      echo "\t# Get the last commit"
-      echo "\tcipr"
-      echo "\nExample:"
-      echo "\t# Get the last commit made by someone named scott"
-      echo "\tcipr -a scott"
-      echo "\nExample:"
-      echo "\t# Get the last commit scott made with the word 'wow' in the msg"
-      echo "\tcipr -a scott -m wow"
+    \?)
+      print -u2 "cipr: unknown option -${OPTARG}"
+      return 1
       ;;
   esac
 done
 
-echo "$(git log -1 ${MSG} ${AUTHOR} --no-merges --pretty=format:'git commit -a --author="'"%an <%aE>"'" --message="'"%s %b"'"')"
+typeset -a log_args=(git log -1 --no-merges)
+[[ -n "${message}" ]] && log_args+=(--grep="${message}")
+[[ -n "${author}" ]] && log_args+=(--author="${author}")
+output="$("${log_args[@]}" --pretty=format:'git commit -a --author="%an <%aE>" --message="%s %b"')"
+status=$?
+print -r -- "${output}"
+return "${status}"

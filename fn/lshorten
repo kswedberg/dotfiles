@@ -1,0 +1,11 @@
+local width="${1:-20}"
+if [[ ! "${width}" == <-> ]]; then
+  print -u2 "lshorten: width must be a whole number"
+  return 1
+fi
+local keep=$(( width - 3 ))
+if (( keep < 1 )); then
+  print -u2 "lshorten: width must be greater than 3"
+  return 1
+fi
+sed -E "s/.*(.{${keep}})\$/...\\1/"

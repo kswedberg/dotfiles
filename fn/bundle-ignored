@@ -1,68 +1,64 @@
 #!/usr/bin/env zsh
 
-bundle_root="$(pwd)"
-BUNDLE="${1}"
+function bundle-ignored() {
+  emulate -L zsh
+  setopt LOCAL_TRAPS
+  typeset -ri ZOPFLI_MAX_BYTES=$((50 * 1024 * 1024))
 
-if [[ -z "${1}" ]]; then
-  BUNDLE="bundle"
-fi
+  local bundle_root bundle ignored
+  bundle_root="$(pwd)"
+  bundle="${1:-bundle}"
 
-# [ -d "${BUNDLE}" ] && rm -rf $BUNDLE
-mkdir -p "${BUNDLE}"
+  function tar_gz() {
+    local archive="${1%/}"
+    local tmp_file="${archive}.tar"
+    local cmd size
+    tar -cvf "${tmp_file}" --exclude=".DS_Store" -- "${archive}" || return 1
 
-# Copy extra dotfiles from ~/
-node "${bundle_root}/copy-dotfiles.mjs" "${BUNDLE}"
+    size="$(stat -f '%z' "${tmp_file}" 2>/dev/null)" || size="$(stat -c '%s' "${tmp_file}" 2>/dev/null)" || return 1
 
-# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
-function tar_gz() {
-  local tmpFile="${@%/}.tar"
-  tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1
-
-  size=$(
-    stat -f"%z" "${tmpFile}" 2>/dev/null   # OS X `stat`
-    stat -c"%s" "${tmpFile}" 2>/dev/null  # GNU `stat`
-  )
-
-  local cmd=""
-  if ((size < 52428800)) && hash zopfli 2>/dev/null; then
-    # the .tar file is smaller than 50 MB and Zopfli is available; use it
-    cmd="zopfli"
-  else
-    if hash pigz 2>/dev/null; then
+    if (( size < ZOPFLI_MAX_BYTES )) && command -v zopfli >/dev/null; then
+      cmd="zopfli"
+    elif command -v pigz >/dev/null; then
       cmd="pigz"
     else
       cmd="gzip"
     fi
-  fi
 
-  echo "Compressing .tar using \`${cmd}\`…"
-  "${cmd}" -v "${tmpFile}" || return 1
-  [ -f "${tmpFile}" ] && rm "${tmpFile}"
-  printf "%s/%s.tar.gz created successfully." "${bundle_root}" "${BUNDLE}"
+    print "Compressing .tar using ${cmd}…"
+    "${cmd}" -v "${tmp_file}" || return 1
+    if [[ -f "${tmp_file}" ]]; then
+      rm -- "${tmp_file}" || return
+    fi
+    print "${bundle_root}/${bundle}.tar.gz created successfully."
+  }
+
+  function copy_files() {
+    local file dest dir
+    for file in "$@"; do
+      [[ -z "${file}" ]] && continue
+      dest="${bundle}/${file}"
+      dir="${dest:h}"
+      mkdir -p -- "${dir}" || return
+      cp -R -- "${file}" "${dest}" || return
+    done
+
+    tar_gz "${bundle}" || return
+    if [[ -d "${bundle}" ]]; then
+      rm -rf -- "${bundle}" || return
+    fi
+    print "FINISHED!"
+  }
+
+  trap 'unfunction tar_gz copy_files 2>/dev/null' EXIT
+
+  mkdir -p -- "${bundle}" || return
+  node "${bundle_root}/copy-dotfiles.mjs" "${bundle}" || return
+
+  ignored="$(git ls-files -o -x .DS_Store -x Library -x tmp -x secrets.tar.gz -x cache -x home/bin -x "${bundle}")" || return
+  print "About to copy the following ignored files:"
+  print -r -- "${ignored}"
+  copy_files "${(@f)ignored}"
 }
 
-function copy_files() {
-  local file dest dir
-  for file in "${@}"; do
-    [[ -z "${file}" ]] && continue
-    dest="${BUNDLE}/${file}"
-    dir="$(dirname "${dest}")"
-
-    mkdir -p "${dir}"
-    cp -r "${file}" "${dest}"
-  done
-
-  tar_gz "${BUNDLE}"
-
-  [[ -d "${BUNDLE}" ]] && rm -rf "${BUNDLE}"
-
-  printf "FINISHED!"
-}
-
-IGNORED="$(git ls-files -o -x .DS_Store -x Library -x tmp -x secrets.tar.gz -x cache -x home/bin -x "${BUNDLE}")"
-echo "About to copy the following ignored files:"
-echo "${IGNORED}"
-copy_files "${(@f)IGNORED}"
-
-unset IGNORED
-unset copy_files
+bundle-ignored "$@"

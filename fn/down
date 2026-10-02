@@ -1,2 +1,10 @@
 # http://www.commandlinefu.com/commands/view/8072/down-for-everyone-or-just-me
+if (( $# == 0 )); then
+  print -u2 "usage: down HOSTNAME"
+  return 1
+fi
+if [[ ! "${1}" =~ '^[A-Za-z0-9.-]+$' ]]; then
+  print -u2 "down: expected a hostname"
+  return 1
+fi
 wget -qO - "http://www.downforeveryoneorjustme.com/${1}" | sed '/just you/!d;s/<[^>]*>//g'

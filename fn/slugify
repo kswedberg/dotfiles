@@ -1,16 +1,20 @@
+#!/usr/bin/env zsh
 
-slugify () {
+function slugify() {
+  local text="" slug=""
   if [[ -p /dev/stdin ]]; then
     read -r text
     slug="${text}"
-  elif [[ -n "${1}" ]]; then
+  elif [[ -n "${1:-}" ]]; then
     slug="${1}"
   else
-    echo "Type something to slugify…\n"
+    print -r -- "Type something to slugify…"
     read -r slug
   fi
 
   if [[ -n "${slug}" ]]; then
-    echo "$slug" | iconv -c -t ascii//TRANSLIT | sed -E 's/[~^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+|-+$//g' | tr A-Z a-z
+    print -r -- "${slug}" | iconv -c -t ascii//TRANSLIT | sed -E 's/[~^]+//g; s/[^a-zA-Z0-9]+/-/g; s/^-+|-+$//g' | tr '[:upper:]' '[:lower:]'
   fi
 }
+
+slugify "$@"

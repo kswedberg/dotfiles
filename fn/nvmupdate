@@ -1,46 +1,58 @@
-#!/bin/bash
-# --reinstall-packages-from=4.2
-# need at least a user specified
+#!/usr/bin/env zsh
 
-NEWVERSION="$1"
-CMD=""
+function nvmupdate() {
+  local new_version="${1:-}" reinstall="${2:-}"
+  local msg
+  typeset -a cmd
 
-if [ -z $1 ]; then
-  echo "nvm updater"
-  echo "* installs node to specified version and reinstalls packages from another version if specified\n"
-  echo "Example Usage:"
-  echo "\t# updates node to latest stable and reinstalls global packages from 5.2"
-  echo "\t nvmupdate node 5.2"
+  if [[ -z "${new_version}" ]]; then
+    print "nvm updater"
+    print "* installs node to specified version and reinstalls packages from another version if specified"
+    print ""
+    print "Example Usage:"
+    print "\t# updates node to latest stable and reinstalls global packages from 5.2"
+    print "\tnvmupdate node 5.2"
+    print ""
+    print "Type a version name or node to install."
+    read -r new_version
+  fi
 
-  echo '\n\nType a version name or node to install.\n'
-  read NEWVERSION
-fi
+  if [[ -z "${new_version}" ]]; then
+    print "No version specified. Bailing."
+    return 1
+  fi
+  if [[ ! "${new_version}" =~ '^[A-Za-z0-9._-]+$' ]]; then
+    print -u2 "nvmupdate: version contains unsupported characters"
+    return 1
+  fi
+  if [[ ! -s "${NVM_DIR:-}/nvm.sh" ]]; then
+    print -u2 "nvmupdate: NVM_DIR/nvm.sh is not available"
+    return 1
+  fi
 
-if [ -z $NEWVERSION ]; then
-  echo "No version specified. Bailing."
-  return
-fi
+  source "${NVM_DIR}/nvm.sh" || return
 
-REINSTALL="$2"
-source ${NVM_DIR}/nvm.sh
+  if [[ -z "${reinstall}" ]]; then
+    print "If you wanna reinstall global node packages, provide the version to copy from."
+    print "Maybe one of these (without the \"v\")…"
+    nvm ls
+    print ""
+    read -r reinstall
+  fi
+  if [[ -n "${reinstall}" && ! "${reinstall}" =~ '^[A-Za-z0-9._-]+$' ]]; then
+    print -u2 "nvmupdate: source version contains unsupported characters"
+    return 1
+  fi
 
-if [ -z $2 ]; then
-  echo "If you wanna reinstall global node packages, provide the version to copy from."
-  echo 'Maybe one of these (without the "v")…'
-  nvm ls
-  echo "\n"
-  read REINSTALL
-fi
+  cmd=(nvm install "${new_version}")
+  msg="Installing version '${new_version}' without reinstalling packages"
+  if [[ -n "${reinstall}" ]]; then
+    msg="Installing version '${new_version}' with packages from ${reinstall}"
+    cmd+=(--reinstall-packages-from="${reinstall}")
+  fi
 
-MSG="Installing version '${NEWVERSION}' without reinstalling packages"
-if [ -z $REINSTALL ]; then
-  CMD="nvm install $NEWVERSION"
-else
-  MSG="Installing version '${NEWVERSION}' with packages from ${REINSTALL}"
-  CMD="nvm install $NEWVERSION --reinstall-packages-from=${REINSTALL}"
-fi
+  print "${msg}"
+  "${cmd[@]}"
+}
 
-# CMD="$CMD"
-
-echo "$MSG"
-eval $CMD
+nvmupdate "$@"

@@ -1,35 +1,50 @@
 #!/usr/bin/env zsh
-# Homebrew Bundle
 
-BREWFILE="${DOTFILES}/Brewfile"
-# alias bbundle="brew bundle --file=$DOTFILES/Brewfile"
-#
-# # Create a Brewfile from all the currently installed Homebrew packages. Add --force to overwrite an existing Brewfile
-# alias bbundledump="brew bundle dump --file=$DOTFILES/Brewfile"
+function bbundle() {
+  local brewfile="${DOTFILES:-}/Brewfile"
+  local option=""
+  typeset -a options=(Install "Update/Create" Show Bail)
 
-echo 'Do you want to:'
-echo "*Install* apps listed in $BREWFILE (default), or"
-echo "*Update/Create* the Brewfile based on your current apps, or"
-echo "*Show* Brewfile"
-echo "*Bail*"
-echo ""
+  if [[ -z "${DOTFILES:-}" ]]; then
+    print -u2 "DOTFILES is not set"
+    return 1
+  fi
 
-OPTIONS=(Install Update/Create Show Bail)
+  print "Do you want to:"
+  print -P "%BInstall%b apps listed in ${brewfile//\%/%%} (default), or"
+  print -P "%BUpdate/Create%b the Brewfile based on your current apps, or"
+  print -P "%BShow%b Brewfile"
+  print -P "%BBail%b"
+  print ""
 
-select OPTION in "${OPTIONS[@]}"; do
-  break
-done
+  select option in "${options[@]}"; do
+    [[ -n "${option}" ]] && break
+    print -u2 "Choose a number from the list."
+  done
 
-if [[ $OPTION == "Bail" ]]; then
-  echo "${OPTION}"
-  echo 'Okay. Bailing…'
-elif [[ $OPTION == "Show" ]]; then
-  echo "Showing ${BREWFILE} …"
-  command cat "${BREWFILE}"
-elif [[ $OPTION == "Update/Create" ]]; then
-  echo "Running brew bundle dump --force --file=${BREWFILE} …"
-  brew bundle dump --force --file="${BREWFILE}"
-else
-  echo "Running brew bundle --file=${BREWFILE} …"
-  brew bundle --file="${BREWFILE}"
-fi
+  if [[ -z "${option}" ]]; then
+    print -u2 "Cancelled"
+    return 1
+  fi
+
+  case "${option}" in
+    Bail)
+      print "${option}"
+      print "Okay. Bailing…"
+      ;;
+    Show)
+      print "Showing ${brewfile} …"
+      command cat "${brewfile}"
+      ;;
+    Update/Create)
+      print "Running brew bundle dump --force --file=${brewfile} …"
+      brew bundle dump --force --file="${brewfile}"
+      ;;
+    Install)
+      print "Running brew bundle --file=${brewfile} …"
+      brew bundle --file="${brewfile}"
+      ;;
+  esac
+}
+
+bbundle "$@"

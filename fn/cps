@@ -1,56 +1,35 @@
-# rsync -av source/ target
-
-if [ ! $2 ]; then
-
+if [[ -z "${2:-}" ]]; then
   about "Perform an rsync operation from source to target"
   about "* Automatically adds a trailing '/' to 'source' "
   example "cps source target"
   example "source/path username@example.com:/full/server/path"
-
-else
-
-  dirname=$1
-
-  trailingslash=`expr $dirname : '\(.*\)/$'`
-  if [[ ${trailingslash} == '' ]]; then
-    dirname="${dirname}/"
-  fi
-
-  OPTIONS=(All New Update Bail)
-
-  select OPTION in "${OPTIONS[@]}"; do
-    if [[ $OPTION = "All" ]]
-    then
-      COPYTYPE="-avzP"
-      break
-    fi
-
-    if [[ $OPTION = "New" ]]
-    then
-      COPYTYPE="-avzP --ignore-existing"
-      break
-    fi
-
-    if [[ $OPTION = "Update" ]]
-    then
-      COPYTYPE="-auvzP"
-      break
-    fi
-
-    if [[ $OPTION = "Bail" ]]
-    then
-      COPYTYPE="bail"
-      break
-    fi
-  done
-
-  if [[ ${COPYTYPE} = "bail" ]]
-  then
-    echo "You chose to bail out of this one. "
-    echo "Try again later."
-  else
-    echo "copying ${dirname} to ${2} with ${COPYTYPE}..."
-    rsync ${COPYTYPE} ${dirname} ${2}
-    echo "done!"
-  fi
+  return 1
 fi
+
+local dirname="${1%/}/"
+local option
+typeset -a options=(All New Update Bail)
+typeset -a rsync_args=()
+
+select option in "${options[@]}"; do
+  case "${option}" in
+    All) rsync_args=(-avzP); break ;;
+    New) rsync_args=(-avzP --ignore-existing); break ;;
+    Update) rsync_args=(-auvzP); break ;;
+    Bail)
+      print "You chose to bail out of this one."
+      print "Try again later."
+      return 0
+      ;;
+    *) print -u2 "Choose a number from the list." ;;
+  esac
+done
+
+if (( ${#rsync_args[@]} == 0 )); then
+  print -u2 "Cancelled"
+  return 1
+fi
+
+print "copying ${dirname} to ${2} with ${rsync_args[*]}..."
+rsync "${rsync_args[@]}" -- "${dirname}" "${2}" || return
+print "done!"

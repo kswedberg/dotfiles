@@ -1,6 +1,10 @@
-if [[ "${#}" -eq 0 ]]; then
-  echo "Please provide the port of your running localhost instance"
-  echo "  e.g. localrun 8089"
-else
-  ssh -R "80:localhost:${1}" ssh.localhost.run
+if (( $# == 0 )); then
+  print "Please provide the port of your running localhost instance"
+  print "  e.g. localrun 8089"
+  return 1
 fi
+if [[ ! "${1}" == <-> ]]; then
+  print -u2 "localrun: port must be a number"
+  return 1
+fi
+ssh -R "80:localhost:${1}" ssh.localhost.run

@@ -1,31 +1,26 @@
-# Taken from https://github.com/jugglinmike/dotfiles
-#
-# Based on example from Linux Journal:
-# http://www.linuxjournal.com/content/downloading-entire-web-site-wget
+local usage
+usage=$'Requires wget\n\nUsage: dl-site URL [DOMAIN]\nScrape the web site at URL, optionally restricted to a given DOMAIN.'
 
-function help() {
-  cat <<HELP
-Requires wget
-
-Usage: dl-site [URL] [DOMAIN]
-Scrape the web site at URL, optionally restricted to a given DOMAIN.
-HELP
-}
-
-if [[ "$1" == "-h" || "$1" == "--help" ]]; then help; exit; fi
-if [[ "$1" == "" ]]; then help; exit 1; fi
-
-if [[ "$2" != "" ]]; then
-  domain_opt="--domains $2"
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  print -r -- "${usage}"
+  return 0
+fi
+if [[ -z "${1:-}" ]]; then
+  print -r -- "${usage}"
+  return 1
 fi
 
-wget \
-  --recursive \
-  --no-clobber \
-  --page-requisites \
-  --html-extension \
-  --convert-links \
-  --restrict-file-names=windows \
-  $domain_opt \
-  --no-parent \
-  $1
+typeset -a wget_args=(
+  --recursive
+  --no-clobber
+  --page-requisites
+  --html-extension
+  --convert-links
+  --restrict-file-names=windows
+  --no-parent
+)
+if [[ -n "${2:-}" ]]; then
+  wget_args+=(--domains "${2}")
+fi
+wget_args+=(-- "${1}")
+wget "${wget_args[@]}"

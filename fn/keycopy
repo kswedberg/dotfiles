@@ -1,40 +1,46 @@
-KEY="${HOME}/.ssh/id_dsa.pub"
-# make sure we have a public key (check id_dsa.pub, then id_rsa.pub)
-if [[ ! -f "${KEY}" ]]; then
-  KEY="${HOME}/.ssh/id_rsa.pub"
-  if [[ ! -f "${KEY}" ]]; then
-    echo "Private key not found at ${KEY}"
-    echo "* Please create it with "ssh-keygen -t rsa" *"
-    echo "* To login to the remote host without a password, don't give the key you create with ssh-keygen a password! *"
-    return
+#!/usr/bin/env zsh
+
+function keycopy() {
+  local key="" candidate user="${1:-}" server="${2:-}"
+  local -a names=(id_ed25519.pub id_rsa.pub id_dsa.pub)
+
+  for candidate in "${names[@]}"; do
+    if [[ -f "${HOME}/.ssh/${candidate}" ]]; then
+      key="${HOME}/.ssh/${candidate}"
+      break
+    fi
+  done
+
+  if [[ -z "${key}" ]]; then
+    print -u2 "Public key not found in ${HOME}/.ssh"
+    print -u2 "Tried: ${(j:, :)names}"
+    print -u2 "Create one with: ssh-keygen -t ed25519"
+    return 1
   fi
-fi
 
+  if [[ -z "${user}" ]]; then
+    about "SSH Key Copier"
+    example "keycopy username servername"
+    return 1
+  fi
 
-# need at least a user specified
-if [[ -z "${1}" ]]; then
-  about "SSH Key Copier"
-  example "keycopy username servername"
-  return
-fi
+  if [[ -z "${server}" ]]; then
+    print "Please provide a server name:"
+    read -r server
+  fi
+  if [[ -z "${server}" ]]; then
+    print "Aborting key copy. No server name."
+    return 1
+  fi
 
-USR="$1"
+  if ! command -v ssh-copy-id >/dev/null; then
+    print -u2 "keycopy: ssh-copy-id not found"
+    return 1
+  fi
 
-# server
-SERVER="$2"
+  print "Putting your key on ${server}..."
+  ssh-copy-id -i "${key}" "${user}@${server}" || return
+  print "copied key for ${user} to ${server}"
+}
 
-if [[ -z "${2}" ]]; then
-  echo "Please provide a server name:"
-  read SERVER
-fi
-
-if [[ -z "${SERVER}" ]]; then
-  echo "Aborting key copy. No server name."
-  return
-fi
-
-echo "Putting your key on ${SERVER}... "
-
-# put the key on the server
-cat "${KEY}" | ssh -l "${USR}" "${SERVER}" 'cat >> .ssh/authorized_keys'
-echo "copied key for ${USR} to ${SERVER}"
+keycopy "$@"

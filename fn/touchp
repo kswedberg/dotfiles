@@ -1,0 +1,8 @@
+# Touch file(s), creating parent directories as needed: touchp path/to/file [...]
+local file
+for file in "$@"; do
+  if [[ "${file}" == */* ]]; then
+    mkdir -p -- "${file:h}" || return
+  fi
+  touch -- "${file}" || return
+done

@@ -1,6 +1,13 @@
 if [[ -d "/opt/homebrew/opt/fnm/bin" ]]; then
-  echo "** Using fnm…"
+  print -r -- "** Using fnm…"
   fnm "${@}"
-else
-  nvm "${@}"
+  return
 fi
+
+if [[ ! -s "${NVM_DIR:-}/nvm.sh" ]]; then
+  print -u2 "nvm: fnm is not installed and NVM_DIR/nvm.sh is not available"
+  return 1
+fi
+
+source "${NVM_DIR}/nvm.sh" || return
+nvm "${@}"

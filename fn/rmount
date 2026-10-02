@@ -1,26 +1,30 @@
-# from http://brettterpstra.com/2013/02/10/the-joy-of-sshfs/
-# Requires Fuse for OS X (http://osxfuse.github.io/)
-# Requires sshfs (brew install sshfs)
-
-# Remote Mount (sshfs)
-# creates mount folder and mounts the remote filesystem
 local host folder mname
 
-host="${1%%:*}:"
-[[ ${1%:} == ${host%%:*} ]] && folder='' || folder=${1##*:}
-
-# need "-n" for zsh
-if [[ -n $2 ]]; then
-  mname=$2
-else
-  mname=${folder##*/}
-  [[ "$mname" == "" ]] && mname=${host%%:*}
+if [[ -z "${RMOUNT_DIR}" || ! -d "${RMOUNT_DIR}" ]]; then
+  print -u2 "RMOUNT_DIR is not set or is not a directory"
+  return 1
+fi
+if [[ -z "${1:-}" ]]; then
+  print -u2 "usage: rmount user@host[:path] [name]"
+  return 1
 fi
 
-mname=${mname##*@}
+host="${1%%:*}:"
+if [[ "${1%:}" == "${host%%:*}" ]]; then
+  folder=""
+else
+  folder="${1##*:}"
+fi
 
-mkdir -p "${RMOUNT_DIR}/${mname}" > /dev/null
-sshfs "${host}${folder}" "${RMOUNT_DIR}/${mname}" -oauto_cache,reconnect,defer_permissions,negative_vncache,volname="${mname}",noappledouble
+if [[ -n "${2:-}" ]]; then
+  mname="${2}"
+else
+  mname="${folder##*/}"
+  [[ -z "${mname}" ]] && mname="${host%%:*}"
+fi
+mname="${mname##*@}"
 
-cd "${RMOUNT_DIR}/${mname}"
-echo "mounted ${RMOUNT_DIR}/${mname}"
+mkdir -p -- "${RMOUNT_DIR}/${mname}" || return
+sshfs "${host}${folder}" "${RMOUNT_DIR}/${mname}" -oauto_cache,reconnect,defer_permissions,negative_vncache,volname="${mname}",noappledouble || return
+cd -- "${RMOUNT_DIR}/${mname}" || return
+print "mounted ${RMOUNT_DIR}/${mname}"

@@ -1,71 +1,51 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
-# http://brettterpstra.com/2018/05/07/shell-tricks-quick-start-scripts/
+# Touch, make executable, and start editing a new script.
+# newscript my_new_script.sh
+function newscript() {
+  local default_ext="js"
+  local scriptdir filename ext editor userscript
 
-# Touch, make executable and start editing a new script
-# $ newscript my_new_script.sh
-# edit default shebangs within the function
-# NO (overkill): include additional skeleton files as [extension].txt in the $defaults_txt folder defined in config
-newscript() {
-	### Config
+  if [[ $# -eq 0 ]]; then
+    print -r -- "newscript: touch, make executable and start editing a new script."
+    print -u2 -- "\033[31;1mError:\033[0m Missing filename"
+    print -r -- ""
+    print -r -- "Usage: newscript SCRIPT_NAME.ext [directory]"
+    return 1
+  fi
 
-	# where your scripts are stored
-	local scriptdir=$2
+  scriptdir="${2:-}"
+  if [[ -z "${scriptdir}" ]]; then
+    scriptdir="$(pwd)"
+    read -r "userscript?Choose a directory [${scriptdir}]: "
+    scriptdir="${userscript:-${scriptdir}}"
+  fi
 
-		if [[ -z "${2}" ]]; then
-		scriptdir="$(pwd)"
-		read -r "?Choose a directory [${scriptdir}]: " userscript
-		scriptdir=${userscript:-$scriptdir}
-	fi
+  filename="${scriptdir%/}/${1}"
+  ext="${filename:e}"
+  if [[ -z "${ext}" ]]; then
+    ext="${default_ext}"
+    filename="${filename}.${ext}"
+  fi
 
-	# if no extension is provided, default to
-	local default_ext=js
+  if [[ ! -f "${filename}" ]]; then
+    case "${ext}" in
+      js) print -r -- '#!/usr/bin/env node' >> "${filename}" ;;
+      sh | bash) print -r -- '#!/usr/bin/env bash' >> "${filename}" ;;
+      zsh) print -r -- '#!/usr/bin/env zsh' >> "${filename}" ;;
+      rb) print -r -- '#!/usr/bin/env ruby' >> "${filename}" ;;
+      py) print -r -- '#!/usr/bin/env python' >> "${filename}" ;;
+      *) touch -- "${filename}" ;;
+    esac
+    print >> "${filename}"
+    chmod +x "${filename}" || return
+    print "\033[32;1m${filename}\033[0m"
+  else
+    print "\033[31;1mFile exists: ${filename}\033[0m"
+  fi
 
-	# optional, where skeleton scripts (e.g. rb.txt) are stored
-	local defaults_txt=~/.newscript_defaults/
-
-	### End config
-
-	local filename="${scriptdir%/}/$1"
-
-	if [[ $# == 0 ]]; then # no argument, display help and exit
-		echo -e "newscript: touch, make executable and \
-start editing a new script.\n\033[31;1mError:\033[37;1m Missing filename\033[0m\n\n\
-Usage: mynewscript SCRIPT_NAME.ext\n"
-		return 1
-	fi
-	# get the extension from the filename
-	ext=${filename#*.}
-	# if there's no extenstion, add default
-	if [[ $ext == $filename ]]; then
-		ext=$default_ext
-		filename=$filename.$ext
-	fi
-	# if no script with this name already exists
-	if [ ! -f $filename ]; then
-
-		# create a file for the given extension with appropriate shebang
-		case $ext in
-			js ) echo -e "#!/usr/bin/env node" >> $filename;;
-			sh | bash ) echo -e "#!/usr/bin/env bash" >> $filename;;
-			zsh ) echo -e "#!/usr/bin/env zsh" >> $filename;;
-			rb ) echo -e "#!/usr/bin/env ruby" >> $filename;;
-			py ) echo -e "#!/usr/bin/env python" >> $filename;;
-			 * ) touch $filename;; # any other extension create blank file
-		esac
-		# if skeleton files directory and a txt for the given extension exist
-		# if [[ -d ${defaults_txt%/} && -f ${defaults_txt%/}/$ext.txt ]]; then
-		# 	# concatenate it to the file
-		# 	cat ${defaults_txt%/}/$ext.txt >> $filename
-		# fi
-		# Add trailing newline to the new script
-		echo -ne "\n" >> $filename
-		# Make it executable
-		chmod a+x "$filename"
-		echo -e "\033[32;1m$filename\033[0m"
-	else # Specified filename already exists
-		echo -e "\033[31;1mFile exists: $filename\033[0m"
-	fi
-	# Edit the script
-	$EDITOR "$filename"
+  editor="${EDITOR:-vim}"
+  "${editor}" "${filename}"
 }
+
+newscript "$@"
